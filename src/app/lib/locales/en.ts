@@ -149,6 +149,98 @@ export const en: Translations = {
   },
 
   /* ------------------------------------------------------------------ */
+  /*  Landing Page — Members / Social Proof                              */
+  /* ------------------------------------------------------------------ */
+  members: {
+    sectionLabel: "Community",
+    heading: "Trusted by thousands of job seekers",
+    description:
+      "Join a community of professionals using AI to find their next career opportunity faster and smarter.",
+    statistics: [
+      {
+        value: "10,000+",
+        label: "Members",
+      },
+      {
+        value: "85%",
+        label: "Success rate",
+      },
+      {
+        value: "5,000+",
+        label: "Placed",
+      },
+      {
+        value: "4.8/5",
+        label: "Satisfied",
+      },
+    ],
+    testimonials: {
+      heading: "What our members say",
+      items: [
+        {
+          name: "Nguyen Minh Anh",
+          role: "Frontend Developer at VNG",
+          quote:
+            "Thanks to Job360, I received 3 job offers within 2 weeks. The JD analysis feature helped me understand exactly what employers want and prepared me better for interviews.",
+        },
+        {
+          name: "Tran Duc Hoang",
+          role: "Data Analyst turned AI Engineer",
+          quote:
+            "I successfully transitioned careers thanks to the personalized roadmap from AI. It suggested which skills to learn and how to present my past experience to fit the new role.",
+        },
+        {
+          name: "Le Thi Huong",
+          role: "HR Manager at Tech Startup",
+          quote:
+            "As a recruiter, I've noticed Job360 helps candidates come to interviews much better prepared. They understand the JD clearly and provide answers closely aligned with job requirements.",
+        },
+        {
+          name: "Pham Van Nam",
+          role: "Senior Backend Developer",
+          quote:
+            "I increased my salary by 35% after using Job360 to benchmark market rates and learn negotiation strategies. The AI gave me real data to negotiate with confidence.",
+        },
+      ],
+    },
+    benefits: {
+      heading: "Benefits of joining",
+      items: [
+        {
+          title: "Smart JD Analysis",
+          description: "Understand job requirements and how well you match each position you apply for.",
+          icon: "target",
+        },
+        {
+          title: "Automated CV Review",
+          description: "Get detailed feedback on your CV: structure, keywords, and how to improve to pass ATS.",
+          icon: "fileCheck",
+        },
+        {
+          title: "AI Interview Practice",
+          description: "Practice with interview questions tailored to your target role and industry.",
+          icon: "messageSquare",
+        },
+        {
+          title: "Market Salary Benchmark",
+          description: "Up-to-date salary data by role, experience, and location to negotiate better offers.",
+          icon: "trendingUp",
+        },
+        {
+          title: "Personalized Roadmap",
+          description: "AI suggests skill development roadmaps based on your career goals and current background.",
+          icon: "route",
+        },
+        {
+          title: "Supportive Community",
+          description: "Connect with other professionals to share experiences and discover career opportunities.",
+          icon: "users",
+        },
+      ],
+    },
+  },
+
+  /* ------------------------------------------------------------------ */
   /*  Landing Page — CTA                                                 */
   /* ------------------------------------------------------------------ */
   cta: {

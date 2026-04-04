@@ -1,0 +1,1606 @@
+{
+  "version": "2.9",
+  "children": [
+    {
+      "type": "frame",
+      "id": "d0Sm1",
+      "x": 0,
+      "y": 0,
+      "name": "Member Section Wireframe Board",
+      "fill": "#F3F3F3",
+      "layout": "vertical",
+      "gap": 32,
+      "padding": 48,
+      "children": [
+        {
+          "type": "text",
+          "id": "jP4kF",
+          "name": "title",
+          "fill": "#111111",
+          "textGrowth": "fixed-width",
+          "width": "fill_container",
+          "content": "Member Section / Stage 1 Wireframe\nPlacement: IntegrationLogos -> MemberSection -> LandingCTA",
+          "lineHeight": 1.3,
+          "fontFamily": "Inter",
+          "fontSize": 28,
+          "fontWeight": "600"
+        },
+        {
+          "type": "frame",
+          "id": "xvSV8",
+          "name": "Responsive Views",
+          "gap": 40,
+          "children": [
+            {
+              "type": "frame",
+              "id": "WOwOU",
+              "name": "Desktop 1440",
+              "width": 1440,
+              "fill": "#FCFCFC",
+              "stroke": {
+                "thickness": 1,
+                "fill": "#D9D9D9"
+              },
+              "layout": "vertical",
+              "gap": 20,
+              "padding": 24,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "0k5Kf",
+                  "name": "desktopLabel",
+                  "fill": "#111111",
+                  "content": "Desktop / 1440px",
+                  "fontFamily": "Inter",
+                  "fontSize": 18,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "frame",
+                  "id": "NH4KU",
+                  "name": "Member Section",
+                  "width": "fill_container",
+                  "fill": "#FFFFFF",
+                  "stroke": {
+                    "thickness": 1,
+                    "fill": "#D9D9D9"
+                  },
+                  "layout": "vertical",
+                  "gap": 32,
+                  "padding": [
+                    56,
+                    64
+                  ],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "8uCKE",
+                      "name": "Header",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 12,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "WKDhD",
+                          "name": "desktopTag",
+                          "fill": "#666666",
+                          "content": "SECTION LABEL",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "Z1Ui3",
+                          "name": "desktopHeading",
+                          "fill": "#111111",
+                          "textGrowth": "fixed-width",
+                          "width": 720,
+                          "content": "Trusted by thousands of job seekers",
+                          "lineHeight": 1.1,
+                          "textAlign": "center",
+                          "fontFamily": "Inter",
+                          "fontSize": 40,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "H0JnV",
+                          "name": "desktopDesc",
+                          "fill": "#666666",
+                          "textGrowth": "fixed-width",
+                          "width": 560,
+                          "content": "Community-focused intro copy explaining trust, outcomes, and why this section exists on the landing page.",
+                          "lineHeight": 1.5,
+                          "textAlign": "center",
+                          "fontFamily": "Inter",
+                          "fontSize": 16,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "e6ses",
+                      "name": "Stats Row",
+                      "width": "fill_container",
+                      "gap": 16,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "EICRd",
+                          "name": "desktopStat1",
+                          "width": "fill_container",
+                          "height": 116,
+                          "fill": "#F4F4F4",
+                          "stroke": {
+                            "thickness": 1,
+                            "fill": "#D9D9D9"
+                          },
+                          "layout": "vertical",
+                          "gap": 8,
+                          "padding": 16,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "G0B2u",
+                              "name": "desktopStat1Text",
+                              "fill": "#111111",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "10,000+\nMembers",
+                              "lineHeight": 1.3,
+                              "fontFamily": "Inter",
+                              "fontSize": 24,
+                              "fontWeight": "600"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "q453U",
+                          "name": "desktopStat2",
+                          "width": "fill_container",
+                          "height": 116,
+                          "fill": "#F4F4F4",
+                          "stroke": {
+                            "thickness": 1,
+                            "fill": "#D9D9D9"
+                          },
+                          "layout": "vertical",
+                          "gap": 8,
+                          "padding": 16,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "xQsay",
+                              "name": "desktopStat2Text",
+                              "fill": "#111111",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "85%\nSuccess Rate",
+                              "lineHeight": 1.3,
+                              "fontFamily": "Inter",
+                              "fontSize": 24,
+                              "fontWeight": "600"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "8TnDl",
+                          "name": "desktopStat3",
+                          "width": "fill_container",
+                          "height": 116,
+                          "fill": "#F4F4F4",
+                          "stroke": {
+                            "thickness": 1,
+                            "fill": "#D9D9D9"
+                          },
+                          "layout": "vertical",
+                          "gap": 8,
+                          "padding": 16,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "KE72U",
+                              "name": "desktopStat3Text",
+                              "fill": "#111111",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "5,000+\nPlacements",
+                              "lineHeight": 1.3,
+                              "fontFamily": "Inter",
+                              "fontSize": 24,
+                              "fontWeight": "600"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "zHxnC",
+                          "name": "desktopStat4",
+                          "width": "fill_container",
+                          "height": 116,
+                          "fill": "#F4F4F4",
+                          "stroke": {
+                            "thickness": 1,
+                            "fill": "#D9D9D9"
+                          },
+                          "layout": "vertical",
+                          "gap": 8,
+                          "padding": 16,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "9Qlvh",
+                              "name": "desktopStat4Text",
+                              "fill": "#111111",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "4.8/5\nSatisfaction",
+                              "lineHeight": 1.3,
+                              "fontFamily": "Inter",
+                              "fontSize": 24,
+                              "fontWeight": "600"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "HipUy",
+                      "name": "Featured Testimonial",
+                      "width": "fill_container",
+                      "height": 260,
+                      "fill": "#F8F8F8",
+                      "stroke": {
+                        "thickness": 1,
+                        "fill": "#D9D9D9"
+                      },
+                      "gap": 24,
+                      "padding": 24,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "ege81",
+                          "name": "Member Meta",
+                          "width": 220,
+                          "height": "fill_container",
+                          "layout": "vertical",
+                          "gap": 12,
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "ellipse",
+                              "id": "wPeqQ",
+                              "name": "desktopAvatar",
+                              "fill": "#D9D9D9",
+                              "width": 88,
+                              "height": 88,
+                              "stroke": {
+                                "thickness": 1,
+                                "fill": "#BDBDBD"
+                              }
+                            },
+                            {
+                              "type": "text",
+                              "id": "5x9jN",
+                              "name": "desktopMetaText",
+                              "fill": "#111111",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "Member Name\nRole / Company",
+                              "lineHeight": 1.5,
+                              "textAlign": "center",
+                              "fontFamily": "Inter",
+                              "fontSize": 16,
+                              "fontWeight": "600"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "5Wam1",
+                          "name": "Quote Area",
+                          "width": "fill_container",
+                          "height": "fill_container",
+                          "layout": "vertical",
+                          "gap": 20,
+                          "justifyContent": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "vGpS7",
+                              "name": "desktopQuote",
+                              "fill": "#111111",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "Testimonial quote placeholder showing 3 to 4 lines of social proof about job offers, interview readiness, or salary growth.",
+                              "lineHeight": 1.4,
+                              "fontFamily": "Inter",
+                              "fontSize": 24,
+                              "fontWeight": "600"
+                            },
+                            {
+                              "type": "text",
+                              "id": "U2gDg",
+                              "name": "desktopNav",
+                              "fill": "#666666",
+                              "content": "Dots / Prev / Next",
+                              "fontFamily": "Inter",
+                              "fontSize": 14,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "YnzSa",
+                      "name": "desktopBenefitsTitle",
+                      "fill": "#111111",
+                      "content": "Benefits Grid / 3 columns x 2 rows",
+                      "fontFamily": "Inter",
+                      "fontSize": 18,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "Xeokq",
+                      "name": "Benefits Grid",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 16,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "Llz2b",
+                          "name": "desktopBenefitRow1",
+                          "width": "fill_container",
+                          "gap": 16,
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "7HOwg",
+                              "name": "desktopBenefit1",
+                              "width": "fill_container",
+                              "height": 160,
+                              "fill": "#F4F4F4",
+                              "stroke": {
+                                "thickness": 1,
+                                "fill": "#D9D9D9"
+                              },
+                              "layout": "vertical",
+                              "gap": 10,
+                              "padding": 16,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "KIEB3",
+                                  "name": "desktopBenefit1Text",
+                                  "fill": "#111111",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "Benefit Title\n2-line description placeholder for value proposition.",
+                                  "lineHeight": 1.5,
+                                  "fontFamily": "Inter",
+                                  "fontSize": 16,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "Z3co7",
+                              "name": "desktopBenefit2",
+                              "width": "fill_container",
+                              "height": 160,
+                              "fill": "#F4F4F4",
+                              "stroke": {
+                                "thickness": 1,
+                                "fill": "#D9D9D9"
+                              },
+                              "layout": "vertical",
+                              "gap": 10,
+                              "padding": 16,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "Bse9Y",
+                                  "name": "desktopBenefit2Text",
+                                  "fill": "#111111",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "Benefit Title\n2-line description placeholder for value proposition.",
+                                  "lineHeight": 1.5,
+                                  "fontFamily": "Inter",
+                                  "fontSize": 16,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "N0EHc",
+                              "name": "desktopBenefit3",
+                              "width": "fill_container",
+                              "height": 160,
+                              "fill": "#F4F4F4",
+                              "stroke": {
+                                "thickness": 1,
+                                "fill": "#D9D9D9"
+                              },
+                              "layout": "vertical",
+                              "gap": 10,
+                              "padding": 16,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "t64IS",
+                                  "name": "desktopBenefit3Text",
+                                  "fill": "#111111",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "Benefit Title\n2-line description placeholder for value proposition.",
+                                  "lineHeight": 1.5,
+                                  "fontFamily": "Inter",
+                                  "fontSize": 16,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "BxCxj",
+                          "name": "desktopBenefitRow2",
+                          "width": "fill_container",
+                          "gap": 16,
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "8Kk9I",
+                              "name": "desktopBenefit4",
+                              "width": "fill_container",
+                              "height": 160,
+                              "fill": "#F4F4F4",
+                              "stroke": {
+                                "thickness": 1,
+                                "fill": "#D9D9D9"
+                              },
+                              "layout": "vertical",
+                              "gap": 10,
+                              "padding": 16,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "zaxkO",
+                                  "name": "desktopBenefit4Text",
+                                  "fill": "#111111",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "Benefit Title\n2-line description placeholder for value proposition.",
+                                  "lineHeight": 1.5,
+                                  "fontFamily": "Inter",
+                                  "fontSize": 16,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "kKZku",
+                              "name": "desktopBenefit5",
+                              "width": "fill_container",
+                              "height": 160,
+                              "fill": "#F4F4F4",
+                              "stroke": {
+                                "thickness": 1,
+                                "fill": "#D9D9D9"
+                              },
+                              "layout": "vertical",
+                              "gap": 10,
+                              "padding": 16,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "T260K",
+                                  "name": "desktopBenefit5Text",
+                                  "fill": "#111111",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "Benefit Title\n2-line description placeholder for value proposition.",
+                                  "lineHeight": 1.5,
+                                  "fontFamily": "Inter",
+                                  "fontSize": 16,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "9eRgQ",
+                              "name": "desktopBenefit6",
+                              "width": "fill_container",
+                              "height": 160,
+                              "fill": "#F4F4F4",
+                              "stroke": {
+                                "thickness": 1,
+                                "fill": "#D9D9D9"
+                              },
+                              "layout": "vertical",
+                              "gap": 10,
+                              "padding": 16,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "moabG",
+                                  "name": "desktopBenefit6Text",
+                                  "fill": "#111111",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "Benefit Title\n2-line description placeholder for value proposition.",
+                                  "lineHeight": 1.5,
+                                  "fontFamily": "Inter",
+                                  "fontSize": 16,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "bvhsc",
+              "name": "Tablet 900",
+              "width": 900,
+              "fill": "#FCFCFC",
+              "stroke": {
+                "thickness": 1,
+                "fill": "#D9D9D9"
+              },
+              "layout": "vertical",
+              "gap": 20,
+              "padding": 24,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "Zjo3g",
+                  "name": "tabletLabel",
+                  "fill": "#111111",
+                  "content": "Tablet / 900px",
+                  "fontFamily": "Inter",
+                  "fontSize": 18,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "frame",
+                  "id": "Aft51",
+                  "name": "Member Section",
+                  "width": "fill_container",
+                  "fill": "#FFFFFF",
+                  "stroke": {
+                    "thickness": 1,
+                    "fill": "#D9D9D9"
+                  },
+                  "layout": "vertical",
+                  "gap": 28,
+                  "padding": [
+                    48,
+                    40
+                  ],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "QyZPh",
+                      "name": "Header",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 12,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "X6BxZ",
+                          "name": "tabletTag",
+                          "fill": "#666666",
+                          "content": "SECTION LABEL",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "8wMat",
+                          "name": "tabletHeading",
+                          "fill": "#111111",
+                          "textGrowth": "fixed-width",
+                          "width": 520,
+                          "content": "Trusted by thousands of job seekers",
+                          "lineHeight": 1.15,
+                          "textAlign": "center",
+                          "fontFamily": "Inter",
+                          "fontSize": 32,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "Ggfnr",
+                          "name": "tabletDesc",
+                          "fill": "#666666",
+                          "textGrowth": "fixed-width",
+                          "width": 480,
+                          "content": "Community intro copy for trust and outcomes.",
+                          "lineHeight": 1.5,
+                          "textAlign": "center",
+                          "fontFamily": "Inter",
+                          "fontSize": 15,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "5yfov",
+                      "name": "Stats Grid",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 16,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "orBhh",
+                          "name": "tabletStatsRow1",
+                          "width": "fill_container",
+                          "gap": 16,
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "8q68j",
+                              "name": "tabletStat1",
+                              "width": "fill_container",
+                              "height": 108,
+                              "fill": "#F4F4F4",
+                              "stroke": {
+                                "thickness": 1,
+                                "fill": "#D9D9D9"
+                              },
+                              "layout": "vertical",
+                              "gap": 8,
+                              "padding": 16,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "RHEe7",
+                                  "name": "tabletStat1Text",
+                                  "fill": "#111111",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "10,000+\nMembers",
+                                  "lineHeight": 1.3,
+                                  "fontFamily": "Inter",
+                                  "fontSize": 22,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "W58UR",
+                              "name": "tabletStat2",
+                              "width": "fill_container",
+                              "height": 108,
+                              "fill": "#F4F4F4",
+                              "stroke": {
+                                "thickness": 1,
+                                "fill": "#D9D9D9"
+                              },
+                              "layout": "vertical",
+                              "gap": 8,
+                              "padding": 16,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "TAcfy",
+                                  "name": "tabletStat2Text",
+                                  "fill": "#111111",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "85%\nSuccess Rate",
+                                  "lineHeight": 1.3,
+                                  "fontFamily": "Inter",
+                                  "fontSize": 22,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "SAWom",
+                          "name": "tabletStatsRow2",
+                          "width": "fill_container",
+                          "gap": 16,
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "iRNdO",
+                              "name": "tabletStat3",
+                              "width": "fill_container",
+                              "height": 108,
+                              "fill": "#F4F4F4",
+                              "stroke": {
+                                "thickness": 1,
+                                "fill": "#D9D9D9"
+                              },
+                              "layout": "vertical",
+                              "gap": 8,
+                              "padding": 16,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "WfHUA",
+                                  "name": "tabletStat3Text",
+                                  "fill": "#111111",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "5,000+\nPlacements",
+                                  "lineHeight": 1.3,
+                                  "fontFamily": "Inter",
+                                  "fontSize": 22,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "kCg6c",
+                              "name": "tabletStat4",
+                              "width": "fill_container",
+                              "height": 108,
+                              "fill": "#F4F4F4",
+                              "stroke": {
+                                "thickness": 1,
+                                "fill": "#D9D9D9"
+                              },
+                              "layout": "vertical",
+                              "gap": 8,
+                              "padding": 16,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "grlm4",
+                                  "name": "tabletStat4Text",
+                                  "fill": "#111111",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "4.8/5\nSatisfaction",
+                                  "lineHeight": 1.3,
+                                  "fontFamily": "Inter",
+                                  "fontSize": 22,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "UPvVH",
+                      "name": "Featured Testimonial",
+                      "width": "fill_container",
+                      "fill": "#F8F8F8",
+                      "stroke": {
+                        "thickness": 1,
+                        "fill": "#D9D9D9"
+                      },
+                      "layout": "vertical",
+                      "gap": 16,
+                      "padding": 24,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "ellipse",
+                          "id": "QURTn",
+                          "name": "tabletAvatar",
+                          "fill": "#D9D9D9",
+                          "width": 80,
+                          "height": 80,
+                          "stroke": {
+                            "thickness": 1,
+                            "fill": "#BDBDBD"
+                          }
+                        },
+                        {
+                          "type": "text",
+                          "id": "3vLRs",
+                          "name": "tabletMetaText",
+                          "fill": "#111111",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "Member Name\nRole / Company",
+                          "lineHeight": 1.5,
+                          "textAlign": "center",
+                          "fontFamily": "Inter",
+                          "fontSize": 15,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "0Jq0p",
+                          "name": "tabletQuote",
+                          "fill": "#111111",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "Featured quote placeholder.",
+                          "lineHeight": 1.4,
+                          "textAlign": "center",
+                          "fontFamily": "Inter",
+                          "fontSize": 20,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "4HPGg",
+                          "name": "tabletNav",
+                          "fill": "#666666",
+                          "content": "Indicators and arrows",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "zU4BE",
+                      "name": "tabletBenefitsTitle",
+                      "fill": "#111111",
+                      "content": "Benefits Grid - 2 columns x 3 rows",
+                      "fontFamily": "Inter",
+                      "fontSize": 18,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "1HTob",
+                      "name": "Benefits Grid",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 16,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "nqKXW",
+                          "name": "tabletBenefitRow1",
+                          "width": "fill_container",
+                          "gap": 16,
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "AC4ZQ",
+                              "name": "tabletBenefit1",
+                              "width": "fill_container",
+                              "height": 148,
+                              "fill": "#F4F4F4",
+                              "stroke": {
+                                "thickness": 1,
+                                "fill": "#D9D9D9"
+                              },
+                              "layout": "vertical",
+                              "gap": 10,
+                              "padding": 16,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "BPKhU",
+                                  "name": "tabletBenefit1Text",
+                                  "fill": "#111111",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "Benefit Title\nShort description placeholder.",
+                                  "lineHeight": 1.5,
+                                  "fontFamily": "Inter",
+                                  "fontSize": 15,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "sjMfL",
+                              "name": "tabletBenefit2",
+                              "width": "fill_container",
+                              "height": 148,
+                              "fill": "#F4F4F4",
+                              "stroke": {
+                                "thickness": 1,
+                                "fill": "#D9D9D9"
+                              },
+                              "layout": "vertical",
+                              "gap": 10,
+                              "padding": 16,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "a6PT2",
+                                  "name": "tabletBenefit2Text",
+                                  "fill": "#111111",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "Benefit Title\nShort description placeholder.",
+                                  "lineHeight": 1.5,
+                                  "fontFamily": "Inter",
+                                  "fontSize": 15,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "XvrcN",
+                          "name": "tabletBenefitRow2",
+                          "width": "fill_container",
+                          "gap": 16,
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "3E7L0",
+                              "name": "tabletBenefit3",
+                              "width": "fill_container",
+                              "height": 148,
+                              "fill": "#F4F4F4",
+                              "stroke": {
+                                "thickness": 1,
+                                "fill": "#D9D9D9"
+                              },
+                              "layout": "vertical",
+                              "gap": 10,
+                              "padding": 16,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "CvTtP",
+                                  "name": "tabletBenefit3Text",
+                                  "fill": "#111111",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "Benefit Title\nShort description placeholder.",
+                                  "lineHeight": 1.5,
+                                  "fontFamily": "Inter",
+                                  "fontSize": 15,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "UWPhi",
+                              "name": "tabletBenefit4",
+                              "width": "fill_container",
+                              "height": 148,
+                              "fill": "#F4F4F4",
+                              "stroke": {
+                                "thickness": 1,
+                                "fill": "#D9D9D9"
+                              },
+                              "layout": "vertical",
+                              "gap": 10,
+                              "padding": 16,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "CvPje",
+                                  "name": "tabletBenefit4Text",
+                                  "fill": "#111111",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "Benefit Title\nShort description placeholder.",
+                                  "lineHeight": 1.5,
+                                  "fontFamily": "Inter",
+                                  "fontSize": 15,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "toVch",
+                          "name": "tabletBenefitRow3",
+                          "width": "fill_container",
+                          "gap": 16,
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "8uYPK",
+                              "name": "tabletBenefit5",
+                              "width": "fill_container",
+                              "height": 148,
+                              "fill": "#F4F4F4",
+                              "stroke": {
+                                "thickness": 1,
+                                "fill": "#D9D9D9"
+                              },
+                              "layout": "vertical",
+                              "gap": 10,
+                              "padding": 16,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "Br52z",
+                                  "name": "tabletBenefit5Text",
+                                  "fill": "#111111",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "Benefit Title\nShort description placeholder.",
+                                  "lineHeight": 1.5,
+                                  "fontFamily": "Inter",
+                                  "fontSize": 15,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "E4pPW",
+                              "name": "tabletBenefit6",
+                              "width": "fill_container",
+                              "height": 148,
+                              "fill": "#F4F4F4",
+                              "stroke": {
+                                "thickness": 1,
+                                "fill": "#D9D9D9"
+                              },
+                              "layout": "vertical",
+                              "gap": 10,
+                              "padding": 16,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "zFKdc",
+                                  "name": "tabletBenefit6Text",
+                                  "fill": "#111111",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "Benefit Title\nShort description placeholder.",
+                                  "lineHeight": 1.5,
+                                  "fontFamily": "Inter",
+                                  "fontSize": 15,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "NftuK",
+              "name": "Mobile 390",
+              "width": 390,
+              "fill": "#FCFCFC",
+              "stroke": {
+                "thickness": 1,
+                "fill": "#D9D9D9"
+              },
+              "layout": "vertical",
+              "gap": 20,
+              "padding": 20,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "12ybK",
+                  "name": "mobileLabel",
+                  "fill": "#111111",
+                  "content": "Mobile / 390px",
+                  "fontFamily": "Inter",
+                  "fontSize": 18,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "frame",
+                  "id": "4zGx2",
+                  "name": "Member Section",
+                  "width": "fill_container",
+                  "fill": "#FFFFFF",
+                  "stroke": {
+                    "thickness": 1,
+                    "fill": "#D9D9D9"
+                  },
+                  "layout": "vertical",
+                  "gap": 24,
+                  "padding": [
+                    32,
+                    24
+                  ],
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "NmKuz",
+                      "name": "Header",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 10,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "gx0uZ",
+                          "name": "mobileTag",
+                          "fill": "#666666",
+                          "content": "SECTION LABEL",
+                          "fontFamily": "Inter",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "UYZTh",
+                          "name": "mobileHeading",
+                          "fill": "#111111",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "Trusted by thousands of job seekers",
+                          "lineHeight": 1.15,
+                          "textAlign": "center",
+                          "fontFamily": "Inter",
+                          "fontSize": 26,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "7CMBa",
+                          "name": "mobileDesc",
+                          "fill": "#666666",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "Community intro copy for trust and outcomes.",
+                          "lineHeight": 1.5,
+                          "textAlign": "center",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "FNeAA",
+                      "name": "Stats Grid",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 12,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "bI5OZ",
+                          "name": "mobileStatsRow1",
+                          "width": "fill_container",
+                          "gap": 12,
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "YkQDR",
+                              "name": "mobileStat1",
+                              "width": "fill_container",
+                              "height": 100,
+                              "fill": "#F4F4F4",
+                              "stroke": {
+                                "thickness": 1,
+                                "fill": "#D9D9D9"
+                              },
+                              "layout": "vertical",
+                              "gap": 8,
+                              "padding": 14,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "rXdF9",
+                                  "name": "mobileStat1Text",
+                                  "fill": "#111111",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "10,000+\nMembers",
+                                  "lineHeight": 1.3,
+                                  "fontFamily": "Inter",
+                                  "fontSize": 18,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "gXpex",
+                              "name": "mobileStat2",
+                              "width": "fill_container",
+                              "height": 100,
+                              "fill": "#F4F4F4",
+                              "stroke": {
+                                "thickness": 1,
+                                "fill": "#D9D9D9"
+                              },
+                              "layout": "vertical",
+                              "gap": 8,
+                              "padding": 14,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "j0Vqz",
+                                  "name": "mobileStat2Text",
+                                  "fill": "#111111",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "85%\nSuccess",
+                                  "lineHeight": 1.3,
+                                  "fontFamily": "Inter",
+                                  "fontSize": 18,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "NXyrp",
+                          "name": "mobileStatsRow2",
+                          "width": "fill_container",
+                          "gap": 12,
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "dIPKV",
+                              "name": "mobileStat3",
+                              "width": "fill_container",
+                              "height": 100,
+                              "fill": "#F4F4F4",
+                              "stroke": {
+                                "thickness": 1,
+                                "fill": "#D9D9D9"
+                              },
+                              "layout": "vertical",
+                              "gap": 8,
+                              "padding": 14,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "Z059X",
+                                  "name": "mobileStat3Text",
+                                  "fill": "#111111",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "5,000+\nPlaced",
+                                  "lineHeight": 1.3,
+                                  "fontFamily": "Inter",
+                                  "fontSize": 18,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "vGDhS",
+                              "name": "mobileStat4",
+                              "width": "fill_container",
+                              "height": 100,
+                              "fill": "#F4F4F4",
+                              "stroke": {
+                                "thickness": 1,
+                                "fill": "#D9D9D9"
+                              },
+                              "layout": "vertical",
+                              "gap": 8,
+                              "padding": 14,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "DMUXI",
+                                  "name": "mobileStat4Text",
+                                  "fill": "#111111",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "4.8/5\nRating",
+                                  "lineHeight": 1.3,
+                                  "fontFamily": "Inter",
+                                  "fontSize": 18,
+                                  "fontWeight": "normal"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "MrkAM",
+                      "name": "Featured Testimonial",
+                      "width": "fill_container",
+                      "fill": "#F8F8F8",
+                      "stroke": {
+                        "thickness": 1,
+                        "fill": "#D9D9D9"
+                      },
+                      "layout": "vertical",
+                      "gap": 14,
+                      "padding": 20,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "ellipse",
+                          "id": "92BtR",
+                          "name": "mobileAvatar",
+                          "fill": "#D9D9D9",
+                          "width": 72,
+                          "height": 72,
+                          "stroke": {
+                            "thickness": 1,
+                            "fill": "#BDBDBD"
+                          }
+                        },
+                        {
+                          "type": "text",
+                          "id": "9GYFm",
+                          "name": "mobileMeta",
+                          "fill": "#111111",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "Member Name\nRole / Company",
+                          "lineHeight": 1.5,
+                          "textAlign": "center",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "Qv6po",
+                          "name": "mobileQuote",
+                          "fill": "#111111",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "Mobile quote placeholder",
+                          "lineHeight": 1.4,
+                          "textAlign": "center",
+                          "fontFamily": "Inter",
+                          "fontSize": 18,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "NVO7T",
+                      "name": "mobileBenefitsTitle",
+                      "fill": "#111111",
+                      "content": "Benefits",
+                      "fontFamily": "Inter",
+                      "fontSize": 18,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "qqSsH",
+                      "name": "Benefits List",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 12,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "yyOZg",
+                          "name": "mobileBenefit1",
+                          "width": "fill_container",
+                          "height": 132,
+                          "fill": "#F4F4F4",
+                          "stroke": {
+                            "thickness": 1,
+                            "fill": "#D9D9D9"
+                          },
+                          "layout": "vertical",
+                          "gap": 10,
+                          "padding": 16,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "33dHE",
+                              "name": "mobileBenefit1Text",
+                              "fill": "#111111",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "Benefit Title\nShort description placeholder.",
+                              "lineHeight": 1.5,
+                              "fontFamily": "Inter",
+                              "fontSize": 14,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "h2Q0d",
+                          "name": "mobileBenefit2",
+                          "width": "fill_container",
+                          "height": 132,
+                          "fill": "#F4F4F4",
+                          "stroke": {
+                            "thickness": 1,
+                            "fill": "#D9D9D9"
+                          },
+                          "layout": "vertical",
+                          "gap": 10,
+                          "padding": 16,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "Nminu",
+                              "name": "mobileBenefit2Text",
+                              "fill": "#111111",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "Benefit Title\nShort description placeholder.",
+                              "lineHeight": 1.5,
+                              "fontFamily": "Inter",
+                              "fontSize": 14,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "lLl5m",
+                          "name": "mobileBenefit3",
+                          "width": "fill_container",
+                          "height": 132,
+                          "fill": "#F4F4F4",
+                          "stroke": {
+                            "thickness": 1,
+                            "fill": "#D9D9D9"
+                          },
+                          "layout": "vertical",
+                          "gap": 10,
+                          "padding": 16,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "sk5QW",
+                              "name": "mobileBenefit3Text",
+                              "fill": "#111111",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "Benefit Title\nShort description placeholder.",
+                              "lineHeight": 1.5,
+                              "fontFamily": "Inter",
+                              "fontSize": 14,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "ZgdUm",
+                          "name": "mobileBenefit4",
+                          "width": "fill_container",
+                          "height": 132,
+                          "fill": "#F4F4F4",
+                          "stroke": {
+                            "thickness": 1,
+                            "fill": "#D9D9D9"
+                          },
+                          "layout": "vertical",
+                          "gap": 10,
+                          "padding": 16,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "dFlld",
+                              "name": "mobileBenefit4Text",
+                              "fill": "#111111",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "Benefit Title\nShort description placeholder.",
+                              "lineHeight": 1.5,
+                              "fontFamily": "Inter",
+                              "fontSize": 14,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "YSs4s",
+                          "name": "mobileBenefit5",
+                          "width": "fill_container",
+                          "height": 132,
+                          "fill": "#F4F4F4",
+                          "stroke": {
+                            "thickness": 1,
+                            "fill": "#D9D9D9"
+                          },
+                          "layout": "vertical",
+                          "gap": 10,
+                          "padding": 16,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "sDBgp",
+                              "name": "mobileBenefit5Text",
+                              "fill": "#111111",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "Benefit Title\nShort description placeholder.",
+                              "lineHeight": 1.5,
+                              "fontFamily": "Inter",
+                              "fontSize": 14,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "NOapf",
+                          "name": "mobileBenefit6",
+                          "width": "fill_container",
+                          "height": 132,
+                          "fill": "#F4F4F4",
+                          "stroke": {
+                            "thickness": 1,
+                            "fill": "#D9D9D9"
+                          },
+                          "layout": "vertical",
+                          "gap": 10,
+                          "padding": 16,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "QUvKi",
+                              "name": "mobileBenefit6Text",
+                              "fill": "#111111",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "Benefit Title\nShort description placeholder.",
+                              "lineHeight": 1.5,
+                              "fontFamily": "Inter",
+                              "fontSize": 14,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

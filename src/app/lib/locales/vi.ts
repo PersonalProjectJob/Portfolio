@@ -148,6 +148,98 @@ export const vi = {
   },
 
   /* ------------------------------------------------------------------ */
+  /*  Landing Page — Members / Social Proof                              */
+  /* ------------------------------------------------------------------ */
+  members: {
+    sectionLabel: "Cộng đồng",
+    heading: "Được tin dùng bởi hàng nghìn người tìm việc",
+    description:
+      "Tham gia cộng đồng professionals đang sử dụng AI để tìm việc nhanh hơn và thông minh hơn.",
+    statistics: [
+      {
+        value: "10,000+",
+        label: "Thành viên",
+      },
+      {
+        value: "85%",
+        label: "Tỉ lệ thành công",
+      },
+      {
+        value: "5,000+",
+        label: "Đã có việc làm",
+      },
+      {
+        value: "4.8/5",
+        label: "Hài lòng",
+      },
+    ],
+    testimonials: {
+      heading: "Thành viên nói gì về chúng tôi",
+      items: [
+        {
+          name: "Nguyễn Minh Anh",
+          role: "Frontend Developer tại VNG",
+          quote:
+            "Nhờ Job360, tôi đã nhận được 3 offer trong vòng 2 tuần. Phần phân tích JD giúp tôi hiểu rõ nhà tuyển dụng cần gì và chuẩn bị phỏng vấn hiệu quả hơn.",
+        },
+        {
+          name: "Trần Đức Hoàng",
+          role: "Data Analyst chuyển sang AI Engineer",
+          quote:
+            "Tôi đã chuyển ngành thành công nhờ lộ trình cá nhân hóa từ AI. Hệ thống gợi ý những kỹ năng cần học và cách thể hiện kinh nghiệm cũ sao cho phù hợp với vị trí mới.",
+        },
+        {
+          name: "Lê Thị Hương",
+          role: "HR Manager tại Tech Startup",
+          quote:
+            "Là người tuyển dụng, tôi thấy Job360 giúp ứng viên đến phỏng vấn chuẩn bị tốt hơn hẳn. Họ hiểu rõ JD và có câu trả lời sát với yêu cầu công việc.",
+        },
+        {
+          name: "Phạm Văn Nam",
+          role: "Senior Backend Developer",
+          quote:
+            "Tôi đã tăng lương 35% sau khi sử dụng Job360 để tham khảo mức lương thị trường và học cách thương lượng. AI cho tôi dữ liệu thực tế để đàm phán tự tin hơn.",
+        },
+      ],
+    },
+    benefits: {
+      heading: "Lợi ích khi tham gia",
+      items: [
+        {
+          title: "Phân tích JD thông minh",
+          description: "Hiểu rõ yêu cầu công việc và điểm phù hợp của bạn với từng vị trí ứng tuyển.",
+          icon: "target",
+        },
+        {
+          title: "Đánh giá CV tự động",
+          description: "Nhận phản hồi chi tiết về CV: cấu trúc, từ khóa, và cách cải thiện để vượt ATS.",
+          icon: "fileCheck",
+        },
+        {
+          title: "Luyện phỏng vấn AI",
+          description: "Thực hành với câu hỏi phỏng vấn tùy chỉnh theo vị trí và ngành nghề của bạn.",
+          icon: "messageSquare",
+        },
+        {
+          title: "Tham khảo lương thị trường",
+          description: "Dữ liệu lương cập nhật theo vị trí, kinh nghiệm, và địa điểm để thương lượng tốt hơn.",
+          icon: "trendingUp",
+        },
+        {
+          title: "Lộ trình cá nhân hóa",
+          description: "AI gợi ý lộ trình phát triển kỹ năng dựa trên mục tiêu nghề nghiệp của bạn.",
+          icon: "route",
+        },
+        {
+          title: "Cộng đồng hỗ trợ",
+          description: "Kết nối với professionals khác để chia sẻ kinh nghiệm và cơ hội nghề nghiệp.",
+          icon: "users",
+        },
+      ],
+    },
+  },
+
+  /* ------------------------------------------------------------------ */
   /*  Landing Page — CTA                                                 */
   /* ------------------------------------------------------------------ */
   cta: {

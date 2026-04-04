@@ -1,0 +1,172 @@
+{
+  "phase": "Phase 2: High Priority Security",
+  "timestamp": "2026-04-04T09:18:52.640Z",
+  "baseUrl": "http://localhost:5173",
+  "total": 7,
+  "passed": 6,
+  "failed": 1,
+  "skipped": 0,
+  "warnings": 0,
+  "details": [
+    {
+      "testId": "H-01",
+      "name": "H-01: PII Sent to Telegram Without User Consent",
+      "status": "PASS",
+      "message": "No PII leakage to Telegram detected",
+      "subtests": [
+        {
+          "name": "Registration endpoint response analysis",
+          "status": "SKIP",
+          "message": "Server not reachable - skipping live endpoint test"
+        },
+        {
+          "name": "Telegram PII transmission check",
+          "status": "PASS",
+          "message": "No PII transmission to Telegram detected in server code"
+        },
+        {
+          "name": "Privacy policy check",
+          "status": "SKIP",
+          "message": "Could not read privacy policy file: ENOENT: no such file or directory, open 'C:\\Users\\AD\\Downloads\\Job360\\src\\app\\components\\legal\\PrivacyPolicy.tsx'"
+        }
+      ],
+      "timestamp": "2026-04-04T09:18:52.938Z"
+    },
+    {
+      "testId": "H-02",
+      "name": "H-02: Registration Does Not Record User Consent",
+      "status": "FAIL",
+      "message": "Registration uses implicit consent (no explicit checkbox)",
+      "subtests": [
+        {
+          "name": "Consent checkbox in registration form",
+          "status": "FAIL",
+          "message": "Only implicit consent found (text note, no checkbox)"
+        },
+        {
+          "name": "Server consent recording",
+          "status": "PASS",
+          "message": "Server has consent recording mechanism"
+        },
+        {
+          "name": "User consents table exists",
+          "status": "PASS",
+          "message": "User consents table found in migrations"
+        }
+      ],
+      "timestamp": "2026-04-04T09:18:52.945Z"
+    },
+    {
+      "testId": "H-03",
+      "name": "H-03: CV Upload Consent Is Implicit/Automatic",
+      "status": "PASS",
+      "message": "CV upload consent is properly implemented",
+      "subtests": [
+        {
+          "name": "Automatic consent detection",
+          "status": "PASS",
+          "message": "No automatic consent saving detected"
+        },
+        {
+          "name": "Upload blocked without consent",
+          "status": "PASS",
+          "message": "Upload is properly blocked without explicit consent"
+        }
+      ],
+      "timestamp": "2026-04-04T09:18:52.947Z"
+    },
+    {
+      "testId": "H-04",
+      "name": "H-04: Full CV Content Sent to Third-Party AI Without Disclosure",
+      "status": "PASS",
+      "message": "Third-party AI processing is properly disclosed",
+      "subtests": [
+        {
+          "name": "Third-party AI detection",
+          "status": "PASS",
+          "message": "AI provider calls found with proper disclosure"
+        },
+        {
+          "name": "Frontend AI disclosure",
+          "status": "PASS",
+          "message": "Frontend discloses AI processing to users"
+        },
+        {
+          "name": "Privacy policy check",
+          "status": "SKIP",
+          "message": "Could not read privacy policy: ENOENT: no such file or directory, open 'C:\\Users\\AD\\Downloads\\Job360\\src\\app\\components\\legal\\PrivacyPolicy.tsx'"
+        }
+      ],
+      "timestamp": "2026-04-04T09:18:52.959Z"
+    },
+    {
+      "testId": "H-05",
+      "name": "H-05: No Row Level Security (RLS) Policies for Core Tables",
+      "status": "PASS",
+      "message": "RLS policies are properly configured",
+      "subtests": [
+        {
+          "name": "Core tables RLS check",
+          "status": "PASS",
+          "message": "All core tables have RLS policies enabled"
+        },
+        {
+          "name": "Tables with RLS enabled",
+          "status": "PASS",
+          "message": "Tables with RLS: users, auth_logs, audit_logs, user_consents, cv_profiles, sessions"
+        }
+      ],
+      "timestamp": "2026-04-04T09:18:52.962Z"
+    },
+    {
+      "testId": "H-06",
+      "name": "H-06: XSS Vulnerability in Chart Component",
+      "status": "PASS",
+      "message": "Chart components are protected against XSS",
+      "subtests": [
+        {
+          "name": "dangerouslySetInnerHTML check",
+          "status": "PASS",
+          "message": "No XSS vulnerabilities found in chart components"
+        }
+      ],
+      "timestamp": "2026-04-04T09:18:52.965Z"
+    },
+    {
+      "testId": "H-07",
+      "name": "H-07: Browser Fingerprinting Without Disclosure",
+      "status": "PASS",
+      "message": "Browser fingerprinting is properly disclosed",
+      "subtests": [
+        {
+          "name": "Fingerprinting code detection",
+          "status": "PASS",
+          "message": "Browser fingerprinting code found in session management"
+        },
+        {
+          "name": "Privacy policy check",
+          "status": "SKIP",
+          "message": "Could not read privacy policy: ENOENT: no such file or directory, open 'C:\\Users\\AD\\Downloads\\Job360\\src\\app\\components\\legal\\PrivacyPolicy.tsx'"
+        },
+        {
+          "name": "Fingerprinting consent",
+          "status": "PASS",
+          "message": "Consent or opt-out mechanism exists for fingerprinting"
+        }
+      ],
+      "timestamp": "2026-04-04T09:18:52.967Z"
+    }
+  ],
+  "startTime": "2026-04-04T09:18:52.643Z",
+  "endTime": "2026-04-04T09:18:52.967Z",
+  "duration": 324,
+  "summary": {
+    "total": 7,
+    "passed": 6,
+    "failed": 1,
+    "warnings": 0,
+    "skipped": 0,
+    "duration": 324,
+    "status": "FAILED"
+  }
+}

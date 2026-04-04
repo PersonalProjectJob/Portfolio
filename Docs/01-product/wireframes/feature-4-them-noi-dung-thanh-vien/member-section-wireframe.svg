@@ -1,0 +1,126 @@
+<svg width="1600" height="2100" viewBox="0 0 1600 2100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="2100" fill="#F3F4F6"/>
+  <text x="80" y="70" fill="#111827" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700">Feature #4 Wireframe: Member Section</text>
+  <text x="80" y="102" fill="#4B5563" font-family="Arial, Helvetica, sans-serif" font-size="16">Placement: IntegrationLogos -&gt; MemberSection -&gt; LandingCTA</text>
+
+  <rect x="60" y="140" width="980" height="1860" rx="28" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="2"/>
+  <text x="100" y="190" fill="#111827" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700">Desktop / Tablet Structure</text>
+  <text x="100" y="220" fill="#6B7280" font-family="Arial, Helvetica, sans-serif" font-size="14">Container max width 1200px, centered, large section spacing</text>
+
+  <rect x="100" y="260" width="900" height="120" rx="20" fill="#F9FAFB" stroke="#9CA3AF" stroke-dasharray="8 8"/>
+  <text x="125" y="300" fill="#111827" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700">Section Intro</text>
+  <text x="125" y="330" fill="#374151" font-family="Arial, Helvetica, sans-serif" font-size="13">Label / Heading / Supporting copy</text>
+  <text x="125" y="352" fill="#6B7280" font-family="Arial, Helvetica, sans-serif" font-size="12">Centered block aligned to existing landing sections</text>
+
+  <rect x="100" y="420" width="210" height="150" rx="18" fill="#F9FAFB" stroke="#6B7280"/>
+  <rect x="330" y="420" width="210" height="150" rx="18" fill="#F9FAFB" stroke="#6B7280"/>
+  <rect x="560" y="420" width="210" height="150" rx="18" fill="#F9FAFB" stroke="#6B7280"/>
+  <rect x="790" y="420" width="210" height="150" rx="18" fill="#F9FAFB" stroke="#6B7280"/>
+  <text x="120" y="455" fill="#111827" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700">Stat 01</text>
+  <text x="120" y="488" fill="#374151" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700">10,000+</text>
+  <text x="120" y="515" fill="#6B7280" font-family="Arial, Helvetica, sans-serif" font-size="13">Members</text>
+  <text x="350" y="455" fill="#111827" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700">Stat 02</text>
+  <text x="350" y="488" fill="#374151" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700">85%</text>
+  <text x="350" y="515" fill="#6B7280" font-family="Arial, Helvetica, sans-serif" font-size="13">Success Rate</text>
+  <text x="580" y="455" fill="#111827" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700">Stat 03</text>
+  <text x="580" y="488" fill="#374151" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700">5,000+</text>
+  <text x="580" y="515" fill="#6B7280" font-family="Arial, Helvetica, sans-serif" font-size="13">Placements</text>
+  <text x="810" y="455" fill="#111827" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700">Stat 04</text>
+  <text x="810" y="488" fill="#374151" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700">4.8/5</text>
+  <text x="810" y="515" fill="#6B7280" font-family="Arial, Helvetica, sans-serif" font-size="13">Satisfaction</text>
+
+  <rect x="100" y="630" width="900" height="360" rx="24" fill="#FFFFFF" stroke="#6B7280" stroke-width="2"/>
+  <text x="125" y="675" fill="#111827" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="700">Testimonials Carousel</text>
+  <circle cx="180" cy="770" r="46" fill="#E5E7EB" stroke="#9CA3AF"/>
+  <text x="150" y="776" fill="#4B5563" font-family="Arial, Helvetica, sans-serif" font-size="14">Avatar</text>
+  <text x="245" y="742" fill="#111827" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="700">Nguyen Minh Anh</text>
+  <text x="245" y="768" fill="#6B7280" font-family="Arial, Helvetica, sans-serif" font-size="13">Frontend Developer</text>
+  <rect x="245" y="805" width="640" height="96" rx="12" fill="#F9FAFB" stroke="#D1D5DB"/>
+  <text x="265" y="838" fill="#374151" font-family="Arial, Helvetica, sans-serif" font-size="14">"Job360 helped me sharpen my CV, practice interviews,</text>
+  <text x="265" y="862" fill="#374151" font-family="Arial, Helvetica, sans-serif" font-size="14">and move faster from application to offer."</text>
+  <circle cx="155" cy="925" r="18" fill="#F3F4F6" stroke="#6B7280"/>
+  <text x="149" y="931" fill="#374151" font-family="Arial, Helvetica, sans-serif" font-size="16">&lt;</text>
+  <circle cx="945" cy="925" r="18" fill="#F3F4F6" stroke="#6B7280"/>
+  <text x="940" y="931" fill="#374151" font-family="Arial, Helvetica, sans-serif" font-size="16">&gt;</text>
+  <circle cx="505" cy="925" r="5" fill="#111827"/>
+  <circle cx="525" cy="925" r="5" fill="#D1D5DB"/>
+  <circle cx="545" cy="925" r="5" fill="#D1D5DB"/>
+  <circle cx="565" cy="925" r="5" fill="#D1D5DB"/>
+
+  <text x="100" y="1060" fill="#111827" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="700">Benefits Grid</text>
+  <rect x="100" y="1090" width="280" height="180" rx="18" fill="#F9FAFB" stroke="#6B7280"/>
+  <rect x="410" y="1090" width="280" height="180" rx="18" fill="#F9FAFB" stroke="#6B7280"/>
+  <rect x="720" y="1090" width="280" height="180" rx="18" fill="#F9FAFB" stroke="#6B7280"/>
+  <rect x="100" y="1300" width="280" height="180" rx="18" fill="#F9FAFB" stroke="#6B7280"/>
+  <rect x="410" y="1300" width="280" height="180" rx="18" fill="#F9FAFB" stroke="#6B7280"/>
+  <rect x="720" y="1300" width="280" height="180" rx="18" fill="#F9FAFB" stroke="#6B7280"/>
+  <text x="125" y="1130" fill="#111827" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700">Benefit 01</text>
+  <text x="125" y="1154" fill="#6B7280" font-family="Arial, Helvetica, sans-serif" font-size="13">JD analysis and role matching</text>
+  <text x="435" y="1130" fill="#111827" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700">Benefit 02</text>
+  <text x="435" y="1154" fill="#6B7280" font-family="Arial, Helvetica, sans-serif" font-size="13">CV review and rewrite support</text>
+  <text x="745" y="1130" fill="#111827" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700">Benefit 03</text>
+  <text x="745" y="1154" fill="#6B7280" font-family="Arial, Helvetica, sans-serif" font-size="13">Interview preparation practice</text>
+  <text x="125" y="1340" fill="#111827" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700">Benefit 04</text>
+  <text x="125" y="1364" fill="#6B7280" font-family="Arial, Helvetica, sans-serif" font-size="13">Salary benchmark guidance</text>
+  <text x="435" y="1340" fill="#111827" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700">Benefit 05</text>
+  <text x="435" y="1364" fill="#6B7280" font-family="Arial, Helvetica, sans-serif" font-size="13">Personal roadmap planning</text>
+  <text x="745" y="1340" fill="#111827" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700">Benefit 06</text>
+  <text x="745" y="1364" fill="#6B7280" font-family="Arial, Helvetica, sans-serif" font-size="13">Community support and trust</text>
+
+  <rect x="100" y="1540" width="900" height="380" rx="20" fill="#F9FAFB" stroke="#9CA3AF" stroke-dasharray="8 8"/>
+  <text x="125" y="1580" fill="#111827" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="700">Engineering Notes</text>
+  <text x="125" y="1612" fill="#374151" font-family="Arial, Helvetica, sans-serif" font-size="13">1. Insert section between IntegrationLogos and LandingCTA.</text>
+  <text x="125" y="1640" fill="#374151" font-family="Arial, Helvetica, sans-serif" font-size="13">2. Keep section reveal order: intro -&gt; stats -&gt; testimonial -&gt; benefits.</text>
+  <text x="125" y="1668" fill="#374151" font-family="Arial, Helvetica, sans-serif" font-size="13">3. Use one stable testimonial height to avoid layout shift.</text>
+  <text x="125" y="1696" fill="#374151" font-family="Arial, Helvetica, sans-serif" font-size="13">4. Keep benefit cards consistent with neumorphic landing card pattern.</text>
+  <text x="125" y="1724" fill="#374151" font-family="Arial, Helvetica, sans-serif" font-size="13">5. No hardcoded colors in new section.</text>
+
+  <rect x="1090" y="140" width="450" height="1600" rx="28" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="2"/>
+  <text x="1130" y="190" fill="#111827" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700">Mobile Structure</text>
+  <text x="1130" y="220" fill="#6B7280" font-family="Arial, Helvetica, sans-serif" font-size="14">375px viewport, stacked layout</text>
+
+  <rect x="1130" y="260" width="370" height="110" rx="18" fill="#F9FAFB" stroke="#9CA3AF" stroke-dasharray="8 8"/>
+  <text x="1150" y="295" fill="#111827" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700">Intro</text>
+  <text x="1150" y="320" fill="#6B7280" font-family="Arial, Helvetica, sans-serif" font-size="12">Label / heading / description</text>
+
+  <rect x="1130" y="410" width="170" height="120" rx="18" fill="#F9FAFB" stroke="#6B7280"/>
+  <rect x="1330" y="410" width="170" height="120" rx="18" fill="#F9FAFB" stroke="#6B7280"/>
+  <rect x="1130" y="550" width="170" height="120" rx="18" fill="#F9FAFB" stroke="#6B7280"/>
+  <rect x="1330" y="550" width="170" height="120" rx="18" fill="#F9FAFB" stroke="#6B7280"/>
+  <text x="1150" y="445" fill="#374151" font-family="Arial, Helvetica, sans-serif" font-size="12">Members</text>
+  <text x="1150" y="470" fill="#111827" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700">10,000+</text>
+  <text x="1350" y="445" fill="#374151" font-family="Arial, Helvetica, sans-serif" font-size="12">Success</text>
+  <text x="1350" y="470" fill="#111827" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700">85%</text>
+  <text x="1150" y="585" fill="#374151" font-family="Arial, Helvetica, sans-serif" font-size="12">Placed</text>
+  <text x="1150" y="610" fill="#111827" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700">5,000+</text>
+  <text x="1350" y="585" fill="#374151" font-family="Arial, Helvetica, sans-serif" font-size="12">Rating</text>
+  <text x="1350" y="610" fill="#111827" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700">4.8/5</text>
+
+  <rect x="1130" y="720" width="370" height="280" rx="20" fill="#FFFFFF" stroke="#6B7280" stroke-width="2"/>
+  <text x="1150" y="760" fill="#111827" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700">Featured Testimonial</text>
+  <circle cx="1185" cy="820" r="28" fill="#E5E7EB" stroke="#9CA3AF"/>
+  <text x="1230" y="815" fill="#111827" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700">Member Name</text>
+  <text x="1230" y="838" fill="#6B7280" font-family="Arial, Helvetica, sans-serif" font-size="12">Role</text>
+  <rect x="1150" y="870" width="330" height="78" rx="12" fill="#F9FAFB" stroke="#D1D5DB"/>
+  <text x="1168" y="900" fill="#374151" font-family="Arial, Helvetica, sans-serif" font-size="12">Quote block with controlled height</text>
+  <text x="1168" y="922" fill="#374151" font-family="Arial, Helvetica, sans-serif" font-size="12">and dot navigation below.</text>
+  <circle cx="1288" cy="972" r="4.5" fill="#111827"/>
+  <circle cx="1306" cy="972" r="4.5" fill="#D1D5DB"/>
+  <circle cx="1324" cy="972" r="4.5" fill="#D1D5DB"/>
+
+  <text x="1130" y="1060" fill="#111827" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700">Benefits Stack</text>
+  <rect x="1130" y="1090" width="370" height="100" rx="18" fill="#F9FAFB" stroke="#6B7280"/>
+  <rect x="1130" y="1210" width="370" height="100" rx="18" fill="#F9FAFB" stroke="#6B7280"/>
+  <rect x="1130" y="1330" width="370" height="100" rx="18" fill="#F9FAFB" stroke="#6B7280"/>
+  <rect x="1130" y="1450" width="370" height="100" rx="18" fill="#F9FAFB" stroke="#6B7280"/>
+  <rect x="1130" y="1570" width="370" height="100" rx="18" fill="#F9FAFB" stroke="#6B7280"/>
+  <rect x="1130" y="1690" width="370" height="100" rx="18" fill="#F9FAFB" stroke="#6B7280"/>
+  <text x="1150" y="1140" fill="#374151" font-family="Arial, Helvetica, sans-serif" font-size="12">Icon + Benefit title + short copy</text>
+  <text x="1150" y="1260" fill="#374151" font-family="Arial, Helvetica, sans-serif" font-size="12">Repeat same card structure for all 6 items</text>
+
+  <rect x="1090" y="1820" width="450" height="180" rx="20" fill="#F9FAFB" stroke="#9CA3AF" stroke-dasharray="8 8"/>
+  <text x="1130" y="1860" fill="#111827" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="700">Responsive Rules</text>
+  <text x="1130" y="1892" fill="#374151" font-family="Arial, Helvetica, sans-serif" font-size="13">- Mobile: 2x2 stats, 1 testimonial card, 1-column benefits</text>
+  <text x="1130" y="1920" fill="#374151" font-family="Arial, Helvetica, sans-serif" font-size="13">- Tablet: 2x2 stats, 1 testimonial card, 2-column benefits</text>
+  <text x="1130" y="1948" fill="#374151" font-family="Arial, Helvetica, sans-serif" font-size="13">- Desktop: 4 stats in row, featured testimonial, 3-column benefits</text>
+</svg>

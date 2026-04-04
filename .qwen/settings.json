@@ -14,7 +14,19 @@
       "Bash(taskkill *)",
       "Bash(git init)",
       "Read(C:\\Users\\AD\\AppData\\Roaming\\npm\\node_modules\\@qwen-code\\qwen-code\\bundled\\qc-helper\\docs\\features/**)",
-      "Read(C:\\Users\\AD\\.qwen/**)"
+      "Read(C:\\Users\\AD\\.qwen/**)",
+      "Bash(npm *)",
+      "Bash(gh *)",
+      "Bash(select-object *)",
+      "Bash(codex *)",
+      "WebSearch",
+      "WebFetch(github.com)",
+      "Bash(git checkout *)",
+      "Read(C:\\Users\\AD\\AppData\\Roaming\\npm\\node_modules\\@qwen-code\\qwen-code\\bundled\\qc-helper\\docs/**)",
+      "Read(C:\\Users\\AD\\AppData\\Roaming\\npm\\node_modules\\@qwen-code\\qwen-code\\bundled\\qc-helper\\docs\\ide-integration/**)",
+      "Bash(start *)",
+      "Bash(timeout *)",
+      "Bash(git add *)"
     ]
   },
   "$version": 3

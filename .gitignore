@@ -66,8 +66,13 @@ coverage/
 *.test.*
 *.test.js
 *.test.ts
-test-*.js
-run-*-tests.*
+# Test reports (auto-generated, exclude)
+pre-commit-report-*.json
+test-report-*.json
+# Test scripts (keep these in repo)
+# test-pre-commit.js
+# test-phase1-critical-security.js
+# test-critical-fixes.js
 
 # Misc
 *.pem

@@ -3,6 +3,7 @@ import { HeroSection } from "../components/landing/HeroSection";
 import { FeatureCards } from "../components/landing/FeatureCards";
 import { StreamingDemo } from "../components/landing/StreamingDemo";
 import { IntegrationLogos } from "../components/landing/IntegrationLogos";
+import { MemberSection } from "../components/landing/MemberSection";
 import { LandingCTA } from "../components/landing/LandingCTA";
 import { LandingFooter } from "../components/landing/LandingFooter";
 import { AnimatedBackground } from "../components/landing/AnimatedBackground";
@@ -37,6 +38,7 @@ export function LandingPage() {
           <FeatureCards />
           <StreamingDemo />
           <IntegrationLogos />
+          <MemberSection />
           <LandingCTA />
         </main>
         <LandingFooter />
