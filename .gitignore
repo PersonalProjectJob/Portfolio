@@ -55,6 +55,9 @@ coverage/
 *~
 .tern-port
 
+# Media files (screenshots, recordings)
+img/
+
 # OS
 .DS_Store
 Thumbs.db
