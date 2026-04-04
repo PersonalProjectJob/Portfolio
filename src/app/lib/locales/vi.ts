@@ -152,49 +152,74 @@ export const vi = {
   /* ------------------------------------------------------------------ */
   members: {
     sectionLabel: "Cộng đồng",
-    heading: "Được tin dùng bởi hàng nghìn người tìm việc",
+    heading: "Được tin dùng bởi hàng nghìn người tìm việc đầy tham vọng",
     description:
-      "Tham gia cộng đồng professionals đang sử dụng AI để tìm việc nhanh hơn và thông minh hơn.",
+      "CareerAI biến sự không chắc chắn thành động lực với tư vấn AI, peer proof, và lộ trình rõ ràng từ ứng tuyển đến nhận offer.",
+    teamSpotlight: {
+      tag: "GẶP GỠ ĐỘI NGŨ",
+      heading: "Được xây dựng bởi đội ngũ định hình Job360",
+      body: "Sota Truong dẫn dắt tư vấn AI. Harry Le xây dựng engine tự động hóa. Họ đều là những người trực tiếp shaping trải nghiệm của bạn.",
+      members: [
+        {
+          initials: "ST",
+          name: "Sota Truong",
+          role: "AI Builder",
+          bio: "Biến những câu hỏi job-search rối rắm thành tư vấn AI rõ ràng hơn, giúp bạn tự tin hơn ở mỗi bước.",
+          tags: "Prompt systems  *  Career UX",
+        },
+        {
+          initials: "HL",
+          name: "Harry Le",
+          role: "AI Automation-er",
+          bio: "Kết nối các workflow, experiment, và tự động hóa delivery để bạn tập trung vào điều quan trọng nhất.",
+          tags: "Workflow automation  *  Ops tooling",
+        },
+      ],
+    },
     statistics: [
       {
         value: "10,000+",
-        label: "Thành viên",
+        label: "Thành viên\nActive mỗi tuần",
       },
       {
         value: "85%",
-        label: "Tỉ lệ thành công",
+        label: "Tỉ lệ thành công\nTừ phỏng vấn đến offer",
       },
       {
         value: "5,000+",
-        label: "Đã có việc làm",
+        label: "Đã có việc làm\nVà đang tăng",
       },
       {
         value: "4.8/5",
-        label: "Hài lòng",
+        label: "Hài lòng\nTừ đánh giá thành viên",
       },
     ],
     testimonials: {
       heading: "Thành viên nói gì về chúng tôi",
       items: [
         {
-          name: "Nguyễn Minh Anh",
-          role: "Frontend Developer tại VNG",
+          initials: "MA",
+          name: "Minh Anh",
+          role: "Frontend Developer - VNG",
           quote:
-            "Nhờ Job360, tôi đã nhận được 3 offer trong vòng 2 tuần. Phần phân tích JD giúp tôi hiểu rõ nhà tuyển dụng cần gì và chuẩn bị phỏng vấn hiệu quả hơn.",
+            "Job360 giúp mình tập trung vào đúng kỹ năng mà nhà tuyển dụng tìm kiếm. Mình ngừng đoán mò, xuất hiện sắc bén hơn, và nhận được nhiều offer trong hai tuần.",
         },
         {
+          initials: "TH",
           name: "Trần Đức Hoàng",
           role: "Data Analyst chuyển sang AI Engineer",
           quote:
             "Tôi đã chuyển ngành thành công nhờ lộ trình cá nhân hóa từ AI. Hệ thống gợi ý những kỹ năng cần học và cách thể hiện kinh nghiệm cũ sao cho phù hợp với vị trí mới.",
         },
         {
+          initials: "LH",
           name: "Lê Thị Hương",
           role: "HR Manager tại Tech Startup",
           quote:
             "Là người tuyển dụng, tôi thấy Job360 giúp ứng viên đến phỏng vấn chuẩn bị tốt hơn hẳn. Họ hiểu rõ JD và có câu trả lời sát với yêu cầu công việc.",
         },
         {
+          initials: "PN",
           name: "Phạm Văn Nam",
           role: "Senior Backend Developer",
           quote:
@@ -207,32 +232,32 @@ export const vi = {
       items: [
         {
           title: "Phân tích JD thông minh",
-          description: "Hiểu rõ yêu cầu công việc và điểm phù hợp của bạn với từng vị trí ứng tuyển.",
+          description: "Hiểu rõ yêu cầu vai trò và phát hiện khoảng trống cần lấp trước khi ứng tuyển.",
           icon: "target",
         },
         {
           title: "Đánh giá CV tự động",
-          description: "Nhận phản hồi chi tiết về CV: cấu trúc, từ khóa, và cách cải thiện để vượt ATS.",
+          description: "Cải thiện clarity, ATS fit, và các proof points mà recruiter chú ý đầu tiên.",
           icon: "fileCheck",
         },
         {
-          title: "Luyện phỏng vấn AI",
-          description: "Thực hành với câu hỏi phỏng vấn tùy chỉnh theo vị trí và ngành nghề của bạn.",
+          title: "Luyện phỏng vấn",
+          description: "Thực hành câu hỏi theo vai trò cụ thể với stories sắc nét và câu trả lời tốt hơn.",
           icon: "messageSquare",
         },
         {
-          title: "Tham khảo lương thị trường",
-          description: "Dữ liệu lương cập nhật theo vị trí, kinh nghiệm, và địa điểm để thương lượng tốt hơn.",
+          title: "Tham khảo lương",
+          description: "Neo kỳ vọng của bạn với các khoảng lương hiện tại và bối cảnh thương lượng.",
           icon: "trendingUp",
         },
         {
           title: "Lộ trình cá nhân hóa",
-          description: "AI gợi ý lộ trình phát triển kỹ năng dựa trên mục tiêu nghề nghiệp của bạn.",
+          description: "Theo dõi kỹ năng, milestones, và actions tiếp theo cho các vai trò mục tiêu.",
           icon: "route",
         },
         {
           title: "Cộng đồng hỗ trợ",
-          description: "Kết nối với professionals khác để chia sẻ kinh nghiệm và cơ hội nghề nghiệp.",
+          description: "Học từ peers đã biến advice thành interviews và offers thực tế.",
           icon: "users",
         },
       ],

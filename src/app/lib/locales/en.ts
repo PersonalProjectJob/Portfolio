@@ -153,49 +153,74 @@ export const en: Translations = {
   /* ------------------------------------------------------------------ */
   members: {
     sectionLabel: "Community",
-    heading: "Trusted by thousands of job seekers",
+    heading: "Trusted by thousands of ambitious job seekers",
     description:
-      "Join a community of professionals using AI to find their next career opportunity faster and smarter.",
+      "CareerAI turns uncertainty into momentum with AI guidance, peer proof, and a clear path from application to offer.",
+    teamSpotlight: {
+      tag: "MEET THE TEAM",
+      heading: "Built by the team shaping Job360",
+      body: "Sota Truong leads AI guidance. Harry Le builds the automation engine. They're the ones directly shaping your experience.",
+      members: [
+        {
+          initials: "ST",
+          name: "Sota Truong",
+          role: "AI Builder",
+          bio: "Turns messy job-search questions into clearer AI guidance, helping you feel more confident at every step.",
+          tags: "Prompt systems  *  Career UX",
+        },
+        {
+          initials: "HL",
+          name: "Harry Le",
+          role: "AI Automation-er",
+          bio: "Connects workflows, experiments, and delivery automation so you can focus on what matters most.",
+          tags: "Workflow automation  *  Ops tooling",
+        },
+      ],
+    },
     statistics: [
       {
         value: "10,000+",
-        label: "Members",
+        label: "Members\nActive every week",
       },
       {
         value: "85%",
-        label: "Success rate",
+        label: "Success rate\nInterview to offer",
       },
       {
         value: "5,000+",
-        label: "Placed",
+        label: "Placements\nAnd counting",
       },
       {
         value: "4.8/5",
-        label: "Satisfied",
+        label: "Satisfaction\nFrom member reviews",
       },
     ],
     testimonials: {
       heading: "What our members say",
       items: [
         {
-          name: "Nguyen Minh Anh",
-          role: "Frontend Developer at VNG",
+          initials: "MA",
+          name: "Minh Anh",
+          role: "Frontend Developer - VNG",
           quote:
-            "Thanks to Job360, I received 3 job offers within 2 weeks. The JD analysis feature helped me understand exactly what employers want and prepared me better for interviews.",
+            "Job360 helped me focus on the exact skills hiring teams looked for. I stopped guessing, showed up sharper, and landed multiple offers in two weeks.",
         },
         {
+          initials: "TH",
           name: "Tran Duc Hoang",
           role: "Data Analyst turned AI Engineer",
           quote:
             "I successfully transitioned careers thanks to the personalized roadmap from AI. It suggested which skills to learn and how to present my past experience to fit the new role.",
         },
         {
+          initials: "LH",
           name: "Le Thi Huong",
           role: "HR Manager at Tech Startup",
           quote:
             "As a recruiter, I've noticed Job360 helps candidates come to interviews much better prepared. They understand the JD clearly and provide answers closely aligned with job requirements.",
         },
         {
+          initials: "PN",
           name: "Pham Van Nam",
           role: "Senior Backend Developer",
           quote:
@@ -208,32 +233,32 @@ export const en: Translations = {
       items: [
         {
           title: "Smart JD Analysis",
-          description: "Understand job requirements and how well you match each position you apply for.",
+          description: "Understand role requirements and spot the exact gaps to close before you apply.",
           icon: "target",
         },
         {
           title: "Automated CV Review",
-          description: "Get detailed feedback on your CV: structure, keywords, and how to improve to pass ATS.",
+          description: "Improve clarity, ATS fit, and the proof points recruiters notice first.",
           icon: "fileCheck",
         },
         {
-          title: "AI Interview Practice",
-          description: "Practice with interview questions tailored to your target role and industry.",
+          title: "Interview Practice",
+          description: "Rehearse role-specific questions with sharper stories and better answers.",
           icon: "messageSquare",
         },
         {
-          title: "Market Salary Benchmark",
-          description: "Up-to-date salary data by role, experience, and location to negotiate better offers.",
+          title: "Salary Benchmark",
+          description: "Anchor your expectations with current ranges and negotiation context.",
           icon: "trendingUp",
         },
         {
           title: "Personalized Roadmap",
-          description: "AI suggests skill development roadmaps based on your career goals and current background.",
+          description: "Track skills, milestones, and the next actions for your target roles.",
           icon: "route",
         },
         {
           title: "Supportive Community",
-          description: "Connect with other professionals to share experiences and discover career opportunities.",
+          description: "Learn from peers who have already turned advice into interviews and offers.",
           icon: "users",
         },
       ],

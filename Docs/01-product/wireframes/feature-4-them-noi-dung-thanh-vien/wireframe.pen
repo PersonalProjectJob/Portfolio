@@ -1,5 +1,5 @@
 {
-  "version": "2.9",
+  "version": "2.10",
   "children": [
     {
       "type": "frame",
@@ -1589,6 +1589,3791 @@
                               "fontFamily": "Inter",
                               "fontSize": 14,
                               "fontWeight": "normal"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "rnl1c",
+      "x": 4060,
+      "y": 0,
+      "name": "Member Section Visual Board",
+      "width": 2900,
+      "fill": "#EFF4FB",
+      "layout": "vertical",
+      "gap": 32,
+      "padding": 48,
+      "children": [
+        {
+          "type": "text",
+          "id": "cUmEC",
+          "name": "boardTitle",
+          "fill": "#0B2545",
+          "textGrowth": "fixed-width",
+          "width": "fill_container",
+          "content": "Member Section / Stage 2 Visual Design",
+          "fontFamily": "Inter",
+          "fontSize": 28,
+          "fontWeight": "600"
+        },
+        {
+          "type": "text",
+          "id": "vB8Zo",
+          "name": "boardMeta",
+          "fill": "#5A6475",
+          "textGrowth": "fixed-width",
+          "width": "fill_container",
+          "content": "Visual direction: luminous neumorphism, soft trust gradients, conversion-first hierarchy. Placement: IntegrationLogos -> MemberSection -> LandingCTA",
+          "lineHeight": 1.5,
+          "fontFamily": "Inter",
+          "fontSize": 14
+        },
+        {
+          "type": "frame",
+          "id": "oxA9b",
+          "name": "Visual Responsive Views",
+          "width": "fill_container",
+          "gap": 24,
+          "children": [
+            {
+              "type": "frame",
+              "id": "w0jMV",
+              "name": "desktopCol",
+              "width": 1440,
+              "layout": "vertical",
+              "gap": 18,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "fW5TC",
+                  "fill": "#0B2545",
+                  "content": "Desktop / 1440px",
+                  "fontFamily": "Inter",
+                  "fontSize": 18,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "frame",
+                  "id": "B40uz",
+                  "name": "Desktop Visual",
+                  "width": "fill_container",
+                  "fill": {
+                    "type": "gradient",
+                    "gradientType": "linear",
+                    "enabled": true,
+                    "rotation": 180,
+                    "size": {
+                      "height": 1
+                    },
+                    "colors": [
+                      {
+                        "color": "#F8FCFF",
+                        "position": 0
+                      },
+                      {
+                        "color": "#EEF5FF",
+                        "position": 1
+                      }
+                    ]
+                  },
+                  "cornerRadius": 30,
+                  "stroke": {
+                    "thickness": 1,
+                    "fill": "#D9E6F3"
+                  },
+                  "effect": {
+                    "type": "shadow",
+                    "shadowType": "outer",
+                    "color": "#A9B9D133",
+                    "offset": {
+                      "x": 0,
+                      "y": 18
+                    },
+                    "blur": 48
+                  },
+                  "layout": "vertical",
+                  "gap": 40,
+                  "padding": 32,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "bcSc5",
+                      "name": "desktopHeader",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 14,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "G4Hip",
+                          "name": "desktopTag",
+                          "fill": "#E9F5FF",
+                          "cornerRadius": 999,
+                          "stroke": {
+                            "thickness": 1,
+                            "fill": "#B8DBF4"
+                          },
+                          "effect": {
+                            "type": "shadow",
+                            "shadowType": "outer",
+                            "color": "#A9C9E333",
+                            "offset": {
+                              "x": 0,
+                              "y": 6
+                            },
+                            "blur": 18
+                          },
+                          "padding": [
+                            10,
+                            18
+                          ],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "5gvxO",
+                              "fill": "#0B2545",
+                              "content": "COMMUNITY",
+                              "fontFamily": "Inter",
+                              "fontSize": 12,
+                              "fontWeight": "600",
+                              "letterSpacing": 1.2
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "1n6bz",
+                          "fill": "#0B2545",
+                          "textGrowth": "fixed-width",
+                          "width": 980,
+                          "content": "Trusted by thousands of ambitious job seekers",
+                          "lineHeight": 1.1,
+                          "textAlign": "center",
+                          "fontFamily": "Inter",
+                          "fontSize": 52,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "QUa4C",
+                          "fill": "#5A6475",
+                          "textGrowth": "fixed-width",
+                          "width": 700,
+                          "content": "CareerAI turns uncertainty into momentum with AI guidance, peer proof, and a clear path from application to offer.",
+                          "lineHeight": 1.5,
+                          "textAlign": "center",
+                          "fontFamily": "Inter",
+                          "fontSize": 18
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "T9Xmg",
+                      "name": "desktopTeamSpotlight",
+                      "width": "fill_container",
+                      "gap": 16,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "kMqRb",
+                          "name": "introDesktop",
+                          "width": 420,
+                          "height": 228,
+                          "fill": {
+                            "type": "gradient",
+                            "gradientType": "linear",
+                            "enabled": true,
+                            "rotation": 180,
+                            "size": {
+                              "height": 1
+                            },
+                            "colors": [
+                              {
+                                "color": "#FFFFFF",
+                                "position": 0
+                              },
+                              {
+                                "color": "#F4F8FF",
+                                "position": 1
+                              }
+                            ]
+                          },
+                          "cornerRadius": 26,
+                          "stroke": {
+                            "thickness": 1,
+                            "fill": "#DCEAF6"
+                          },
+                          "effect": {
+                            "type": "shadow",
+                            "shadowType": "outer",
+                            "color": "#A9B9D122",
+                            "offset": {
+                              "x": 0,
+                              "y": 10
+                            },
+                            "blur": 28
+                          },
+                          "layout": "vertical",
+                          "gap": 10,
+                          "padding": 22,
+                          "justifyContent": "space_between",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "RSchb",
+                              "fill": "#4AADE6",
+                              "content": "MEET THE TEAM",
+                              "fontFamily": "Inter",
+                              "fontSize": 12,
+                              "fontWeight": "600",
+                              "letterSpacing": 1.1
+                            },
+                            {
+                              "type": "text",
+                              "id": "I8EBi",
+                              "fill": "#0B2545",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "Built by the team shaping Job360",
+                              "lineHeight": 1.18,
+                              "fontFamily": "Inter",
+                              "fontSize": 28,
+                              "fontWeight": "600"
+                            },
+                            {
+                              "type": "text",
+                              "id": "BEAGj",
+                              "fill": "#5A6475",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "Sota Truong leads AI guidance. Harry Le builds the automation engine. Together they turn career support into a practical product members can trust.",
+                              "lineHeight": 1.5,
+                              "fontFamily": "Inter",
+                              "fontSize": 14,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "NlyDh",
+                          "name": "desktopTeamCards",
+                          "width": "fill_container",
+                          "gap": 16,
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "edeag",
+                              "name": "sotaDesktop",
+                              "width": "fill_container",
+                              "height": 228,
+                              "fill": {
+                                "type": "gradient",
+                                "gradientType": "linear",
+                                "enabled": true,
+                                "rotation": 180,
+                                "size": {
+                                  "height": 1
+                                },
+                                "colors": [
+                                  {
+                                    "color": "#FFFFFF",
+                                    "position": 0
+                                  },
+                                  {
+                                    "color": "#F3FAFF",
+                                    "position": 1
+                                  }
+                                ]
+                              },
+                              "cornerRadius": 26,
+                              "stroke": {
+                                "thickness": 1,
+                                "fill": "#DCEAF6"
+                              },
+                              "effect": {
+                                "type": "shadow",
+                                "shadowType": "outer",
+                                "color": "#A9B9D122",
+                                "offset": {
+                                  "x": 0,
+                                  "y": 10
+                                },
+                                "blur": 24
+                              },
+                              "layout": "vertical",
+                              "gap": 14,
+                              "padding": 20,
+                              "justifyContent": "space_between",
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "vT7Xl",
+                                  "name": "sotaTop",
+                                  "width": "fill_container",
+                                  "gap": 14,
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "frame",
+                                      "id": "0WeZh",
+                                      "name": "sotaAvatar",
+                                      "width": 72,
+                                      "height": 72,
+                                      "fill": {
+                                        "type": "gradient",
+                                        "gradientType": "linear",
+                                        "enabled": true,
+                                        "rotation": 135,
+                                        "size": {
+                                          "height": 1
+                                        },
+                                        "colors": [
+                                          {
+                                            "color": "#0B2545",
+                                            "position": 0
+                                          },
+                                          {
+                                            "color": "#4AADE6",
+                                            "position": 1
+                                          }
+                                        ]
+                                      },
+                                      "cornerRadius": 36,
+                                      "effect": {
+                                        "type": "shadow",
+                                        "shadowType": "outer",
+                                        "color": "#5EA7D144",
+                                        "offset": {
+                                          "x": 0,
+                                          "y": 10
+                                        },
+                                        "blur": 20
+                                      },
+                                      "layout": "vertical",
+                                      "justifyContent": "center",
+                                      "alignItems": "center",
+                                      "children": [
+                                        {
+                                          "type": "text",
+                                          "id": "cOeBS",
+                                          "fill": "#FFFFFF",
+                                          "content": "ST",
+                                          "fontFamily": "Inter",
+                                          "fontSize": 22,
+                                          "fontWeight": "600"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "text",
+                                      "id": "FSSX6",
+                                      "fill": "#0B2545",
+                                      "textGrowth": "fixed-width",
+                                      "width": "fill_container",
+                                      "content": "Sota Truong\nAI Builder",
+                                      "lineHeight": 1.45,
+                                      "fontFamily": "Inter",
+                                      "fontSize": 19,
+                                      "fontWeight": "600"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "yGawE",
+                                  "fill": "#5A6475",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "Turns messy job-search questions into clearer AI guidance, better prompts, and sharper next actions.",
+                                  "lineHeight": 1.5,
+                                  "fontFamily": "Inter",
+                                  "fontSize": 14,
+                                  "fontWeight": "normal"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "y3Zk8",
+                                  "fill": "#4AADE6",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "Prompt systems  •  Career UX",
+                                  "lineHeight": 1.5,
+                                  "fontFamily": "Inter",
+                                  "fontSize": 13,
+                                  "fontWeight": "600"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "vi30P",
+                              "name": "harryDesktop",
+                              "width": "fill_container",
+                              "height": 228,
+                              "fill": {
+                                "type": "gradient",
+                                "gradientType": "linear",
+                                "enabled": true,
+                                "rotation": 180,
+                                "size": {
+                                  "height": 1
+                                },
+                                "colors": [
+                                  {
+                                    "color": "#FFFFFF",
+                                    "position": 0
+                                  },
+                                  {
+                                    "color": "#F7FBF6",
+                                    "position": 1
+                                  }
+                                ]
+                              },
+                              "cornerRadius": 26,
+                              "stroke": {
+                                "thickness": 1,
+                                "fill": "#E0EDE2"
+                              },
+                              "effect": {
+                                "type": "shadow",
+                                "shadowType": "outer",
+                                "color": "#A9B9D122",
+                                "offset": {
+                                  "x": 0,
+                                  "y": 10
+                                },
+                                "blur": 24
+                              },
+                              "layout": "vertical",
+                              "gap": 14,
+                              "padding": 20,
+                              "justifyContent": "space_between",
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "4xz8T",
+                                  "name": "harryTop",
+                                  "width": "fill_container",
+                                  "gap": 14,
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "frame",
+                                      "id": "PrPdQ",
+                                      "name": "harryAvatar",
+                                      "width": 72,
+                                      "height": 72,
+                                      "fill": {
+                                        "type": "gradient",
+                                        "gradientType": "linear",
+                                        "enabled": true,
+                                        "rotation": 135,
+                                        "size": {
+                                          "height": 1
+                                        },
+                                        "colors": [
+                                          {
+                                            "color": "#214766",
+                                            "position": 0
+                                          },
+                                          {
+                                            "color": "#72B7C9",
+                                            "position": 1
+                                          }
+                                        ]
+                                      },
+                                      "cornerRadius": 36,
+                                      "effect": {
+                                        "type": "shadow",
+                                        "shadowType": "outer",
+                                        "color": "#7CB7C944",
+                                        "offset": {
+                                          "x": 0,
+                                          "y": 10
+                                        },
+                                        "blur": 20
+                                      },
+                                      "layout": "vertical",
+                                      "justifyContent": "center",
+                                      "alignItems": "center",
+                                      "children": [
+                                        {
+                                          "type": "text",
+                                          "id": "XwIS1",
+                                          "fill": "#FFFFFF",
+                                          "content": "HL",
+                                          "fontFamily": "Inter",
+                                          "fontSize": 22,
+                                          "fontWeight": "600"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "text",
+                                      "id": "Smeje",
+                                      "fill": "#0B2545",
+                                      "textGrowth": "fixed-width",
+                                      "width": "fill_container",
+                                      "content": "Harry Le\nAI Automation-er",
+                                      "lineHeight": 1.45,
+                                      "fontFamily": "Inter",
+                                      "fontSize": 19,
+                                      "fontWeight": "600"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "dh5eA",
+                                  "fill": "#5A6475",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "Connects workflows, experiments, and delivery automation so the member journey feels fast and dependable.",
+                                  "lineHeight": 1.5,
+                                  "fontFamily": "Inter",
+                                  "fontSize": 14,
+                                  "fontWeight": "normal"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "tAndy",
+                                  "fill": "#2B6C78",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "Workflow automation  •  Ops tooling",
+                                  "lineHeight": 1.5,
+                                  "fontFamily": "Inter",
+                                  "fontSize": 13,
+                                  "fontWeight": "600"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "app8E",
+                      "name": "desktopStats",
+                      "width": "fill_container",
+                      "gap": 18,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "DEM7J",
+                          "name": "stat1",
+                          "width": "fill_container",
+                          "fill": {
+                            "type": "gradient",
+                            "gradientType": "linear",
+                            "enabled": true,
+                            "rotation": 180,
+                            "size": {
+                              "height": 1
+                            },
+                            "colors": [
+                              {
+                                "color": "#FFFFFF",
+                                "position": 0
+                              },
+                              {
+                                "color": "#F3FAFF",
+                                "position": 1
+                              }
+                            ]
+                          },
+                          "cornerRadius": 24,
+                          "stroke": {
+                            "thickness": 1,
+                            "fill": "#DCEAF6"
+                          },
+                          "effect": {
+                            "type": "shadow",
+                            "shadowType": "outer",
+                            "color": "#A9B9D122",
+                            "offset": {
+                              "x": 0,
+                              "y": 10
+                            },
+                            "blur": 28
+                          },
+                          "layout": "vertical",
+                          "gap": 8,
+                          "padding": 20,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "38GP3",
+                              "fill": "#0B2545",
+                              "content": "10,000+",
+                              "fontFamily": "Inter",
+                              "fontSize": 34,
+                              "fontWeight": "600"
+                            },
+                            {
+                              "type": "text",
+                              "id": "564n0",
+                              "fill": "#5A6475",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "Members\nActive every week",
+                              "lineHeight": 1.5,
+                              "fontFamily": "Inter",
+                              "fontSize": 14
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "kiyp2",
+                          "name": "stat2",
+                          "width": "fill_container",
+                          "fill": {
+                            "type": "gradient",
+                            "gradientType": "linear",
+                            "enabled": true,
+                            "rotation": 180,
+                            "size": {
+                              "height": 1
+                            },
+                            "colors": [
+                              {
+                                "color": "#FFFFFF",
+                                "position": 0
+                              },
+                              {
+                                "color": "#F5FCFB",
+                                "position": 1
+                              }
+                            ]
+                          },
+                          "cornerRadius": 24,
+                          "stroke": {
+                            "thickness": 1,
+                            "fill": "#DDEEEB"
+                          },
+                          "effect": {
+                            "type": "shadow",
+                            "shadowType": "outer",
+                            "color": "#A9B9D122",
+                            "offset": {
+                              "x": 0,
+                              "y": 10
+                            },
+                            "blur": 28
+                          },
+                          "layout": "vertical",
+                          "gap": 8,
+                          "padding": 20,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "jinCL",
+                              "fill": "#0B2545",
+                              "content": "85%",
+                              "fontFamily": "Inter",
+                              "fontSize": 34,
+                              "fontWeight": "600"
+                            },
+                            {
+                              "type": "text",
+                              "id": "3iiDf",
+                              "fill": "#5A6475",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "Success rate\nInterview to offer",
+                              "lineHeight": 1.5,
+                              "fontFamily": "Inter",
+                              "fontSize": 14
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "9Pawj",
+                          "name": "stat3",
+                          "width": "fill_container",
+                          "fill": {
+                            "type": "gradient",
+                            "gradientType": "linear",
+                            "enabled": true,
+                            "rotation": 180,
+                            "size": {
+                              "height": 1
+                            },
+                            "colors": [
+                              {
+                                "color": "#FFFFFF",
+                                "position": 0
+                              },
+                              {
+                                "color": "#FFF8F1",
+                                "position": 1
+                              }
+                            ]
+                          },
+                          "cornerRadius": 24,
+                          "stroke": {
+                            "thickness": 1,
+                            "fill": "#F1E6D7"
+                          },
+                          "effect": {
+                            "type": "shadow",
+                            "shadowType": "outer",
+                            "color": "#A9B9D122",
+                            "offset": {
+                              "x": 0,
+                              "y": 10
+                            },
+                            "blur": 28
+                          },
+                          "layout": "vertical",
+                          "gap": 8,
+                          "padding": 20,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "hcIzz",
+                              "fill": "#0B2545",
+                              "content": "5,000+",
+                              "fontFamily": "Inter",
+                              "fontSize": 34,
+                              "fontWeight": "600"
+                            },
+                            {
+                              "type": "text",
+                              "id": "zHtrW",
+                              "fill": "#5A6475",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "Placements\nAcross growth teams",
+                              "lineHeight": 1.5,
+                              "fontFamily": "Inter",
+                              "fontSize": 14
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "20LOA",
+                          "name": "stat4",
+                          "width": "fill_container",
+                          "fill": {
+                            "type": "gradient",
+                            "gradientType": "linear",
+                            "enabled": true,
+                            "rotation": 180,
+                            "size": {
+                              "height": 1
+                            },
+                            "colors": [
+                              {
+                                "color": "#FFFFFF",
+                                "position": 0
+                              },
+                              {
+                                "color": "#F7FBF6",
+                                "position": 1
+                              }
+                            ]
+                          },
+                          "cornerRadius": 24,
+                          "stroke": {
+                            "thickness": 1,
+                            "fill": "#E0EDE2"
+                          },
+                          "effect": {
+                            "type": "shadow",
+                            "shadowType": "outer",
+                            "color": "#A9B9D122",
+                            "offset": {
+                              "x": 0,
+                              "y": 10
+                            },
+                            "blur": 28
+                          },
+                          "layout": "vertical",
+                          "gap": 8,
+                          "padding": 20,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "LINvI",
+                              "fill": "#0B2545",
+                              "content": "4.8/5",
+                              "fontFamily": "Inter",
+                              "fontSize": 34,
+                              "fontWeight": "600"
+                            },
+                            {
+                              "type": "text",
+                              "id": "cgWAa",
+                              "fill": "#5A6475",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "Satisfaction\nFrom member reviews",
+                              "lineHeight": 1.5,
+                              "fontFamily": "Inter",
+                              "fontSize": 14
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "Fhy5W",
+                      "name": "desktopQuoteCard",
+                      "width": "fill_container",
+                      "fill": {
+                        "type": "gradient",
+                        "gradientType": "linear",
+                        "enabled": true,
+                        "rotation": 180,
+                        "size": {
+                          "height": 1
+                        },
+                        "colors": [
+                          {
+                            "color": "#FFFFFF",
+                            "position": 0
+                          },
+                          {
+                            "color": "#F1F8FF",
+                            "position": 1
+                          }
+                        ]
+                      },
+                      "cornerRadius": 28,
+                      "stroke": {
+                        "thickness": 1,
+                        "fill": "#DCEAF6"
+                      },
+                      "effect": {
+                        "type": "shadow",
+                        "shadowType": "outer",
+                        "color": "#9CB2CC22",
+                        "offset": {
+                          "x": 0,
+                          "y": 18
+                        },
+                        "blur": 42
+                      },
+                      "gap": 26,
+                      "padding": 28,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "xTBGC",
+                          "name": "quoteMeta",
+                          "width": 220,
+                          "layout": "vertical",
+                          "gap": 14,
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "F9p9B",
+                              "name": "quoteAvatar",
+                              "width": 96,
+                              "height": 96,
+                              "fill": {
+                                "type": "gradient",
+                                "gradientType": "linear",
+                                "enabled": true,
+                                "rotation": 135,
+                                "size": {
+                                  "height": 1
+                                },
+                                "colors": [
+                                  {
+                                    "color": "#0B2545",
+                                    "position": 0
+                                  },
+                                  {
+                                    "color": "#4AADE6",
+                                    "position": 1
+                                  }
+                                ]
+                              },
+                              "cornerRadius": 48,
+                              "effect": {
+                                "type": "shadow",
+                                "shadowType": "outer",
+                                "color": "#5EA7D144",
+                                "offset": {
+                                  "x": 0,
+                                  "y": 12
+                                },
+                                "blur": 24
+                              },
+                              "layout": "vertical",
+                              "justifyContent": "center",
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "9s5rM",
+                                  "fill": "#FFFFFF",
+                                  "content": "MA",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 26,
+                                  "fontWeight": "600"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "id": "T2Wsh",
+                              "fill": "#0B2545",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "Minh Anh\nFrontend Developer - VNG",
+                              "lineHeight": 1.5,
+                              "textAlign": "center",
+                              "fontFamily": "Inter",
+                              "fontSize": 16,
+                              "fontWeight": "600"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "JSpSh",
+                          "name": "quoteContent",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 18,
+                          "justifyContent": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "6egXO",
+                              "fill": "#0B2545",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "Job360 helped me focus on the exact skills hiring teams looked for. I stopped guessing, showed up sharper, and landed multiple offers in two weeks.",
+                              "lineHeight": 1.35,
+                              "fontFamily": "Inter",
+                              "fontSize": 28,
+                              "fontWeight": "600"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "O6dSr",
+                              "name": "quoteFooter",
+                              "gap": 12,
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "xQ09L",
+                                  "name": "quotePrev",
+                                  "width": 34,
+                                  "height": 34,
+                                  "fill": "#FFFFFF",
+                                  "cornerRadius": 17,
+                                  "stroke": {
+                                    "thickness": 1,
+                                    "fill": "#DCEAF6"
+                                  },
+                                  "layout": "vertical",
+                                  "justifyContent": "center",
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "2w0wq",
+                                      "fill": "#0B2545",
+                                      "content": "<",
+                                      "fontFamily": "Inter",
+                                      "fontSize": 16,
+                                      "fontWeight": "600"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "aBk6K",
+                                  "width": 32,
+                                  "height": 8,
+                                  "fill": "#4AADE6",
+                                  "cornerRadius": 999
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "mYf7Z",
+                                  "width": 8,
+                                  "height": 8,
+                                  "fill": "#C9DAEA",
+                                  "cornerRadius": 999
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "NOttA",
+                                  "width": 8,
+                                  "height": 8,
+                                  "fill": "#C9DAEA",
+                                  "cornerRadius": 999
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "fIujP",
+                                  "name": "quoteNext",
+                                  "width": 34,
+                                  "height": 34,
+                                  "fill": "#FFFFFF",
+                                  "cornerRadius": 17,
+                                  "stroke": {
+                                    "thickness": 1,
+                                    "fill": "#DCEAF6"
+                                  },
+                                  "layout": "vertical",
+                                  "justifyContent": "center",
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "uNT57",
+                                      "fill": "#0B2545",
+                                      "content": ">",
+                                      "fontFamily": "Inter",
+                                      "fontSize": 16,
+                                      "fontWeight": "600"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "ZZOuf",
+                      "name": "desktopBenefits",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 18,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "fn030",
+                          "fill": "#0B2545",
+                          "content": "Benefits of joining",
+                          "fontFamily": "Inter",
+                          "fontSize": 22,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "dBK4I",
+                          "name": "benefitRow1",
+                          "width": "fill_container",
+                          "gap": 18,
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "yiMHA",
+                              "name": "benefit1",
+                              "width": "fill_container",
+                              "fill": {
+                                "type": "gradient",
+                                "gradientType": "linear",
+                                "enabled": true,
+                                "rotation": 180,
+                                "size": {
+                                  "height": 1
+                                },
+                                "colors": [
+                                  {
+                                    "color": "#FFFFFF",
+                                    "position": 0
+                                  },
+                                  {
+                                    "color": "#F3FAFF",
+                                    "position": 1
+                                  }
+                                ]
+                              },
+                              "cornerRadius": 24,
+                              "stroke": {
+                                "thickness": 1,
+                                "fill": "#DCEAF6"
+                              },
+                              "effect": {
+                                "type": "shadow",
+                                "shadowType": "outer",
+                                "color": "#A9B9D122",
+                                "offset": {
+                                  "x": 0,
+                                  "y": 10
+                                },
+                                "blur": 24
+                              },
+                              "layout": "vertical",
+                              "gap": 8,
+                              "padding": 18,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "TUL41",
+                                  "fill": "#0B2545",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "Smart JD Analysis\nUnderstand role requirements and spot the exact gaps to close before you apply.",
+                                  "lineHeight": 1.5,
+                                  "fontFamily": "Inter",
+                                  "fontSize": 16,
+                                  "fontWeight": "500"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "XpZ7R",
+                              "name": "benefit2",
+                              "width": "fill_container",
+                              "fill": {
+                                "type": "gradient",
+                                "gradientType": "linear",
+                                "enabled": true,
+                                "rotation": 180,
+                                "size": {
+                                  "height": 1
+                                },
+                                "colors": [
+                                  {
+                                    "color": "#FFFFFF",
+                                    "position": 0
+                                  },
+                                  {
+                                    "color": "#F5FCFB",
+                                    "position": 1
+                                  }
+                                ]
+                              },
+                              "cornerRadius": 24,
+                              "stroke": {
+                                "thickness": 1,
+                                "fill": "#DDEEEB"
+                              },
+                              "effect": {
+                                "type": "shadow",
+                                "shadowType": "outer",
+                                "color": "#A9B9D122",
+                                "offset": {
+                                  "x": 0,
+                                  "y": 10
+                                },
+                                "blur": 24
+                              },
+                              "layout": "vertical",
+                              "gap": 8,
+                              "padding": 18,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "f6nqh",
+                                  "fill": "#0B2545",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "Automated CV Review\nImprove clarity, ATS fit, and the proof points recruiters notice first.",
+                                  "lineHeight": 1.5,
+                                  "fontFamily": "Inter",
+                                  "fontSize": 16,
+                                  "fontWeight": "500"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "cXVtj",
+                              "name": "benefit3",
+                              "width": "fill_container",
+                              "fill": {
+                                "type": "gradient",
+                                "gradientType": "linear",
+                                "enabled": true,
+                                "rotation": 180,
+                                "size": {
+                                  "height": 1
+                                },
+                                "colors": [
+                                  {
+                                    "color": "#FFFFFF",
+                                    "position": 0
+                                  },
+                                  {
+                                    "color": "#FFF8F1",
+                                    "position": 1
+                                  }
+                                ]
+                              },
+                              "cornerRadius": 24,
+                              "stroke": {
+                                "thickness": 1,
+                                "fill": "#F1E6D7"
+                              },
+                              "effect": {
+                                "type": "shadow",
+                                "shadowType": "outer",
+                                "color": "#A9B9D122",
+                                "offset": {
+                                  "x": 0,
+                                  "y": 10
+                                },
+                                "blur": 24
+                              },
+                              "layout": "vertical",
+                              "gap": 8,
+                              "padding": 18,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "PVZEP",
+                                  "fill": "#0B2545",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "Interview Practice\nRehearse role-specific questions with sharper stories and better answers.",
+                                  "lineHeight": 1.5,
+                                  "fontFamily": "Inter",
+                                  "fontSize": 16,
+                                  "fontWeight": "500"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "qZPLj",
+                          "name": "benefitRow2",
+                          "width": "fill_container",
+                          "gap": 18,
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "V80eO",
+                              "name": "benefit4",
+                              "width": "fill_container",
+                              "fill": {
+                                "type": "gradient",
+                                "gradientType": "linear",
+                                "enabled": true,
+                                "rotation": 180,
+                                "size": {
+                                  "height": 1
+                                },
+                                "colors": [
+                                  {
+                                    "color": "#FFFFFF",
+                                    "position": 0
+                                  },
+                                  {
+                                    "color": "#F7FBF6",
+                                    "position": 1
+                                  }
+                                ]
+                              },
+                              "cornerRadius": 24,
+                              "stroke": {
+                                "thickness": 1,
+                                "fill": "#E0EDE2"
+                              },
+                              "effect": {
+                                "type": "shadow",
+                                "shadowType": "outer",
+                                "color": "#A9B9D122",
+                                "offset": {
+                                  "x": 0,
+                                  "y": 10
+                                },
+                                "blur": 24
+                              },
+                              "layout": "vertical",
+                              "gap": 8,
+                              "padding": 18,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "p0jE4",
+                                  "fill": "#0B2545",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "Salary Benchmark\nAnchor your expectations with current ranges and negotiation context.",
+                                  "lineHeight": 1.5,
+                                  "fontFamily": "Inter",
+                                  "fontSize": 16,
+                                  "fontWeight": "500"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "IFkj0",
+                              "name": "benefit5",
+                              "width": "fill_container",
+                              "fill": {
+                                "type": "gradient",
+                                "gradientType": "linear",
+                                "enabled": true,
+                                "rotation": 180,
+                                "size": {
+                                  "height": 1
+                                },
+                                "colors": [
+                                  {
+                                    "color": "#FFFFFF",
+                                    "position": 0
+                                  },
+                                  {
+                                    "color": "#F4F7FF",
+                                    "position": 1
+                                  }
+                                ]
+                              },
+                              "cornerRadius": 24,
+                              "stroke": {
+                                "thickness": 1,
+                                "fill": "#DDE3F5"
+                              },
+                              "effect": {
+                                "type": "shadow",
+                                "shadowType": "outer",
+                                "color": "#A9B9D122",
+                                "offset": {
+                                  "x": 0,
+                                  "y": 10
+                                },
+                                "blur": 24
+                              },
+                              "layout": "vertical",
+                              "gap": 8,
+                              "padding": 18,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "xhY34",
+                                  "fill": "#0B2545",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "Personalized Roadmap\nSee the next skills, milestones, and proof points that move your career forward.",
+                                  "lineHeight": 1.5,
+                                  "fontFamily": "Inter",
+                                  "fontSize": 16,
+                                  "fontWeight": "500"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "pD2vK",
+                              "name": "benefit6",
+                              "width": "fill_container",
+                              "fill": {
+                                "type": "gradient",
+                                "gradientType": "linear",
+                                "enabled": true,
+                                "rotation": 180,
+                                "size": {
+                                  "height": 1
+                                },
+                                "colors": [
+                                  {
+                                    "color": "#FFFFFF",
+                                    "position": 0
+                                  },
+                                  {
+                                    "color": "#F5FBFF",
+                                    "position": 1
+                                  }
+                                ]
+                              },
+                              "cornerRadius": 24,
+                              "stroke": {
+                                "thickness": 1,
+                                "fill": "#DCEAF6"
+                              },
+                              "effect": {
+                                "type": "shadow",
+                                "shadowType": "outer",
+                                "color": "#A9B9D122",
+                                "offset": {
+                                  "x": 0,
+                                  "y": 10
+                                },
+                                "blur": 24
+                              },
+                              "layout": "vertical",
+                              "gap": 8,
+                              "padding": 18,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "d6FBm",
+                                  "fill": "#0B2545",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "Supportive Community\nLearn from peers who have already turned advice into interviews and offers.",
+                                  "lineHeight": 1.5,
+                                  "fontFamily": "Inter",
+                                  "fontSize": 16,
+                                  "fontWeight": "500"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "CfRZ2",
+              "name": "tabletCol",
+              "width": 900,
+              "layout": "vertical",
+              "gap": 18,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "4N6id",
+                  "fill": "#0B2545",
+                  "content": "Tablet / 900px",
+                  "fontFamily": "Inter",
+                  "fontSize": 18,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "frame",
+                  "id": "p6eD4",
+                  "name": "Tablet Visual",
+                  "width": "fill_container",
+                  "fill": {
+                    "type": "gradient",
+                    "gradientType": "linear",
+                    "enabled": true,
+                    "rotation": 180,
+                    "size": {
+                      "height": 1
+                    },
+                    "colors": [
+                      {
+                        "color": "#FBFDFF",
+                        "position": 0
+                      },
+                      {
+                        "color": "#F1F6FE",
+                        "position": 1
+                      }
+                    ]
+                  },
+                  "cornerRadius": 28,
+                  "stroke": {
+                    "thickness": 1,
+                    "fill": "#D9E6F3"
+                  },
+                  "effect": {
+                    "type": "shadow",
+                    "shadowType": "outer",
+                    "color": "#A9B9D133",
+                    "offset": {
+                      "x": 0,
+                      "y": 16
+                    },
+                    "blur": 40
+                  },
+                  "layout": "vertical",
+                  "gap": 32,
+                  "padding": 28,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "JCz7j",
+                      "name": "tabletHeader",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 12,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "pDIWf",
+                          "name": "tabletTag",
+                          "fill": "#E9F5FF",
+                          "cornerRadius": 999,
+                          "stroke": {
+                            "thickness": 1,
+                            "fill": "#B8DBF4"
+                          },
+                          "padding": [
+                            9,
+                            16
+                          ],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "Z5xCL",
+                              "fill": "#0B2545",
+                              "content": "COMMUNITY",
+                              "fontFamily": "Inter",
+                              "fontSize": 11,
+                              "fontWeight": "600",
+                              "letterSpacing": 1
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "2RARM",
+                          "fill": "#0B2545",
+                          "textGrowth": "fixed-width",
+                          "width": 560,
+                          "content": "Trusted by thousands of job seekers",
+                          "lineHeight": 1.15,
+                          "textAlign": "center",
+                          "fontFamily": "Inter",
+                          "fontSize": 36,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "JbZmw",
+                          "fill": "#5A6475",
+                          "textGrowth": "fixed-width",
+                          "width": 520,
+                          "content": "A supportive AI-first career community built to help members move faster from role search to offer.",
+                          "lineHeight": 1.5,
+                          "textAlign": "center",
+                          "fontFamily": "Inter",
+                          "fontSize": 16
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "4hgCT",
+                      "name": "tabletTeamSpotlight",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 16,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "ytSGO",
+                          "name": "introTablet",
+                          "width": "fill_container",
+                          "fill": {
+                            "type": "gradient",
+                            "gradientType": "linear",
+                            "enabled": true,
+                            "rotation": 180,
+                            "size": {
+                              "height": 1
+                            },
+                            "colors": [
+                              {
+                                "color": "#FFFFFF",
+                                "position": 0
+                              },
+                              {
+                                "color": "#F4F8FF",
+                                "position": 1
+                              }
+                            ]
+                          },
+                          "cornerRadius": 24,
+                          "stroke": {
+                            "thickness": 1,
+                            "fill": "#DCEAF6"
+                          },
+                          "effect": {
+                            "type": "shadow",
+                            "shadowType": "outer",
+                            "color": "#A9B9D122",
+                            "offset": {
+                              "x": 0,
+                              "y": 8
+                            },
+                            "blur": 22
+                          },
+                          "layout": "vertical",
+                          "gap": 10,
+                          "padding": 20,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "60ALJ",
+                              "fill": "#4AADE6",
+                              "content": "MEET THE TEAM",
+                              "fontFamily": "Inter",
+                              "fontSize": 11,
+                              "fontWeight": "600",
+                              "letterSpacing": 1
+                            },
+                            {
+                              "type": "text",
+                              "id": "aqtom",
+                              "fill": "#0B2545",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "The builders behind Job360's member experience",
+                              "lineHeight": 1.2,
+                              "fontFamily": "Inter",
+                              "fontSize": 24,
+                              "fontWeight": "600"
+                            },
+                            {
+                              "type": "text",
+                              "id": "Rt866",
+                              "fill": "#5A6475",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "Sota Truong handles AI guidance while Harry Le makes the automation engine feel fast and dependable for every member path.",
+                              "lineHeight": 1.5,
+                              "fontFamily": "Inter",
+                              "fontSize": 14,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "MikwQ",
+                          "name": "tabletTeamCards",
+                          "width": "fill_container",
+                          "gap": 14,
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "8xHoc",
+                              "name": "sotaTablet",
+                              "width": "fill_container",
+                              "height": 188,
+                              "fill": {
+                                "type": "gradient",
+                                "gradientType": "linear",
+                                "enabled": true,
+                                "rotation": 180,
+                                "size": {
+                                  "height": 1
+                                },
+                                "colors": [
+                                  {
+                                    "color": "#FFFFFF",
+                                    "position": 0
+                                  },
+                                  {
+                                    "color": "#F3FAFF",
+                                    "position": 1
+                                  }
+                                ]
+                              },
+                              "cornerRadius": 22,
+                              "stroke": {
+                                "thickness": 1,
+                                "fill": "#DCEAF6"
+                              },
+                              "effect": {
+                                "type": "shadow",
+                                "shadowType": "outer",
+                                "color": "#A9B9D122",
+                                "offset": {
+                                  "x": 0,
+                                  "y": 8
+                                },
+                                "blur": 20
+                              },
+                              "layout": "vertical",
+                              "gap": 12,
+                              "padding": 18,
+                              "justifyContent": "space_between",
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "aL3lO",
+                                  "name": "sotaTabletTop",
+                                  "width": "fill_container",
+                                  "gap": 12,
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "frame",
+                                      "id": "Yggfk",
+                                      "name": "sotaTabletAvatar",
+                                      "width": 60,
+                                      "height": 60,
+                                      "fill": {
+                                        "type": "gradient",
+                                        "gradientType": "linear",
+                                        "enabled": true,
+                                        "rotation": 135,
+                                        "size": {
+                                          "height": 1
+                                        },
+                                        "colors": [
+                                          {
+                                            "color": "#0B2545",
+                                            "position": 0
+                                          },
+                                          {
+                                            "color": "#4AADE6",
+                                            "position": 1
+                                          }
+                                        ]
+                                      },
+                                      "cornerRadius": 30,
+                                      "effect": {
+                                        "type": "shadow",
+                                        "shadowType": "outer",
+                                        "color": "#5EA7D144",
+                                        "offset": {
+                                          "x": 0,
+                                          "y": 8
+                                        },
+                                        "blur": 16
+                                      },
+                                      "layout": "vertical",
+                                      "justifyContent": "center",
+                                      "alignItems": "center",
+                                      "children": [
+                                        {
+                                          "type": "text",
+                                          "id": "D90bs",
+                                          "fill": "#FFFFFF",
+                                          "content": "ST",
+                                          "fontFamily": "Inter",
+                                          "fontSize": 18,
+                                          "fontWeight": "600"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "text",
+                                      "id": "NmrKu",
+                                      "fill": "#0B2545",
+                                      "textGrowth": "fixed-width",
+                                      "width": "fill_container",
+                                      "content": "Sota Truong\nAI Builder",
+                                      "lineHeight": 1.45,
+                                      "fontFamily": "Inter",
+                                      "fontSize": 16,
+                                      "fontWeight": "600"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "zumbF",
+                                  "fill": "#5A6475",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "Turns job-search questions into clearer AI guidance, sharper prompts, and better member actions.",
+                                  "lineHeight": 1.5,
+                                  "fontFamily": "Inter",
+                                  "fontSize": 13,
+                                  "fontWeight": "normal"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "ISvtP",
+                                  "fill": "#4AADE6",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "Prompt systems  •  Career UX",
+                                  "lineHeight": 1.5,
+                                  "fontFamily": "Inter",
+                                  "fontSize": 12,
+                                  "fontWeight": "600"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "rtZk1",
+                              "name": "harryTablet",
+                              "width": "fill_container",
+                              "height": 188,
+                              "fill": {
+                                "type": "gradient",
+                                "gradientType": "linear",
+                                "enabled": true,
+                                "rotation": 180,
+                                "size": {
+                                  "height": 1
+                                },
+                                "colors": [
+                                  {
+                                    "color": "#FFFFFF",
+                                    "position": 0
+                                  },
+                                  {
+                                    "color": "#F7FBF6",
+                                    "position": 1
+                                  }
+                                ]
+                              },
+                              "cornerRadius": 22,
+                              "stroke": {
+                                "thickness": 1,
+                                "fill": "#E0EDE2"
+                              },
+                              "effect": {
+                                "type": "shadow",
+                                "shadowType": "outer",
+                                "color": "#A9B9D122",
+                                "offset": {
+                                  "x": 0,
+                                  "y": 8
+                                },
+                                "blur": 20
+                              },
+                              "layout": "vertical",
+                              "gap": 12,
+                              "padding": 18,
+                              "justifyContent": "space_between",
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "bDI9s",
+                                  "name": "harryTabletTop",
+                                  "width": "fill_container",
+                                  "gap": 12,
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "frame",
+                                      "id": "hNlvs",
+                                      "name": "harryTabletAvatar",
+                                      "width": 60,
+                                      "height": 60,
+                                      "fill": {
+                                        "type": "gradient",
+                                        "gradientType": "linear",
+                                        "enabled": true,
+                                        "rotation": 135,
+                                        "size": {
+                                          "height": 1
+                                        },
+                                        "colors": [
+                                          {
+                                            "color": "#214766",
+                                            "position": 0
+                                          },
+                                          {
+                                            "color": "#72B7C9",
+                                            "position": 1
+                                          }
+                                        ]
+                                      },
+                                      "cornerRadius": 30,
+                                      "effect": {
+                                        "type": "shadow",
+                                        "shadowType": "outer",
+                                        "color": "#7CB7C944",
+                                        "offset": {
+                                          "x": 0,
+                                          "y": 8
+                                        },
+                                        "blur": 16
+                                      },
+                                      "layout": "vertical",
+                                      "justifyContent": "center",
+                                      "alignItems": "center",
+                                      "children": [
+                                        {
+                                          "type": "text",
+                                          "id": "LVMS8",
+                                          "fill": "#FFFFFF",
+                                          "content": "HL",
+                                          "fontFamily": "Inter",
+                                          "fontSize": 18,
+                                          "fontWeight": "600"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "text",
+                                      "id": "wuntg",
+                                      "fill": "#0B2545",
+                                      "textGrowth": "fixed-width",
+                                      "width": "fill_container",
+                                      "content": "Harry Le\nAI Automation-er",
+                                      "lineHeight": 1.45,
+                                      "fontFamily": "Inter",
+                                      "fontSize": 16,
+                                      "fontWeight": "600"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "985ot",
+                                  "fill": "#5A6475",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "Keeps workflows and delivery automation connected so the product feels smoother at every touchpoint.",
+                                  "lineHeight": 1.5,
+                                  "fontFamily": "Inter",
+                                  "fontSize": 13,
+                                  "fontWeight": "normal"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "YxDjP",
+                                  "fill": "#2B6C78",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "Workflow automation  •  Ops tooling",
+                                  "lineHeight": 1.5,
+                                  "fontFamily": "Inter",
+                                  "fontSize": 12,
+                                  "fontWeight": "600"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "dP397",
+                      "name": "tabletStats",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 14,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "5j03P",
+                          "name": "tabletRow1",
+                          "width": "fill_container",
+                          "gap": 14,
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "FuwxF",
+                              "name": "tStat1",
+                              "width": "fill_container",
+                              "fill": {
+                                "type": "gradient",
+                                "gradientType": "linear",
+                                "enabled": true,
+                                "rotation": 180,
+                                "size": {
+                                  "height": 1
+                                },
+                                "colors": [
+                                  {
+                                    "color": "#FFFFFF",
+                                    "position": 0
+                                  },
+                                  {
+                                    "color": "#F3FAFF",
+                                    "position": 1
+                                  }
+                                ]
+                              },
+                              "cornerRadius": 22,
+                              "stroke": {
+                                "thickness": 1,
+                                "fill": "#DCEAF6"
+                              },
+                              "effect": {
+                                "type": "shadow",
+                                "shadowType": "outer",
+                                "color": "#A9B9D122",
+                                "offset": {
+                                  "x": 0,
+                                  "y": 10
+                                },
+                                "blur": 24
+                              },
+                              "layout": "vertical",
+                              "gap": 6,
+                              "padding": 18,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "N2esl",
+                                  "fill": "#0B2545",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "10,000+\nMembers",
+                                  "lineHeight": 1.3,
+                                  "fontFamily": "Inter",
+                                  "fontSize": 24,
+                                  "fontWeight": "600"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "7lrMk",
+                              "name": "tStat2",
+                              "width": "fill_container",
+                              "fill": {
+                                "type": "gradient",
+                                "gradientType": "linear",
+                                "enabled": true,
+                                "rotation": 180,
+                                "size": {
+                                  "height": 1
+                                },
+                                "colors": [
+                                  {
+                                    "color": "#FFFFFF",
+                                    "position": 0
+                                  },
+                                  {
+                                    "color": "#F5FCFB",
+                                    "position": 1
+                                  }
+                                ]
+                              },
+                              "cornerRadius": 22,
+                              "stroke": {
+                                "thickness": 1,
+                                "fill": "#DDEEEB"
+                              },
+                              "effect": {
+                                "type": "shadow",
+                                "shadowType": "outer",
+                                "color": "#A9B9D122",
+                                "offset": {
+                                  "x": 0,
+                                  "y": 10
+                                },
+                                "blur": 24
+                              },
+                              "layout": "vertical",
+                              "gap": 6,
+                              "padding": 18,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "CTmWr",
+                                  "fill": "#0B2545",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "85%\nSuccess Rate",
+                                  "lineHeight": 1.3,
+                                  "fontFamily": "Inter",
+                                  "fontSize": 24,
+                                  "fontWeight": "600"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "X9ABH",
+                          "name": "tabletRow2",
+                          "width": "fill_container",
+                          "gap": 14,
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "mwuZ0",
+                              "name": "tStat3",
+                              "width": "fill_container",
+                              "fill": {
+                                "type": "gradient",
+                                "gradientType": "linear",
+                                "enabled": true,
+                                "rotation": 180,
+                                "size": {
+                                  "height": 1
+                                },
+                                "colors": [
+                                  {
+                                    "color": "#FFFFFF",
+                                    "position": 0
+                                  },
+                                  {
+                                    "color": "#FFF8F1",
+                                    "position": 1
+                                  }
+                                ]
+                              },
+                              "cornerRadius": 22,
+                              "stroke": {
+                                "thickness": 1,
+                                "fill": "#F1E6D7"
+                              },
+                              "effect": {
+                                "type": "shadow",
+                                "shadowType": "outer",
+                                "color": "#A9B9D122",
+                                "offset": {
+                                  "x": 0,
+                                  "y": 10
+                                },
+                                "blur": 24
+                              },
+                              "layout": "vertical",
+                              "gap": 6,
+                              "padding": 18,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "n6VsB",
+                                  "fill": "#0B2545",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "5,000+\nPlacements",
+                                  "lineHeight": 1.3,
+                                  "fontFamily": "Inter",
+                                  "fontSize": 24,
+                                  "fontWeight": "600"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "UALWU",
+                              "name": "tStat4",
+                              "width": "fill_container",
+                              "fill": {
+                                "type": "gradient",
+                                "gradientType": "linear",
+                                "enabled": true,
+                                "rotation": 180,
+                                "size": {
+                                  "height": 1
+                                },
+                                "colors": [
+                                  {
+                                    "color": "#FFFFFF",
+                                    "position": 0
+                                  },
+                                  {
+                                    "color": "#F7FBF6",
+                                    "position": 1
+                                  }
+                                ]
+                              },
+                              "cornerRadius": 22,
+                              "stroke": {
+                                "thickness": 1,
+                                "fill": "#E0EDE2"
+                              },
+                              "effect": {
+                                "type": "shadow",
+                                "shadowType": "outer",
+                                "color": "#A9B9D122",
+                                "offset": {
+                                  "x": 0,
+                                  "y": 10
+                                },
+                                "blur": 24
+                              },
+                              "layout": "vertical",
+                              "gap": 6,
+                              "padding": 18,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "KWZVU",
+                                  "fill": "#0B2545",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "4.8/5\nSatisfaction",
+                                  "lineHeight": 1.3,
+                                  "fontFamily": "Inter",
+                                  "fontSize": 24,
+                                  "fontWeight": "600"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "LCTen",
+                      "name": "tabletQuote",
+                      "width": "fill_container",
+                      "fill": {
+                        "type": "gradient",
+                        "gradientType": "linear",
+                        "enabled": true,
+                        "rotation": 180,
+                        "size": {
+                          "height": 1
+                        },
+                        "colors": [
+                          {
+                            "color": "#FFFFFF",
+                            "position": 0
+                          },
+                          {
+                            "color": "#F1F8FF",
+                            "position": 1
+                          }
+                        ]
+                      },
+                      "cornerRadius": 26,
+                      "stroke": {
+                        "thickness": 1,
+                        "fill": "#DCEAF6"
+                      },
+                      "effect": {
+                        "type": "shadow",
+                        "shadowType": "outer",
+                        "color": "#9CB2CC22",
+                        "offset": {
+                          "x": 0,
+                          "y": 16
+                        },
+                        "blur": 34
+                      },
+                      "layout": "vertical",
+                      "gap": 16,
+                      "padding": 24,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "fdg2G",
+                          "name": "tabletAvatar",
+                          "width": 84,
+                          "height": 84,
+                          "fill": {
+                            "type": "gradient",
+                            "gradientType": "linear",
+                            "enabled": true,
+                            "rotation": 135,
+                            "size": {
+                              "height": 1
+                            },
+                            "colors": [
+                              {
+                                "color": "#0B2545",
+                                "position": 0
+                              },
+                              {
+                                "color": "#4AADE6",
+                                "position": 1
+                              }
+                            ]
+                          },
+                          "cornerRadius": 42,
+                          "effect": {
+                            "type": "shadow",
+                            "shadowType": "outer",
+                            "color": "#5EA7D144",
+                            "offset": {
+                              "x": 0,
+                              "y": 10
+                            },
+                            "blur": 20
+                          },
+                          "layout": "vertical",
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "fcX94",
+                              "fill": "#FFFFFF",
+                              "content": "TH",
+                              "fontFamily": "Inter",
+                              "fontSize": 22,
+                              "fontWeight": "600"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "6zwWy",
+                          "fill": "#0B2545",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "Tran Hoang\nData Analyst to AI Engineer",
+                          "lineHeight": 1.5,
+                          "textAlign": "center",
+                          "fontFamily": "Inter",
+                          "fontSize": 15,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "6KaqJ",
+                          "fill": "#0B2545",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "CareerAI gave me a clear roadmap instead of generic advice. I knew what to learn next and how to reframe my experience for a new market.",
+                          "lineHeight": 1.45,
+                          "textAlign": "center",
+                          "fontFamily": "Inter",
+                          "fontSize": 20,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "HiPBF",
+                      "name": "tabletBenefits",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 16,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "ZO8Ye",
+                          "fill": "#0B2545",
+                          "content": "Benefits of joining",
+                          "fontFamily": "Inter",
+                          "fontSize": 20,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "svLSj",
+                          "name": "tr1",
+                          "width": "fill_container",
+                          "gap": 14,
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "aaIXx",
+                              "name": "tb1",
+                              "width": "fill_container",
+                              "fill": {
+                                "type": "gradient",
+                                "gradientType": "linear",
+                                "enabled": true,
+                                "rotation": 180,
+                                "size": {
+                                  "height": 1
+                                },
+                                "colors": [
+                                  {
+                                    "color": "#FFFFFF",
+                                    "position": 0
+                                  },
+                                  {
+                                    "color": "#F3FAFF",
+                                    "position": 1
+                                  }
+                                ]
+                              },
+                              "cornerRadius": 22,
+                              "stroke": {
+                                "thickness": 1,
+                                "fill": "#DCEAF6"
+                              },
+                              "effect": {
+                                "type": "shadow",
+                                "shadowType": "outer",
+                                "color": "#A9B9D122",
+                                "offset": {
+                                  "x": 0,
+                                  "y": 8
+                                },
+                                "blur": 22
+                              },
+                              "layout": "vertical",
+                              "gap": 8,
+                              "padding": 16,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "URHiY",
+                                  "fill": "#0B2545",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "Smart JD Analysis\nSee where you match and what to sharpen before applying.",
+                                  "lineHeight": 1.45,
+                                  "fontFamily": "Inter",
+                                  "fontSize": 15,
+                                  "fontWeight": "500"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "UaOFt",
+                              "name": "tb2",
+                              "width": "fill_container",
+                              "fill": {
+                                "type": "gradient",
+                                "gradientType": "linear",
+                                "enabled": true,
+                                "rotation": 180,
+                                "size": {
+                                  "height": 1
+                                },
+                                "colors": [
+                                  {
+                                    "color": "#FFFFFF",
+                                    "position": 0
+                                  },
+                                  {
+                                    "color": "#F5FCFB",
+                                    "position": 1
+                                  }
+                                ]
+                              },
+                              "cornerRadius": 22,
+                              "stroke": {
+                                "thickness": 1,
+                                "fill": "#DDEEEB"
+                              },
+                              "effect": {
+                                "type": "shadow",
+                                "shadowType": "outer",
+                                "color": "#A9B9D122",
+                                "offset": {
+                                  "x": 0,
+                                  "y": 8
+                                },
+                                "blur": 22
+                              },
+                              "layout": "vertical",
+                              "gap": 8,
+                              "padding": 16,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "WujUn",
+                                  "fill": "#0B2545",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "Automated CV Review\nImprove clarity, proof points, and recruiter-ready language.",
+                                  "lineHeight": 1.45,
+                                  "fontFamily": "Inter",
+                                  "fontSize": 15,
+                                  "fontWeight": "500"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "s1OV9",
+                          "name": "tr2",
+                          "width": "fill_container",
+                          "gap": 14,
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "9H0Rp",
+                              "name": "tb3",
+                              "width": "fill_container",
+                              "fill": {
+                                "type": "gradient",
+                                "gradientType": "linear",
+                                "enabled": true,
+                                "rotation": 180,
+                                "size": {
+                                  "height": 1
+                                },
+                                "colors": [
+                                  {
+                                    "color": "#FFFFFF",
+                                    "position": 0
+                                  },
+                                  {
+                                    "color": "#FFF8F1",
+                                    "position": 1
+                                  }
+                                ]
+                              },
+                              "cornerRadius": 22,
+                              "stroke": {
+                                "thickness": 1,
+                                "fill": "#F1E6D7"
+                              },
+                              "effect": {
+                                "type": "shadow",
+                                "shadowType": "outer",
+                                "color": "#A9B9D122",
+                                "offset": {
+                                  "x": 0,
+                                  "y": 8
+                                },
+                                "blur": 22
+                              },
+                              "layout": "vertical",
+                              "gap": 8,
+                              "padding": 16,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "dHjkv",
+                                  "fill": "#0B2545",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "Interview Practice\nRehearse with role-specific prompts and stronger stories.",
+                                  "lineHeight": 1.45,
+                                  "fontFamily": "Inter",
+                                  "fontSize": 15,
+                                  "fontWeight": "500"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "DZiSj",
+                              "name": "tb4",
+                              "width": "fill_container",
+                              "fill": {
+                                "type": "gradient",
+                                "gradientType": "linear",
+                                "enabled": true,
+                                "rotation": 180,
+                                "size": {
+                                  "height": 1
+                                },
+                                "colors": [
+                                  {
+                                    "color": "#FFFFFF",
+                                    "position": 0
+                                  },
+                                  {
+                                    "color": "#F7FBF6",
+                                    "position": 1
+                                  }
+                                ]
+                              },
+                              "cornerRadius": 22,
+                              "stroke": {
+                                "thickness": 1,
+                                "fill": "#E0EDE2"
+                              },
+                              "effect": {
+                                "type": "shadow",
+                                "shadowType": "outer",
+                                "color": "#A9B9D122",
+                                "offset": {
+                                  "x": 0,
+                                  "y": 8
+                                },
+                                "blur": 22
+                              },
+                              "layout": "vertical",
+                              "gap": 8,
+                              "padding": 16,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "Mmg97",
+                                  "fill": "#0B2545",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "Salary Benchmark\nNegotiate with confidence using current market ranges.",
+                                  "lineHeight": 1.45,
+                                  "fontFamily": "Inter",
+                                  "fontSize": 15,
+                                  "fontWeight": "500"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "0ksam",
+                          "name": "tr3",
+                          "width": "fill_container",
+                          "gap": 14,
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "BdicY",
+                              "name": "tb5",
+                              "width": "fill_container",
+                              "fill": {
+                                "type": "gradient",
+                                "gradientType": "linear",
+                                "enabled": true,
+                                "rotation": 180,
+                                "size": {
+                                  "height": 1
+                                },
+                                "colors": [
+                                  {
+                                    "color": "#FFFFFF",
+                                    "position": 0
+                                  },
+                                  {
+                                    "color": "#F4F7FF",
+                                    "position": 1
+                                  }
+                                ]
+                              },
+                              "cornerRadius": 22,
+                              "stroke": {
+                                "thickness": 1,
+                                "fill": "#DDE3F5"
+                              },
+                              "effect": {
+                                "type": "shadow",
+                                "shadowType": "outer",
+                                "color": "#A9B9D122",
+                                "offset": {
+                                  "x": 0,
+                                  "y": 8
+                                },
+                                "blur": 22
+                              },
+                              "layout": "vertical",
+                              "gap": 8,
+                              "padding": 16,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "zJNqq",
+                                  "fill": "#0B2545",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "Personalized Roadmap\nKnow the next skills and proof points that matter most.",
+                                  "lineHeight": 1.45,
+                                  "fontFamily": "Inter",
+                                  "fontSize": 15,
+                                  "fontWeight": "500"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "cCJ00",
+                              "name": "tb6",
+                              "width": "fill_container",
+                              "fill": {
+                                "type": "gradient",
+                                "gradientType": "linear",
+                                "enabled": true,
+                                "rotation": 180,
+                                "size": {
+                                  "height": 1
+                                },
+                                "colors": [
+                                  {
+                                    "color": "#FFFFFF",
+                                    "position": 0
+                                  },
+                                  {
+                                    "color": "#F5FBFF",
+                                    "position": 1
+                                  }
+                                ]
+                              },
+                              "cornerRadius": 22,
+                              "stroke": {
+                                "thickness": 1,
+                                "fill": "#DCEAF6"
+                              },
+                              "effect": {
+                                "type": "shadow",
+                                "shadowType": "outer",
+                                "color": "#A9B9D122",
+                                "offset": {
+                                  "x": 0,
+                                  "y": 8
+                                },
+                                "blur": 22
+                              },
+                              "layout": "vertical",
+                              "gap": 8,
+                              "padding": 16,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "uQogu",
+                                  "fill": "#0B2545",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "Supportive Community\nLearn from peers already turning advice into real offers.",
+                                  "lineHeight": 1.45,
+                                  "fontFamily": "Inter",
+                                  "fontSize": 15,
+                                  "fontWeight": "500"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "ojGxY",
+              "name": "mobileCol",
+              "width": 390,
+              "layout": "vertical",
+              "gap": 18,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "hIMSD",
+                  "fill": "#0B2545",
+                  "content": "Mobile / 390px",
+                  "fontFamily": "Inter",
+                  "fontSize": 18,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "frame",
+                  "id": "Gwxjx",
+                  "name": "Mobile Visual",
+                  "width": "fill_container",
+                  "fill": {
+                    "type": "gradient",
+                    "gradientType": "linear",
+                    "enabled": true,
+                    "rotation": 180,
+                    "size": {
+                      "height": 1
+                    },
+                    "colors": [
+                      {
+                        "color": "#FCFEFF",
+                        "position": 0
+                      },
+                      {
+                        "color": "#F3F8FF",
+                        "position": 1
+                      }
+                    ]
+                  },
+                  "cornerRadius": 26,
+                  "stroke": {
+                    "thickness": 1,
+                    "fill": "#D9E6F3"
+                  },
+                  "effect": {
+                    "type": "shadow",
+                    "shadowType": "outer",
+                    "color": "#A9B9D133",
+                    "offset": {
+                      "x": 0,
+                      "y": 14
+                    },
+                    "blur": 32
+                  },
+                  "layout": "vertical",
+                  "gap": 24,
+                  "padding": 20,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "aJdd6",
+                      "name": "mobileHeader",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 10,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "F2uVY",
+                          "name": "mobileTag",
+                          "fill": "#E9F5FF",
+                          "cornerRadius": 999,
+                          "stroke": {
+                            "thickness": 1,
+                            "fill": "#B8DBF4"
+                          },
+                          "padding": [
+                            8,
+                            14
+                          ],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "LceVz",
+                              "fill": "#0B2545",
+                              "content": "COMMUNITY",
+                              "fontFamily": "Inter",
+                              "fontSize": 10,
+                              "fontWeight": "600",
+                              "letterSpacing": 0.8
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "iwDmj",
+                          "fill": "#0B2545",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "Trusted by thousands of job seekers",
+                          "lineHeight": 1.15,
+                          "textAlign": "center",
+                          "fontFamily": "Inter",
+                          "fontSize": 28,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "5hY3p",
+                          "fill": "#5A6475",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "See the community proof before you start your next job search.",
+                          "lineHeight": 1.5,
+                          "textAlign": "center",
+                          "fontFamily": "Inter",
+                          "fontSize": 14
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "uc8X7",
+                      "name": "mobileTeamSpotlight",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 12,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "TdQ9R",
+                          "name": "introMobile",
+                          "width": "fill_container",
+                          "fill": {
+                            "type": "gradient",
+                            "gradientType": "linear",
+                            "enabled": true,
+                            "rotation": 180,
+                            "size": {
+                              "height": 1
+                            },
+                            "colors": [
+                              {
+                                "color": "#FFFFFF",
+                                "position": 0
+                              },
+                              {
+                                "color": "#F4F8FF",
+                                "position": 1
+                              }
+                            ]
+                          },
+                          "cornerRadius": 20,
+                          "stroke": {
+                            "thickness": 1,
+                            "fill": "#DCEAF6"
+                          },
+                          "layout": "vertical",
+                          "gap": 8,
+                          "padding": 16,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "G5TuK",
+                              "fill": "#4AADE6",
+                              "content": "MEET THE TEAM",
+                              "fontFamily": "Inter",
+                              "fontSize": 10,
+                              "fontWeight": "600",
+                              "letterSpacing": 0.8
+                            },
+                            {
+                              "type": "text",
+                              "id": "rLsFo",
+                              "fill": "#0B2545",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "The builders behind Job360",
+                              "lineHeight": 1.2,
+                              "fontFamily": "Inter",
+                              "fontSize": 20,
+                              "fontWeight": "600"
+                            },
+                            {
+                              "type": "text",
+                              "id": "o7wMs",
+                              "fill": "#5A6475",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "Sota Truong leads the AI guidance layer and Harry Le runs the automation engine behind the member journey.",
+                              "lineHeight": 1.5,
+                              "fontFamily": "Inter",
+                              "fontSize": 13,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "RLVHS",
+                          "name": "sotaMobile",
+                          "width": "fill_container",
+                          "fill": {
+                            "type": "gradient",
+                            "gradientType": "linear",
+                            "enabled": true,
+                            "rotation": 180,
+                            "size": {
+                              "height": 1
+                            },
+                            "colors": [
+                              {
+                                "color": "#FFFFFF",
+                                "position": 0
+                              },
+                              {
+                                "color": "#F3FAFF",
+                                "position": 1
+                              }
+                            ]
+                          },
+                          "cornerRadius": 20,
+                          "stroke": {
+                            "thickness": 1,
+                            "fill": "#DCEAF6"
+                          },
+                          "layout": "vertical",
+                          "gap": 12,
+                          "padding": 16,
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "Ks3le",
+                              "name": "sotaMobileTop",
+                              "width": "fill_container",
+                              "gap": 12,
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "rJIuj",
+                                  "name": "sotaMobileAvatar",
+                                  "width": 52,
+                                  "height": 52,
+                                  "fill": {
+                                    "type": "gradient",
+                                    "gradientType": "linear",
+                                    "enabled": true,
+                                    "rotation": 135,
+                                    "size": {
+                                      "height": 1
+                                    },
+                                    "colors": [
+                                      {
+                                        "color": "#0B2545",
+                                        "position": 0
+                                      },
+                                      {
+                                        "color": "#4AADE6",
+                                        "position": 1
+                                      }
+                                    ]
+                                  },
+                                  "cornerRadius": 26,
+                                  "layout": "vertical",
+                                  "justifyContent": "center",
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "GVLlf",
+                                      "fill": "#FFFFFF",
+                                      "content": "ST",
+                                      "fontFamily": "Inter",
+                                      "fontSize": 16,
+                                      "fontWeight": "600"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "3cxb4",
+                                  "fill": "#0B2545",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "Sota Truong\nAI Builder",
+                                  "lineHeight": 1.45,
+                                  "fontFamily": "Inter",
+                                  "fontSize": 15,
+                                  "fontWeight": "600"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "id": "k7369",
+                              "fill": "#5A6475",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "Shapes the AI guidance, prompts, and decision support members feel first.",
+                              "lineHeight": 1.5,
+                              "fontFamily": "Inter",
+                              "fontSize": 13,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "ys8Ys",
+                          "name": "harryMobile",
+                          "width": "fill_container",
+                          "fill": {
+                            "type": "gradient",
+                            "gradientType": "linear",
+                            "enabled": true,
+                            "rotation": 180,
+                            "size": {
+                              "height": 1
+                            },
+                            "colors": [
+                              {
+                                "color": "#FFFFFF",
+                                "position": 0
+                              },
+                              {
+                                "color": "#F7FBF6",
+                                "position": 1
+                              }
+                            ]
+                          },
+                          "cornerRadius": 20,
+                          "stroke": {
+                            "thickness": 1,
+                            "fill": "#E0EDE2"
+                          },
+                          "layout": "vertical",
+                          "gap": 12,
+                          "padding": 16,
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "GZAQO",
+                              "name": "harryMobileTop",
+                              "width": "fill_container",
+                              "gap": 12,
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "w9PVv",
+                                  "name": "harryMobileAvatar",
+                                  "width": 52,
+                                  "height": 52,
+                                  "fill": {
+                                    "type": "gradient",
+                                    "gradientType": "linear",
+                                    "enabled": true,
+                                    "rotation": 135,
+                                    "size": {
+                                      "height": 1
+                                    },
+                                    "colors": [
+                                      {
+                                        "color": "#214766",
+                                        "position": 0
+                                      },
+                                      {
+                                        "color": "#72B7C9",
+                                        "position": 1
+                                      }
+                                    ]
+                                  },
+                                  "cornerRadius": 26,
+                                  "layout": "vertical",
+                                  "justifyContent": "center",
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "9yAg4",
+                                      "fill": "#FFFFFF",
+                                      "content": "HL",
+                                      "fontFamily": "Inter",
+                                      "fontSize": 16,
+                                      "fontWeight": "600"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "j6IIC",
+                                  "fill": "#0B2545",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "Harry Le\nAI Automation-er",
+                                  "lineHeight": 1.45,
+                                  "fontFamily": "Inter",
+                                  "fontSize": 15,
+                                  "fontWeight": "600"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "id": "8PcBi",
+                              "fill": "#5A6475",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "Builds the automation systems that keep delivery fast, repeatable, and dependable.",
+                              "lineHeight": 1.5,
+                              "fontFamily": "Inter",
+                              "fontSize": 13,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "1Jydx",
+                      "name": "mobileStats",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 12,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "H2KTO",
+                          "name": "mobileRow1",
+                          "width": "fill_container",
+                          "gap": 12,
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "BhZFo",
+                              "name": "mStat1",
+                              "width": "fill_container",
+                              "fill": {
+                                "type": "gradient",
+                                "gradientType": "linear",
+                                "enabled": true,
+                                "rotation": 180,
+                                "size": {
+                                  "height": 1
+                                },
+                                "colors": [
+                                  {
+                                    "color": "#FFFFFF",
+                                    "position": 0
+                                  },
+                                  {
+                                    "color": "#F3FAFF",
+                                    "position": 1
+                                  }
+                                ]
+                              },
+                              "cornerRadius": 20,
+                              "stroke": {
+                                "thickness": 1,
+                                "fill": "#DCEAF6"
+                              },
+                              "layout": "vertical",
+                              "gap": 6,
+                              "padding": 14,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "Il15l",
+                                  "fill": "#0B2545",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "10,000+\nMembers",
+                                  "lineHeight": 1.3,
+                                  "fontFamily": "Inter",
+                                  "fontSize": 18,
+                                  "fontWeight": "600"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "uGK7p",
+                              "name": "mStat2",
+                              "width": "fill_container",
+                              "fill": {
+                                "type": "gradient",
+                                "gradientType": "linear",
+                                "enabled": true,
+                                "rotation": 180,
+                                "size": {
+                                  "height": 1
+                                },
+                                "colors": [
+                                  {
+                                    "color": "#FFFFFF",
+                                    "position": 0
+                                  },
+                                  {
+                                    "color": "#F5FCFB",
+                                    "position": 1
+                                  }
+                                ]
+                              },
+                              "cornerRadius": 20,
+                              "stroke": {
+                                "thickness": 1,
+                                "fill": "#DDEEEB"
+                              },
+                              "layout": "vertical",
+                              "gap": 6,
+                              "padding": 14,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "b0upl",
+                                  "fill": "#0B2545",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "85%\nSuccess",
+                                  "lineHeight": 1.3,
+                                  "fontFamily": "Inter",
+                                  "fontSize": 18,
+                                  "fontWeight": "600"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "s1Mb7",
+                          "name": "mobileRow2",
+                          "width": "fill_container",
+                          "gap": 12,
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "mJNeJ",
+                              "name": "mStat3",
+                              "width": "fill_container",
+                              "fill": {
+                                "type": "gradient",
+                                "gradientType": "linear",
+                                "enabled": true,
+                                "rotation": 180,
+                                "size": {
+                                  "height": 1
+                                },
+                                "colors": [
+                                  {
+                                    "color": "#FFFFFF",
+                                    "position": 0
+                                  },
+                                  {
+                                    "color": "#FFF8F1",
+                                    "position": 1
+                                  }
+                                ]
+                              },
+                              "cornerRadius": 20,
+                              "stroke": {
+                                "thickness": 1,
+                                "fill": "#F1E6D7"
+                              },
+                              "layout": "vertical",
+                              "gap": 6,
+                              "padding": 14,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "L4ut6",
+                                  "fill": "#0B2545",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "5,000+\nPlaced",
+                                  "lineHeight": 1.3,
+                                  "fontFamily": "Inter",
+                                  "fontSize": 18,
+                                  "fontWeight": "600"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "Fb9dH",
+                              "name": "mStat4",
+                              "width": "fill_container",
+                              "fill": {
+                                "type": "gradient",
+                                "gradientType": "linear",
+                                "enabled": true,
+                                "rotation": 180,
+                                "size": {
+                                  "height": 1
+                                },
+                                "colors": [
+                                  {
+                                    "color": "#FFFFFF",
+                                    "position": 0
+                                  },
+                                  {
+                                    "color": "#F7FBF6",
+                                    "position": 1
+                                  }
+                                ]
+                              },
+                              "cornerRadius": 20,
+                              "stroke": {
+                                "thickness": 1,
+                                "fill": "#E0EDE2"
+                              },
+                              "layout": "vertical",
+                              "gap": 6,
+                              "padding": 14,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "VVBy9",
+                                  "fill": "#0B2545",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "4.8/5\nRating",
+                                  "lineHeight": 1.3,
+                                  "fontFamily": "Inter",
+                                  "fontSize": 18,
+                                  "fontWeight": "600"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "8IZJZ",
+                      "name": "mobileQuote",
+                      "width": "fill_container",
+                      "fill": {
+                        "type": "gradient",
+                        "gradientType": "linear",
+                        "enabled": true,
+                        "rotation": 180,
+                        "size": {
+                          "height": 1
+                        },
+                        "colors": [
+                          {
+                            "color": "#FFFFFF",
+                            "position": 0
+                          },
+                          {
+                            "color": "#F1F8FF",
+                            "position": 1
+                          }
+                        ]
+                      },
+                      "cornerRadius": 24,
+                      "stroke": {
+                        "thickness": 1,
+                        "fill": "#DCEAF6"
+                      },
+                      "effect": {
+                        "type": "shadow",
+                        "shadowType": "outer",
+                        "color": "#9CB2CC22",
+                        "offset": {
+                          "x": 0,
+                          "y": 14
+                        },
+                        "blur": 28
+                      },
+                      "layout": "vertical",
+                      "gap": 14,
+                      "padding": 20,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "ey8hu",
+                          "name": "mobileAvatar",
+                          "width": 72,
+                          "height": 72,
+                          "fill": {
+                            "type": "gradient",
+                            "gradientType": "linear",
+                            "enabled": true,
+                            "rotation": 135,
+                            "size": {
+                              "height": 1
+                            },
+                            "colors": [
+                              {
+                                "color": "#0B2545",
+                                "position": 0
+                              },
+                              {
+                                "color": "#4AADE6",
+                                "position": 1
+                              }
+                            ]
+                          },
+                          "cornerRadius": 36,
+                          "layout": "vertical",
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "AOuvB",
+                              "fill": "#FFFFFF",
+                              "content": "LN",
+                              "fontFamily": "Inter",
+                              "fontSize": 20,
+                              "fontWeight": "600"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "e6kaH",
+                          "fill": "#0B2545",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "Le Nam\nSenior Backend Developer",
+                          "lineHeight": 1.5,
+                          "textAlign": "center",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "19gK1",
+                          "fill": "#0B2545",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "I negotiated with confidence because CareerAI showed me where I stood and what my market value really looked like.",
+                          "lineHeight": 1.45,
+                          "textAlign": "center",
+                          "fontFamily": "Inter",
+                          "fontSize": 18,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "GnhBb",
+                      "name": "mobileBenefits",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 12,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "zrXjf",
+                          "fill": "#0B2545",
+                          "content": "Benefits of joining",
+                          "fontFamily": "Inter",
+                          "fontSize": 18,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "OfUYU",
+                          "name": "mb1",
+                          "width": "fill_container",
+                          "fill": {
+                            "type": "gradient",
+                            "gradientType": "linear",
+                            "enabled": true,
+                            "rotation": 180,
+                            "size": {
+                              "height": 1
+                            },
+                            "colors": [
+                              {
+                                "color": "#FFFFFF",
+                                "position": 0
+                              },
+                              {
+                                "color": "#F3FAFF",
+                                "position": 1
+                              }
+                            ]
+                          },
+                          "cornerRadius": 20,
+                          "stroke": {
+                            "thickness": 1,
+                            "fill": "#DCEAF6"
+                          },
+                          "layout": "vertical",
+                          "gap": 8,
+                          "padding": 16,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "0f0Vk",
+                              "fill": "#0B2545",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "Smart JD Analysis\nUnderstand fit, gaps, and what to sharpen before you apply.",
+                              "lineHeight": 1.45,
+                              "fontFamily": "Inter",
+                              "fontSize": 14,
+                              "fontWeight": "500"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "T8dJd",
+                          "name": "mb2",
+                          "width": "fill_container",
+                          "fill": {
+                            "type": "gradient",
+                            "gradientType": "linear",
+                            "enabled": true,
+                            "rotation": 180,
+                            "size": {
+                              "height": 1
+                            },
+                            "colors": [
+                              {
+                                "color": "#FFFFFF",
+                                "position": 0
+                              },
+                              {
+                                "color": "#F5FCFB",
+                                "position": 1
+                              }
+                            ]
+                          },
+                          "cornerRadius": 20,
+                          "stroke": {
+                            "thickness": 1,
+                            "fill": "#DDEEEB"
+                          },
+                          "layout": "vertical",
+                          "gap": 8,
+                          "padding": 16,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "6VIwQ",
+                              "fill": "#0B2545",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "Automated CV Review\nImprove clarity, recruiter trust, and ATS readiness.",
+                              "lineHeight": 1.45,
+                              "fontFamily": "Inter",
+                              "fontSize": 14,
+                              "fontWeight": "500"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "a3B70",
+                          "name": "mb3",
+                          "width": "fill_container",
+                          "fill": {
+                            "type": "gradient",
+                            "gradientType": "linear",
+                            "enabled": true,
+                            "rotation": 180,
+                            "size": {
+                              "height": 1
+                            },
+                            "colors": [
+                              {
+                                "color": "#FFFFFF",
+                                "position": 0
+                              },
+                              {
+                                "color": "#FFF8F1",
+                                "position": 1
+                              }
+                            ]
+                          },
+                          "cornerRadius": 20,
+                          "stroke": {
+                            "thickness": 1,
+                            "fill": "#F1E6D7"
+                          },
+                          "layout": "vertical",
+                          "gap": 8,
+                          "padding": 16,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "mVXGX",
+                              "fill": "#0B2545",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "Interview Practice\nTrain with sharper prompts and stronger story framing.",
+                              "lineHeight": 1.45,
+                              "fontFamily": "Inter",
+                              "fontSize": 14,
+                              "fontWeight": "500"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "VgedT",
+                          "name": "mb4",
+                          "width": "fill_container",
+                          "fill": {
+                            "type": "gradient",
+                            "gradientType": "linear",
+                            "enabled": true,
+                            "rotation": 180,
+                            "size": {
+                              "height": 1
+                            },
+                            "colors": [
+                              {
+                                "color": "#FFFFFF",
+                                "position": 0
+                              },
+                              {
+                                "color": "#F7FBF6",
+                                "position": 1
+                              }
+                            ]
+                          },
+                          "cornerRadius": 20,
+                          "stroke": {
+                            "thickness": 1,
+                            "fill": "#E0EDE2"
+                          },
+                          "layout": "vertical",
+                          "gap": 8,
+                          "padding": 16,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "y8acw",
+                              "fill": "#0B2545",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "Salary Benchmark\nNegotiate from current market data, not gut feeling.",
+                              "lineHeight": 1.45,
+                              "fontFamily": "Inter",
+                              "fontSize": 14,
+                              "fontWeight": "500"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "H8hv1",
+                          "name": "mb5",
+                          "width": "fill_container",
+                          "fill": {
+                            "type": "gradient",
+                            "gradientType": "linear",
+                            "enabled": true,
+                            "rotation": 180,
+                            "size": {
+                              "height": 1
+                            },
+                            "colors": [
+                              {
+                                "color": "#FFFFFF",
+                                "position": 0
+                              },
+                              {
+                                "color": "#F4F7FF",
+                                "position": 1
+                              }
+                            ]
+                          },
+                          "cornerRadius": 20,
+                          "stroke": {
+                            "thickness": 1,
+                            "fill": "#DDE3F5"
+                          },
+                          "layout": "vertical",
+                          "gap": 8,
+                          "padding": 16,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "6KvLd",
+                              "fill": "#0B2545",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "Personalized Roadmap\nKnow the next skills and milestones that matter most.",
+                              "lineHeight": 1.45,
+                              "fontFamily": "Inter",
+                              "fontSize": 14,
+                              "fontWeight": "500"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "caEZu",
+                          "name": "mb6",
+                          "width": "fill_container",
+                          "fill": {
+                            "type": "gradient",
+                            "gradientType": "linear",
+                            "enabled": true,
+                            "rotation": 180,
+                            "size": {
+                              "height": 1
+                            },
+                            "colors": [
+                              {
+                                "color": "#FFFFFF",
+                                "position": 0
+                              },
+                              {
+                                "color": "#F5FBFF",
+                                "position": 1
+                              }
+                            ]
+                          },
+                          "cornerRadius": 20,
+                          "stroke": {
+                            "thickness": 1,
+                            "fill": "#DCEAF6"
+                          },
+                          "layout": "vertical",
+                          "gap": 8,
+                          "padding": 16,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "0Sxza",
+                              "fill": "#0B2545",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "Supportive Community\nLearn from people already turning advice into offers.",
+                              "lineHeight": 1.45,
+                              "fontFamily": "Inter",
+                              "fontSize": 14,
+                              "fontWeight": "500"
                             }
                           ]
                         }
