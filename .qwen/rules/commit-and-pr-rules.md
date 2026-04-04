@@ -198,6 +198,48 @@ git commit -m "feature/1_push-code" \
 
 ## Rule 3: Pull Request Rules
 
+### 3.0 ⚠️ CRITICAL: Use `--body-file` Instead of `--body`
+
+**PROBLEM:** On Windows (cmd.exe / PowerShell), using `gh pr create --body "..."` or `gh pr edit --body "..."` with long markdown content causes **silent truncation** — the PR body gets cut off at the first special character or shell escape issue.
+
+**SOLUTION:** Always write PR body to a markdown file first, then use `--body-file`:
+
+```bash
+# ✅ CORRECT — Write to file first, then use --body-file
+node scripts/generate-pr-body.js  # Generates scripts/pr-body.md
+gh pr create --body-file scripts/pr-body.md ...
+gh pr edit 6 --body-file scripts/pr-body.md
+
+# ❌ WRONG — Inline body string (truncates on Windows)
+gh pr create --body "## Summary\n\n**Branch:** ..."
+gh pr edit 6 --body "## Summary\n\n..."
+```
+
+**Node.js Script Template (`scripts/generate-pr-body.js`):**
+```javascript
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+const prBody = `## Summary
+...full markdown content here...
+Closes #4
+`;
+
+fs.writeFileSync(path.join(__dirname, 'pr-body.md'), prBody, 'utf-8');
+console.log('PR body written to scripts/pr-body.md');
+```
+
+**Why this works:**
+- No shell escaping issues (no quotes, backticks, or special chars to escape)
+- Full markdown support (tables, lists, checkboxes, links)
+- Works identically on Windows, macOS, and Linux
+- Easy to preview before uploading
+
+---
+
 ### 3.1 PR Title Convention
 
 **Format:**
@@ -766,25 +808,21 @@ ISSUE=$(curl -sS \
   "https://api.github.com/repos/PersonalProjectJob/Job360/issues/${ISSUE_NUMBER}")
 ISSUE_TITLE=$(echo "$ISSUE" | jq -r '.title')
 
-# 4. Scan commits for changelog
-git log origin/main..HEAD --oneline
+# 4. Generate PR body to markdown file (Rule 3.0 — CRITICAL)
+node scripts/generate-pr-body.js
 
-# 5. Generate PR title: "<branch>: Implement <issue_title>"
-# 6. Generate PR body with template (Rule 3.2)
-#    - MUST include "Linked Issue (Development)" section
-#    - MUST use "Closes #<number>" keyword
-# 7. Create PR via GitHub CLI
+# 5. Create PR using --body-file (NEVER inline --body)
 gh pr create \
   --title "$BRANCH: Implement $ISSUE_TITLE" \
-  --body "<pr_body_with_issue_link>" \
+  --body-file scripts/pr-body.md \
   --base $BASE_BRANCH \
   --head $BRANCH
 
-# 8. Auto-assign (MANDATORY per Rule 3.4)
+# 6. Auto-assign (MANDATORY per Rule 3.4)
 PR_NUMBER=$(gh pr view --json number -q .number)
 gh pr edit $PR_NUMBER --add-assignee PersonalProjectJob
 
-# 9. Verify issue linking
+# 7. Verify issue linking
 echo "✅ PR #$PR_NUMBER linked to Issue #$ISSUE_NUMBER"
 ```
 
