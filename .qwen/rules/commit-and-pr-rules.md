@@ -291,7 +291,74 @@ hotfix/3_security-patch: Update dependencies to fix security vulnerabilities
 
 ---
 
-### 3.4 Auto-Assign PR
+### 3.6 PR Target Branch Rule
+
+**MANDATORY:** PR base branch is determined by source branch type:
+
+| Source Branch Prefix | Target Base Branch | Reason |
+|---------------------|-------------------|--------|
+| `feature/*` | `test` | Features go to test branch for QA first |
+| `bugfix/*` | `test` | Bug fixes go to test branch for QA first |
+| `hotfix/*` | `main` | Hotfixes bypass test, merge directly to main |
+| `release/*` | `main` | Releases merge to main |
+
+**Logic (PowerShell):**
+```powershell
+$branch = git branch --show-current
+if ($branch -match '^hotfix/') {
+  $baseBranch = "main"
+} else {
+  $baseBranch = "test"
+}
+```
+
+**Logic (Bash):**
+```bash
+BRANCH=$(git branch --show-current)
+if [[ "$BRANCH" == hotfix/* ]]; then
+  BASE_BRANCH="main"
+else
+  BASE_BRANCH="test"
+fi
+```
+
+**Workflow Integration:**
+```bash
+# Step 1: Determine base branch
+BRANCH=$(git branch --show-current)
+if [[ "$BRANCH" == hotfix/* ]]; then
+  BASE_BRANCH="main"
+else
+  BASE_BRANCH="test"
+fi
+
+# Step 2: Push branch
+git push -u origin $BRANCH
+
+# Step 3: Create PR with correct base branch
+gh pr create \
+  --head $BRANCH \
+  --base $BASE_BRANCH \
+  --title "$BRANCH: <summary>" \
+  --body "<pr_body>"
+
+# Step 4: Auto-assign (MANDATORY per Rule 3.4)
+PR_NUMBER=$(gh pr view --json number -q .number)
+gh pr edit $PR_NUMBER --add-assignee PersonalProjectJob
+```
+
+**Examples:**
+
+| Source Branch | Target Branch | Command |
+|--------------|--------------|---------|
+| `feature/1_push-code` | `test` | `gh pr create --base test` |
+| `bugfix/2_fix-login` | `test` | `gh pr create --base test` |
+| `hotfix/3_security-patch` | `main` | `gh pr create --base main` |
+| `release/1.1.0` | `main` | `gh pr create --base main` |
+
+---
+
+### 3.7 Auto-Assign PR
 
 **MANDATORY:** Every PR **MUST** be auto-assigned to `PersonalProjectJob` (the repository owner).
 
@@ -573,18 +640,26 @@ git push origin $BRANCH
 ### Create PR (Auto-Generate Content)
 ```bash
 # 1. Parse branch name → get issue number
-# 2. Fetch GitHub issue content
-# 3. Scan commits for changelog
-# 4. Generate PR title: "<branch>: <summary>"
-# 5. Generate PR body with template
-# 6. Create PR via GitHub CLI
+# 2. Determine base branch (Rule 3.6)
+BRANCH=$(git branch --show-current)
+if [[ "$BRANCH" == hotfix/* ]]; then
+  BASE_BRANCH="main"
+else
+  BASE_BRANCH="test"
+fi
+
+# 3. Fetch GitHub issue content
+# 4. Scan commits for changelog
+# 5. Generate PR title: "<branch>: <summary>"
+# 6. Generate PR body with template
+# 7. Create PR via GitHub CLI
 gh pr create \
   --title "<title>" \
   --body "<body>" \
-  --base main \
+  --base $BASE_BRANCH \
   --head $BRANCH
 
-# 7. Auto-assign (MANDATORY per Rule 3.4)
+# 8. Auto-assign (MANDATORY per Rule 3.4)
 PR_NUMBER=$(gh pr view --json number -q .number)
 gh pr edit $PR_NUMBER --add-assignee PersonalProjectJob
 ```
