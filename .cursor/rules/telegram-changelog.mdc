@@ -1,0 +1,63 @@
+# Telegram Changelog Notifications
+
+## Auto-Trigger Rules
+
+**Send Telegram notification when:**
+
+### ✅ ALWAYS TRIGGER
+- [x] User requests: "send changelog", "notify telegram", "update telegram bot"
+- [x] Security vulnerabilities fixed
+- [x] Breaking changes introduced
+- [x] Major feature completed
+- [x] Production deployment/version bump
+- [x] Environment variables or secrets changed
+
+### ❌ NEVER TRIGGER
+- [ ] Minor fixes (typos, whitespace, formatting)
+- [ ] Dev tooling changes (linters, configs)
+- [ ] Comment updates only
+- [ ] Test files (unless security-related)
+- [ ] Temporary/debug code
+
+## How to Send
+
+Run this command with appropriate parameters:
+
+```bash
+node scripts/send-changelog.js --title "Title" --category "TYPE" --changes "Change 1\nChange 2"
+```
+
+**Categories:**
+- `feature` ✨
+- `fix` 🐛
+- `security` 🔒
+- `deployment` 🚀
+- `breaking` ⚠️
+- `performance` ⚡
+- `refactor` ♻️
+
+## Examples
+
+**Security fix:**
+```bash
+node scripts/send-changelog.js --title "🔒 Security Patch" --category "security" --changes "Fixed CORS wildcard\nAdded request validation"
+```
+
+**New feature:**
+```bash
+node scripts/send-changelog.js --title "✨ AI Chat Feature" --category "feature" --changes "Added streaming chat endpoint\nImplemented token budget system\nAdded rate limiting"
+```
+
+**Deployment:**
+```bash
+node scripts/send-changelog.js --title "🚀 v2.0.0 Release" --category "deployment" --changes "Released to production\nMigrated database\nUpdated all dependencies"
+```
+
+## Format Rules
+
+- Keep changes under 10 items
+- Use action verbs: Added, Fixed, Removed, Updated
+- Include file names when relevant
+- Put security items first
+- Use HTML format (not Markdown)
+- Timezone: Asia/Ho_Chi_Minh

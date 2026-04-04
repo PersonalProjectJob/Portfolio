@@ -1,0 +1,166 @@
+-- ============================================================
+-- Bảng chính: cv_profiles — lưu thông tin tổng quan CV
+-- ============================================================
+CREATE TABLE cv_profiles (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  owner_key TEXT NOT NULL DEFAULT '',
+  owner_mode TEXT NOT NULL DEFAULT 'guest',
+  guest_session_id TEXT NOT NULL DEFAULT '',
+  user_id TEXT,
+  full_name TEXT NOT NULL DEFAULT '',
+  job_title TEXT NOT NULL DEFAULT '',
+  experience_summary TEXT NOT NULL DEFAULT '',
+  file_url TEXT NOT NULL DEFAULT '',
+  file_name TEXT NOT NULL DEFAULT '',
+  raw_text_length INTEGER NOT NULL DEFAULT 0,
+  parsed_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+-- ============================================================
+-- Bảng con: cv_positions — 3 vị trí/project gần nhất
+-- FK → cv_profiles.id (CASCADE delete)
+-- ============================================================
+CREATE TABLE cv_positions (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  cv_profile_id UUID NOT NULL REFERENCES cv_profiles(id) ON DELETE CASCADE,
+  sort_order SMALLINT NOT NULL DEFAULT 0,    -- 0 = gần nhất
+  company TEXT NOT NULL DEFAULT '',
+  role TEXT NOT NULL DEFAULT '',
+  period TEXT NOT NULL DEFAULT '',
+  highlights TEXT NOT NULL DEFAULT '',
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+-- ============================================================
+-- Bảng con: cv_education — học vấn, bằng cấp
+-- FK → cv_profiles.id (CASCADE delete)
+-- ============================================================
+CREATE TABLE cv_education (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  cv_profile_id UUID NOT NULL REFERENCES cv_profiles(id) ON DELETE CASCADE,
+  institution TEXT NOT NULL DEFAULT '',
+  degree TEXT NOT NULL DEFAULT '',
+  year TEXT NOT NULL DEFAULT '',
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+-- ============================================================
+-- Bảng con: cv_skills — kỹ năng chuyên môn
+-- FK → cv_profiles.id (CASCADE delete)
+-- ============================================================
+CREATE TABLE cv_skills (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  cv_profile_id UUID NOT NULL REFERENCES cv_profiles(id) ON DELETE CASCADE,
+  skill TEXT NOT NULL DEFAULT '',
+  sort_order SMALLINT NOT NULL DEFAULT 0,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+-- ============================================================
+-- Bảng con: cv_tools — công cụ, nền tảng, công nghệ
+-- FK → cv_profiles.id (CASCADE delete)
+-- ============================================================
+CREATE TABLE cv_tools (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  cv_profile_id UUID NOT NULL REFERENCES cv_profiles(id) ON DELETE CASCADE,
+  tool TEXT NOT NULL DEFAULT '',
+  sort_order SMALLINT NOT NULL DEFAULT 0,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+-- ============================================================
+-- Bảng con: cv_languages — ngôn ngữ giao tiếp
+-- FK → cv_profiles.id (CASCADE delete)
+-- ============================================================
+CREATE TABLE cv_languages (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  cv_profile_id UUID NOT NULL REFERENCES cv_profiles(id) ON DELETE CASCADE,
+  language TEXT NOT NULL DEFAULT '',
+  proficiency TEXT NOT NULL DEFAULT '',
+  sort_order SMALLINT NOT NULL DEFAULT 0,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+-- ============================================================
+-- Bảng con: cv_certifications — chứng chỉ, giải thưởng, khóa học
+-- FK → cv_profiles.id (CASCADE delete)
+-- ============================================================
+CREATE TABLE cv_certifications (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  cv_profile_id UUID NOT NULL REFERENCES cv_profiles(id) ON DELETE CASCADE,
+  name TEXT NOT NULL DEFAULT '',
+  issuer TEXT NOT NULL DEFAULT '',
+  year TEXT NOT NULL DEFAULT '',
+  sort_order SMALLINT NOT NULL DEFAULT 0,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+-- ============================================================
+-- Bảng con: cv_projects — dự án cá nhân, mã nguồn mở, thành tựu
+-- FK → cv_profiles.id (CASCADE delete)
+-- ============================================================
+CREATE TABLE cv_projects (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  cv_profile_id UUID NOT NULL REFERENCES cv_profiles(id) ON DELETE CASCADE,
+  name TEXT NOT NULL DEFAULT '',
+  description TEXT NOT NULL DEFAULT '',
+  technologies TEXT NOT NULL DEFAULT '',
+  sort_order SMALLINT NOT NULL DEFAULT 0,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+-- ============================================================
+-- Indexes cho query performance
+-- ============================================================
+CREATE INDEX idx_cv_profiles_parsed_at ON cv_profiles(parsed_at DESC);
+CREATE INDEX idx_cv_profiles_owner_key_parsed_at ON cv_profiles(owner_key, parsed_at DESC);
+CREATE INDEX idx_cv_profiles_job_title ON cv_profiles(job_title);
+CREATE INDEX idx_cv_positions_profile ON cv_positions(cv_profile_id, sort_order);
+CREATE INDEX idx_cv_education_profile ON cv_education(cv_profile_id);
+CREATE INDEX idx_cv_skills_profile ON cv_skills(cv_profile_id, sort_order);
+CREATE INDEX idx_cv_tools_profile ON cv_tools(cv_profile_id, sort_order);
+CREATE INDEX idx_cv_languages_profile ON cv_languages(cv_profile_id, sort_order);
+CREATE INDEX idx_cv_certifications_profile ON cv_certifications(cv_profile_id, sort_order);
+CREATE INDEX idx_cv_projects_profile ON cv_projects(cv_profile_id, sort_order);
+
+-- ============================================================
+-- Enable RLS (Row Level Security) — bắt buộc cho Supabase
+-- Tạm thời cho phép service_role full access
+-- ============================================================
+ALTER TABLE cv_profiles ENABLE ROW LEVEL SECURITY;
+ALTER TABLE cv_positions ENABLE ROW LEVEL SECURITY;
+ALTER TABLE cv_education ENABLE ROW LEVEL SECURITY;
+ALTER TABLE cv_skills ENABLE ROW LEVEL SECURITY;
+ALTER TABLE cv_tools ENABLE ROW LEVEL SECURITY;
+ALTER TABLE cv_languages ENABLE ROW LEVEL SECURITY;
+ALTER TABLE cv_certifications ENABLE ROW LEVEL SECURITY;
+ALTER TABLE cv_projects ENABLE ROW LEVEL SECURITY;
+
+-- Policy: cho phép service_role (server-side) full CRUD
+CREATE POLICY "Service role full access" ON cv_profiles
+  FOR ALL USING (true) WITH CHECK (true);
+
+CREATE POLICY "Service role full access" ON cv_positions
+  FOR ALL USING (true) WITH CHECK (true);
+
+CREATE POLICY "Service role full access" ON cv_education
+  FOR ALL USING (true) WITH CHECK (true);
+
+CREATE POLICY "Service role full access" ON cv_skills
+  FOR ALL USING (true) WITH CHECK (true);
+
+CREATE POLICY "Service role full access" ON cv_tools
+  FOR ALL USING (true) WITH CHECK (true);
+
+CREATE POLICY "Service role full access" ON cv_languages
+  FOR ALL USING (true) WITH CHECK (true);
+
+CREATE POLICY "Service role full access" ON cv_certifications
+  FOR ALL USING (true) WITH CHECK (true);
+
+CREATE POLICY "Service role full access" ON cv_projects
+  FOR ALL USING (true) WITH CHECK (true);
+l access" ON cv_education
+  FOR ALL USING (true) WITH CHECK (true);
