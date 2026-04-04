@@ -291,7 +291,60 @@ hotfix/3_security-patch: Update dependencies to fix security vulnerabilities
 
 ---
 
-### 3.3 Auto-Generate PR Content
+### 3.4 Auto-Assign PR
+
+**MANDATORY:** Every PR **MUST** be auto-assigned to `PersonalProjectJob` (the repository owner).
+
+**Method 1: GitHub CLI (`gh`)**
+```bash
+# Create PR and assign in one command
+gh pr create \
+  --head feature/1_push-code \
+  --base main \
+  --title "feature/1_push-code: <summary>" \
+  --body "<pr_body>"
+
+# Assign after creation
+gh pr edit <PR_NUMBER> --add-assignee PersonalProjectJob
+```
+
+**Method 2: GitHub API**
+```bash
+# Assign PR via API after creation
+curl -sS \
+  -X PATCH \
+  -H "Authorization: Bearer ${GITHUB_TOKEN}" \
+  -H "Accept: application/vnd.github+json" \
+  -d '{"assignees":["PersonalProjectJob"]}' \
+  "https://api.github.com/repos/PersonalProjectJob/Job360/pulls/<PR_NUMBER>"
+```
+
+**Method 3: `gh api` (Preferred)**
+```bash
+# Get PR number after creation
+PR_NUMBER=$(gh pr view --json number -q .number)
+
+# Assign owner
+gh api --method PATCH repos/PersonalProjectJob/Job360/pulls/$PR_NUMBER \
+  -f assignees[]=PersonalProjectJob
+```
+
+**Workflow Integration:**
+```bash
+# Step 1: Push branch
+git push -u origin <branch_name>
+
+# Step 2: Create PR
+gh pr create --head <branch_name> --base main --title "<title>" --body "<body>"
+
+# Step 3: Auto-assign (MANDATORY)
+PR_NUMBER=$(gh pr view --json number -q .number)
+gh pr edit $PR_NUMBER --add-assignee PersonalProjectJob
+```
+
+---
+
+### 3.5 Auto-Generate PR Content
 
 **Step 1: Parse branch name**
 ```bash
@@ -433,6 +486,7 @@ Every PR **MUST** reference related documentation in `Docs/` folder:
 - **URL:** `https://github.com/PersonalProjectJob/Job360`
 - **Issues:** `https://github.com/PersonalProjectJob/Job360/issues`
 - **Example Issue:** `https://github.com/PersonalProjectJob/Job360/issues/2`
+- **Default Assignee:** `PersonalProjectJob` (auto-assigned on every PR per Rule 3.4)
 
 ### 6.2 Token Configuration
 
@@ -523,12 +577,16 @@ git push origin $BRANCH
 # 3. Scan commits for changelog
 # 4. Generate PR title: "<branch>: <summary>"
 # 5. Generate PR body with template
-# 6. Create PR via GitHub CLI or web interface
+# 6. Create PR via GitHub CLI
 gh pr create \
   --title "<title>" \
-  --body-file pr-body.md \
+  --body "<body>" \
   --base main \
   --head $BRANCH
+
+# 7. Auto-assign (MANDATORY per Rule 3.4)
+PR_NUMBER=$(gh pr view --json number -q .number)
+gh pr edit $PR_NUMBER --add-assignee PersonalProjectJob
 ```
 
 ---
