@@ -12,7 +12,9 @@
       "Bash(findstr *)",
       "Bash(netstat *)",
       "Bash(taskkill *)",
-      "Bash(git init)"
+      "Bash(git init)",
+      "Read(C:\\Users\\AD\\AppData\\Roaming\\npm\\node_modules\\@qwen-code\\qwen-code\\bundled\\qc-helper\\docs\\features/**)",
+      "Read(C:\\Users\\AD\\.qwen/**)"
     ]
   },
   "$version": 3

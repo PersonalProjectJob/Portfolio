@@ -116,7 +116,6 @@ export function ChatPage() {
             }));
           } catch (cacheErr) {
             // Ignore cache errors
-            console.warn('[ChatPage] Failed to cache profile:', cacheErr);
           }
         } else {
           setLatestProfile(null);
@@ -125,7 +124,7 @@ export function ChatPage() {
         }
       } catch (err) {
         if (!cancelled) {
-          console.error("[ChatPage] Failed to fetch CV profile:", err);
+          // Silently fail
         }
       } finally {
         if (!cancelled) {

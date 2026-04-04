@@ -381,7 +381,6 @@ export function useChat(
             error?: string;
             code?: string;
           };
-          console.error("[useChat] API state:", response.status, errorData);
 
           // ── Soft UX: Show "AI is thinking" briefly, then friendly message ──
           // This hides the fact that quota was checked and denied.
@@ -446,9 +445,6 @@ export function useChat(
                   exactUsageRecorded = true;
                 }
               }
-              if (parsed.error) {
-                console.error("[useChat] Stream error:", parsed.error);
-              }
             } catch {
               // Skip malformed JSON
             }
@@ -482,7 +478,6 @@ export function useChat(
       } catch (err) {
         if (abortController.signal.aborted) return;
 
-        console.error("[useChat] Error:", err);
         const errorMsg: ChatMessage = {
           id: generateId(),
           role: "assistant",

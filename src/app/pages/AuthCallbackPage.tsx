@@ -58,7 +58,6 @@ export function AuthCallbackPage() {
           setErrorMessage(data.message || "Xác minh không thành công. Link có thể đã hết hạn.");
         }
       } catch (err) {
-        console.error("[auth-callback] Error:", err);
         setState("error");
         setErrorMessage("Đã có lỗi xảy ra. Vui lòng thử lại.");
       }

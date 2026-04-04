@@ -60,7 +60,6 @@ export function RecaptchaChallenge({
           setStatus("ready");
         }
       } catch (error) {
-        console.error("[RecaptchaChallenge] Failed to load captcha:", error);
         if (cancelled) {
           return;
         }

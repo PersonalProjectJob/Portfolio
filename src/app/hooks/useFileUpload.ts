@@ -79,7 +79,6 @@ export function useFileUpload(onRequireAuth?: () => void) {
 
         if (!response.ok) {
           const errData = await response.json().catch(() => ({}));
-          console.error("[useFileUpload] Upload error:", errData);
 
           if (response.status === 401) {
             clear();
@@ -100,7 +99,6 @@ export function useFileUpload(onRequireAuth?: () => void) {
         };
         setUploadedFile(attachment);
       } catch (err) {
-        console.error("[useFileUpload] Error:", err);
         setUploadError("uploadFailed");
       } finally {
         setIsUploading(false);

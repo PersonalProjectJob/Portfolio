@@ -62,6 +62,12 @@ ehthumbs.db
 
 # Testing
 .nyc_output/
+coverage/
+*.test.*
+*.test.js
+*.test.ts
+test-*.js
+run-*-tests.*
 
 # Misc
 *.pem

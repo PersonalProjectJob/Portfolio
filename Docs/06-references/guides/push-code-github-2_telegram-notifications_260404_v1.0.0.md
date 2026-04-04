@@ -82,7 +82,57 @@ TELEGRAM_DEV_THREAD_ID=your_dev_thread
 - Chat ID: `-1003764877044`
 - Changelog Thread ID: `718`
 - Dev Thread ID: `727` (checklist, todo, processing, bug fix, coding)
+- Phase 1 Test Report Thread ID: `735` (security testing reports)
 - Status: ✅ Working
+
+## 📋 Reporting Rules
+
+### Rule 1: Phase 1 Critical Security Testing Reports
+**Thread ID:** `735`  
+**Trigger:** After running Phase 1 test suite  
+**Script:** `scripts/send-phase1-test-report.js`  
+
+**When to send:**
+- ✅ After completing full automated test run
+- ✅ When test results change (re-test after fixes)
+- ✅ Before sign-off approval
+- ✅ When requested by QA Lead or Security Lead
+
+**How to send:**
+```bash
+# With JSON report (recommended)
+node scripts/send-phase1-test-report.js test-report-phase1-2026-04-04.json
+
+# Summary only (no JSON file)
+node scripts/send-phase1-test-report.js
+```
+
+**Report includes:**
+- Test execution summary
+- Pass/fail counts by vulnerability
+- CVSS scores for each test
+- Readiness assessment (READY FOR PHASE 2 / NEEDS FIXES)
+- Next steps recommendations
+
+### Rule 2: Changelog Updates
+**Thread ID:** `718`  
+**Script:** `scripts/send-changelog.js`  
+
+### Rule 3: Development Reports  
+**Thread ID:** `727`  
+**Script:** `scripts/send-dev-report.js`  
+
+### Rule 4: Security Fix Summaries
+**Thread ID:** Dev thread (`727`) or as configured  
+**Script:** `scripts/send-security-report.js`  
+
+## ⚠️ Important Notes
+
+1. **Thread ID 735 is reserved for Phase 1 testing reports only**
+2. **Do not mix test reports with changelog or dev updates**
+3. **Always include JSON report file when available for detailed data**
+4. **Test reports should be sent immediately after test execution**
+5. **Failed tests must include action items and ETA for fixes**
 
 ## Testing
 

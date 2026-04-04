@@ -133,7 +133,6 @@ export function SettingsPage() {
       const data = (await res.json()) as HealthResult;
       setHealth(data);
     } catch (err) {
-      console.error("[SettingsPage] Failed to load AI health:", err);
       setHealth({
         status: "error",
         checks: {

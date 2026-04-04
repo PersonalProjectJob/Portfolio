@@ -62,7 +62,6 @@ export function WaitlistModal({
 
       setIsSuccess(true);
     } catch (err) {
-      console.error("[WaitlistModal] Error:", err);
       setError(t.waitlist.error);
     } finally {
       setIsSubmitting(false);

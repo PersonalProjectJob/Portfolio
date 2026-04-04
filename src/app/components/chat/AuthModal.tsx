@@ -320,7 +320,6 @@ export function AuthModal({ open, onOpenChange, initialMode = "register" }: Auth
       setIsSuccess(true);
       setError(null);
     } catch (submitError) {
-      console.error("[AuthModal] Error:", submitError);
       const submitErrorMessage = submitError instanceof Error ? submitError.message : "";
       setError(normalizeCaptchaError(submitErrorMessage, t));
     } finally {

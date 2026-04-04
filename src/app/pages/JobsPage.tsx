@@ -1512,7 +1512,6 @@ export function JobsPage() {
         }
       } catch (err) {
         if (signal?.aborted) return;
-        console.error("[JobsPage] Failed to load recommendations:", err);
         setError(err instanceof Error ? err.message : String(err));
       } finally {
         if (!signal?.aborted) {

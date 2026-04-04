@@ -400,7 +400,6 @@ export function ProfilePage() {
         throw new Error("No profile data returned");
       }
     } catch (err) {
-      console.error("[ProfilePage] Parse error:", err);
       setErrorMsg(String(err instanceof Error ? err.message : err));
       setStep("error");
     }

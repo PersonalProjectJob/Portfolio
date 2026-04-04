@@ -148,9 +148,7 @@ export function CVUploadModal({
       });
 
       setCachedConsent(true, identity.scopeKey);
-      console.log("[CVUploadModal] Consent saved for scope:", identity.scopeKey);
     } catch (err) {
-      console.error("[CVUploadModal] Failed to save consent:", err);
       // Non-blocking - still allow upload
     } finally {
       setIsSavingConsent(false);
@@ -163,14 +161,12 @@ export function CVUploadModal({
 
       // 🔒 REQUIRE AUTH: Must have account to upload CV
       if (!identity.isAuthenticated || !identity.userId) {
-        console.log("[CVUploadModal] User not authenticated - showing auth modal");
         setShowAuthModal(true);
         return;
       }
 
       // FIX H-03: Require explicit consent - do NOT auto-save
       if (!getCachedConsent(identity.scopeKey)) {
-        console.log("[CVUploadModal] User has not consented - blocking upload");
         return; // Block upload until user checks the consent checkbox
       }
 
