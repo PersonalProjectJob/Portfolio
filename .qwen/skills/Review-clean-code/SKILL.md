@@ -6,24 +6,44 @@ description: >
 argument-hint: "Optional: paths or 'staged only'"
 metadata:
   author: CryptoMap360 Team
-  version: 2.3.0
+  version: 2.4.0
   model: "claude-opus-4-6"
   ide: "cursor"
 ---
 
 # Review Clean Code — logs, structure, commit
 
+## ⚠️ MANDATORY: Read Rules First
+
+**BEFORE creating any commit or PR, you MUST:**
+
+1. **Read `.qwen/rules/commit-and-pr-rules.md`** — This is the **single source of truth** for:
+   - Commit message format (Rule 1.1: subject = exact branch name)
+   - Commit body format (Rule 1.2: issue title + description + changes + Refs #N)
+   - PR title format (Rule 3.1: `<branch_name>: <summary>`)
+   - PR body template (Rule 3.2: full template with linked issue, changelog, checklist)
+   - PR target branch (Rule 3.5: feature/* → test, hotfix/* → main)
+   - PR-issue linking (Rule 3.3: mandatory, auto-close with `Closes #N`)
+
+2. **Read `.qwen/rules/frontend-code-standards.mdc`** — For code structure and conventions
+
+3. **NEVER** use conventional commit format (`feat:`, `fix:`, etc.) for commit subjects
+4. **NEVER** create PR to `main` unless branch is `hotfix/*` or `release/*`
+
+**Failure to follow these rules = PR will be rejected.**
+
 ## Purpose
 
 1. **Logger cleanup** — Remove `console.log`, `console.error`, `console.warn`, `console.debug`, and `console.info` from touched source files so production code has no ad-hoc debugging leftovers.
-2. **Structure & conventions** — After cleanup, verify edits align with project **rules** and **skills** (primary reference: `.cursor/skills/frontend-code-standards/SKILL.md`; also respect applicable `.cursor/rules/*.mdc` such as `agent-workflow.mdc`, `frontend-ui-ux-design.mdc`, `plan-workflow.mdc` when relevant).
+2. **Structure & conventions** — After cleanup, verify edits align with project **rules** and **skills** (primary reference: `.qwen/rules/frontend-code-standards.mdc`; also respect applicable `.qwen/rules/*.md` such as `commit-and-pr-rules.md`).
 3. **Commit** — When checks are done and fixes are applied, **create one commit** whose **first line (subject) is the current Git branch name** and whose **body** is a short description of what changed — optionally enriched from a **GitHub issue** (see **GitHub API & token** below).
 
 ## When to Activate
 
-- User says: **「Tạo commit」** or **「Create Commit」** (or close variants like **「chạy commit」**) — **workspace rule:** `.cursor/rules/agent-workflow.mdc` §4 routes these phrases to **this skill**; run the full workflow including commit.
-- User says: "review clean code", "clean logs before PR", "remove console", "clean logger", "PR clean", "align with frontend standards before commit"
+- User says: **「Tạo commit」** or **「Create Commit」** (or close variants like **「chạy commit」**) — run the full workflow including commit.
+- User says: "review clean code", "clean logs before PR", "remove console", "clean logger", "PR clean", "clean code before commit"
 - User wants a **pass** that combines **log removal + convention check + commit** (branch name as title)
+- User says: "tạo PR", "create PR", "pull request" — **READ `.qwen/rules/commit-and-pr-rules.md` FIRST**, then follow the exact template
 
 ## Model Requirement (Cursor IDE)
 
@@ -35,11 +55,12 @@ metadata:
 
 **Cursor settings:** When user triggers this skill (e.g. "Tạo commit"), Cursor must use **Opus 4.6** as the active model. If a different model is active, the agent should warn the user before proceeding.
 
-## Authority order (what “correct structure” means)
+## Authority order (what "correct structure" means)
 
-1. **`.cursor/skills/frontend-code-standards/SKILL.md`** — File naming, import order, component layout (interface → function → hooks → derived → handlers → JSX), TypeScript, Tailwind `cn()`, API via `services/` only, TanStack Query + Zustand usage.
-2. **`.cursor/rules/`** — Workspace rules that apply to the files being edited (do not contradict skills; use rules for workflow/UI/plan context).
-3. **Existing code in the same folder** — Match local patterns when the skill is silent.
+1. **`.qwen/rules/commit-and-pr-rules.md`** — Commit message format, PR title/body, target branch rules (MANDATORY for commits/PRs)
+2. **`.qwen/rules/frontend-code-standards.mdc`** — File naming, import order, component layout (interface → function → hooks → derived → handlers → JSX), TypeScript, Tailwind `cn()`, API via `services/` only, TanStack Query + Zustand usage.
+3. **`.qwen/rules/`** — Workspace rules that apply to the files being edited (do not contradict skills; use rules for workflow/UI/plan context).
+4. **Existing code in the same folder** — Match local patterns when the skill is silent.
 
 If a conflict appears between an old file and the skill, **prefer bringing the changed code up to the skill** for the lines you touch; avoid drive-by rewrites of unrelated files.
 
