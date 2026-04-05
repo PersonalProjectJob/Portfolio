@@ -462,6 +462,9 @@ function createRecommendationPlaceholder(
   };
 }
 
+const WINDOW_MS = 24 * 60 * 60 * 1000; // 24 hours
+const MAX_REFRESH_PER_WINDOW = 5;
+
 function canRefreshJobs(scopeKey: string): { canRefresh: boolean; remainingWaitMs: number; refreshCount: number } {
   const history = readRecommendedJobsHistory(scopeKey);
   
@@ -484,20 +487,6 @@ function canRefreshJobs(scopeKey: string): { canRefresh: boolean; remainingWaitM
   }
 
   return { canRefresh: true, remainingWaitMs: 0, refreshCount: history.refreshCount };
-}
-
-function formatCountdown(ms: number): string {
-  const hours = Math.floor(ms / (1000 * 60 * 60));
-  const minutes = Math.floor((ms % (1000 * 60 * 60)) / (1000 * 60));
-  const seconds = Math.floor((ms % (1000 * 60)) / 1000);
-  
-  if (hours > 0) {
-    return `${hours}h ${minutes}m ${seconds}s`;
-  }
-  if (minutes > 0) {
-    return `${minutes}m ${seconds}s`;
-  }
-  return `${seconds}s`;
 }
 
 function formatScore(score: number): string {
