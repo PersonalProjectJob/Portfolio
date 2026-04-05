@@ -7,6 +7,60 @@ This document defines the rules and conventions for Git commits and Pull Request
 
 ---
 
+## Rule 0: ⚠️ PRE-ACTION MANDATORY WORKFLOW
+
+**Áp dụng khi nhận yêu cầu liên quan đến:** Git commit, Pull Request, Branch management, Code review
+
+### BẮT BUỘC thực hiện đúng thứ tự:
+
+```
+Step 0: Đọc TOÀN BỘ file này từ Rule 0 → Rule 7 (KHÔNG được bỏ qua)
+  ↓
+Step 1: Fetch issue từ GitHub API (dùng branch name → parse issue number)
+  ↓
+Step 2: Dùng skill "review" để review code changes
+  ↓
+Step 3: Fix critical issues nếu có
+  ↓
+Step 4: Tạo commit (đúng Rule 1)
+  ↓
+Step 5: Push branch
+  ↓
+Step 6: Tạo PR body file (Rule 3.0 — DÙNG --body-file, KHÔNG inline --body)
+  ↓
+Step 7: Tạo PR với --body-file (đúng Rule 3.5 — base branch)
+  ↓
+Step 8: Auto-assign PR (Rule 3.4)
+```
+
+### Rule quan trọng NHẤT không được sai:
+
+| Rule | Nội dung | Ví dụ đúng | Ví dụ sai |
+|------|----------|------------|-----------|
+| **3.0** | Dùng `--body-file`, KHÔNG `--body` | `gh pr create --body-file scripts/pr-body.md` | `gh pr create --body "..."` |
+| **3.5** | `bugfix/*` → `test`, `hotfix/*` → `main` | `gh pr create --base test` | `gh pr create --base main` |
+| **3.2** | PR body chỉ 3 sections: Summary, Changelog, Testing | Đúng template | Thêm Linked Issue, Code Changes, Refs |
+| **1.1** | Commit subject = branch name | `git commit -m "fixbug/7_..."` | `git commit -m "fix: something"` |
+
+### Checklist trước khi hành động:
+
+- [ ] Đã đọc toàn bộ rule file này
+- [ ] Đã fetch issue từ GitHub API
+- [ ] Đã dùng skill "review" để review code
+- [ ] Đã xác định đúng base branch theo Rule 3.5
+- [ ] Đã tạo PR body file trước khi tạo PR
+- [ ] Đã dùng `--body-file` thay vì `--body`
+
+### KHÔNG được:
+
+- ❌ Nhảy vào làm ngay mà không đọc rule
+- ❌ Dùng `--body` inline (Windows bị truncate)
+- ❌ Merge vào `main` nếu không phải `hotfix/*`
+- ❌ Bỏ qua bước review code
+- ❌ Tự viết summary thay vì fetch từ issue
+
+---
+
 ## Rule 1: Commit Message Convention
 
 ### 1.1 Commit Subject (First Line)
