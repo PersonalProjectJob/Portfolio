@@ -1,14 +1,16 @@
-import { useState } from "react";
 import { motion } from "motion/react";
+import { useState, useEffect } from "react";
 
 export function PortfolioNav() {
   const [isScrolled, setIsScrolled] = useState(false);
 
-  if (typeof window !== "undefined") {
-    window.addEventListener("scroll", () => {
+  useEffect(() => {
+    const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
-    });
-  }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <motion.nav
@@ -18,10 +20,9 @@ export function PortfolioNav() {
       className="sticky top-0 z-50 w-full"
       style={{
         height: "80px",
-        background: isScrolled ? "rgba(255, 255, 255, 0.95)" : "#FFFFFF",
-        backdropFilter: "blur(10px)",
-        borderBottom: "1px solid #D8E3F0",
-        padding: "0 32px",
+        background: isScrolled ? "rgba(255, 255, 255, 0.9)" : "transparent",
+        backdropFilter: isScrolled ? "blur(12px)" : "none",
+        padding: "0 40px",
       }}
     >
       <div
@@ -32,10 +33,10 @@ export function PortfolioNav() {
         <a
           href="/"
           style={{
-            fontFamily: "Great Vibes",
-            fontSize: "30px",
+            fontFamily: "Great Vibes, cursive",
+            fontSize: "28px",
             fontWeight: 500,
-            color: "#21314A",
+            color: "#1E2C43",
             textDecoration: "none",
           }}
         >
@@ -43,87 +44,66 @@ export function PortfolioNav() {
         </a>
 
         {/* Nav Links */}
-        <div className="hidden items-center gap-8 md:flex">
-          <a
-            href="#projects"
-            className="transition-colors hover:text-[#2A3F67]"
-            style={{
-              fontFamily: "Inter",
-              fontSize: "14px",
-              fontWeight: 500,
-              color: "#5D6D86",
-              textDecoration: "none",
-            }}
-          >
-            Projects
-          </a>
-          <a
-            href="#services"
-            className="transition-colors hover:text-[#2A3F67]"
-            style={{
-              fontFamily: "Inter",
-              fontSize: "14px",
-              fontWeight: 500,
-              color: "#5D6D86",
-              textDecoration: "none",
-            }}
-          >
-            Services
-          </a>
+        <div className="flex items-center gap-8">
+          <div className="hidden items-center gap-6 md:flex">
+            <a
+              href="#projects"
+              className="transition-colors hover:text-[#1E2C43]"
+              style={{
+                fontFamily: "Inter",
+                fontSize: "14px",
+                fontWeight: 500,
+                color: "#64748B",
+                textDecoration: "none",
+              }}
+            >
+              Projects
+            </a>
+            <a
+              href="#services"
+              className="transition-colors hover:text-[#1E2C43]"
+              style={{
+                fontFamily: "Inter",
+                fontSize: "14px",
+                fontWeight: 500,
+                color: "#64748B",
+                textDecoration: "none",
+              }}
+            >
+              Services
+            </a>
+            <a
+              href="#about"
+              className="transition-colors hover:text-[#1E2C43]"
+              style={{
+                fontFamily: "Inter",
+                fontSize: "14px",
+                fontWeight: 500,
+                color: "#64748B",
+                textDecoration: "none",
+              }}
+            >
+              Contact
+            </a>
+          </div>
+          
           <a
             href="#contact"
-            className="transition-colors hover:text-[#2A3F67]"
-            style={{
-              fontFamily: "Inter",
-              fontSize: "14px",
-              fontWeight: 500,
-              color: "#5D6D86",
-              textDecoration: "none",
-            }}
-          >
-            Contact
-          </a>
-          <a
-            href="#contact"
+            className="transition-all hover:scale-105"
             style={{
               fontFamily: "Inter",
               fontSize: "14px",
               fontWeight: 600,
               color: "#FFFFFF",
               textDecoration: "none",
-              background: "#2A3F67",
-              border: "1px solid #314B79",
-              borderRadius: "18px",
-              padding: "14px 18px",
+              background: "linear-gradient(135deg, #2A3F67 0%, #1E2C43 100%)",
+              borderRadius: "10px",
+              padding: "12px 20px",
+              boxShadow: "0 4px 16px rgba(42, 63, 103, 0.3)",
             }}
           >
             Get In Touch
           </a>
-        </div>
-
-        {/* Mobile Menu */}
-        <div className="flex items-center gap-4 md:hidden">
-          <span
-            style={{
-              fontFamily: "Inter",
-              fontSize: "12px",
-              fontWeight: 500,
-              color: "#5D6D86",
-            }}
-          >
-            Projects
-          </span>
-          <button
-            className="rounded-md p-2"
-            style={{
-              background: "transparent",
-              border: "1px solid #D8E3F0",
-            }}
-          >
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-              <path d="M3 5H17M3 10H17M3 15H17" stroke="#5D6D86" strokeWidth="2" strokeLinecap="round" />
-            </svg>
-          </button>
         </div>
       </div>
     </motion.nav>
