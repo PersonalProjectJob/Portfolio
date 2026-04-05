@@ -1524,7 +1524,17 @@ export function JobsPage() {
 
   useEffect(() => {
     const controller = new AbortController();
-    void loadRecommendations({ signal: controller.signal });
+    const cached = readJobRecommendationsCache(identity.scopeKey, locale);
+    
+    // Only fetch from API if there's no cached data
+    // If cache exists, it will be used and no API call is needed
+    if (!cached) {
+      void loadRecommendations({ signal: controller.signal });
+    } else {
+      // Cache exists, just ensure loading state is false
+      setIsLoading(false);
+    }
+    
     return () => controller.abort();
   }, [loadRecommendations, identity.scopeKey, locale]);
 

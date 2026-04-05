@@ -26,7 +26,11 @@
       "Read(C:\\Users\\AD\\AppData\\Roaming\\npm\\node_modules\\@qwen-code\\qwen-code\\bundled\\qc-helper\\docs\\ide-integration/**)",
       "Bash(start *)",
       "Bash(timeout *)",
-      "Bash(git add *)"
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git push *)",
+      "Bash(type *)",
+      "Bash(git revert *)"
     ]
   },
   "$version": 3

@@ -275,6 +275,20 @@ export async function extractTextFromFile(
 /* ------------------------------------------------------------------ */
 const CV_PARSE_SYSTEM_PROMPT = `You are a professional CV/Resume parser with 95%+ accuracy. Your job is to extract ALL structured information from raw CV text, with special attention to skills, tools, technologies, and certifications.
 
+IMPORTANT PARSING RULES FOR EXPERIENCE:
+- You MUST extract 2-3 pages of job experience OR the 2-3 most recent work experiences, whichever is more complete.
+- For each position, you MUST clearly state: (1) Company/organization name, (2) Role/job title, (3) Time period, (4) Project summary and key achievements.
+- The project summary should clearly describe what the person worked on, their responsibilities, and measurable outcomes if available.
+- Do NOT truncate experience entries - capture ALL details from the most recent 2-3 positions.
+
+IMPORTANT PARSING RULES FOR SKILLS & TOOLS:
+- Scan the ENTIRE CV thoroughly for ALL technical skills and tools - including sidebars, headers, footers, skill tags, project descriptions, and experience sections.
+- Do NOT miss any skills or tools mentioned anywhere in the CV. Be comprehensive and thorough.
+
+IMPORTANT PARSING RULES FOR EDUCATION:
+- Scan the COMPLETE education section - extract ALL degrees, institutions, and graduation years.
+- Do NOT skip any education entries. Capture every degree mentioned (Bachelor's, Master's, PhD, certifications, courses).
+
 Return a valid JSON object with EXACTLY this structure — no markdown, no explanation, no extra text:
 {
   "fullName": "string",
@@ -282,10 +296,10 @@ Return a valid JSON object with EXACTLY this structure — no markdown, no expla
   "experienceSummary": "string - Brief summary of total experience, e.g. '5 năm kinh nghiệm trong lĩnh vực phát triển phần mềm'",
   "recentPositions": [
     {
-      "company": "string",
-      "role": "string",
+      "company": "string - Company/organization name where the person worked",
+      "role": "string - Job title/position",
       "period": "string, e.g. '01/2023 - Hiện tại'",
-      "highlights": "string - 2-3 key achievements or responsibilities, separated by semicolons"
+      "highlights": "string - Clear project summary and 2-3 key achievements/responsibilities. Describe what they worked on, their role, and outcomes. Separated by semicolons"
     }
   ],
   "education": [
@@ -320,19 +334,20 @@ Return a valid JSON object with EXACTLY this structure — no markdown, no expla
   ]
 }
 
-Rules:
-1. recentPositions: Include UP TO 5 most recent positions/projects/companies, sorted most recent first.
-2. skills: Extract ALL technical skills mentioned. Group related skills together. Include programming languages, frameworks, libraries, design patterns, architectural styles, testing methodologies, domain-specific knowledge.
-3. tools: Extract ALL tools, platforms, and technologies. Include cloud platforms, databases, version control systems, CI/CD tools, IDEs, project management tools, containerization, monitoring tools.
+Detailed Rules:
+1. recentPositions: Include 2-3 pages of job experience OR the 2-3 most recent positions/projects/companies, sorted most recent first. Capture FULL details including company name, role, period, and comprehensive project summary.
+2. skills: Extract ALL technical skills mentioned. Group related skills together. Include programming languages, frameworks, libraries, design patterns, architectural styles, testing methodologies, domain-specific knowledge. Scan the ENTIRE CV including skill sections, sidebars, and project descriptions.
+3. tools: Extract ALL tools, platforms, and technologies. Include cloud platforms, databases, version control systems, CI/CD tools, IDEs, project management tools, containerization, monitoring tools. Scan every section of the CV.
 4. languages: Extract spoken/written languages with proficiency levels (IELTS, TOEFL, HSK, CEFR, or native/fluent/intermediate/basic).
 5. certifications: Include professional certifications (AWS Certified, PMP, Scrum Master), awards, honors, relevant courses completed.
 6. projects: Include personal projects, open-source contributions, side projects, or notable achievements NOT already covered in recentPositions.
-7. Be THOROUGH — scan the entire CV including skills sections, sidebars, headers, footers, and project descriptions.
+7. Be THOROUGH — scan the entire CV including skills sections, sidebars, headers, footers, and project descriptions. Do NOT miss any skills or tools.
 8. If a field is not found in the CV, use "" (empty string) or [] (empty array).
 9. Keep the ORIGINAL LANGUAGE of the CV content (Vietnamese or English).
 10. Merge scattered info intelligently — e.g. if name appears in header and footer, use the most complete version.
 11. For experienceSummary, calculate total years from the positions listed if not explicitly stated.
-12. Return ONLY the raw JSON object. No \`\`\`json markers, no explanation.`;
+12. education: Extract ALL education entries completely - do NOT skip any degrees or institutions.
+13. Return ONLY the raw JSON object. No \`\`\`json markers, no explanation.`;
 
 function parseStructuredProfileContent(
   content: string,
@@ -489,6 +504,20 @@ Then parse the extracted information into a structured JSON object.
 
 IMPORTANT: If multiple page images are provided, you MUST read and combine information from ALL pages. Do NOT only read the first page. Experience, education, skills, tools, certifications, and projects may span across multiple pages.
 
+IMPORTANT PARSING RULES FOR EXPERIENCE:
+- You MUST extract 2-3 pages of job experience OR the 2-3 most recent work experiences visible in the CV, whichever is more complete.
+- For each position, you MUST clearly state: (1) Company/organization name, (2) Role/job title, (3) Time period, (4) Project summary and key achievements.
+- The project summary should clearly describe what the person worked on, their responsibilities, and measurable outcomes if available.
+- Do NOT truncate experience entries - capture ALL details from the most recent 2-3 positions.
+
+IMPORTANT PARSING RULES FOR SKILLS & TOOLS:
+- Scan the ENTIRE CV image thoroughly for ALL technical skills and tools - including sidebars, headers, footers, skill tags, project descriptions, and experience sections.
+- Do NOT miss any skills or tools mentioned anywhere in the CV. Be comprehensive and thorough.
+
+IMPORTANT PARSING RULES FOR EDUCATION:
+- Scan the COMPLETE education section - extract ALL degrees, institutions, and graduation years visible in the CV.
+- Do NOT skip any education entries. Capture every degree mentioned (Bachelor's, Master's, PhD, certifications, courses).
+
 Return a valid JSON object with EXACTLY this structure — no markdown, no explanation, no extra text:
 {
   "fullName": "string",
@@ -496,10 +525,10 @@ Return a valid JSON object with EXACTLY this structure — no markdown, no expla
   "experienceSummary": "string - Brief summary of total experience",
   "recentPositions": [
     {
-      "company": "string",
-      "role": "string",
+      "company": "string - Company/organization name where the person worked",
+      "role": "string - Job title/position",
       "period": "string, e.g. '01/2023 - Present'",
-      "highlights": "string - 2-3 key achievements or responsibilities, separated by semicolons"
+      "highlights": "string - Clear project summary and 2-3 key achievements/responsibilities. Describe what they worked on, their role, and outcomes. Separated by semicolons"
     }
   ],
   "education": [
@@ -534,19 +563,20 @@ Return a valid JSON object with EXACTLY this structure — no markdown, no expla
   ]
 }
 
-Rules:
+Detailed Rules:
 1. Read ALL text in ALL images carefully, including small text, headers, footers, sidebars, skill tags.
-2. recentPositions: Include UP TO 5 most recent positions, sorted most recent first.
-3. skills: Extract ALL technical skills visible in the CV - languages, frameworks, methodologies, patterns.
-4. tools: Extract ALL tools, platforms, databases, cloud services, IDEs, DevOps tools visible.
+2. recentPositions: Include 2-3 pages of job experience OR the 2-3 most recent positions visible in the CV, sorted most recent first. Capture FULL details including company, role, period, and comprehensive project summary.
+3. skills: Extract ALL technical skills visible in the CV - languages, frameworks, methodologies, patterns. Scan every section carefully.
+4. tools: Extract ALL tools, platforms, databases, cloud services, IDEs, DevOps tools visible. Do NOT miss any.
 5. languages: Extract spoken languages with proficiency levels (IELTS, TOEFL, HSK, CEFR, native/fluent).
 6. certifications: Include certifications, awards, honors, courses visible in the CV.
 7. projects: Include personal projects or notable achievements not covered in work experience.
-8. Be VERY THOROUGH — scan every section, every page carefully.
-9. If a field is not clearly visible, use "" (empty string) or [] (empty array).
-10. Keep the ORIGINAL LANGUAGE of the CV content (Vietnamese or English).
-11. For Vietnamese text with diacritics (dấu), preserve them accurately.
-12. Return ONLY the raw JSON object. No \`\`\`json markers, no explanation.`;
+8. education: Extract ALL education entries completely - do NOT skip any degrees or institutions.
+9. Be VERY THOROUGH — scan every section, every page carefully. Do NOT miss any skills, tools, or education entries.
+10. If a field is not clearly visible, use "" (empty string) or [] (empty array).
+11. Keep the ORIGINAL LANGUAGE of the CV content (Vietnamese or English).
+12. For Vietnamese text with diacritics (dấu), preserve them accurately.
+13. Return ONLY the raw JSON object. No \`\`\`json markers, no explanation.`;
 
 export interface ParseImageWithQwenOptions {
   usePrivilegedVisionModel?: boolean;
