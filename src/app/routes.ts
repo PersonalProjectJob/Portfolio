@@ -7,6 +7,8 @@ import { LandingPage } from "./pages/LandingPage";
 import { LegalPage } from "./pages/LegalPage";
 import { AdminPage } from "./pages/AdminPage";
 import { AuthCallbackPage } from "./pages/AuthCallbackPage";
+import { ProjectsPage } from "./pages/ProjectsPage";
+import { ProjectDetailPage } from "./pages/ProjectDetailPage";
 import { createElement } from "react";
 
 function SettingsRedirect() {
@@ -17,6 +19,14 @@ export const router = createBrowserRouter([
   {
     path: "/",
     Component: LandingPage,
+  },
+  {
+    path: "/projects",
+    Component: ProjectsPage,
+  },
+  {
+    path: "/projects/:projectId",
+    Component: ProjectDetailPage,
   },
   {
     path: "/admin",

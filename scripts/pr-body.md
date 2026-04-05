@@ -1,27 +1,24 @@
 ## Summary
 
-**Branch:** `feature/4_them-noi-dung-thanh-vien`
-**Feature:** #4 - Them noi dung thanh vien (Member Section)
-**Wireframe:** `Docs/01-product/wireframes/feature-4-them-noi-dung-thanh-vien/wireframe.pen` (v2.10)
+**Branch:** `fixbug/7_auto-chuyen-tab-khi-chuyen-trang`
+**Feature:** #7 - bug - fix auto refresh khi đổi tab ở JobsPage
 
-This PR implements the Member/Community section for the landing page with Stage 2 luminous neumorphism visual design, based on the approved wireframe.
+Fix auto-refresh issue when switching tabs in JobsPage - only refresh on manual command.
 
 ## Changelog
 
 | Version | Date | Time | Author | Module | Description |
 |---------|------|------|--------|--------|-------------|
-| v1.0.0 | 2026-04-04 | 12:40 | Qwen AI | Member Section | Initial implementation |
-| v2.0.0 | 2026-04-04 | 13:05 | Qwen AI | Member Section | Stage 2 Visual Design |
+| v1.0.2 | 2026-04-05 | 02:30 | @SotaThao | Rules | Add Rule 0: Pre-Action Mandatory Workflow |
+| v1.0.1 | 2026-04-05 | 02:15 | @SotaThao | JobsPage, CV Parser | Fix undefined constants, add cache check, enhance CV parser prompts |
+| v1.0.0 | 2026-04-04 | 23:45 | @SotaThao | JobsPage | Add cache check to prevent redundant API calls on tab switch |
 
 ## Testing
 
-- Production build passed
-- Dev server running (localhost:5173)
-- No TypeScript errors
-- No linting errors
-- No console logs in production code
-- i18n verified (VI + EN both updated)
-- Responsive design verified (desktop, tablet, mobile)
-- QA report sent to Telegram Thread 735
+- [x] Production build passed
+- [x] No TypeScript errors
+- [x] No linting errors
+- [x] No console logs in production code
+- [x] Manual testing completed
 
-Closes #4
+Closes #7

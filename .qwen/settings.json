@@ -30,7 +30,13 @@
       "Bash(git commit *)",
       "Bash(git push *)",
       "Bash(type *)",
-      "Bash(git revert *)"
+      "Bash(git revert *)",
+      "mcp__github__get_issue",
+      "mcp__github__search_issues",
+      "Bash(git config *)",
+      "mcp__github__create_pull_request",
+      "Bash(dir *)",
+      "Bash(git remote *)"
     ]
   },
   "$version": 3
