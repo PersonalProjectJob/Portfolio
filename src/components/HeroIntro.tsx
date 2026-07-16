@@ -1,0 +1,89 @@
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+
+interface HeroIntroProps {
+  onComplete: () => void;
+  onNavigate: (destination: 'projects' | 'about' | 'services' | 'contact') => void;
+}
+
+export const HeroIntro: React.FC<HeroIntroProps> = ({ onComplete, onNavigate }) => {
+  const [bgLoaded, setBgLoaded] = useState(true);
+
+  return (
+    <motion.div 
+      className="fixed inset-0 z-[100] overflow-hidden bg-slate-950 font-sans"
+      exit={{ opacity: 0, scale: 1.05, filter: 'blur(20px)' }}
+      transition={{ duration: 1.2, ease: [0.76, 0, 0.24, 1] }}
+    >
+      {/* LAYER Z-0: Pre-composited Background Image (Image + Text + Portrait) */}
+      <div className="absolute inset-0 z-0 bg-black">
+        <motion.img 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.5, ease: "easeOut" }}
+          src="/hero-bg.png" 
+          alt="Hero Composite Background" 
+          className="w-full h-full object-cover object-center"
+          onError={(e) => { 
+            e.currentTarget.style.display = 'none'; 
+            setBgLoaded(false); 
+          }}
+        />
+        {/* Fallback gradient if image fails */}
+        {!bgLoaded && <div className="absolute inset-0 bg-gradient-to-b from-slate-900 to-slate-950" />}
+        {/* Very subtle dimmer overlay to ensure bottom text contrast */}
+        <div className="absolute inset-x-0 bottom-0 h-[40vh] bg-gradient-to-t from-slate-950/80 to-transparent pointer-events-none" />
+      </div>
+
+      {/* Missing Asset Warning */}
+      {!bgLoaded && (
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-red-500/90 text-white px-6 py-4 rounded-xl text-sm border border-red-400 backdrop-blur-md shadow-2xl z-50 flex flex-col items-center text-center pointer-events-auto">
+          <span className="text-2xl mb-2">⚠️</span>
+          <span className="font-bold mb-1">Missing Background Image</span>
+          <span className="text-red-200">Please save your uploaded image as `hero-bg.png` in the `public` folder.</span>
+        </div>
+      )}
+
+      {/* LAYER Z-30: Foreground UI (Nav, Subtitle, Button) */}
+      <div className="absolute inset-0 z-30 flex flex-col justify-between p-6 md:p-12 pointer-events-none">
+        
+        {/* Top Navbar */}
+        <div className="flex justify-between items-center w-full pointer-events-auto">
+          <div className="text-white text-xs md:text-sm tracking-[0.2em] font-bold flex flex-col md:flex-row md:items-center gap-1 md:gap-2">
+            <span>SON THAO</span> 
+            <span className="hidden md:inline text-slate-400 font-normal">|</span>
+            <span className="text-slate-400 font-normal text-[9px] md:text-xs uppercase tracking-[0.15em]">Product Designer / UX - UI Designer</span>
+          </div>
+          <div className="hidden md:flex gap-8 text-xs font-medium tracking-widest text-slate-300">
+            <button type="button" onClick={() => onNavigate('projects')} className="hover:text-white transition-colors tracking-widest uppercase">PROJECTS</button>
+            <button type="button" onClick={() => onNavigate('about')} className="hover:text-white transition-colors tracking-widest uppercase">ABOUT</button>
+            <button type="button" onClick={() => onNavigate('services')} className="hover:text-white transition-colors tracking-widest uppercase">SERVICES</button>
+            <button type="button" onClick={() => onNavigate('contact')} className="hover:text-white transition-colors tracking-widest uppercase">CONTACT</button>
+          </div>
+        </div>
+
+        {/* Bottom Section */}
+        <div className="flex flex-col items-center mb-4 md:mb-8 w-full pointer-events-auto">
+          
+          <button 
+            onClick={onComplete}
+            className="group relative flex flex-col items-center justify-center overflow-hidden rounded-xl border border-white/20 bg-black/30 backdrop-blur-md px-12 py-4 transition-all hover:bg-white/10 hover:border-white/40 hover:shadow-[0_0_20px_rgba(255,255,255,0.15)]"
+          >
+            <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/10 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 ease-in-out" />
+            <span className="flex items-center gap-2 text-white font-medium tracking-[0.2em] uppercase text-sm md:text-base mb-1">
+              Enter Work 
+              <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform opacity-70" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </span>
+            <span className="text-slate-400 text-[9px] md:text-[10px] tracking-widest uppercase">
+              Discover the Portfolio
+            </span>
+          </button>
+        </div>
+
+      </div>
+
+    </motion.div>
+  );
+};

@@ -1,0 +1,196 @@
+@import "tailwindcss";
+/* ─── Tailwind v4 Theme Tokens ─── */
+@theme {
+  --font-sans: 'Plus Jakarta Sans', sans-serif;
+  --font-serif: 'Playfair Display', serif;
+  
+  --shadow-glow-teal: 0 0 30px rgba(13, 148, 136, 0.25);
+  --shadow-glow-amber: 0 0 30px rgba(245, 158, 11, 0.20);
+  --shadow-glow-teal-light: 0 0 30px rgba(13, 148, 136, 0.15);
+  --shadow-glow-amber-light: 0 0 30px rgba(245, 158, 11, 0.12);
+  --color-workspace-dark: #020617;
+  --color-workspace-light: #f1f5f9;
+}
+
+/* ─── Dark Mode (Default) ─── */
+:root {
+  --color-primary: #0d9488;
+  --color-primary-light: #2dd4bf;
+  --color-primary-dark: #0f766e;
+  --color-accent: #f59e0b;
+  --color-accent-light: #fcd34d;
+  --color-accent-dark: #d97706;
+  --color-surface: #0f172a;
+  --color-surface-elevated: rgba(30, 41, 59, 0.75);
+  --color-border: rgba(255, 255, 255, 0.10);
+  --color-text: #e2e8f0;
+  --color-text-muted: #94a3b8;
+  --color-glow: rgba(13, 148, 136, 0.25);
+  --color-glow-accent: rgba(245, 158, 11, 0.20);
+
+  --font-display: 'Plus Jakarta Sans', sans-serif;
+  --font-body: 'Plus Jakarta Sans', sans-serif;
+}
+
+/* ─── Light Mode ─── */
+body.light-theme {
+  --color-primary: #0f766e;
+  --color-primary-light: #14b8a6;
+  --color-primary-dark: #115e59;
+  --color-accent: #d97706;
+  --color-accent-light: #fbbf24;
+  --color-accent-dark: #b45309;
+  --color-surface: #ffffff;
+  --color-surface-elevated: rgba(255, 255, 255, 0.9);
+  --color-border: #e2e8f0;
+  --color-text: #1e293b;
+  --color-text-muted: #64748b;
+  --color-glow: rgba(13, 148, 136, 0.15);
+  --color-glow-accent: rgba(245, 158, 11, 0.12);
+}
+
+/* ─── Base Styles ─── */
+@layer base {
+  body {
+    background-color: var(--color-surface);
+    color: var(--color-text);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: var(--font-body);
+    transition: background-color 0.5s ease, color 0.5s ease;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+  }
+
+  /* Focus-visible accessibility ring */
+  *:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+}
+
+/* ─── Utilities ─── */
+@layer utilities {
+  .transform-style-3d {
+    transform-style: preserve-3d;
+  }
+  .translate-z-10 {
+    transform: translateZ(10px);
+  }
+
+  /* Hide scrollbar but still allow scrolling */
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Thin, rounded, premium scrollbar (auto dark/light) */
+  .custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(13, 148, 136, 0.5) transparent;
+  }
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: rgba(13, 148, 136, 0.4);
+    border-radius: 20px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(13, 148, 136, 0.7);
+  }
+
+  body.light-theme .custom-scrollbar {
+    scrollbar-color: rgba(13, 148, 136, 0.3) transparent;
+  }
+  body.light-theme .custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: rgba(13, 148, 136, 0.3);
+  }
+
+
+}
+
+/* ─── Premium Card Component ─── */
+.premium-card {
+  background-color: var(--color-surface-elevated);
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+  border-radius: 1.5rem; /* 24px — xl */
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--color-border);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+body.light-theme .premium-card {
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1), inset 0 1px 1px rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.premium-card:hover {
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.8),
+    0 0 30px var(--color-glow),
+    inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  background-color: rgba(15, 23, 42, 0.85);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+body.light-theme .premium-card:hover {
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15),
+    0 0 30px var(--color-glow),
+    inset 0 1px 1px rgba(255, 255, 255, 1);
+  background-color: rgba(255, 255, 255, 0.9);
+  border-color: rgba(0, 0, 0, 0.12);
+}
+
+/* ─── Premium Button Component ─── */
+.premium-button {
+  background-color: var(--color-primary);
+  color: #ffffff;
+  font-weight: 600;
+  border-radius: 9999px;
+  padding: 1rem 2rem;
+  transition: all 0.2s ease;
+  box-shadow: 0 10px 20px -5px rgba(13, 148, 136, 0.3);
+}
+
+body.light-theme .premium-button {
+  background-color: #ffffff;
+  color: var(--color-primary);
+  box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.1);
+}
+
+.premium-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 25px -5px rgba(13, 148, 136, 0.4),
+    0 0 20px var(--color-glow);
+  background-color: var(--color-primary-dark);
+}
+
+body.light-theme .premium-button:hover:not(:disabled) {
+  box-shadow: 0 15px 25px -5px rgba(0, 0, 0, 0.15);
+  background-color: #f8fafc;
+}
+
+.premium-button:disabled {
+  background-color: #e2e8f0;
+  color: #94a3b8;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+body.light-theme .premium-button:disabled {
+  background-color: #cbd5e1;
+  color: #64748b;
+}
