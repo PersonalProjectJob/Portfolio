@@ -348,18 +348,13 @@ export const ProjectDispatch: React.FC = () => {
           </div>
         </motion.section>
 
-        {/* SECTION 10: Grand Finale (Closing CTA) */}
         <motion.section initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeInUp} className="mb-20">
-          <div className="rounded-3xl overflow-hidden relative shadow-2xl">
-            <div className="absolute inset-0 z-0">
-              <img src="/images/case-study/agent_rules.jpg" alt="Knowledge Governance" className="w-full h-full object-cover" />
-              <div className="absolute inset-0 bg-slate-900/80 backdrop-blur-sm"></div>
-            </div>
-            
-            <div className="relative z-10 p-10 md:p-16 text-center max-w-4xl mx-auto">
-              <h2 className="text-3xl md:text-5xl font-black text-white mb-6 leading-tight">Điều phối xịn mới chỉ là một nửa câu chuyện!</h2>
-              <p className="text-lg text-slate-300 mb-10 leading-relaxed">
-                Workflow giải quyết cực tốt bài toán <strong>"Ai làm gì?"</strong>. Nhưng Agent chỉ làm đúng khi nó hiểu rõ luật lệ. Phần sau, tôi sẽ hé lộ cách xây dựng <strong>"Hiến pháp cho AI"</strong> — bộ quy tắc nghiêm ngặt ép AI phải tuân thủ kỷ luật dự án đến từng chi tiết nhỏ nhất.
+          <div className={`rounded-3xl overflow-hidden border ${isLightMode ? 'border-slate-200 bg-slate-50' : 'border-slate-800 bg-slate-900/50'} relative`}>
+            <img src="/images/case-study/farewell_team.jpg" alt="Team collaboration" className="w-full h-64 md:h-80 object-cover object-center" />
+            <div className="p-10 md:p-16 text-center max-w-4xl mx-auto">
+              <h2 className="text-3xl md:text-4xl font-black mb-6">Điều phối xịn mới chỉ là một nửa câu chuyện!</h2>
+              <p className={`text-lg max-w-2xl mx-auto mb-10 ${theme.textMuted}`}>
+                Workflow giải quyết cực tốt bài toán <strong>"Ai làm gì?"</strong>. Nhưng Agent chỉ làm đúng khi nó hiểu rõ luật lệ. Phần sau, tôi sẽ hé lộ cách xây dựng <strong>"Hiến pháp cho AI"</strong> — bộ quy tắc nghiêm ngặt ép AI phải tuân thủ kỷ luật dự án.
               </p>
               <button onClick={() => handleQuestSelect('agent-rules')} className="inline-flex items-center gap-3 px-8 py-4 bg-emerald-500 hover:bg-emerald-600 text-white rounded-full font-bold transition-colors cursor-pointer">
                 Khám phá Quản trị Tri thức (.agent-rules)

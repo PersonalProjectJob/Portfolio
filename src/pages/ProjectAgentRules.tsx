@@ -610,8 +610,6 @@ export const ProjectAgentRules: React.FC = () => {
               <h2 className="text-3xl md:text-4xl font-black mb-6">Cảm ơn bạn đã theo dõi!</h2>
               <p className={`text-lg max-w-2xl mx-auto mb-10 ${theme.textMuted}`}>
                 Bộ quy tắc <strong>.agent-rules</strong> đảm bảo mỗi Agent nhận đúng context. Nhưng ai sẽ là người đứng ra quyết định <strong>"Agent nào chạy, lúc nào, theo thứ tự gì"</strong>?
-                <br/><br/>
-                Mảnh ghép tiếp theo của bức tranh toàn cảnh nằm ở hệ thống Dispatch Workflow.
               </p>
               <button onClick={() => handleQuestSelect('dispatch')} className="inline-flex items-center gap-3 px-8 py-4 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-full transition-transform hover:scale-105 shadow-lg shadow-indigo-500/30 cursor-pointer">
                 <IconArrowRight className="w-5 h-5 rotate-180" /> Khám phá Hệ thống Điều phối (@dispatch)
