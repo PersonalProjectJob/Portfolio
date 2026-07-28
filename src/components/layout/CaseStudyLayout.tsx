@@ -38,7 +38,7 @@ export const CaseStudyLayout: React.FC<CaseStudyLayoutProps> = ({ children }) =>
         </div>
       </header>
 
-      <div className="relative z-10 mx-auto w-full max-w-6xl px-4 pb-[calc(3rem+env(safe-area-inset-bottom))] sm:px-6 md:px-12 md:pb-32">
+      <div className="relative z-10 mx-auto w-full max-w-6xl px-4 pt-6 md:pt-10 pb-[calc(3rem+env(safe-area-inset-bottom))] sm:px-6 md:px-12 md:pb-32">
         {children}
 
         {/* CTA Footer */}

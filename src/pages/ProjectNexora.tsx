@@ -225,7 +225,7 @@ export const ProjectNexora: React.FC = () => {
    return (
       <CaseStudyLayout>
          {/* HERO SECTION */}
-         <section className="relative min-h-screen flex items-center justify-center pt-24 pb-12 overflow-hidden">
+         <section className="relative min-h-screen flex items-center justify-center pb-12 overflow-hidden">
             {/* Background effects */}
             <div className="absolute inset-0 z-0 pointer-events-none">
                <div className={`absolute top-0 right-0 w-full h-full bg-gradient-to-b ${isLightMode ? 'from-amber-50/50 to-transparent' : 'from-amber-900/10 to-transparent'}`}></div>

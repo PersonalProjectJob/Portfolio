@@ -28,7 +28,7 @@ export const ProjectDispatch: React.FC = () => {
         <div className={`absolute inset-0 bg-gradient-to-br ${isLightMode ? 'from-emerald-100/50 via-transparent to-transparent' : 'from-emerald-900/20 via-transparent to-transparent'}`}></div>
       </div>
 
-      <div className="pt-20 md:pt-24 relative z-10 max-w-5xl mx-auto px-6">
+      <div className="relative z-10 max-w-5xl mx-auto px-6">
         
         {/* SECTION 1: Hero */}
         <motion.section initial="hidden" animate="visible" variants={fadeInUp} className="mb-20 md:mb-32">

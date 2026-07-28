@@ -81,7 +81,7 @@ export const ProjectCryptomap: React.FC = () => {
       {/* --- 00. HERO --- */}
       <motion.section 
         initial="hidden" animate="visible" variants={fadeInUp}
-        className="min-h-[70vh] flex flex-col justify-center items-center text-center pt-24 pb-20 md:pb-32 relative z-10"
+        className="min-h-[70vh] flex flex-col justify-center items-center text-center pb-20 md:pb-32 relative z-10"
       >
         <div className="relative w-full max-w-5xl overflow-hidden rounded-[2rem] border border-white/10 bg-[#111827] shadow-2xl group mb-10">
             <img src="/images/case-study/cryptomap_global_dashboard.png" alt="CryptoMap360 global merchant discovery map" className="aspect-[16/9] w-full object-cover object-center transition-transform duration-1000 group-hover:scale-[1.02]" />
