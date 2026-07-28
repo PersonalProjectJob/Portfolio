@@ -4,7 +4,7 @@ import { useStore } from '../store/useStore';
 import { CaseStudyLayout } from '../components/layout/CaseStudyLayout';
 
 export const ProjectDispatch: React.FC = () => {
-  const { isLightMode } = useStore();
+  const { isLightMode, handleQuestSelect } = useStore();
   
   const theme = {
     bg: isLightMode ? 'bg-slate-50' : 'bg-[#0f172a]',
@@ -361,10 +361,10 @@ export const ProjectDispatch: React.FC = () => {
               <p className="text-lg text-slate-300 mb-10 leading-relaxed">
                 Workflow giải quyết cực tốt bài toán <strong>"Ai làm gì?"</strong>. Nhưng Agent chỉ làm đúng khi nó hiểu rõ luật lệ. Phần sau, tôi sẽ hé lộ cách xây dựng <strong>"Hiến pháp cho AI"</strong> — bộ quy tắc nghiêm ngặt ép AI phải tuân thủ kỷ luật dự án đến từng chi tiết nhỏ nhất.
               </p>
-              <a href="/project-rules" className="inline-flex items-center gap-3 px-8 py-4 bg-emerald-500 hover:bg-emerald-600 text-white rounded-full font-bold transition-colors">
+              <button onClick={() => handleQuestSelect('agent-rules')} className="inline-flex items-center gap-3 px-8 py-4 bg-emerald-500 hover:bg-emerald-600 text-white rounded-full font-bold transition-colors cursor-pointer">
                 Khám phá Quản trị Tri thức (.agent-rules)
                 <span className="text-xl">→</span>
-              </a>
+              </button>
             </div>
           </div>
         </motion.section>
