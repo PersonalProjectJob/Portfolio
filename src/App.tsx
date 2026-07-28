@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, lazy, Suspense } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useStore } from './store/useStore';
+import { replaceURL } from './store/useStore';
 import type { GameState } from './store/useStore';
 import { DesktopWorkspace } from './components/DesktopWorkspace';
 import { StickyNote } from './components/StickyNote';
@@ -51,8 +52,10 @@ const ROUTES: Record<GameState, React.LazyExoticComponent<React.FC>> = {
 };
 
 function App() {
-  const { gameState, setGameState, isLightMode } = useStore();
-  const [booted, setBooted] = useState(false);
+  const { gameState, setGameState, isLightMode, syncFromURL } = useStore();
+  // Auto-boot: skip HeroIntro if deep link (URL path ≠ /)
+  const isDeepLink = window.location.pathname !== '/' && window.location.pathname !== '';
+  const [booted, setBooted] = useState(isDeepLink);
   const [landingTarget, setLandingTarget] = useState<'about' | 'contact' | null>(null);
   const mainScrollRef = useRef<HTMLDivElement>(null);
 
@@ -67,6 +70,22 @@ function App() {
   useEffect(() => {
     mainScrollRef.current?.scrollTo({ top: 0, left: 0, behavior: 'auto' });
   }, [gameState]);
+
+  // Sync state from URL on browser back/forward
+  useEffect(() => {
+    const handlePopState = () => {
+      syncFromURL();
+      setBooted(true);
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, [syncFromURL]);
+
+  // Replace URL on initial mount (so history entry has correct state)
+  useEffect(() => {
+    replaceURL(gameState);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     if (!booted || !landingTarget || gameState !== 'SELECT_PROFILE') return;
