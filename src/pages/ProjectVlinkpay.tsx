@@ -32,8 +32,8 @@ export const ProjectVlinkpay: React.FC = () => {
         <div className={`absolute inset-0 bg-gradient-to-br ${isLightMode ? 'from-orange-100/50 via-transparent to-transparent' : 'from-orange-900/20 via-transparent to-transparent'}`}></div>
       </div>
 
-      <div className="pt-12">
-        <motion.section initial="hidden" animate="visible" variants={fadeInUp} className="mb-20 text-center md:text-left">
+      <div className="pt-20 md:pt-24">
+        <motion.section initial="hidden" animate="visible" variants={fadeInUp} className="mb-12 md:mb-20 text-center md:text-left">
           <span className={`inline-block px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase mb-4 border ${isLightMode ? 'border-orange-200 bg-orange-50 text-orange-700' : 'border-orange-500/30 bg-orange-500/10 text-orange-300'}`}>{vlinkpayData.about.title}</span>
           <h1 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-6">
             {vlinkpayData.title} <br className="hidden md:block"/> 
@@ -45,8 +45,8 @@ export const ProjectVlinkpay: React.FC = () => {
         </motion.section>
 
         {/* Challenge Section */}
-        <motion.section initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeInUp} className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-24">
-          <div className={`p-8 rounded-3xl border backdrop-blur-xl ${theme.card} ${theme.glow}`}>
+        <motion.section initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeInUp} className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16 md:mb-24">
+          <div className={`p-6 md:p-8 rounded-3xl border backdrop-blur-xl ${theme.card} ${theme.glow}`}>
             <h3 className="text-2xl font-bold mb-4 flex items-center gap-2"><CreditCardIcon/> {vlinkpayData.challenges[0].title}</h3>
             <p className={`${theme.textMuted} leading-relaxed mb-4`}>
               {vlinkpayData.challenges[0].description}
@@ -59,7 +59,7 @@ export const ProjectVlinkpay: React.FC = () => {
             </ul>
           </div>
           
-          <div className={`p-8 rounded-3xl border backdrop-blur-xl ${theme.card} ${theme.glow}`}>
+          <div className={`p-6 md:p-8 rounded-3xl border backdrop-blur-xl ${theme.card} ${theme.glow}`}>
             <h3 className="text-2xl font-bold mb-4 flex items-center gap-2"><ActivityIcon/> {vlinkpayData.challenges[1].title}</h3>
             <ul className={`space-y-3 ${theme.textMuted}`}>
               <li className="flex items-start gap-2">
@@ -75,7 +75,7 @@ export const ProjectVlinkpay: React.FC = () => {
         </motion.section>
 
         {/* The Flow Timeline */}
-        <motion.section initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeInUp} className="mb-24">
+        <motion.section initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeInUp} className="mb-16 md:mb-24">
           <div className={`p-10 md:p-12 rounded-3xl border ${theme.card} ${theme.glow}`}>
             <h2 className="text-3xl font-black uppercase tracking-tight mb-8">Luồng đổi tiền P2P qua điểm giao dịch</h2>
             
@@ -105,7 +105,7 @@ export const ProjectVlinkpay: React.FC = () => {
         </motion.section>
 
         {/* UX Decisions */}
-        <motion.section initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeInUp} className="mb-24">
+        <motion.section initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeInUp} className="mb-16 md:mb-24">
           <h2 className="text-3xl font-black uppercase tracking-tight mb-8">Quyết định UX cốt lõi</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <div className={`p-6 rounded-2xl border ${theme.card} hover:-translate-y-2 transition-transform duration-300`}>

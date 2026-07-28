@@ -31,8 +31,8 @@ export const ProjectFintechFit: React.FC = () => {
         <div className={`absolute inset-0 bg-gradient-to-br ${isLightMode ? 'from-amber-100/50 via-transparent to-transparent' : 'from-amber-900/20 via-transparent to-transparent'}`}></div>
       </div>
 
-      <div className="pt-12">
-        <motion.section initial="hidden" animate="visible" variants={fadeInUp} className="mb-20 text-center md:text-left">
+      <div className="pt-20 md:pt-24">
+        <motion.section initial="hidden" animate="visible" variants={fadeInUp} className="mb-12 md:mb-20 text-center md:text-left">
           <span className={`inline-block px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase mb-4 border ${isLightMode ? 'border-amber-200 bg-amber-50 text-amber-700' : 'border-amber-500/30 bg-amber-500/10 text-amber-300'}`}>Tầm nhìn & Đóng góp</span>
           <h1 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-6">
             Mảnh ghép cho <span className="text-amber-500">Ngân hàng số</span>
@@ -43,8 +43,8 @@ export const ProjectFintechFit: React.FC = () => {
         </motion.section>
 
         {/* Fintech Fit */}
-        <motion.section initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeInUp} className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-24">
-          <div className={`p-8 rounded-3xl border backdrop-blur-xl ${theme.card} ${theme.glow}`}>
+        <motion.section initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeInUp} className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16 md:mb-24">
+          <div className={`p-6 md:p-8 rounded-3xl border backdrop-blur-xl ${theme.card} ${theme.glow}`}>
             <h3 className="text-2xl font-bold mb-6 flex items-center gap-3"><BankIcon/> Sản phẩm tài chính cần gì?</h3>
             <ul className={`space-y-4 ${theme.textMuted}`}>
               <li className="flex items-start gap-3"><CheckCircleIcon className="w-5 h-5 shrink-0 mt-0.5" /> <span><strong>Sự tin cậy & Tính minh bạch:</strong> Tiền đang ở đâu, phí bao nhiêu.</span></li>
@@ -54,7 +54,7 @@ export const ProjectFintechFit: React.FC = () => {
             </ul>
           </div>
           
-          <div className={`p-8 rounded-3xl border backdrop-blur-xl ${isLightMode ? 'bg-amber-50/50 border-amber-200' : 'bg-amber-900/10 border-amber-500/30'} ${theme.glow}`}>
+          <div className={`p-6 md:p-8 rounded-3xl border backdrop-blur-xl ${isLightMode ? 'bg-amber-50/50 border-amber-200' : 'bg-amber-900/10 border-amber-500/30'} ${theme.glow}`}>
             <h3 className={`text-2xl font-bold mb-6 flex items-center gap-3 ${isLightMode ? 'text-amber-700' : 'text-amber-400'}`}><TargetIcon/> Đóng góp của tôi</h3>
             <ul className={`space-y-4 ${isLightMode ? 'text-amber-900/70' : 'text-amber-200/70'}`}>
               <li className="flex items-start gap-3"><CheckCircleIcon className="w-5 h-5 shrink-0 mt-0.5" /> <span><strong>Tư duy logic:</strong> Qua dự án VLINKPAY, tôi quen với việc phân tích luồng tiền, tách bạch vai trò người dùng và điểm giao dịch.</span></li>

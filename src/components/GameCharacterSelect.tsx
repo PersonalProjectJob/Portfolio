@@ -9,14 +9,14 @@ export const GameCharacterSelect: React.FC = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.95, filter: 'blur(5px)' }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
-      className="flex flex-col items-center justify-start w-full max-w-6xl py-6 md:py-10 px-4 pb-32 shrink-0"
+      transition={{ duration: 0.25, ease: "easeOut" }}
+      className="flex flex-col items-center justify-start w-full max-w-6xl container-padding shrink-0 pt-6 md:pt-10"
     >
        <div className="w-full flex flex-col lg:flex-row gap-6 md:gap-8">
           
           {/* Left Column: Hero & Contact */}
           <div className="w-full lg:w-1/3 flex flex-col gap-6 md:gap-8">
-             <div id="portfolio-contact" tabIndex={-1} className={`scroll-mt-28 p-6 md:p-8 flex flex-col items-center text-center rounded-3xl border outline-none transition-all duration-500 focus-visible:ring-2 focus-visible:ring-orange-400 ${isLightMode ? 'bg-white/90 backdrop-blur-3xl border-white/80 shadow-[0_8px_32px_rgba(30,41,59,0.12)]' : 'premium-card'}`}>
+             <div id="portfolio-contact" tabIndex={-1} className={`scroll-mt-28 card-padding flex flex-col items-center text-center rounded-3xl border outline-none transition-all duration-500 focus-visible:ring-2 focus-visible:ring-orange-400 ${isLightMode ? 'bg-white/90 backdrop-blur-3xl border-white/80 shadow-[0_8px_32px_rgba(30,41,59,0.12)]' : 'premium-card'}`}>
                 {/* Avatar */}
                 <div className="w-32 h-32 md:w-40 md:h-40 rounded-full p-1.5 mb-6 shadow-2xl bg-gradient-to-tr from-orange-500 via-orange-400 to-amber-400 relative group overflow-hidden">
                    <div className="w-full h-full rounded-full overflow-hidden bg-slate-900">
@@ -92,7 +92,7 @@ export const GameCharacterSelect: React.FC = () => {
              </div>
 
              {/* Core Competencies */}
-             <div className={`p-6 md:p-10 rounded-3xl border transition-all duration-500 ${isLightMode ? 'bg-white/90 backdrop-blur-3xl border-white/80 shadow-[0_8px_32px_rgba(30,41,59,0.12)]' : 'premium-card'}`}>
+             <div className={`card-padding rounded-3xl border transition-all duration-500 ${isLightMode ? 'bg-white/90 backdrop-blur-3xl border-white/80 shadow-[0_8px_32px_rgba(30,41,59,0.12)]' : 'premium-card'}`}>
                 <h3 className={`text-sm font-black tracking-widest uppercase mb-8 flex items-center gap-3 ${isLightMode ? 'text-slate-800' : 'text-slate-200'}`}>
                    <span className="w-8 h-8 rounded-lg bg-amber-500/20 flex items-center justify-center text-amber-500">
                       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
@@ -116,8 +116,8 @@ export const GameCharacterSelect: React.FC = () => {
                    </button>
                 </div>
 
-                {/* Mobile: Experience & Playbook shortcuts */}
-                <div className="md:hidden flex gap-3 mt-6 pt-6 border-t border-slate-500/20">
+                {/* Mobile & Small Desktop: Experience & Playbook shortcuts */}
+                <div className="2xl:hidden flex gap-3 mt-6 pt-6 border-t border-slate-500/20">
                    <button onClick={() => setGameState('EXPERIENCE')} className={`flex-1 flex items-center justify-center gap-2 py-3 rounded-xl text-[10px] font-bold tracking-widest uppercase border transition-all ${isLightMode ? 'bg-white border-slate-200 text-slate-700 active:bg-orange-50' : 'bg-slate-800/50 border-slate-600 text-slate-300 active:bg-slate-700'}`}>
                       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg>
                       Experience

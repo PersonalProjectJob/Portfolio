@@ -28,7 +28,7 @@ const paymentStates: Array<{
    { id: 'method', label: 'Method', eyebrow: '02 · Decision', description: 'The total remains visible while the customer chooses a familiar payment method.' },
    { id: 'processing', label: 'Processing', eyebrow: '03 · Feedback', description: 'A focused waiting state prevents duplicate taps and explains what the system is doing.' },
    { id: 'success', label: 'Success', eyebrow: '04 · Resolution', description: 'A clear confirmation closes the loop and shows exactly where the tip is going.' },
-   { id: 'failure', label: 'Failure', eyebrow: '04 · Recovery', description: 'The flow preserves the amount and offers a direct recovery path instead of a dead end.' },
+   { id: 'failure', label: 'Failure', eyebrow: '05 · Recovery', description: 'The flow preserves the amount and offers a direct recovery path instead of a dead end.' },
 ];
 
 const coreJourneys = [
@@ -233,7 +233,7 @@ export const ProjectNexora: React.FC = () => {
                <motion.div style={{ y: y1 }} className="absolute top-[40%] -left-[10%] w-[50vw] h-[50vw] rounded-full bg-emerald-500/10 blur-[100px] mix-blend-screen"></motion.div>
             </div>
 
-            <div className="container relative z-10 mx-auto px-6 lg:px-12 flex flex-col items-center">
+            <div className="container relative z-10 mx-auto flex flex-col items-center">
                <motion.div style={{ opacity }} className="text-center max-w-4xl mx-auto mb-16">
                   <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5 }} className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-amber-500/30 bg-amber-500/10 text-amber-500 text-xs font-bold tracking-[0.2em] uppercase mb-8">
                      <span className="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
@@ -258,10 +258,10 @@ export const ProjectNexora: React.FC = () => {
             </div>
          </section>
 
-         <div className="container mx-auto px-6 lg:px-12 pb-32">
+         <div className="container mx-auto pb-20 md:pb-32">
             
             {/* 01. THE CONTEXT */}
-            <motion.section initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeInUp} className="py-24 border-t border-slate-200 dark:border-white/10">
+            <motion.section initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeInUp} className="py-16 md:py-24 border-t border-slate-200 dark:border-white/10">
                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
                   <div className="lg:col-span-4">
                      <h2 className="text-sm font-bold tracking-[0.3em] uppercase text-amber-500 mb-4">01. The Context</h2>
@@ -286,7 +286,7 @@ export const ProjectNexora: React.FC = () => {
             </motion.section>
 
             {/* 02. DISCOVERY & STRATEGY */}
-            <motion.section initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeInUp} className="py-24 border-t border-slate-200 dark:border-white/10">
+            <motion.section initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeInUp} className="py-16 md:py-24 border-t border-slate-200 dark:border-white/10">
                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
                   <div className="lg:col-span-4">
                      <h2 className="text-sm font-bold tracking-[0.3em] uppercase text-amber-500 mb-4">02. Strategy</h2>
@@ -312,7 +312,7 @@ export const ProjectNexora: React.FC = () => {
             </motion.section>
 
             {/* 03. ARCHITECTURE & UX */}
-            <motion.section initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeInUp} className="py-24 border-t border-slate-200 dark:border-white/10">
+            <motion.section initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeInUp} className="py-16 md:py-24 border-t border-slate-200 dark:border-white/10">
                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
                   <div className="lg:col-span-4">
                      <h2 className="text-sm font-bold tracking-[0.3em] uppercase text-amber-500 mb-4">03. Architecture & UX</h2>
@@ -363,7 +363,7 @@ export const ProjectNexora: React.FC = () => {
                                  {journey.steps.map((step, index) => (
                                     <React.Fragment key={step}>
                                        <div className={`min-w-[112px] rounded-xl border px-3 py-3 text-center text-xs font-bold ${isLightMode ? 'border-slate-200 bg-white text-slate-700' : 'border-white/10 bg-slate-900 text-slate-200'}`}>
-                                          <span className={`mb-1 block text-[9px] font-black ${journey.accent}`}>0{index + 1}</span>
+                                          <span className={`mb-1 block text-[11px] font-black ${journey.accent}`}>0{index + 1}</span>
                                           {step}
                                        </div>
                                        {index < journey.steps.length - 1 && <span className={`h-px min-w-5 flex-1 ${journey.line}`} />}
@@ -381,7 +381,7 @@ export const ProjectNexora: React.FC = () => {
             </motion.section>
 
             {/* 04. DESIGN & EXECUTION */}
-            <motion.section initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeInUp} className="py-24 border-t border-slate-200 dark:border-white/10">
+            <motion.section initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeInUp} className="py-16 md:py-24 border-t border-slate-200 dark:border-white/10">
                <div className="text-center mb-16">
                   <h2 className="text-sm font-bold tracking-[0.3em] uppercase text-amber-500 mb-4">04. Design & Execution</h2>
                   <h3 className={`text-4xl md:text-5xl font-black tracking-tighter ${theme.text}`}>Kết Nối & Liền Mạch.</h3>
@@ -444,14 +444,15 @@ export const ProjectNexora: React.FC = () => {
                                           type="button"
                                           role="tab"
                                           aria-selected={isActive}
+                                          aria-label={`${state.eyebrow}: ${state.label}`}
                                           onClick={() => setActivePaymentState(state.id)}
                                           className={`group flex w-full items-center gap-4 rounded-2xl border p-4 text-left transition-all duration-200 ${isActive ? 'border-violet-500 bg-violet-500 text-white shadow-lg shadow-violet-500/20' : isLightMode ? 'border-slate-200 bg-white/80 hover:border-violet-300 hover:bg-white' : 'border-white/10 bg-white/[0.04] hover:border-violet-500/40 hover:bg-white/[0.07]'}`}
                                        >
-                                          <span className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl text-xs font-black ${isActive ? 'bg-white/15 text-white' : 'bg-violet-500/10 text-violet-500'}`}>
+                                          <span aria-hidden="true" className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl text-xs font-black ${isActive ? 'bg-white/15 text-white' : 'bg-violet-500/10 text-violet-500'}`}>
                                              {String(paymentStates.indexOf(state) + 1).padStart(2, '0')}
                                           </span>
                                           <span className="min-w-0 flex-1">
-                                             <span className={`block text-[9px] font-black uppercase tracking-[0.16em] ${isActive ? 'text-violet-100' : theme.textMuted}`}>{state.eyebrow}</span>
+                                             <span className={`block text-[11px] font-black uppercase tracking-[0.16em] ${isActive ? 'text-violet-100' : theme.textMuted}`}>{state.eyebrow}</span>
                                              <span className={`mt-1 block text-sm font-black ${isActive ? 'text-white' : theme.text}`}>{state.label}</span>
                                           </span>
                                           <ArrowRightIcon className={`h-4 w-4 transition-transform group-hover:translate-x-1 ${isActive ? 'text-white' : 'text-violet-500'}`} />
@@ -525,7 +526,7 @@ export const ProjectNexora: React.FC = () => {
             </motion.section>
 
             {/* 05. OUTCOMES & RETROSPECTIVE */}
-            <motion.section initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeInUp} className="py-24 border-t border-slate-200 dark:border-white/10">
+            <motion.section initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeInUp} className="py-16 md:py-24 border-t border-slate-200 dark:border-white/10">
                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
                   <div className="lg:col-span-4">
                      <h2 className="text-sm font-bold tracking-[0.3em] uppercase text-amber-500 mb-4">05. Outcomes</h2>
@@ -554,7 +555,7 @@ export const ProjectNexora: React.FC = () => {
             </motion.section>
 
             {/* Next Project CTA */}
-            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="pt-24 border-t border-slate-200 dark:border-white/10 text-center">
+            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="pt-16 md:pt-24 border-t border-slate-200 dark:border-white/10 text-center">
                <button onClick={() => setGameState('CASE_STUDY_VLINKPAY')} className={`inline-flex items-center gap-4 text-2xl md:text-4xl font-black uppercase tracking-tighter ${theme.text} hover:text-amber-500 transition-colors group cursor-pointer`}>
                   Next Project: VLINKPAY 
                   <ArrowRightIcon className="w-8 h-8 md:w-10 md:h-10 transform group-hover:translate-x-4 transition-transform duration-300" />
