@@ -100,7 +100,12 @@ export const GameWorldMap: React.FC = () => {
                 <path d={`M ${CV_PROJECTS[3].x} ${CV_PROJECTS[3].y} L ${CV_PROJECTS[4].x} ${CV_PROJECTS[4].y}`} stroke={isLightMode ? "rgba(15,23,42,0.2)" : "rgba(255,255,255,0.2)"} strokeWidth="3" strokeDasharray="6,6" />
                 <path d={`M ${CV_PROJECTS[4].x} ${CV_PROJECTS[4].y} L ${CV_PROJECTS[5].x} ${CV_PROJECTS[5].y}`} stroke={isLightMode ? "rgba(15,23,42,0.2)" : "rgba(255,255,255,0.2)"} strokeWidth="3" strokeDasharray="6,6" />
                 <path d={`M ${CV_PROJECTS[5].x} ${CV_PROJECTS[5].y} L ${CV_PROJECTS[6].x} ${CV_PROJECTS[6].y}`} stroke={isLightMode ? "rgba(15,23,42,0.2)" : "rgba(255,255,255,0.2)"} strokeWidth="3" strokeDasharray="6,6" />
-             </svg>
+                {/* Dispatch (08) connects to CryptoMap (01) and Agent Rules (09) */}
+                <path d={`M ${CV_PROJECTS[7].x} ${CV_PROJECTS[7].y} L ${CV_PROJECTS[0].x} ${CV_PROJECTS[0].y}`} stroke={isLightMode ? "rgba(15,23,42,0.2)" : "rgba(255,255,255,0.2)"} strokeWidth="3" strokeDasharray="6,6" />
+                <path d={`M ${CV_PROJECTS[7].x} ${CV_PROJECTS[7].y} L ${CV_PROJECTS[8].x} ${CV_PROJECTS[8].y}`} stroke={isLightMode ? "rgba(15,23,42,0.2)" : "rgba(255,255,255,0.2)"} strokeWidth="3" strokeDasharray="6,6" />
+                {/* Agent Rules (09) connects to Nailhub (02) */}
+                <path d={`M ${CV_PROJECTS[8].x} ${CV_PROJECTS[8].y} L ${CV_PROJECTS[1].x} ${CV_PROJECTS[1].y}`} stroke={isLightMode ? "rgba(15,23,42,0.2)" : "rgba(255,255,255,0.2)"} strokeWidth="3" strokeDasharray="6,6" />
+              </svg>
 
              {CV_PROJECTS.map((node, i) => (
                <motion.div
@@ -115,7 +120,7 @@ export const GameWorldMap: React.FC = () => {
                     style={{ borderRadius: '50%' }}
                   >
                      <div className={`font-black text-3xl drop-shadow-sm transition-colors ${isLightMode ? 'text-orange-600' : 'text-orange-400'}`}>
-                        0{i + 1}
+                        {String(i + 1).padStart(2, '0')}
                      </div>
                   </div>
                   
