@@ -11,7 +11,7 @@ export const GameCharacterStats: React.FC = () => {
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.95 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
-      className="flex flex-col items-center justify-start w-full max-w-6xl py-6 md:py-10 px-4 pb-32 shrink-0"
+      className="flex flex-col items-center justify-start w-full max-w-6xl container-padding shrink-0 pt-6 md:pt-10"
     >
        <div className="w-full flex flex-col gap-6 md:gap-8">
           
@@ -19,7 +19,7 @@ export const GameCharacterStats: React.FC = () => {
              {/* LEFT COLUMN */}
              <div className="flex flex-col gap-6 md:gap-8">
                 {/* Core Competencies (Radar Chart) */}
-                <div className={`p-5 md:p-8 rounded-3xl border transition-all duration-500 flex flex-col items-center h-fit lg:min-h-[480px] ${isLightMode ? 'bg-white/90 backdrop-blur-3xl border-white/80 shadow-[0_8px_32px_rgba(30,41,59,0.12)]' : 'premium-card'}`}>
+                <div className={`card-padding rounded-3xl border transition-all duration-500 flex flex-col items-center h-fit lg:min-h-[480px] ${isLightMode ? 'bg-white/90 backdrop-blur-3xl border-white/80 shadow-[0_8px_32px_rgba(30,41,59,0.12)]' : 'premium-card'}`}>
                    <h3 className={`text-lg font-extrabold mb-4 flex items-center gap-3 w-full transition-colors ${isLightMode ? 'text-slate-900' : 'text-slate-100'}`}>
                       <div className={`w-10 h-10 rounded-xl flex items-center justify-center border shadow-[0_0_10px_rgba(13,148,136,0.2)] transition-colors ${isLightMode ? 'bg-orange-50 text-orange-600 border-orange-200' : 'bg-orange-950/50 text-orange-400 border-orange-500/20'}`}>
                          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"/></svg>
@@ -132,7 +132,7 @@ export const GameCharacterStats: React.FC = () => {
                        Back to Profile
                     </button>
                     <button onClick={() => setGameState('PROJECT_JOURNEY')} className="whitespace-nowrap w-full md:w-auto px-8 py-4 rounded-xl text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase transition-all flex items-center justify-center gap-4 shrink-0 shadow-[0_0_20px_rgba(13,148,136,0.3)] bg-gradient-to-r from-orange-600 to-amber-600 text-white hover:shadow-[0_0_30px_rgba(13,148,136,0.6)]">
-                       View Project Journey
+                       View Project
                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                     </button>
                  </div>

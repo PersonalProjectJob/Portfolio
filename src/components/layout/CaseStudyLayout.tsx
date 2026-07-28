@@ -20,19 +20,25 @@ export const CaseStudyLayout: React.FC<CaseStudyLayoutProps> = ({ children }) =>
   const nextProject = currentIndex < CV_PROJECTS.length - 1 ? CV_PROJECTS[currentIndex + 1] : null;
 
   return (
-    <div className={`fixed inset-0 z-[100] w-full h-[100dvh] overflow-y-auto custom-scrollbar ${theme.bg} ${theme.text} font-sans overflow-x-hidden`}>
-      {/* Back Button */}
-      <div className="fixed top-20 left-4 md:top-28 md:left-8 z-50">
-        <button 
+    <div className={`fixed inset-0 z-[100] h-[100dvh] w-full overflow-x-hidden overflow-y-auto overscroll-y-contain scroll-pt-20 custom-scrollbar ${theme.bg} ${theme.text} font-sans`}>
+      <header
+        className={`sticky top-0 z-50 border-b backdrop-blur-xl ${isLightMode ? 'border-slate-200/80 bg-slate-50/90' : 'border-white/10 bg-[#050510]/90'}`}
+        style={{ paddingTop: 'env(safe-area-inset-top)' }}
+      >
+        <div className="mx-auto flex min-h-14 w-full max-w-6xl items-center px-4 sm:px-6 md:px-12">
+          <button
+          type="button"
+          aria-label="Back to project journey"
           onClick={() => setGameState('PROJECT_JOURNEY')}
-          className={`px-4 py-2 rounded-xl backdrop-blur-md border flex items-center gap-2 text-sm font-bold tracking-widest uppercase transition-all ${isLightMode ? 'bg-white/80 border-slate-300 text-orange-600 hover:bg-white' : 'bg-slate-900/80 border-slate-700 text-slate-300 hover:text-white hover:border-orange-500 hover:shadow-[0_0_15px_rgba(13,148,136,0.5)]'}`}
+          className={`flex min-h-11 items-center gap-2 rounded-xl border px-4 py-2 text-sm font-bold uppercase tracking-widest transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 ${isLightMode ? 'border-slate-300 bg-white/90 text-orange-600 hover:bg-white focus-visible:ring-offset-slate-50' : 'border-slate-700 bg-slate-900/90 text-slate-200 hover:border-orange-500 hover:text-white focus-visible:ring-offset-[#050510]'}`}
         >
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
           Back
         </button>
-      </div>
+        </div>
+      </header>
 
-      <div className="relative z-10 w-full max-w-6xl mx-auto px-6 md:px-12 pb-32">
+      <div className="relative z-10 mx-auto w-full max-w-6xl px-4 pb-[calc(3rem+env(safe-area-inset-bottom))] sm:px-6 md:px-12 md:pb-32">
         {children}
 
         {/* CTA Footer */}
@@ -45,7 +51,7 @@ export const CaseStudyLayout: React.FC<CaseStudyLayoutProps> = ({ children }) =>
             <button
               onClick={() => prevProject && handleQuestSelect(prevProject.id)}
               disabled={!prevProject}
-              className={`group px-5 py-3 rounded-xl border text-sm font-bold tracking-wide transition-all flex items-center gap-2 ${
+              className={`group min-h-[44px] px-5 py-3 rounded-xl border text-sm font-bold tracking-wide transition-all flex items-center gap-2 ${
                 !prevProject
                   ? 'opacity-30 cursor-not-allowed border-slate-600 text-slate-500'
                   : isLightMode
@@ -74,7 +80,7 @@ export const CaseStudyLayout: React.FC<CaseStudyLayoutProps> = ({ children }) =>
             <button
               onClick={() => nextProject && handleQuestSelect(nextProject.id)}
               disabled={!nextProject}
-              className={`group px-5 py-3 rounded-xl border text-sm font-bold tracking-wide transition-all flex items-center gap-2 ${
+              className={`group min-h-[44px] px-5 py-3 rounded-xl border text-sm font-bold tracking-wide transition-all flex items-center gap-2 ${
                 !nextProject
                   ? 'opacity-30 cursor-not-allowed border-slate-600 text-slate-500'
                   : isLightMode
@@ -90,7 +96,7 @@ export const CaseStudyLayout: React.FC<CaseStudyLayoutProps> = ({ children }) =>
 
           {/* Contact Me */}
           <div className={`mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 text-sm ${isLightMode ? 'text-slate-500' : 'text-slate-400'}`}>
-            <span className="font-bold tracking-widest uppercase text-[10px]">Contact Me</span>
+            <span className="font-bold tracking-widest uppercase text-[11px]">Contact Me</span>
             <div className="flex items-center gap-4">
               <a
                 href="mailto:tnsthao94@gmail.com"

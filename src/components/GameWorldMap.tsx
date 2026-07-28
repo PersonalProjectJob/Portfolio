@@ -18,7 +18,7 @@ export const GameWorldMap: React.FC = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: 0.25 }}
       className="absolute inset-0 z-10 overflow-hidden"
     >
        <div className="absolute top-24 left-10 z-20">
@@ -41,7 +41,7 @@ export const GameWorldMap: React.FC = () => {
                key={node.id}
                initial={{ opacity: 0, y: 20 }}
                animate={{ opacity: 1, y: 0 }}
-               transition={{ delay: i * 0.07, duration: 0.4 }}
+               transition={{ delay: i * 0.03, duration: 0.25 }}
                onClick={() => handleQuestSelect(node.id)}
                className={`w-full flex items-center gap-4 p-4 rounded-2xl border text-left transition-all active:scale-[0.98] ${
                  isLightMode

@@ -81,7 +81,7 @@ export const ProjectCryptomap: React.FC = () => {
       {/* --- 00. HERO --- */}
       <motion.section 
         initial="hidden" animate="visible" variants={fadeInUp}
-        className="min-h-[70vh] flex flex-col justify-center items-center text-center pt-24 pb-12 relative z-10"
+        className="min-h-[70vh] flex flex-col justify-center items-center text-center pt-24 pb-20 md:pb-32 relative z-10"
       >
         <div className="relative w-full max-w-5xl overflow-hidden rounded-[2rem] border border-white/10 bg-[#111827] shadow-2xl group mb-10">
             <img src="/images/case-study/cryptomap_global_dashboard.png" alt="CryptoMap360 global merchant discovery map" className="aspect-[16/9] w-full object-cover object-center transition-transform duration-1000 group-hover:scale-[1.02]" />
@@ -110,9 +110,9 @@ export const ProjectCryptomap: React.FC = () => {
       {/* --- 01. EXECUTIVE SUMMARY --- */}
       <motion.section 
         initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeInUp}
-        className="py-16 relative z-10"
+        className="py-16 md:py-24 relative z-10"
       >
-        <div className={`max-w-6xl mx-auto rounded-3xl p-8 md:p-12 border ${theme.card} relative overflow-hidden`}>
+        <div className={`max-w-6xl mx-auto rounded-3xl card-padding-lg border ${theme.card} relative overflow-hidden`}>
           <div className="absolute top-0 right-0 w-64 h-64 bg-orange-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3"></div>
           
           <div className="mb-12 border-b border-orange-500/20 pb-4">
@@ -159,7 +159,7 @@ export const ProjectCryptomap: React.FC = () => {
       {/* --- 02. DISCOVERY (The Why) --- */}
       <motion.section 
         initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeInUp}
-        className="py-24 relative z-10"
+        className="py-16 md:py-24 relative z-10"
       >
         <div className="max-w-6xl mx-auto">
           <div className="mb-20 text-center max-w-3xl mx-auto">
@@ -170,9 +170,9 @@ export const ProjectCryptomap: React.FC = () => {
             </p>
           </div>
 
-          <div className="space-y-12 md:space-y-24">
+          <div className="space-y-16 md:space-y-32">
             {/* Research Page 1: Macro Context */}
-            <div className={`rounded-3xl relative overflow-hidden border border-white/10 shadow-2xl min-h-[400px] flex flex-col justify-center p-8 md:p-12 bg-gradient-to-br from-[#0B0F19] via-[#111827] to-[#1F2937]`}>
+            <div className={`rounded-3xl relative overflow-hidden border border-white/10 shadow-2xl min-h-[400px] flex flex-col justify-center card-padding-lg bg-gradient-to-br from-[#0B0F19] via-[#111827] to-[#1F2937]`}>
               <div className="absolute top-8 right-8 bg-white/10 border border-white/20 backdrop-blur-md px-6 py-2 rounded-full shadow-sm">
                  <span className="text-sm font-bold text-white tracking-wide">Nghiên cứu thị trường</span>
               </div>
@@ -224,7 +224,7 @@ export const ProjectCryptomap: React.FC = () => {
             </div>
 
             {/* Research Page 2: Competitive Audit */}
-            <div className={`rounded-3xl relative overflow-hidden border border-white/10 shadow-2xl min-h-[400px] flex flex-col p-8 md:p-12 bg-gradient-to-br from-[#1E1B4B] via-[#312E81] to-[#1E1B4B]`}>
+            <div className={`rounded-3xl relative overflow-hidden border border-white/10 shadow-2xl min-h-[400px] flex flex-col card-padding-lg bg-gradient-to-br from-[#1E1B4B] via-[#312E81] to-[#1E1B4B]`}>
               <div className="absolute top-8 right-8 bg-white/10 border border-white/20 backdrop-blur-md px-6 py-2 rounded-full shadow-sm">
                  <span className="text-sm font-bold text-white tracking-wide">Phân tích đối thủ</span>
               </div>
@@ -304,7 +304,7 @@ export const ProjectCryptomap: React.FC = () => {
             </div>
 
             {/* Research Page 3: User Persona */}
-            <div className={`rounded-3xl relative overflow-hidden border border-white/10 shadow-2xl min-h-[400px] flex flex-col justify-center p-8 md:p-12 bg-gradient-to-br from-[#0B0F19] via-[#111827] to-[#1F2937]`}>
+            <div className={`rounded-3xl relative overflow-hidden border border-white/10 shadow-2xl min-h-[400px] flex flex-col justify-center card-padding-lg bg-gradient-to-br from-[#0B0F19] via-[#111827] to-[#1F2937]`}>
               <div className="absolute top-8 right-8 bg-white/10 border border-white/20 backdrop-blur-md px-6 py-2 rounded-full shadow-sm">
                  <span className="text-sm font-bold text-white tracking-wide">Phân tích Người dùng</span>
               </div>
@@ -327,7 +327,7 @@ export const ProjectCryptomap: React.FC = () => {
             </div>
 
             {/* Research Page 4: Pain Points & Mission */}
-            <div className={`rounded-3xl relative overflow-hidden border border-white/10 shadow-2xl min-h-[400px] flex flex-col justify-center p-8 md:p-12 bg-gradient-to-br from-[#1E1B4B] via-[#312E81] to-[#1E1B4B]`}>
+            <div className={`rounded-3xl relative overflow-hidden border border-white/10 shadow-2xl min-h-[400px] flex flex-col justify-center card-padding-lg bg-gradient-to-br from-[#1E1B4B] via-[#312E81] to-[#1E1B4B]`}>
               <div className="absolute top-8 right-8 bg-white/10 border border-white/20 backdrop-blur-md px-6 py-2 rounded-full shadow-sm">
                  <span className="text-sm font-bold text-white tracking-wide">Bản đồ Hành trình</span>
               </div>
@@ -356,7 +356,7 @@ export const ProjectCryptomap: React.FC = () => {
       {/* --- 03. STRATEGY & ARCHITECTURE (The How) --- */}
       <motion.section 
         initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeInUp}
-        className="py-24 relative z-10 border-t border-white/5"
+        className="py-16 md:py-24 relative z-10 border-t border-white/5"
       >
         <div className="max-w-6xl mx-auto">
           <div className="mb-16">
@@ -398,7 +398,7 @@ export const ProjectCryptomap: React.FC = () => {
             </div>
 
             {/* Information Architecture Snippet */}
-            <div className={`p-8 rounded-3xl ${theme.card} border-dashed border-2 flex flex-col justify-center`}>
+            <div className={`card-padding rounded-3xl ${theme.card} border-dashed border-2 flex flex-col justify-center`}>
               <h4 className={`text-xl font-bold mb-6 flex items-center gap-2 ${theme.text}`}><LayersIcon/> Architecture (IA)</h4>
               <div className="space-y-4 font-mono text-xs md:text-sm">
                 <div className="p-3 bg-orange-500/10 rounded-lg border border-orange-500/20 text-orange-500 font-bold">1.0 Global Map (Home)</div>
@@ -420,9 +420,9 @@ export const ProjectCryptomap: React.FC = () => {
       {/* --- 04. DESIGN & EXECUTION (The What) --- */}
       <motion.section 
         initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeInUp}
-        className="py-24 relative z-10"
+        className="py-16 md:py-24 relative z-10"
       >
-        <div className="max-w-6xl mx-auto px-4 md:px-0">
+        <div className="max-w-6xl mx-auto">
           <div className="text-center mb-24">
             <span className={`text-[10px] font-bold uppercase tracking-[0.3em] ${theme.accent} mb-4 block`}>04. Design & Execution</span>
             <h3 className={`text-3xl md:text-5xl font-black tracking-tight uppercase ${theme.text}`}>Crafting the Interface</h3>
@@ -456,7 +456,7 @@ export const ProjectCryptomap: React.FC = () => {
               </article>
             ))}
 
-            <div className={`relative overflow-hidden rounded-[2rem] border p-6 md:p-10 ${isLightMode ? 'border-slate-200 bg-slate-950 text-white shadow-2xl' : 'border-white/10 bg-gradient-to-br from-[#111827] to-[#080b12] shadow-2xl'}`}>
+            <div className={`relative overflow-hidden rounded-[2rem] border card-padding ${isLightMode ? 'border-slate-200 bg-slate-950 text-white shadow-2xl' : 'border-white/10 bg-gradient-to-br from-[#111827] to-[#080b12] shadow-2xl'}`}>
               <div className="pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full bg-amber-400/10 blur-[80px]" />
               <div className="relative grid grid-cols-1 gap-10 lg:grid-cols-12 lg:items-center">
                 <div className="lg:col-span-5">
@@ -491,7 +491,7 @@ export const ProjectCryptomap: React.FC = () => {
       {/* --- 05. OUTCOMES & RETROSPECTIVE (The So What) --- */}
       <motion.section 
         initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeInUp}
-        className="py-24 relative z-10 border-t border-white/10"
+        className="py-16 md:py-24 relative z-10 border-t border-white/10"
       >
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
@@ -499,7 +499,7 @@ export const ProjectCryptomap: React.FC = () => {
             <h3 className={`text-3xl md:text-5xl font-black tracking-tight uppercase ${theme.text}`}>Measured Outcomes</h3>
           </div>
 
-          <div className={`relative rounded-3xl overflow-hidden shadow-2xl border ${theme.card} p-8 md:p-12 mb-16`}>
+          <div className={`relative rounded-3xl overflow-hidden shadow-2xl border ${theme.card} card-padding-lg mb-16`}>
              <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
                 {/* Stat 1 */}
                 <div className="flex flex-col gap-2">
@@ -537,7 +537,7 @@ export const ProjectCryptomap: React.FC = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <div className={`p-8 rounded-3xl ${theme.card}`}>
+            <div className={`card-padding rounded-3xl ${theme.card}`}>
               <h4 className={`text-xl font-bold mb-6 text-orange-500`}>Learnings</h4>
               <ul className={`space-y-4 text-sm ${theme.textMuted}`}>
                 <li className="flex items-start gap-3"><CheckCircleIcon className="w-5 h-5 shrink-0 text-orange-400"/> <strong>Performance is UX:</strong> The most beautiful UI fails if the map lags. Prioritizing clustering and frontend optimization was the key to user retention.</li>
@@ -545,7 +545,7 @@ export const ProjectCryptomap: React.FC = () => {
               </ul>
             </div>
             
-            <div className={`p-8 rounded-3xl ${theme.card}`}>
+            <div className={`card-padding rounded-3xl ${theme.card}`}>
               <h4 className={`text-xl font-bold mb-6 text-blue-500`}>Next Steps</h4>
               <ul className={`space-y-4 text-sm ${theme.textMuted}`}>
                 <li className="flex items-start gap-3"><CheckCircleIcon className="w-5 h-5 shrink-0 text-blue-400"/> <strong>Social Proof:</strong> Implementing user reviews and photos to increase trust in merchants.</li>

@@ -54,7 +54,7 @@ export const GameExperienceTimeline: React.FC = () => {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.5, type: 'spring' }}
-      className={`w-full max-w-4xl mx-auto rounded-2xl shadow-xl border backdrop-blur-md flex flex-col mb-32 ${
+      className={`w-full max-w-4xl mx-auto rounded-2xl shadow-xl border backdrop-blur-md flex flex-col ${
         isLightMode 
           ? 'bg-white/95 border-slate-200' 
           : 'bg-[#0f172a]/95 border-slate-700'
@@ -84,7 +84,7 @@ export const GameExperienceTimeline: React.FC = () => {
       </div>
 
       {/* Timeline Content */}
-      <div className="flex-1 p-6 md:p-10 pb-32 md:pb-40">
+      <div className="flex-1 p-6 md:p-10 pb-24 md:pb-40">
         <div className="relative flex flex-col gap-12 md:gap-16">
           {/* Central solid line */}
           <div className={`absolute left-8 md:left-1/2 top-0 bottom-0 w-[2px] -translate-x-1/2 rounded-full ${isLightMode ? 'bg-slate-200' : 'bg-slate-700'}`}></div>

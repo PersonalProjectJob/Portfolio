@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { useStore } from '../store/useStore';
 import { CelestialOverlay } from './CelestialOverlay';
@@ -8,33 +8,11 @@ interface Props {
   disableParallax?: boolean; // Kept for prop compatibility
 }
 
-const useResponsiveScale = () => {
-  const [scale, setScale] = useState(1);
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth < 768) {
-         setScale(1); 
-         return;
-      }
-      const height = window.innerHeight;
-      if (height < 900) {
-        const newScale = Math.max(0.65, height / 900);
-        setScale(newScale);
-      } else {
-        setScale(1);
-      }
-    };
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-  return scale;
-};
+
 
 export const DesktopWorkspace: React.FC<Props> = ({ children, disableParallax = false }) => {
-  const { isLightMode, gameState } = useStore();
+  const { isLightMode } = useStore();
   const [isMobile, setIsMobile] = React.useState(false);
-  const scale = useResponsiveScale();
 
   React.useEffect(() => {
     const checkMobile = () => {
@@ -138,7 +116,6 @@ export const DesktopWorkspace: React.FC<Props> = ({ children, disableParallax = 
           ========================================= */}
       <motion.div 
         className="relative z-[10] w-full h-full flex items-center justify-center origin-center transition-all duration-700"
-        style={{ scale: (isMobile || gameState.startsWith('CASE_STUDY')) ? 1 : scale }}
       >
         {children}
       </motion.div>

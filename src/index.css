@@ -30,6 +30,19 @@
 
   --font-display: 'Plus Jakarta Sans', sans-serif;
   --font-body: 'Plus Jakarta Sans', sans-serif;
+
+  /* ─── Apple HIG: Touch Target ─── */
+  --touch-min: 44px;
+  --touch-comfortable: 48px;
+
+  /* ─── Apple HIG: Typography Scale ─── */
+  --text-caption: 11px;
+  --text-footnote: 13px;
+  --text-body: 16px;
+  --text-title3: 18px;
+  --text-title2: 20px;
+  --text-title1: 24px;
+  --text-large-title: 30px;
 }
 
 /* ─── Light Mode ─── */
@@ -78,6 +91,62 @@ body.light-theme {
   }
   .translate-z-10 {
     transform: translateZ(10px);
+  }
+
+  /* Apple HIG: Minimum 44×44pt touch target */
+  .touch-target {
+    min-height: var(--touch-min);
+    min-width: var(--touch-min);
+  }
+
+  /* ─── Apple HIG: Spacing Utilities (Design Tokens) ─── */
+  .section-padding {
+    padding-top: 4rem;      /* 64px mobile */
+    padding-bottom: 4rem;
+  }
+  .hero-padding {
+    padding-top: 5rem;      /* 80px mobile */
+  }
+  .page-bottom {
+    padding-bottom: 5rem;   /* 80px mobile */
+  }
+  .container-padding {
+    padding-left: 1rem;     /* 16px mobile */
+    padding-right: 1rem;
+  }
+  .card-padding {
+    padding: 1.5rem;        /* 24px mobile */
+  }
+  .card-padding-lg {
+    padding: 2rem;          /* 32px mobile */
+  }
+  @media (min-width: 640px) {
+    .container-padding {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+  @media (min-width: 768px) {
+    .section-padding {
+      padding-top: 6rem;    /* 96px desktop */
+      padding-bottom: 6rem;
+    }
+    .hero-padding {
+      padding-top: 6rem;
+    }
+    .page-bottom {
+      padding-bottom: 8rem; /* 128px desktop */
+    }
+    .container-padding {
+      padding-left: 3rem;
+      padding-right: 3rem;
+    }
+    .card-padding {
+      padding: 2rem;        /* 32px desktop */
+    }
+    .card-padding-lg {
+      padding: 3rem;        /* 48px desktop */
+    }
   }
 
   /* Hide scrollbar but still allow scrolling */

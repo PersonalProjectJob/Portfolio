@@ -52,7 +52,7 @@ export const HeroIntro: React.FC<HeroIntroProps> = ({ onComplete, onNavigate }) 
           <div className="text-white text-xs md:text-sm tracking-[0.2em] font-bold flex flex-col md:flex-row md:items-center gap-1 md:gap-2">
             <span>SON THAO</span> 
             <span className="hidden md:inline text-slate-400 font-normal">|</span>
-            <span className="text-slate-400 font-normal text-[9px] md:text-xs uppercase tracking-[0.15em]">Product Designer / UX - UI Designer</span>
+            <span className="text-slate-400 font-normal text-[11px] md:text-xs uppercase tracking-[0.15em]">Product Designer / UX - UI Designer</span>
           </div>
           <div className="hidden md:flex gap-8 text-xs font-medium tracking-widest text-slate-300">
             <button type="button" onClick={() => onNavigate('projects')} className="hover:text-white transition-colors tracking-widest uppercase">PROJECTS</button>
@@ -76,7 +76,7 @@ export const HeroIntro: React.FC<HeroIntroProps> = ({ onComplete, onNavigate }) 
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
               </svg>
             </span>
-            <span className="text-slate-400 text-[9px] md:text-[10px] tracking-widest uppercase">
+            <span className="text-slate-400 text-[11px] md:text-[10px] tracking-widest uppercase">
               Discover the Portfolio
             </span>
           </button>

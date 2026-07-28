@@ -119,7 +119,7 @@ export const ProjectNailhub: React.FC = () => {
           <motion.div style={{ y: backgroundY }} className="absolute -left-[15%] top-[35%] h-[50vw] w-[50vw] rounded-full bg-teal-500/10 blur-[110px]" />
         </div>
 
-        <div className="container relative z-10 mx-auto px-6 lg:px-12">
+        <div className="container relative z-10 mx-auto">
           <motion.div style={{ opacity: heroOpacity }} className="mx-auto max-w-4xl text-center">
             <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="mb-7 inline-flex items-center gap-2 rounded-full border border-teal-500/25 bg-teal-500/10 px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-teal-500">
               <span className="h-2 w-2 rounded-full bg-teal-500" /> Role-based marketplace
@@ -159,8 +159,8 @@ export const ProjectNailhub: React.FC = () => {
         </div>
       </section>
 
-      <div className="container mx-auto px-6 pb-32 lg:px-12">
-        <motion.section initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-100px' }} variants={fadeInUp} className={`border-t py-24 ${theme.divider}`}>
+      <div className="container mx-auto pb-20 md:pb-32">
+        <motion.section initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-100px' }} variants={fadeInUp} className={`border-t py-16 md:py-24 ${theme.divider}`}>
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-12">
             <div className="lg:col-span-4">
               <p className="mb-4 text-sm font-black uppercase tracking-[0.25em] text-teal-500">01. The Context</p>
@@ -180,7 +180,7 @@ export const ProjectNailhub: React.FC = () => {
           </div>
         </motion.section>
 
-        <motion.section initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-100px' }} variants={fadeInUp} className={`border-t py-24 ${theme.divider}`}>
+        <motion.section initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-100px' }} variants={fadeInUp} className={`border-t py-16 md:py-24 ${theme.divider}`}>
           <div className="mb-12 grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-end">
             <div className="lg:col-span-7">
               <p className="mb-4 text-sm font-black uppercase tracking-[0.25em] text-teal-500">02. Roles & Core Journey</p>
@@ -237,7 +237,7 @@ export const ProjectNailhub: React.FC = () => {
           </div>
         </motion.section>
 
-        <motion.section initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-100px' }} variants={fadeInUp} className={`border-t py-24 ${theme.divider}`}>
+        <motion.section initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-100px' }} variants={fadeInUp} className={`border-t py-16 md:py-24 ${theme.divider}`}>
           <div className="mb-14 text-center">
             <p className="mb-4 text-sm font-black uppercase tracking-[0.25em] text-[#c98d72]">03. Product Decisions</p>
             <h2 className={`text-4xl font-black tracking-tight md:text-5xl ${theme.text}`}>From a screen inventory to a decision system.</h2>
@@ -268,7 +268,7 @@ export const ProjectNailhub: React.FC = () => {
           </div>
         </motion.section>
 
-        <motion.section initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-100px' }} variants={fadeInUp} className={`border-t py-24 ${theme.divider}`}>
+        <motion.section initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-100px' }} variants={fadeInUp} className={`border-t py-16 md:py-24 ${theme.divider}`}>
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-12">
             <div className="lg:col-span-4">
               <p className="mb-4 text-sm font-black uppercase tracking-[0.25em] text-teal-500">04. Delivery Evidence</p>
@@ -298,7 +298,7 @@ export const ProjectNailhub: React.FC = () => {
           </div>
         </motion.section>
 
-        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className={`border-t pt-24 text-center ${theme.divider}`}>
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className={`border-t pt-16 md:pt-24 text-center ${theme.divider}`}>
           <button onClick={() => setGameState('CASE_STUDY_NEXORA')} className={`group inline-flex cursor-pointer items-center gap-4 text-2xl font-black uppercase tracking-tighter transition-colors hover:text-teal-500 md:text-4xl ${theme.text}`}>
             Next Project: Nexora
             <ArrowRightIcon className="h-8 w-8 transition-transform duration-300 group-hover:translate-x-4 md:h-10 md:w-10" />

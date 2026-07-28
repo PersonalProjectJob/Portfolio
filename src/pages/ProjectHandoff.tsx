@@ -31,8 +31,8 @@ export const ProjectHandoff: React.FC = () => {
         <div className={`absolute inset-0 bg-gradient-to-br ${isLightMode ? 'from-sky-100/50 via-transparent to-transparent' : 'from-sky-900/20 via-transparent to-transparent'}`}></div>
       </div>
 
-      <div className="pt-12">
-        <motion.section initial="hidden" animate="visible" variants={fadeInUp} className="mb-20 text-center md:text-left">
+      <div className="pt-20 md:pt-24">
+        <motion.section initial="hidden" animate="visible" variants={fadeInUp} className="mb-12 md:mb-20 text-center md:text-left">
           <span className={`inline-block px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase mb-4 border ${isLightMode ? 'border-sky-200 bg-sky-50 text-sky-700' : 'border-sky-500/30 bg-sky-500/10 text-sky-300'}`}>Hệ thống thiết kế & Bàn giao</span>
           <h1 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-6">
             Thiết kế để <span className="text-sky-500">Triển khai</span>
@@ -42,8 +42,8 @@ export const ProjectHandoff: React.FC = () => {
           </p>
         </motion.section>
 
-        <motion.section initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeInUp} className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-24">
-          <div className={`p-8 rounded-3xl border backdrop-blur-xl ${theme.card} ${theme.glow}`}>
+        <motion.section initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeInUp} className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16 md:mb-24">
+          <div className={`p-6 md:p-8 rounded-3xl border backdrop-blur-xl ${theme.card} ${theme.glow}`}>
             <h3 className="text-2xl font-bold mb-6 flex items-center gap-3"><ComponentIcon/> Tư duy thành phần (Design System)</h3>
             <ul className={`space-y-4 ${theme.textMuted}`}>
               <li className="flex items-start gap-3"><LayersIcon className="w-5 h-5 shrink-0 mt-0.5" /> <span><strong>Design Tokens:</strong> Quản lý tập trung Màu sắc, Kiểu chữ, Khoảng cách (Spacing) và Bo góc (Radius).</span></li>
@@ -53,7 +53,7 @@ export const ProjectHandoff: React.FC = () => {
             </ul>
           </div>
           
-          <div className={`p-8 rounded-3xl border backdrop-blur-xl ${isLightMode ? 'bg-sky-50/50 border-sky-200' : 'bg-sky-900/10 border-sky-500/30'} ${theme.glow}`}>
+          <div className={`p-6 md:p-8 rounded-3xl border backdrop-blur-xl ${isLightMode ? 'bg-sky-50/50 border-sky-200' : 'bg-sky-900/10 border-sky-500/30'} ${theme.glow}`}>
             <h3 className={`text-2xl font-bold mb-6 flex items-center gap-3 ${isLightMode ? 'text-sky-700' : 'text-sky-400'}`}><CodeIcon/> Tư duy bàn giao (Handoff)</h3>
             <ul className={`space-y-4 ${isLightMode ? 'text-sky-900/70' : 'text-sky-200/70'}`}>
               <li className="flex items-start gap-3"><BookOpenIcon className="w-5 h-5 shrink-0 mt-0.5" /> <span><strong>Quy ước đặt tên (Naming Convention):</strong> Tên Layer, Component đồng nhất với thư viện code.</span></li>
@@ -63,7 +63,7 @@ export const ProjectHandoff: React.FC = () => {
           </div>
         </motion.section>
 
-        <motion.section initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeInUp} className="mb-24">
+        <motion.section initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeInUp} className="mb-16 md:mb-24">
           <div className={`p-10 md:p-12 rounded-3xl border bg-gradient-to-br ${isLightMode ? 'from-sky-50 to-blue-50 border-sky-100' : 'from-sky-900/20 to-blue-900/20 border-sky-500/20'} ${theme.glow} text-center`}>
             <h2 className="text-3xl font-black uppercase tracking-tight mb-8">Giá trị mang lại cho dự án</h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
