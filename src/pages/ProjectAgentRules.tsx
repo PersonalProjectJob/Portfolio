@@ -49,7 +49,7 @@ export const ProjectAgentRules: React.FC = () => {
               </blockquote>
             </div>
             <div className="flex items-center justify-center">
-              <img src="/images/case-study/agent_rules_hero.jpg" alt="Tacit Knowledge to Systematic Rules" className="w-full rounded-2xl shadow-xl object-cover max-h-[480px]" />
+              <img src="/images/case-study/agent_rules_hero.jpg" alt="Tacit Knowledge to Systematic Rules" className="w-full rounded-2xl shadow-xl object-contain" />
             </div>
           </div>
         </motion.section>
