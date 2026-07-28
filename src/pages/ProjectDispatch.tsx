@@ -357,7 +357,7 @@ export const ProjectDispatch: React.FC = () => {
                 Workflow giải quyết cực tốt bài toán <strong>"Ai làm gì?"</strong>. Nhưng Agent chỉ làm đúng khi nó hiểu rõ luật lệ. Phần sau, tôi sẽ hé lộ cách xây dựng <strong>"Hiến pháp cho AI"</strong> — bộ quy tắc nghiêm ngặt ép AI phải tuân thủ kỷ luật dự án.
               </p>
               <button onClick={() => handleQuestSelect('agent-rules')} className="inline-flex items-center gap-3 px-8 py-4 bg-emerald-500 hover:bg-emerald-600 text-white rounded-full font-bold transition-colors cursor-pointer">
-                Khám phá Quản trị Tri thức (.agent-rules)
+                Khám phá Quản trị Tri thức
                 <span className="text-xl">→</span>
               </button>
             </div>
