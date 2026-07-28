@@ -1,13 +1,14 @@
 import React from 'react';
 import { useStore } from '../../store/useStore';
 import { CV_PROJECTS } from '../../data/cvData';
+import { Clock } from '../Clock';
 
 interface CaseStudyLayoutProps {
   children: React.ReactNode;
 }
 
 export const CaseStudyLayout: React.FC<CaseStudyLayoutProps> = ({ children }) => {
-  const { isLightMode, setGameState, handleQuestSelect, selectedQuest } = useStore();
+  const { isLightMode, setGameState, handleQuestSelect, selectedQuest, toggleTheme } = useStore();
 
   const theme = {
     bg: isLightMode ? 'bg-slate-50' : 'bg-[#050510]',
@@ -16,6 +17,7 @@ export const CaseStudyLayout: React.FC<CaseStudyLayoutProps> = ({ children }) =>
 
   // Determine prev/next projects
   const currentIndex = CV_PROJECTS.findIndex(p => p.id === selectedQuest);
+  const currentProject = CV_PROJECTS[currentIndex];
   const prevProject = currentIndex > 0 ? CV_PROJECTS[currentIndex - 1] : null;
   const nextProject = currentIndex < CV_PROJECTS.length - 1 ? CV_PROJECTS[currentIndex + 1] : null;
 
@@ -25,20 +27,49 @@ export const CaseStudyLayout: React.FC<CaseStudyLayoutProps> = ({ children }) =>
         className={`sticky top-0 z-50 border-b backdrop-blur-xl ${isLightMode ? 'border-slate-200/80 bg-slate-50/90' : 'border-white/10 bg-[#050510]/90'}`}
         style={{ paddingTop: 'env(safe-area-inset-top)' }}
       >
-        <div className="mx-auto flex min-h-14 w-full max-w-6xl items-center px-4 sm:px-6 md:px-12">
+        <div className="mx-auto flex min-h-16 w-full max-w-6xl items-center justify-between px-4 sm:px-6 md:px-12 py-2 gap-4">
+          {/* Left: Back to Journey */}
           <button
-          type="button"
-          aria-label="Back to project journey"
-          onClick={() => setGameState('PROJECT_JOURNEY')}
-          className={`flex min-h-11 items-center gap-2 rounded-xl border px-4 py-2 text-sm font-bold uppercase tracking-widest transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 ${isLightMode ? 'border-slate-300 bg-white/90 text-orange-600 hover:bg-white focus-visible:ring-offset-slate-50' : 'border-slate-700 bg-slate-900/90 text-slate-200 hover:border-orange-500 hover:text-white focus-visible:ring-offset-[#050510]'}`}
-        >
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-          Back
-        </button>
+            type="button"
+            aria-label="Back to project journey"
+            onClick={() => setGameState('PROJECT_JOURNEY')}
+            className={`flex min-h-10 shrink-0 items-center gap-2 rounded-xl border px-3 md:px-4 py-2 text-xs md:text-sm font-bold uppercase tracking-widest transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 ${isLightMode ? 'border-slate-300 bg-white/90 text-slate-700 hover:text-orange-600 hover:bg-white focus-visible:ring-offset-slate-50' : 'border-slate-700 bg-slate-900/90 text-slate-300 hover:border-orange-500 hover:text-white focus-visible:ring-offset-[#050510]'}`}
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="hidden sm:block"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="sm:hidden"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            <span className="hidden sm:inline">Back</span>
+          </button>
+
+          {/* Center: Case Study Title */}
+          {currentProject && (
+            <div className="hidden md:flex flex-col items-center justify-center flex-1 overflow-hidden px-4">
+              <span className={`text-[10px] font-bold tracking-[0.2em] uppercase mb-0.5 ${isLightMode ? 'text-orange-600' : 'text-orange-400'}`}>Case Study</span>
+              <span className="text-sm font-black tracking-widest uppercase truncate w-full text-center">{currentProject.title}</span>
+            </div>
+          )}
+
+          {/* Right: Clock & Theme Toggle */}
+          <div className={`flex shrink-0 h-11 items-center overflow-hidden rounded-xl border shadow-sm transition-all ${isLightMode ? 'bg-white/90 border-slate-300' : 'bg-slate-800/90 border-slate-700'}`}>
+            <Clock />
+            <div className={`w-[1px] h-3/5 transition-colors ${isLightMode ? 'bg-slate-300' : 'bg-slate-600'}`} />
+            <button 
+              type="button"
+              onClick={toggleTheme}
+              aria-label={isLightMode ? 'Switch to dark mode' : 'Switch to light mode'}
+              className={`w-11 h-full flex items-center justify-center cursor-pointer transition-colors ${isLightMode ? 'text-orange-600 hover:bg-slate-200/50' : 'text-slate-300 hover:text-white hover:bg-slate-700/50'}`}
+              title="Toggle Theme"
+            >
+              {isLightMode ? (
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+              ) : (
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+              )}
+            </button>
+          </div>
         </div>
       </header>
 
-      <div className="relative z-10 mx-auto w-full max-w-6xl px-4 pb-[calc(3rem+env(safe-area-inset-bottom))] sm:px-6 md:px-12 md:pb-32">
+      <div className="relative z-10 mx-auto w-full max-w-6xl px-4 pt-6 md:pt-10 pb-[calc(3rem+env(safe-area-inset-bottom))] sm:px-6 md:px-12 md:pb-32">
         {children}
 
         {/* CTA Footer */}

@@ -112,7 +112,7 @@ export const ProjectNailhub: React.FC = () => {
 
   return (
     <CaseStudyLayout>
-      <section className="relative flex min-h-screen items-center justify-center overflow-hidden pb-16 pt-28">
+      <section className="relative flex min-h-screen items-center justify-center overflow-hidden pb-16">
         <div className="pointer-events-none absolute inset-0">
           <div className={`absolute inset-0 bg-gradient-to-b ${isLightMode ? 'from-[#fff8f3] via-slate-50 to-transparent' : 'from-[#2a1716]/45 via-[#07151a]/25 to-transparent'}`} />
           <motion.div style={{ y: backgroundY }} className="absolute -right-[15%] -top-[25%] h-[65vw] w-[65vw] rounded-full bg-[#c98d72]/15 blur-[120px]" />

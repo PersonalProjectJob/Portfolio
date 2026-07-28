@@ -32,7 +32,7 @@ export const ProjectVlinkpay: React.FC = () => {
         <div className={`absolute inset-0 bg-gradient-to-br ${isLightMode ? 'from-orange-100/50 via-transparent to-transparent' : 'from-orange-900/20 via-transparent to-transparent'}`}></div>
       </div>
 
-      <div className="pt-20 md:pt-24">
+      <div>
         <motion.section initial="hidden" animate="visible" variants={fadeInUp} className="mb-12 md:mb-20 text-center md:text-left">
           <span className={`inline-block px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase mb-4 border ${isLightMode ? 'border-orange-200 bg-orange-50 text-orange-700' : 'border-orange-500/30 bg-orange-500/10 text-orange-300'}`}>{vlinkpayData.about.title}</span>
           <h1 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-6">
