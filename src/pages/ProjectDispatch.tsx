@@ -350,7 +350,7 @@ export const ProjectDispatch: React.FC = () => {
 
         <motion.section initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeInUp} className="mb-20">
           <div className={`rounded-3xl overflow-hidden border ${isLightMode ? 'border-slate-200 bg-slate-50' : 'border-slate-800 bg-slate-900/50'} relative`}>
-            <img src="/images/case-study/farewell_team.jpg" alt="Team collaboration" className="w-full h-64 md:h-80 object-cover object-center" />
+            <img src="/images/case-study/dispatch_farewell.jpg" alt="Dispatch Command Center" className="w-full h-64 md:h-80 object-cover object-center" />
             <div className="p-10 md:p-16 text-center max-w-4xl mx-auto">
               <h2 className="text-3xl md:text-4xl font-black mb-6">Điều phối xịn mới chỉ là một nửa câu chuyện!</h2>
               <p className={`text-lg max-w-2xl mx-auto mb-10 ${theme.textMuted}`}>
