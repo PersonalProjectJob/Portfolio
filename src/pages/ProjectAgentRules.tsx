@@ -35,17 +35,23 @@ export const ProjectAgentRules: React.FC = () => {
       <div className="pt-20 md:pt-24 relative z-10 max-w-5xl mx-auto px-4 md:px-8">
         {/* 01. TỔNG QUAN */}
         <motion.section initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeInUp} className="mb-16 md:mb-24">
-          <p className="text-sm font-bold tracking-widest uppercase mb-4 text-indigo-500">01. TỔNG QUAN</p>
-          <h1 className="text-4xl md:text-5xl font-black tracking-tight mb-6 leading-tight">
-            Biến "Kiến thức ngầm" thành Hệ thống vận hành chuẩn cho AI Agent
-          </h1>
-          <p className={`text-lg md:text-xl ${theme.textMuted} mb-8 leading-relaxed`}>
-            Làm sao để một đội AI Agent biết phối hợp trơn tru như một team thật? Tôi đã đúc kết những quyết định thủ công (vốn chỉ nằm trong đầu con người) thành một hệ thống rule chặt chẽ — với luồng điều phối, vòng đời chuẩn và các chốt chặn rõ ràng.
-          </p>
-          <blockquote className={`p-6 border-l-4 border-indigo-500 ${theme.cardHighlight} rounded-r-xl italic ${theme.text} mb-12 text-lg`}>
-            Mục tiêu cốt lõi không phải là phó mặc mọi thứ cho AI tự tung tự tác. Mục tiêu là đảm bảo mỗi Agent nhận đúng context, làm đúng phần việc của mình và bàn giao kết quả sạch sẽ cho khâu tiếp theo.
-          </blockquote>
-          <img src="/images/case-study/data_core.jpg" alt="Agent Rules Data Core" className="w-full rounded-2xl shadow-xl border border-slate-200 dark:border-slate-800" />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+            <div>
+              <p className="text-sm font-bold tracking-widest uppercase mb-4 text-indigo-500">01. TỔNG QUAN</p>
+              <h1 className="text-4xl md:text-5xl font-black tracking-tight mb-6 leading-tight">
+                Biến "Kiến thức ngầm" thành Hệ thống vận hành chuẩn cho AI Agent
+              </h1>
+              <p className={`text-lg md:text-xl ${theme.textMuted} mb-8 leading-relaxed`}>
+                Làm sao để một đội AI Agent biết phối hợp trơn tru như một team thật? Tôi đã đúc kết những quyết định thủ công (vốn chỉ nằm trong đầu con người) thành một hệ thống rule chặt chẽ — với luồng điều phối, vòng đời chuẩn và các chốt chặn rõ ràng.
+              </p>
+              <blockquote className={`p-6 border-l-4 border-indigo-500 ${theme.cardHighlight} rounded-r-xl italic ${theme.text} text-lg`}>
+                Mục tiêu cốt lõi không phải là phó mặc mọi thứ cho AI tự tung tự tác. Mục tiêu là đảm bảo mỗi Agent nhận đúng context, làm đúng phần việc của mình và bàn giao kết quả sạch sẽ cho khâu tiếp theo.
+              </blockquote>
+            </div>
+            <div className="flex items-center justify-center">
+              <img src="/images/case-study/agent_rules_hero.jpg" alt="Tacit Knowledge to Systematic Rules" className="w-full rounded-2xl shadow-xl object-cover max-h-[480px]" />
+            </div>
+          </div>
         </motion.section>
 
         {/* 02. QUY TRÌNH BAN ĐẦU */}
