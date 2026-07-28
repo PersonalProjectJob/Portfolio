@@ -134,6 +134,42 @@ export const CV_PROJECTS: ProjectData[] = [
       { label: 'Giao dịch', value: 'Rõ ràng' }
     ],
     x: 850, y: 300
+  },
+  {
+    id: 'dispatch',
+    title: 'Dispatch Workflow',
+    category: 'AI Architecture',
+    role: 'Product Designer + AI Architect',
+    context: 'Hệ thống điều phối AI Agent: từ quy trình thủ công đến hệ thống giao việc có kiểm soát.',
+    solution: [
+      'Phân tích quy trình cũ, xác định điểm gãy (bottleneck)',
+      'Thiết kế phân luồng Route A/B/C theo mức độ phức tạp',
+      'Xây dựng hệ thống bàn giao thiết kế (Handoff Contract)',
+      'Kiểm soát scope và evidence cho từng tác vụ AI'
+    ],
+    results: [
+      { label: 'Tự động hóa', value: 'Cao' },
+      { label: 'Kiểm soát', value: 'Chặt' }
+    ],
+    x: 400, y: 200
+  },
+  {
+    id: 'agent-rules',
+    title: 'Agent Rules',
+    category: 'AI Governance',
+    role: 'AI Workflow Architect',
+    context: 'Biến kiến thức ngầm của team thành hệ thống vận hành chuẩn cho AI Agent.',
+    solution: [
+      'Xây dựng kiến trúc tri thức (.agent-rules)',
+      'Phân luồng task theo Micro Task và Full User Story',
+      'Thiết kế mô hình Work Item và kiểm soát Issue',
+      'Đảm bảo tính liên tục và evidence cho mọi tác vụ'
+    ],
+    results: [
+      { label: 'Tri thức', value: 'Chuẩn hóa' },
+      { label: 'AI Agent', value: 'Tự vận hành' }
+    ],
+    x: 200, y: 400
   }
 ];
 

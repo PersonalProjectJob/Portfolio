@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-export type GameState = 'SELECT_PROFILE' | 'SKILL_MATRIX' | 'PROJECT_JOURNEY' | 'CASE_BRIEF' | 'CASE_STUDY_CRYPTOMAP' | 'CASE_STUDY_NAILHUB' | 'CASE_STUDY_NEXORA' | 'CASE_STUDY_VLINKPAY' | 'CASE_STUDY_AIPROCESS' | 'CASE_STUDY_HANDOFF' | 'CASE_STUDY_FINTECHFIT' | 'EXPERIENCE' | 'PROCESS';
+export type GameState = 'SELECT_PROFILE' | 'SKILL_MATRIX' | 'PROJECT_JOURNEY' | 'CASE_BRIEF' | 'CASE_STUDY_CRYPTOMAP' | 'CASE_STUDY_NAILHUB' | 'CASE_STUDY_NEXORA' | 'CASE_STUDY_VLINKPAY' | 'CASE_STUDY_AIPROCESS' | 'CASE_STUDY_HANDOFF' | 'CASE_STUDY_FINTECHFIT' | 'CASE_STUDY_DISPATCH' | 'CASE_STUDY_AGENTRULES' | 'EXPERIENCE' | 'PROCESS';
 
 interface AppState {
   gameState: GameState;
@@ -25,6 +25,8 @@ const QUEST_STATE_MAP: Record<string, GameState> = {
   'ai-process': 'CASE_STUDY_AIPROCESS',
   'handoff': 'CASE_STUDY_HANDOFF',
   'fintech-fit': 'CASE_STUDY_FINTECHFIT',
+  'dispatch': 'CASE_STUDY_DISPATCH',
+  'agent-rules': 'CASE_STUDY_AGENTRULES',
 };
 
 export const useStore = create<AppState>((set) => ({

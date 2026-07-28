@@ -28,6 +28,8 @@ const ProjectVlinkpay = lazy(() => import('./pages/ProjectVlinkpay').then(m => (
 const ProjectAIProcess = lazy(() => import('./pages/ProjectAIProcess').then(m => ({ default: m.ProjectAIProcess })));
 const ProjectHandoff = lazy(() => import('./pages/ProjectHandoff').then(m => ({ default: m.ProjectHandoff })));
 const ProjectFintechFit = lazy(() => import('./pages/ProjectFintechFit').then(m => ({ default: m.ProjectFintechFit })));
+const ProjectDispatch = lazy(() => import('./pages/ProjectDispatch').then(m => ({ default: m.ProjectDispatch })));
+const ProjectAgentRules = lazy(() => import('./pages/ProjectAgentRules').then(m => ({ default: m.ProjectAgentRules })));
 
 // Route map: GameState → lazy component
 const ROUTES: Record<GameState, React.LazyExoticComponent<React.FC>> = {
@@ -42,6 +44,8 @@ const ROUTES: Record<GameState, React.LazyExoticComponent<React.FC>> = {
   CASE_STUDY_AIPROCESS: ProjectAIProcess,
   CASE_STUDY_HANDOFF: ProjectHandoff,
   CASE_STUDY_FINTECHFIT: ProjectFintechFit,
+  CASE_STUDY_DISPATCH: ProjectDispatch,
+  CASE_STUDY_AGENTRULES: ProjectAgentRules,
   EXPERIENCE: GameExperienceTimeline,
   PROCESS: GameDesignProcess,
 };
