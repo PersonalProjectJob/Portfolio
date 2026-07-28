@@ -32,8 +32,8 @@ const ProjectFintechFit = lazy(() => import('./pages/ProjectFintechFit').then(m 
 const ProjectDispatch = lazy(() => import('./pages/ProjectDispatch').then(m => ({ default: m.ProjectDispatch })));
 const ProjectAgentRules = lazy(() => import('./pages/ProjectAgentRules').then(m => ({ default: m.ProjectAgentRules })));
 
-// Route map: GameState → lazy component
-const ROUTES: Record<GameState, React.LazyExoticComponent<React.FC>> = {
+// Route map: GameState → lazy component (HERO_LANDING handled separately)
+const ROUTES: Partial<Record<GameState, React.LazyExoticComponent<React.FC>>> = {
   SELECT_PROFILE: GameCharacterSelect,
   SKILL_MATRIX: GameCharacterStats,
   PROJECT_JOURNEY: GameWorldMap,
@@ -53,9 +53,7 @@ const ROUTES: Record<GameState, React.LazyExoticComponent<React.FC>> = {
 
 function App() {
   const { gameState, setGameState, isLightMode, syncFromURL } = useStore();
-  // Auto-boot: skip HeroIntro if deep link (URL path ≠ /)
-  const isDeepLink = window.location.pathname !== '/' && window.location.pathname !== '';
-  const [booted, setBooted] = useState(isDeepLink);
+  const isHero = gameState === 'HERO_LANDING';
   const [landingTarget, setLandingTarget] = useState<'about' | 'contact' | null>(null);
   const mainScrollRef = useRef<HTMLDivElement>(null);
 
@@ -75,7 +73,6 @@ function App() {
   useEffect(() => {
     const handlePopState = () => {
       syncFromURL();
-      setBooted(true);
     };
     window.addEventListener('popstate', handlePopState);
     return () => window.removeEventListener('popstate', handlePopState);
@@ -88,7 +85,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (!booted || !landingTarget || gameState !== 'SELECT_PROFILE') return;
+    if (isHero || !landingTarget || gameState !== 'SELECT_PROFILE') return;
 
     const targetId = landingTarget === 'about' ? 'portfolio-about' : 'portfolio-contact';
     let attempts = 0;
@@ -109,26 +106,18 @@ function App() {
     }, 50);
 
     return () => window.clearInterval(timer);
-  }, [booted, gameState, landingTarget]);
+  }, [isHero, gameState, landingTarget]);
 
   const handleLandingNavigation = (destination: 'projects' | 'about' | 'services' | 'contact') => {
-    if (destination === 'projects') {
-      setLandingTarget(null);
-      setGameState('PROJECT_JOURNEY');
-    } else if (destination === 'services') {
-      setLandingTarget(null);
-      setGameState('PROCESS');
-    } else {
+    setGameState(destination === 'projects' ? 'PROJECT_JOURNEY' : destination === 'services' ? 'PROCESS' : 'SELECT_PROFILE');
+    if (destination === 'about' || destination === 'contact') {
       setLandingTarget(destination);
-      setGameState('SELECT_PROFILE');
     }
-
-    setBooted(true);
   };
 
   const CurrentPage = ROUTES[gameState];
   const isCaseStudy = gameState.startsWith('CASE_STUDY_');
-  const currentPageContent = (
+  const currentPageContent = CurrentPage ? (
     <ErrorBoundary>
       <Suspense fallback={<LoadingSkeleton />}>
         <AnimatePresence mode="wait">
@@ -136,13 +125,13 @@ function App() {
         </AnimatePresence>
       </Suspense>
     </ErrorBoundary>
-  );
+  ) : null;
 
   return (
     <>
     {/* Hero Intro — CEO Level Glassmorphism Landing Page */}
     <AnimatePresence>
-      {!booted && <HeroIntro onComplete={() => setBooted(true)} onNavigate={handleLandingNavigation} />}
+      {isHero && <HeroIntro onComplete={() => setGameState('SELECT_PROFILE')} onNavigate={handleLandingNavigation} />}
     </AnimatePresence>
 
     {isCaseStudy ? (
@@ -223,7 +212,7 @@ function App() {
       </AnimatePresence>
 
       {/* Header: Brand + Clock + Theme Toggle */}
-      <DesktopHeader onLogoClick={() => setBooted(false)} />
+      <DesktopHeader onLogoClick={() => setGameState('HERO_LANDING')} />
 
       {/* Cosmic Navbar — Mobile only (Bottom Tab Bar, Apple HIG compliant) */}
       <MobileNavigation />

@@ -1,11 +1,12 @@
 import { create } from 'zustand';
 
-export type GameState = 'SELECT_PROFILE' | 'SKILL_MATRIX' | 'PROJECT_JOURNEY' | 'CASE_BRIEF' | 'CASE_STUDY_CRYPTOMAP' | 'CASE_STUDY_NAILHUB' | 'CASE_STUDY_NEXORA' | 'CASE_STUDY_VLINKPAY' | 'CASE_STUDY_AIPROCESS' | 'CASE_STUDY_HANDOFF' | 'CASE_STUDY_FINTECHFIT' | 'CASE_STUDY_DISPATCH' | 'CASE_STUDY_AGENTRULES' | 'EXPERIENCE' | 'PROCESS';
+export type GameState = 'HERO_LANDING' | 'SELECT_PROFILE' | 'SKILL_MATRIX' | 'PROJECT_JOURNEY' | 'CASE_BRIEF' | 'CASE_STUDY_CRYPTOMAP' | 'CASE_STUDY_NAILHUB' | 'CASE_STUDY_NEXORA' | 'CASE_STUDY_VLINKPAY' | 'CASE_STUDY_AIPROCESS' | 'CASE_STUDY_HANDOFF' | 'CASE_STUDY_FINTECHFIT' | 'CASE_STUDY_DISPATCH' | 'CASE_STUDY_AGENTRULES' | 'EXPERIENCE' | 'PROCESS';
 
 // --- URL ↔ State mapping ---
 
 const STATE_TO_URL: Record<GameState, string> = {
-  SELECT_PROFILE: '/',
+  HERO_LANDING: '/',
+  SELECT_PROFILE: '/profile',
   SKILL_MATRIX: '/skills',
   PROJECT_JOURNEY: '/projects',
   CASE_BRIEF: '/brief',
@@ -24,7 +25,8 @@ const STATE_TO_URL: Record<GameState, string> = {
 
 // Reverse lookup: URL path → { gameState, selectedQuest? }
 const URL_TO_STATE: Record<string, { gameState: GameState; selectedQuest?: string }> = {
-  '/': { gameState: 'SELECT_PROFILE' },
+  '/': { gameState: 'HERO_LANDING' },
+  '/profile': { gameState: 'SELECT_PROFILE' },
   '/skills': { gameState: 'SKILL_MATRIX' },
   '/projects': { gameState: 'PROJECT_JOURNEY' },
   '/brief': { gameState: 'CASE_BRIEF' },
@@ -48,7 +50,7 @@ export function resolveStateFromURL(): { gameState: GameState; selectedQuest: st
   if (match) {
     return { gameState: match.gameState, selectedQuest: match.selectedQuest ?? null };
   }
-  return { gameState: 'SELECT_PROFILE', selectedQuest: null };
+  return { gameState: 'HERO_LANDING', selectedQuest: null };
 }
 
 /** Push URL to browser history without triggering popstate */
