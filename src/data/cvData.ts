@@ -27,7 +27,7 @@ export const CV_PROJECTS: ProjectData[] = [
       { label: 'Users', value: '8K+' },
       { label: 'Search Time', value: '-40%' }
     ],
-    x: 500, y: 300
+    x: 200, y: 350
   },
   {
     id: 'nailhub',
@@ -45,7 +45,7 @@ export const CV_PROJECTS: ProjectData[] = [
       { label: 'Scope', value: 'Rõ ràng' },
       { label: 'Handoff', value: 'Chi tiết' }
     ],
-    x: 300, y: 500
+    x: 200, y: 550
   },
   {
     id: 'vlinkpay',
@@ -63,7 +63,7 @@ export const CV_PROJECTS: ProjectData[] = [
       { label: 'Minh bạch', value: 'Cao' },
       { label: 'Trải nghiệm', value: 'An toàn' }
     ],
-    x: 700, y: 450
+    x: 500, y: 350
   },
   {
     id: 'nexora',
@@ -81,7 +81,7 @@ export const CV_PROJECTS: ProjectData[] = [
       { label: 'Workflow', value: 'Liền mạch' },
       { label: 'MVP', value: 'Có hệ thống' }
     ],
-    x: 600, y: 650
+    x: 500, y: 550
   },
   {
     id: 'ai-process',
@@ -98,7 +98,7 @@ export const CV_PROJECTS: ProjectData[] = [
       { label: 'Tốc độ', value: 'Nhanh' },
       { label: 'Kiểm soát', value: 'Cao' }
     ],
-    x: 800, y: 700
+    x: 720, y: 350
   },
   {
     id: 'handoff',
@@ -116,7 +116,7 @@ export const CV_PROJECTS: ProjectData[] = [
       { label: 'Frontend', value: 'Dễ Code' },
       { label: 'Bảo trì', value: 'Tốt' }
     ],
-    x: 950, y: 550
+    x: 720, y: 550
   },
   {
     id: 'fintech-fit',
@@ -133,7 +133,7 @@ export const CV_PROJECTS: ProjectData[] = [
       { label: 'Bảo mật', value: 'Tin cậy' },
       { label: 'Giao dịch', value: 'Rõ ràng' }
     ],
-    x: 850, y: 300
+    x: 900, y: 400
   },
   {
     id: 'dispatch',
@@ -151,7 +151,7 @@ export const CV_PROJECTS: ProjectData[] = [
       { label: 'Tự động hóa', value: 'Cao' },
       { label: 'Kiểm soát', value: 'Chặt' }
     ],
-    x: 400, y: 200
+    x: 350, y: 150
   },
   {
     id: 'agent-rules',
@@ -169,7 +169,7 @@ export const CV_PROJECTS: ProjectData[] = [
       { label: 'Tri thức', value: 'Chuẩn hóa' },
       { label: 'AI Agent', value: 'Tự vận hành' }
     ],
-    x: 200, y: 400
+    x: 550, y: 150
   }
 ];
 
