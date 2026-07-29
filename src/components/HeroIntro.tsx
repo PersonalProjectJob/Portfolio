@@ -52,7 +52,9 @@ export const HeroIntro: React.FC<HeroIntroProps> = ({ onComplete, onNavigate }) 
         {/* Top Navbar */}
         <div className="flex justify-between items-center w-full pointer-events-auto">
           <div className="text-white text-xs md:text-sm tracking-[0.2em] font-bold flex flex-row items-center gap-3">
-            <img src="/images/logo.png" alt="Logo" className="w-8 h-8 object-contain drop-shadow-[0_0_8px_rgba(249,115,22,0.5)]" />
+            <div className="w-8 h-8 md:w-9 md:h-9 relative flex items-center justify-center shrink-0">
+              <img src="/images/logo.png" alt="Logo" className="w-full h-full object-contain scale-[1.3] drop-shadow-[0_0_8px_rgba(249,115,22,0.5)]" />
+            </div>
             <div className="flex flex-col md:flex-row md:items-center gap-1 md:gap-2">
               <span>SON THAO</span> 
               <span className="hidden md:inline text-slate-400 font-normal">|</span>
