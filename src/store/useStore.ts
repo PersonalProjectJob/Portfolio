@@ -88,6 +88,7 @@ interface AppState {
   selectedQuest: string | null;
   isLightMode: boolean;
   isManualTheme: boolean;
+  language: 'vi' | 'en';
   
   // Actions
   setGameState: (state: GameState) => void;
@@ -96,6 +97,7 @@ interface AppState {
   setIsManualTheme: (isManual: boolean) => void;
   toggleTheme: () => void;
   handleQuestSelect: (questId: string) => void;
+  setLanguage: (lang: 'vi' | 'en') => void;
   /** Sync state from URL (used by popstate listener) — does NOT push history */
   syncFromURL: () => void;
 }
@@ -107,6 +109,7 @@ export const useStore = create<AppState>((set) => ({
   selectedQuest: initialState.selectedQuest,
   isLightMode: false,
   isManualTheme: false,
+  language: (typeof window !== 'undefined' && localStorage.getItem('portfolio-lang') === 'en' ? 'en' : 'vi') as 'vi' | 'en',
 
   setGameState: (state) => {
     pushURL(state);
@@ -133,5 +136,10 @@ export const useStore = create<AppState>((set) => ({
   syncFromURL: () => {
     const resolved = resolveStateFromURL();
     set({ gameState: resolved.gameState, selectedQuest: resolved.selectedQuest });
+  },
+
+  setLanguage: (lang) => {
+    localStorage.setItem('portfolio-lang', lang);
+    set({ language: lang });
   },
 }));

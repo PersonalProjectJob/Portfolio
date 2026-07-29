@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CV_PROJECTS } from '../data/cvData';
 import { useStore } from '../store/useStore';
+import { LanguageToggle } from './LanguageToggle';
 
 export const GameWorldMap: React.FC = () => {
   const { isLightMode, setGameState, handleQuestSelect } = useStore();
@@ -21,11 +22,14 @@ export const GameWorldMap: React.FC = () => {
       transition={{ duration: 0.25 }}
       className="absolute inset-0 z-10 overflow-hidden"
     >
-       <div className="absolute top-24 left-10 z-20">
+       <div className="absolute top-24 left-10 z-20 flex items-center gap-3">
           <button onClick={() => setGameState('SKILL_MATRIX')} className={`premium-button px-6 py-3 text-sm flex items-center gap-2 border transition-all ${isLightMode ? 'bg-white text-slate-900 border-slate-200 hover:bg-slate-50' : 'bg-slate-900 text-slate-100 border-slate-700 hover:bg-slate-800'}`}>
              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
              Back to Profile
           </button>
+          <div className={`h-10 flex items-center rounded-xl border overflow-hidden ${isLightMode ? 'bg-white/90 border-slate-200' : 'bg-slate-900/90 border-slate-700'}`}>
+            <LanguageToggle />
+          </div>
        </div>
 
        <div className="absolute top-24 right-10 z-20 text-right pointer-events-none">

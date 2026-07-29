@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { LanguageToggle } from './LanguageToggle';
 
 interface HeroIntroProps {
   onComplete: () => void;
@@ -54,11 +55,14 @@ export const HeroIntro: React.FC<HeroIntroProps> = ({ onComplete, onNavigate }) 
             <span className="hidden md:inline text-slate-400 font-normal">|</span>
             <span className="text-slate-400 font-normal text-[11px] md:text-xs uppercase tracking-[0.15em]">Product Designer / UX - UI Designer</span>
           </div>
-          <div className="hidden md:flex gap-8 text-xs font-medium tracking-widest text-slate-300">
+          <div className="hidden md:flex gap-8 text-xs font-medium tracking-widest text-slate-300 items-center">
             <button type="button" onClick={() => onNavigate('projects')} className="hover:text-white transition-colors tracking-widest uppercase">PROJECTS</button>
             <button type="button" onClick={() => onNavigate('about')} className="hover:text-white transition-colors tracking-widest uppercase">ABOUT</button>
             <button type="button" onClick={() => onNavigate('services')} className="hover:text-white transition-colors tracking-widest uppercase">SERVICES</button>
             <button type="button" onClick={() => onNavigate('contact')} className="hover:text-white transition-colors tracking-widest uppercase">CONTACT</button>
+            <div className="h-8 flex items-center rounded-lg border border-white/20 bg-white/5 backdrop-blur-sm overflow-hidden">
+              <LanguageToggle />
+            </div>
           </div>
         </div>
 
