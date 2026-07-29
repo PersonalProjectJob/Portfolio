@@ -40,6 +40,8 @@ export const ZoomableImage: React.FC<ZoomableImageProps> = ({ src, alt = '', cla
       <img
         src={src}
         alt={alt}
+        loading="lazy"
+        decoding="async"
         className={`${className} cursor-zoom-in transition-transform duration-300 hover:scale-[1.01] hover:shadow-lg`}
         onClick={() => setIsOpen(true)}
       />
