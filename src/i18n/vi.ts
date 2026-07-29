@@ -751,7 +751,7 @@ export const vi: Record<string, string> = {
   'hero.missingBg': 'Thiếu ảnh nền',
   'hero.missingBgDesc': 'Vui lòng lưu ảnh tải lên của bạn với tên `hero-bg.png` vào thư mục `public`.',
   'hero.enterWork': 'Khám phá Portfolio',
-  'hero.discover': 'Khám phá Portfolio',
+  'hero.discover': 'Xem các Case Study',
 
   // --- Phase 2: Layout ---
   'layout.backToMap': 'Quay lại Bản đồ',
