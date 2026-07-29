@@ -21,7 +21,7 @@ export const Clock = () => {
   }, [currentTime]);
 
   return (
-    <div className={`px-4 flex items-center justify-center font-mono font-bold text-xs md:text-sm tracking-wider h-full transition-colors ${isLightMode ? 'text-slate-800' : 'text-slate-200'}`}>
+    <div className={`px-2.5 py-1.5 rounded-md flex items-center justify-center font-mono font-bold text-[11px] tracking-wider transition-colors ${isLightMode ? 'text-slate-800' : 'text-slate-200'}`}>
       {currentTime.toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit' })}
     </div>
   );

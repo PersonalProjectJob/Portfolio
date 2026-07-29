@@ -116,7 +116,7 @@ export const GameCharacterStats: React.FC = () => {
                          name="VS Code" 
                          category={t("skills.tool.development")} 
                          isLightMode={isLightMode}
-                         icon={<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 32 32"><path fill="#0065A9" d="M22.61,3.48,5.43,16l-5-4.22L0,12.35v7.19l.39.49,5-4L22.61,28.52l9.39-3.79v-17.5Z" /><path fill="#007ACC" d="M22.61,3.48,5.43,16,22.61,28.52Z" /><path fill="#1F9CF0" d="M22.61,16l9.39-7.22V3.48l-9.39-3Z" /><path fill="#0065A9" d="M22.61,16V28.52l9.39-3.79V19.45Z" /></svg>} 
+                         icon={<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 100 100"><mask id="vsm"><rect width="100" height="100" fill="#fff"/></mask><g mask="url(#vsm)"><path d="M74.7 100c1.3 0 2.6-.3 3.7-1l17.1-8.5c2.8-1.4 4.5-4.2 4.5-7.2V16.7c0-3-1.7-5.8-4.5-7.2L78.4 1c-2.1-1-4.5-.8-6.4.3L29.2 38.5 12.1 25.4c-1.7-1.3-4-.1-4-.1L1.4 31.5c-1.9 1.5-1.9 4.4 0 5.9L16 50 1.4 62.6c-1.9 1.5-1.9 4.4 0 5.9l6.7 6.2s2.3 1.2 4-.1L29.2 61.5l42.8 37.2c1.6 1 3.5 1.3 5.4 1.3h-2.7zM75 27.2L45.7 50 75 72.8V27.2z" fill="#007ACC"/></g></svg>} 
                       />
                       <ToolCard 
                          name="React JS" 

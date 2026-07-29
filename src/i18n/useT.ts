@@ -11,6 +11,9 @@ const dictionaries = { vi, en } as const;
  * Usage:
  *   const t = useT();
  *   <h1>{t('dispatch.hero.title')}</h1>
+ * 
+ * For keys containing HTML (e.g. <strong>, <code>, <em>):
+ *   <span dangerouslySetInnerHTML={{ __html: t('key.with.html') }} />
  */
 export function useT() {
   const language = useStore((s) => s.language);

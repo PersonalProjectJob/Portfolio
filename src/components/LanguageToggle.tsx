@@ -2,22 +2,28 @@ import React from 'react';
 import { useStore } from '../store/useStore';
 
 /**
- * Language toggle pill: VN | EN
- * Compact design to fit inside header control groups.
+ * Language toggle chip: [VN] [EN]
+ * Chip design with active background indicator.
  */
 export const LanguageToggle: React.FC = () => {
   const { language, setLanguage, isLightMode } = useStore();
 
   return (
-    <div className="flex items-center h-full text-[11px] font-bold tracking-wider">
+    <div
+      className={`flex items-center gap-0.5 rounded-lg p-0.5 transition-colors ${
+        isLightMode
+          ? 'bg-slate-100 border border-slate-200'
+          : 'bg-slate-800/80 border border-slate-700'
+      }`}
+    >
       <button
         type="button"
         onClick={() => setLanguage('vi')}
-        className={`px-2.5 h-full flex items-center justify-center cursor-pointer transition-all ${
+        className={`relative px-3 py-2 rounded-md text-xs font-bold tracking-wider cursor-pointer transition-all duration-200 ${
           language === 'vi'
             ? isLightMode
-              ? 'text-orange-600'
-              : 'text-white'
+              ? 'bg-white text-orange-600 shadow-sm'
+              : 'bg-slate-700 text-white shadow-sm'
             : isLightMode
               ? 'text-slate-400 hover:text-slate-600'
               : 'text-slate-500 hover:text-slate-300'
@@ -26,15 +32,14 @@ export const LanguageToggle: React.FC = () => {
       >
         VN
       </button>
-      <div className={`w-[1px] h-3/5 transition-colors ${isLightMode ? 'bg-slate-300' : 'bg-slate-600'}`} />
       <button
         type="button"
         onClick={() => setLanguage('en')}
-        className={`px-2.5 h-full flex items-center justify-center cursor-pointer transition-all ${
+        className={`relative px-3 py-2 rounded-md text-xs font-bold tracking-wider cursor-pointer transition-all duration-200 ${
           language === 'en'
             ? isLightMode
-              ? 'text-orange-600'
-              : 'text-white'
+              ? 'bg-white text-orange-600 shadow-sm'
+              : 'bg-slate-700 text-white shadow-sm'
             : isLightMode
               ? 'text-slate-400 hover:text-slate-600'
               : 'text-slate-500 hover:text-slate-300'

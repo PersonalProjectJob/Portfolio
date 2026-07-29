@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { LanguageToggle } from './LanguageToggle';
 import { useT } from '../i18n/useT';
 
 interface HeroIntroProps {
@@ -62,9 +61,6 @@ export const HeroIntro: React.FC<HeroIntroProps> = ({ onComplete, onNavigate }) 
             <button type="button" onClick={() => onNavigate('about')} className="hover:text-white transition-colors tracking-widest uppercase">{t('ui.about')}</button>
             <button type="button" onClick={() => onNavigate('services')} className="hover:text-white transition-colors tracking-widest uppercase">{t('ui.services')}</button>
             <button type="button" onClick={() => onNavigate('contact')} className="hover:text-white transition-colors tracking-widest uppercase">{t('ui.contact')}</button>
-            <div className="h-8 flex items-center rounded-lg border border-white/20 bg-white/5 backdrop-blur-sm overflow-hidden">
-              <LanguageToggle />
-            </div>
           </div>
         </div>
 

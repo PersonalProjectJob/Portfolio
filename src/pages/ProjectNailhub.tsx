@@ -92,7 +92,7 @@ const productDecisions = [
 ];
 
 export const ProjectNailhub: React.FC = () => {
-  const { isLightMode, setGameState } = useStore();
+  const { isLightMode, } = useStore();
   const [activeRole, setActiveRole] = useState<RoleId>('technician');
   const { scrollY } = useScroll();
   const backgroundY = useTransform(scrollY, [0, 1000], [0, 160]);
@@ -271,36 +271,22 @@ export const ProjectNailhub: React.FC = () => {
         </motion.section>
 
         <motion.section initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-100px' }} variants={fadeInUp} className={`border-t py-16 md:py-24 ${theme.divider}`}>
-          <div className="grid grid-cols-1 gap-12 lg:grid-cols-12">
-            <div className="lg:col-span-4">
-              <p className="mb-4 text-sm font-black uppercase tracking-[0.25em] text-teal-500">{t('nailhub.evidence.tag')}</p>
-              <h2 className={`text-3xl font-black tracking-tight md:text-4xl ${theme.text}`}>{t('nailhub.evidence.title')}</h2>
-              <p className={`mt-5 text-sm leading-relaxed ${theme.textMuted}`}>{t('nailhub.evidence.desc')}</p>
+          <div className={`relative overflow-hidden rounded-[2rem] border shadow-2xl mx-auto max-w-5xl ${isLightMode ? 'border-slate-200' : 'border-white/10'}`}>
+            <div className="absolute inset-0 z-0">
+              <img src="/images/case-study/nailhub_figma_teaser.jpg" alt="Nailhub Figma System" className="w-full h-full object-cover opacity-60 dark:opacity-40" />
+              <div className={`absolute inset-0 bg-gradient-to-t ${isLightMode ? 'from-white/95 via-white/80 to-white/10' : 'from-slate-950/95 via-slate-950/80 to-slate-950/10'}`}></div>
             </div>
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:col-span-8">
-              {[0, 1, 2, 3].map((index) => (
-                <div key={index} className={`rounded-2xl border p-6 ${theme.card}`}>
-                  <CheckCircleIcon className="h-5 w-5 text-teal-500" />
-                  <h3 className={`mt-4 text-lg font-black ${theme.text}`}>{t(`nailhub.evidence.item.${index}.title`)}</h3>
-                  <p className={`mt-2 text-sm leading-relaxed ${theme.textMuted}`}>{t(`nailhub.evidence.item.${index}.desc`)}</p>
-                </div>
-              ))}
+            
+            <div className="relative z-10 px-8 py-16 md:px-16 md:py-20 text-center flex flex-col items-center justify-center">
+              <h2 className={`text-3xl md:text-5xl font-black tracking-tight mb-4 ${theme.text}`}>{t('nailhub.figma.title')}</h2>
+              <p className={`text-sm md:text-lg max-w-2xl leading-relaxed mb-8 font-medium ${theme.textMuted}`}>{t('nailhub.figma.desc')}</p>
+              
+              <a href="https://www.figma.com/design/OjcQOoxXKckjMZT6DqQ6TN/The-Nail-Hub?node-id=959-17584&t=xnd33yPz496FwEgE-1" target="_blank" rel="noopener noreferrer" className={`inline-flex items-center gap-3 rounded-xl px-8 py-4 font-black transition-all hover:scale-105 shadow-xl ${isLightMode ? 'bg-[#0d9488] text-white shadow-teal-500/25 hover:bg-[#0f766e]' : 'bg-teal-500 text-slate-950 shadow-teal-500/20 hover:bg-teal-400'}`}>
+                <FigmaIcon className="h-6 w-6" /> {t('nailhub.evidence.figma')}
+              </a>
             </div>
-          </div>
-
-          <div className="mt-10 text-center">
-            <a href="https://www.figma.com/design/OjcQOoxXKckjMZT6DqQ6TN/The-Nail-Hub?node-id=959-17584&t=xnd33yPz496FwEgE-1" target="_blank" rel="noopener noreferrer" className={`inline-flex items-center gap-2 rounded-xl px-6 py-3 font-black transition-all ${isLightMode ? 'bg-teal-600 text-white hover:bg-teal-700' : 'border border-teal-400/30 bg-teal-400/10 text-teal-300 hover:bg-teal-400 hover:text-slate-950'}`}>
-              <FigmaIcon className="h-5 w-5" /> {t('nailhub.evidence.figma')}
-            </a>
           </div>
         </motion.section>
-
-        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className={`border-t pt-16 md:pt-24 text-center ${theme.divider}`}>
-          <button onClick={() => setGameState('CASE_STUDY_NEXORA')} className={`group inline-flex cursor-pointer items-center gap-4 text-2xl font-black uppercase tracking-tighter transition-colors hover:text-teal-500 md:text-4xl ${theme.text}`}>
-            {t('nailhub.nextProject')}
-            <ArrowRightIcon className="h-8 w-8 transition-transform duration-300 group-hover:translate-x-4 md:h-10 md:w-10" />
-          </button>
-        </motion.div>
       </div>
     </CaseStudyLayout>
   );

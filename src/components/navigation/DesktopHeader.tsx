@@ -1,6 +1,7 @@
 import React from 'react';
 import { useStore } from '../../store/useStore';
 import { Clock } from '../Clock';
+import { LanguageToggle } from '../LanguageToggle';
 
 interface DesktopHeaderProps {
   className?: string;
@@ -29,20 +30,22 @@ export const DesktopHeader: React.FC<DesktopHeaderProps> = ({ className = '', on
         </div>
       </div>
 
-      {/* Theme Toggle Button & Clock - Unified Pill Design */}
-      <div className={`absolute top-4 right-4 md:top-8 md:right-8 z-50 transform-style-preserve-3d translate-z-10 flex h-12 items-center overflow-hidden rounded-xl border shadow-[0_5px_15px_rgba(0,0,0,0.5)] transition-all pointer-events-auto ${isLightMode ? 'bg-white/90 border-slate-300 backdrop-blur-xl' : 'bg-slate-800/90 border-slate-700 backdrop-blur-xl'}`}>
+      {/* Language + Clock & Theme */}
+      <div className="absolute top-4 right-4 md:top-8 md:right-8 z-50 transform-style-preserve-3d translate-z-10 flex items-center gap-2 pointer-events-auto">
+        <LanguageToggle />
+        <div className={`flex items-center gap-0.5 overflow-hidden rounded-lg p-0.5 border shadow-[0_5px_15px_rgba(0,0,0,0.5)] transition-all ${isLightMode ? 'bg-slate-100 border-slate-200 backdrop-blur-xl' : 'bg-slate-800/80 border-slate-700 backdrop-blur-xl'}`}>
         {/* Digital Clock */}
         <Clock />
         
         {/* Divider */}
-        <div className={`w-[1px] h-3/5 transition-colors ${isLightMode ? 'bg-slate-300' : 'bg-slate-600'}`} />
+        <div className={`w-[1px] self-stretch my-1 transition-colors ${isLightMode ? 'bg-slate-300' : 'bg-slate-600'}`} />
 
         {/* Theme Toggle Button */}
         <button 
           type="button"
           onClick={toggleTheme}
           aria-label={isLightMode ? 'Switch to dark mode' : 'Switch to light mode'}
-          className={`w-11 md:w-12 h-full flex items-center justify-center cursor-pointer transition-colors touch-target ${isLightMode ? 'text-orange-600 hover:bg-slate-200/50' : 'text-slate-300 hover:text-white hover:bg-slate-700/50'}`}
+          className={`px-2 py-1.5 rounded-md flex items-center justify-center cursor-pointer transition-colors ${isLightMode ? 'text-orange-600 hover:bg-white' : 'text-slate-300 hover:text-white hover:bg-slate-700'}`}
           title="Toggle Day/Night Mode (Manual Override)"
         >
           {isLightMode ? (
@@ -51,6 +54,7 @@ export const DesktopHeader: React.FC<DesktopHeaderProps> = ({ className = '', on
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="md:w-[22px] md:h-[22px]"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
           )}
         </button>
+        </div>
       </div>
     </div>
   );
