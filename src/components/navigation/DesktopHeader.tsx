@@ -22,7 +22,7 @@ export const DesktopHeader: React.FC<DesktopHeaderProps> = ({ className = '', on
           className={`w-11 h-11 md:w-12 md:h-12 shrink-0 border rounded-xl shadow-[0_5px_15px_rgba(0,0,0,0.5)] flex items-center justify-center font-black text-base md:text-xl pointer-events-auto transition-colors ${isLightMode ? 'bg-white/90 backdrop-blur-md border-slate-300 text-slate-950 hover:bg-white' : 'bg-slate-900/90 backdrop-blur-md border-slate-700 text-white hover:bg-slate-800'}`}
           title="Return to Cover Page"
         >
-          S
+          <img src="/images/logo.png" alt="Logo" className="w-6 h-6 md:w-7 md:h-7 object-contain drop-shadow-[0_0_8px_rgba(249,115,22,0.5)]" />
         </button>
         <div className="flex flex-col min-w-0 pointer-events-auto cursor-pointer" onClick={onLogoClick}>
           <span className={`font-black tracking-widest text-[11px] md:text-base leading-none uppercase drop-shadow-md truncate transition-colors hover:text-orange-500 ${isLightMode ? 'text-slate-800' : 'text-slate-200'}`}>Son Thao</span>

@@ -51,10 +51,13 @@ export const HeroIntro: React.FC<HeroIntroProps> = ({ onComplete, onNavigate }) 
         
         {/* Top Navbar */}
         <div className="flex justify-between items-center w-full pointer-events-auto">
-          <div className="text-white text-xs md:text-sm tracking-[0.2em] font-bold flex flex-col md:flex-row md:items-center gap-1 md:gap-2">
-            <span>SON THAO</span> 
-            <span className="hidden md:inline text-slate-400 font-normal">|</span>
-            <span className="text-slate-400 font-normal text-[11px] md:text-xs uppercase tracking-[0.15em]">{t('hero.role')}</span>
+          <div className="text-white text-xs md:text-sm tracking-[0.2em] font-bold flex flex-row items-center gap-3">
+            <img src="/images/logo.png" alt="Logo" className="w-8 h-8 object-contain drop-shadow-[0_0_8px_rgba(249,115,22,0.5)]" />
+            <div className="flex flex-col md:flex-row md:items-center gap-1 md:gap-2">
+              <span>SON THAO</span> 
+              <span className="hidden md:inline text-slate-400 font-normal">|</span>
+              <span className="text-slate-400 font-normal text-[11px] md:text-xs uppercase tracking-[0.15em]">{t('hero.role')}</span>
+            </div>
           </div>
           <div className="hidden md:flex gap-8 text-xs font-medium tracking-widest text-slate-300 items-center">
             <button type="button" onClick={() => onNavigate('projects')} className="hover:text-white transition-colors tracking-widest uppercase">{t('ui.projects')}</button>
