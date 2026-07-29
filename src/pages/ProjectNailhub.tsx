@@ -92,7 +92,7 @@ const productDecisions = [
 ];
 
 export const ProjectNailhub: React.FC = () => {
-  const { isLightMode, setGameState } = useStore();
+  const { isLightMode, } = useStore();
   const [activeRole, setActiveRole] = useState<RoleId>('technician');
   const { scrollY } = useScroll();
   const backgroundY = useTransform(scrollY, [0, 1000], [0, 160]);
