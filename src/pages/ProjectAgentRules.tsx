@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useStore } from '../store/useStore';
 import { CaseStudyLayout } from '../components/layout/CaseStudyLayout';
+import { ZoomableImage } from '../components/ZoomableImage';
 
 const IconCheck = ({ className }: { className?: string }) => <svg className={className} width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>;
 const IconX = ({ className }: { className?: string }) => <svg className={className} width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>;
@@ -49,7 +50,7 @@ export const ProjectAgentRules: React.FC = () => {
               </blockquote>
             </div>
             <div className="flex items-center justify-center">
-              <img src="/images/case-study/agent_rules_hero.jpg" alt="Tacit Knowledge to Systematic Rules" className="w-full rounded-2xl shadow-xl object-contain" />
+              <ZoomableImage src="/images/case-study/agent_rules_hero.jpg" alt="Tacit Knowledge to Systematic Rules" className="w-full rounded-2xl shadow-xl object-contain" />
             </div>
           </div>
         </motion.section>
@@ -58,7 +59,7 @@ export const ProjectAgentRules: React.FC = () => {
         <motion.section initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeInUp} className="mb-16 md:mb-24">
           <p className="text-sm font-bold tracking-widest uppercase mb-4 text-indigo-500">02. QUY TRÌNH BAN ĐẦU</p>
           <h2 className="text-3xl font-bold mb-6">Quy trình ban đầu trông như thế nào?</h2>
-          <img src="/images/case-study/workflow_original.jpg" alt="Workflow Original" className="w-full rounded-xl shadow-lg border border-slate-200 dark:border-slate-800 mb-6" />
+          <ZoomableImage src="/images/case-study/workflow_original.jpg" alt="Workflow Original" className="w-full rounded-xl shadow-lg border border-slate-200 dark:border-slate-800 mb-6" />
           <p className={`mb-10 ${theme.textMuted}`}>
             Thực ra, trước khi <code className="px-2 py-1 bg-slate-100 dark:bg-slate-800 rounded">.agent-rules</code> ra đời, team chúng tôi ĐÃ có một quy trình Delivery khá bài bản. Vấn đề không nằm ở việc "thiếu quy trình", mà là quy trình này ngốn quá nhiều thời gian để điều phối thủ công.
           </p>
@@ -168,7 +169,7 @@ export const ProjectAgentRules: React.FC = () => {
         <motion.section initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeInUp} className="mb-16 md:mb-24">
           <p className="text-sm font-bold tracking-widest uppercase mb-4 text-indigo-500">03. KIẾN THỨC NGẦM</p>
           <h2 className="text-3xl font-bold mb-6">Điểm gãy của những "Kiến thức ngầm"</h2>
-          <img src="/images/case-study/before_after_chaos.jpg" alt="Tacit Knowledge Chaos" className="w-full rounded-xl shadow-lg border border-slate-200 dark:border-slate-800 mb-8" />
+          <ZoomableImage src="/images/case-study/before_after_chaos.jpg" alt="Tacit Knowledge Chaos" className="w-full rounded-xl shadow-lg border border-slate-200 dark:border-slate-800 mb-8" />
           
           <div className="grid md:grid-cols-3 gap-6 mb-8">
             <div className={`p-6 rounded-xl border-t-4 border-red-500 ${theme.card}`}>
@@ -226,7 +227,7 @@ export const ProjectAgentRules: React.FC = () => {
         <motion.section initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeInUp} className="mb-16 md:mb-24">
           <p className="text-sm font-bold tracking-widest uppercase mb-4 text-indigo-500">05. PHÂN LUỒNG TASK</p>
           <h2 className="text-3xl font-bold mb-6">Phân luồng theo Mức độ Phức tạp</h2>
-          <img src="/images/case-study/gatekeeper_shield.jpg" alt="Gatekeeper Shield" className="w-full rounded-xl shadow-lg border border-slate-200 dark:border-slate-800 mb-6" />
+          <ZoomableImage src="/images/case-study/gatekeeper_shield.jpg" alt="Gatekeeper Shield" className="w-full rounded-xl shadow-lg border border-slate-200 dark:border-slate-800 mb-6" />
           <p className={`mb-8 ${theme.textMuted}`}>
             Quy tắc sống còn: Mức độ khắt khe của tài liệu (Documentation) và kiểm duyệt (Governance) phải tỷ lệ thuận với độ phức tạp và rủi ro của task.
           </p>
@@ -363,7 +364,7 @@ export const ProjectAgentRules: React.FC = () => {
         <motion.section initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeInUp} className="mb-16 md:mb-24">
           <p className="text-sm font-bold tracking-widest uppercase mb-4 text-indigo-500">08. KIỂM SOÁT ISSUE & UI</p>
           <h2 className="text-3xl font-bold mb-6">Thuật ngữ Chuẩn & Hợp đồng Giao tiếp</h2>
-          <img src="/images/case-study/handoff_contract.jpg" alt="Handoff Contract" className="w-full rounded-xl shadow-lg border border-slate-200 dark:border-slate-800 mb-8" />
+          <ZoomableImage src="/images/case-study/handoff_contract.jpg" alt="Handoff Contract" className="w-full rounded-xl shadow-lg border border-slate-200 dark:border-slate-800 mb-8" />
           
           <div className="grid md:grid-cols-2 gap-8">
             <div>
@@ -463,11 +464,11 @@ export const ProjectAgentRules: React.FC = () => {
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <p className={`text-sm font-bold mb-2 ${theme.textMuted}`}>Hiện tại (Chưa có nút Rời đi)</p>
-                  <img src="/images/case-study/us_093_current.jpg" alt="Current State" className="w-full rounded-lg border border-slate-200 dark:border-slate-700 shadow-sm" />
+                  <ZoomableImage src="/images/case-study/us_093_current.jpg" alt="Current State" className="w-full rounded-lg border border-slate-200 dark:border-slate-700 shadow-sm" />
                 </div>
                 <div>
                   <p className={`text-sm font-bold mb-2 ${theme.textMuted}`}>Mong muốn (Có thao tác Rời đi)</p>
-                  <img src="/images/case-study/us_093_expected.jpg" alt="Expected State" className="w-full rounded-lg border border-slate-200 dark:border-slate-700 shadow-sm" />
+                  <ZoomableImage src="/images/case-study/us_093_expected.jpg" alt="Expected State" className="w-full rounded-lg border border-slate-200 dark:border-slate-700 shadow-sm" />
                 </div>
               </div>
             </div>
@@ -605,7 +606,7 @@ export const ProjectAgentRules: React.FC = () => {
         {/* 14. GRAND FINALE */}
         <motion.section initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeInUp} className="mb-20 text-center">
           <div className="rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/50 relative">
-            <img src="/images/case-study/farewell_team.jpg" alt="Farewell Team" className="w-full h-64 md:h-80 object-cover object-center" />
+            <ZoomableImage src="/images/case-study/farewell_team.jpg" alt="Farewell Team" className="w-full h-64 md:h-80 object-cover object-center" />
             <div className="p-10 md:p-16 relative z-10">
               <h2 className="text-3xl md:text-4xl font-black mb-6">Cảm ơn bạn đã theo dõi!</h2>
               <p className={`text-lg max-w-2xl mx-auto mb-10 ${theme.textMuted}`}>

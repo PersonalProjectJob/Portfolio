@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useStore } from '../store/useStore';
 import { CaseStudyLayout } from '../components/layout/CaseStudyLayout';
+import { ZoomableImage } from '../components/ZoomableImage';
 
 export const ProjectDispatch: React.FC = () => {
   const { isLightMode, handleQuestSelect } = useStore();
@@ -47,7 +48,7 @@ export const ProjectDispatch: React.FC = () => {
             </div>
             <div className="flex-1 w-full relative">
               <div className={`absolute inset-0 bg-emerald-500 rounded-3xl blur-3xl opacity-20`}></div>
-              <img src="/images/case-study/hero_routing_portrait.jpg" alt="AI Agent Orchestrator Routing" className="relative z-10 w-full rounded-3xl shadow-2xl object-cover border border-slate-200/20" />
+              <ZoomableImage src="/images/case-study/hero_routing_portrait.jpg" alt="AI Agent Orchestrator Routing" className="relative z-10 w-full rounded-3xl shadow-2xl object-cover border border-slate-200/20" />
             </div>
           </div>
         </motion.section>
@@ -63,7 +64,7 @@ export const ProjectDispatch: React.FC = () => {
           </div>
 
           <div className="mb-16 text-center">
-            <img src="/images/case-study/workflow_original.jpg" alt="Original Workflow Diagram" className="rounded-2xl shadow-lg max-h-[450px] inline-block w-full object-cover border border-slate-200/20" />
+            <ZoomableImage src="/images/case-study/workflow_original.jpg" alt="Original Workflow Diagram" className="rounded-2xl shadow-lg max-h-[450px] inline-block w-full object-cover border border-slate-200/20" />
           </div>
 
           <div className="relative pl-6 md:pl-8 border-l-2 border-slate-200 dark:border-slate-800 space-y-12">
@@ -121,7 +122,7 @@ export const ProjectDispatch: React.FC = () => {
           </div>
 
           <div className="mb-12 text-center">
-            <img src="/images/case-study/research_synthesis.jpg" alt="Research and Synthesis" className="rounded-2xl shadow-lg max-h-[450px] inline-block w-full object-cover border border-slate-200/20" />
+            <ZoomableImage src="/images/case-study/research_synthesis.jpg" alt="Research and Synthesis" className="rounded-2xl shadow-lg max-h-[450px] inline-block w-full object-cover border border-slate-200/20" />
           </div>
 
           <div className="space-y-6">
@@ -296,7 +297,7 @@ export const ProjectDispatch: React.FC = () => {
           </div>
 
           <div className="mb-12 text-center">
-            <img src="/images/case-study/handoff_contract.jpg" alt="Design Handoff Contracts" className="rounded-2xl shadow-lg max-h-[450px] inline-block w-full object-cover border border-slate-200/20" />
+            <ZoomableImage src="/images/case-study/handoff_contract.jpg" alt="Design Handoff Contracts" className="rounded-2xl shadow-lg max-h-[450px] inline-block w-full object-cover border border-slate-200/20" />
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -350,7 +351,7 @@ export const ProjectDispatch: React.FC = () => {
 
         <motion.section initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeInUp} className="mb-20">
           <div className={`rounded-3xl overflow-hidden border ${isLightMode ? 'border-slate-200 bg-slate-50' : 'border-slate-800 bg-slate-900/50'} relative`}>
-            <img src="/images/case-study/dispatch_farewell.jpg" alt="Dispatch Command Center" className="w-full h-64 md:h-80 object-cover object-center" />
+            <ZoomableImage src="/images/case-study/dispatch_farewell.jpg" alt="Dispatch Command Center" className="w-full h-64 md:h-80 object-cover object-center" />
             <div className="p-10 md:p-16 text-center max-w-4xl mx-auto">
               <h2 className="text-3xl md:text-4xl font-black mb-6">Điều phối xịn mới chỉ là một nửa câu chuyện!</h2>
               <p className={`text-lg max-w-2xl mx-auto mb-10 ${theme.textMuted}`}>
