@@ -171,7 +171,7 @@ export const ProjectVlinkpay: React.FC = () => {
           </div>
 
           <div className="w-full rounded-2xl overflow-hidden border border-slate-300 dark:border-slate-700 shadow-2xl relative group">
-            <img 
+            <img loading="lazy" decoding="async" 
               src="/assets/vlinkpay-thumbnail.png" 
               alt={t('vlinkpay.mockup.alt')} 
               className="w-full h-auto object-cover transform transition-transform duration-700 group-hover:scale-105"

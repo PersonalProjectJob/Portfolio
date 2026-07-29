@@ -225,6 +225,27 @@ body.light-theme .premium-card:hover {
   border-color: rgba(0, 0, 0, 0.12);
 }
 
+@media (hover: none) {
+  .premium-card {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: background-color 0.5s, border-color 0.5s, box-shadow 0.5s, opacity 0.5s;
+  }
+  .premium-card:hover {
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.05);
+  }
+  body.light-theme .premium-card:hover {
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1), inset 0 1px 1px rgba(255, 255, 255, 0.8);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
 /* ─── Premium Button Component ─── */
 .premium-button {
   background-color: var(--color-primary);
@@ -264,4 +285,19 @@ body.light-theme .premium-button:hover:not(:disabled) {
 body.light-theme .premium-button:disabled {
   background-color: #cbd5e1;
   color: #64748b;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+@keyframes shootingStar {
+  0% { transform: translate(0, 0) rotate(-35deg) scale(0); opacity: 0; }
+  10% { opacity: 1; transform: translate(-50px, 35px) rotate(-35deg) scale(1); }
+  20% { opacity: 0; transform: translate(-100px, 70px) rotate(-35deg) scale(0); }
+  100% { opacity: 0; }
+}
+@keyframes pulseSun {
+  0% { transform: scale(1); opacity: 0.8; }
+  100% { transform: scale(1.1); opacity: 1; }
 }

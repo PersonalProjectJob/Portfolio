@@ -396,7 +396,7 @@ export const ProjectNexora: React.FC = () => {
                      <div className="w-full md:w-3/5 order-2 md:order-1 relative group">
                         <div className="absolute -inset-4 bg-gradient-to-tr from-amber-500/20 to-emerald-500/20 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
                         <div className={`relative rounded-3xl overflow-hidden shadow-2xl aspect-[16/10] ${isLightMode ? 'bg-slate-100 border border-slate-300' : 'bg-slate-900 border border-white/10'}`}>
-                           <img src="/images/case-study/nexora_hero.png" alt="Nexora Dashboard UI" className="absolute inset-0 w-full h-full object-cover object-top opacity-90 transition-transform duration-1000 group-hover:scale-105" />
+                           <img loading="lazy" decoding="async" src="/images/case-study/nexora_hero.png" alt="Nexora Dashboard UI" className="absolute inset-0 w-full h-full object-cover object-top opacity-90 transition-transform duration-1000 group-hover:scale-105" />
                         </div>
                      </div>
                      <div className="w-full md:w-2/5 order-1 md:order-2">

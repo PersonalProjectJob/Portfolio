@@ -37,8 +37,10 @@ export const DesktopWorkspace: React.FC<Props> = ({ children, disableParallax = 
   const layer3X = useTransform(smoothX, [-0.5, 0.5], [5, -5]);
   const layer3Y = useTransform(smoothY, [-0.5, 0.5], [2, -2]);
 
+  const prefersReducedMotion = typeof window !== 'undefined' ? window.matchMedia('(prefers-reduced-motion: reduce)').matches : false;
+
   const handleMouseMove = (e: React.MouseEvent) => {
-    if (disableParallax || isMobile) return;
+    if (disableParallax || isMobile || prefersReducedMotion) return;
     const { clientX, clientY } = e;
     mouseX.set(clientX / window.innerWidth - 0.5);
     mouseY.set(clientY / window.innerHeight - 0.5);
@@ -46,37 +48,41 @@ export const DesktopWorkspace: React.FC<Props> = ({ children, disableParallax = 
   
   return (
     <div 
-      className="relative w-full h-screen overflow-hidden flex items-center justify-center transition-all duration-1000 bg-[#050505]"
+      className={`relative w-full h-screen overflow-hidden flex items-center justify-center transition-all duration-1000 ${isMobile ? (isLightMode ? 'bg-[radial-gradient(ellipse_at_center,_rgba(255,237,213,0.5)_0%,_#050505_100%)]' : 'bg-[radial-gradient(ellipse_at_center,_rgba(219,39,119,0.2)_0%,_#050505_100%)]') : 'bg-[#050505]'}`}
       onMouseMove={handleMouseMove}
     >
       
       {/* =========================================
           LAYER 1 (z-0): OUTSIDE LANDSCAPE (CẦN THƠ)
           ========================================= */}
-      <motion.div 
-        className="absolute inset-[-5%] z-0" // Extended inset to prevent edges showing during parallax
-        style={{ x: layer1X, y: layer1Y }}
-      >
-        <img src="/cantho-floating-market.png" 
-             className="absolute inset-0 w-full h-full object-cover transition-all duration-1000 blur-[2px]"
-             style={{
-               filter: isLightMode 
-                 ? 'brightness(1.1) saturate(1.2)' 
-                 : 'brightness(0.15) contrast(1.2) sepia(0.3) hue-rotate(180deg) saturate(0.5)'
-             }}
-             alt="Chợ Nổi Cái Răng Cần Thơ" />
-      </motion.div>
+      {!isMobile && (
+        <motion.div 
+          className="absolute inset-[-5%] z-0" // Extended inset to prevent edges showing during parallax
+          style={{ x: layer1X, y: layer1Y }}
+        >
+          <img src="/cantho-floating-market.png" 
+               className="absolute inset-0 w-full h-full object-cover transition-all duration-1000 blur-[2px]"
+               style={{
+                 filter: isLightMode 
+                   ? 'brightness(1.1) saturate(1.2)' 
+                   : 'brightness(0.15) contrast(1.2) sepia(0.3) hue-rotate(180deg) saturate(0.5)'
+               }}
+               alt="Chợ Nổi Cái Răng Cần Thơ" />
+        </motion.div>
+      )}
 
       {/* =========================================
           LAYER 2 (z-1): CELESTIAL OVERLAY (STARS)
           ========================================= */}
       {/* Chỉ hiện ban đêm, đè lên phong cảnh */}
-      <motion.div 
-        className="absolute inset-[-5%] z-[1] mix-blend-screen pointer-events-none"
-        style={{ x: layer1X, y: layer1Y }} // Celestial moves with the sky
-      >
-        <CelestialOverlay isLightMode={isLightMode} />
-      </motion.div>
+      {!isMobile && (
+        <motion.div 
+          className="absolute inset-[-5%] z-[1] mix-blend-screen pointer-events-none"
+          style={{ x: layer1X, y: layer1Y }} // Celestial moves with the sky
+        >
+          <CelestialOverlay isLightMode={isLightMode} isMobile={isMobile} />
+        </motion.div>
+      )}
 
       {/* =========================================
           LAYER 3 (z-2): ROOM DESK WITH TRANSPARENT WINDOWS
@@ -86,7 +92,7 @@ export const DesktopWorkspace: React.FC<Props> = ({ children, disableParallax = 
         style={{ x: layer3X, y: layer3Y }}
       >
         {/* The generated transparent room (green screen removed) */}
-        <img src="/workspace-transparent.png" className="absolute inset-0 w-full h-full object-cover" alt="Workspace Desk" />
+        <img loading="lazy" decoding="async" src="/workspace-transparent.png" className="absolute inset-0 w-full h-full object-cover" alt="Workspace Desk" />
         
         {/* Realistic Glass Reflection (Bóng kính) */}
         <div className={`absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-transparent skew-x-[45deg] translate-x-[-100%] animate-[shimmer_10s_infinite_linear] transition-opacity duration-1000 ${isLightMode ? 'opacity-100' : 'opacity-20'}`} />
@@ -102,14 +108,16 @@ export const DesktopWorkspace: React.FC<Props> = ({ children, disableParallax = 
       {/* =========================================
           LAYER 4 (z-3): AMBIENT GLOW
           ========================================= */}
-      <div className="absolute inset-0 z-[3] pointer-events-none transition-all duration-1000">
-         <motion.div 
-            className={`absolute top-[-10%] left-[-20%] w-[70%] h-[80%] blur-[130px] rounded-full mix-blend-screen transition-colors duration-1000 ${isLightMode ? 'bg-orange-100/30' : 'bg-pink-600/20'}`}
-            animate={{ opacity: [0.3, 0.6, 0.3] }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-         />
-         <div className={`absolute bottom-[-10%] right-[-10%] w-[50%] h-[60%] blur-[150px] rounded-full mix-blend-screen transition-colors duration-1000 ${isLightMode ? 'bg-yellow-50/20' : 'bg-cyan-600/10'}`} />
-      </div>
+      {!isMobile && (
+        <div className="absolute inset-0 z-[3] pointer-events-none transition-all duration-1000">
+           <motion.div 
+              className={`absolute top-[-10%] left-[-20%] w-[70%] h-[80%] blur-[130px] rounded-full mix-blend-screen transition-colors duration-1000 ${isLightMode ? 'bg-orange-100/30' : 'bg-pink-600/20'}`}
+              animate={{ opacity: [0.3, 0.6, 0.3] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+           />
+           <div className={`absolute bottom-[-10%] right-[-10%] w-[50%] h-[60%] blur-[150px] rounded-full mix-blend-screen transition-colors duration-1000 ${isLightMode ? 'bg-yellow-50/20' : 'bg-cyan-600/10'}`} />
+        </div>
+      )}
 
       {/* =========================================
           LAYER 5 (z-10): UI CONTENT CONTAINER

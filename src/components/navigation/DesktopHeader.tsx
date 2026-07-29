@@ -37,7 +37,7 @@ export const DesktopHeader: React.FC<DesktopHeaderProps> = ({ className = '', on
       {/* Language + Clock & Theme */}
       <div className="absolute top-4 right-4 md:top-8 md:right-8 z-50 transform-style-preserve-3d translate-z-10 flex items-center gap-2 pointer-events-auto">
         <LanguageToggle />
-        <div className={`flex items-center gap-0.5 overflow-hidden rounded-lg p-0.5 border shadow-[0_5px_15px_rgba(0,0,0,0.5)] transition-all ${isLightMode ? 'bg-slate-100 border-slate-200 backdrop-blur-xl' : 'bg-slate-800/80 border-slate-700 backdrop-blur-xl'}`}>
+        <div className={`flex items-center gap-0.5 overflow-hidden rounded-lg p-0.5 border shadow-[0_5px_15px_rgba(0,0,0,0.5)] transition-all ${isLightMode ? 'bg-slate-100 border-slate-200 backdrop-blur-md' : 'bg-slate-800/80 border-slate-700 backdrop-blur-md'}`}>
         {/* Digital Clock */}
         <Clock />
         
