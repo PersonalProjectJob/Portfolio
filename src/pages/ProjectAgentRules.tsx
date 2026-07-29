@@ -35,7 +35,7 @@ export const ProjectAgentRules: React.FC = () => {
         <div className={`absolute inset-0 bg-gradient-to-br ${isLightMode ? 'from-indigo-100/50 via-transparent to-transparent' : 'from-indigo-900/20 via-transparent to-transparent'}`}></div>
       </div>
 
-      <div className="relative z-10 max-w-5xl mx-auto px-4 md:px-8">
+      <div className="relative z-10 max-w-5xl mx-auto">
         {/* {t('agentRules.s1.tag')} */}
         <motion.section initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeInUp} className="mb-16 md:mb-24">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
