@@ -156,7 +156,7 @@ export const ProjectNailhub: React.FC = () => {
               <span className="h-2.5 w-2.5 rounded-full bg-teal-400" />
               <span className={`ml-3 text-[10px] font-bold ${theme.textMuted}`}>{t('nailhub.mockup.tag')}</span>
             </div>
-            <img src="/images/case-study/nailhub_search_flow.png" alt={t('nailhub.mockup.alt')} className="aspect-[16/9] w-full object-cover object-top" />
+            <img loading="lazy" decoding="async" src="/images/case-study/nailhub_search_flow.png" alt={t('nailhub.mockup.alt')} className="aspect-[16/9] w-full object-cover object-top" />
           </motion.div>
         </div>
       </section>
@@ -251,7 +251,7 @@ export const ProjectNailhub: React.FC = () => {
               <span className={`ml-3 text-[10px] font-bold ${theme.textMuted}`}>{t('nailhub.decisions.mockup.tag')}</span>
             </div>
             <div className="relative bg-white">
-              <img src="/images/case-study/nailhub_search_flow.png" alt={t('nailhub.decisions.mockup.alt')} className="aspect-[16/9] w-full object-cover object-top" />
+              <img loading="lazy" decoding="async" src="/images/case-study/nailhub_search_flow.png" alt={t('nailhub.decisions.mockup.alt')} className="aspect-[16/9] w-full object-cover object-top" />
               <div className="absolute left-[16%] top-[12%] hidden rounded-full border border-white/30 bg-slate-950/80 px-3 py-2 text-[10px] font-black text-white backdrop-blur-md md:block">{t('nailhub.decisions.mockup.tooltip1')}</div>
               <div className="absolute left-[16%] top-[28%] hidden rounded-full border border-white/30 bg-teal-600/90 px-3 py-2 text-[10px] font-black text-white backdrop-blur-md md:block">{t('nailhub.decisions.mockup.tooltip2')}</div>
               <div className="absolute right-[14%] top-[48%] hidden rounded-full border border-white/30 bg-[#b66f52]/90 px-3 py-2 text-[10px] font-black text-white backdrop-blur-md md:block">{t('nailhub.decisions.mockup.tooltip3')}</div>
@@ -273,7 +273,7 @@ export const ProjectNailhub: React.FC = () => {
         <motion.section initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-100px' }} variants={fadeInUp} className={`border-t py-16 md:py-24 ${theme.divider}`}>
           <div className={`relative overflow-hidden rounded-[2rem] border shadow-2xl mx-auto max-w-5xl ${isLightMode ? 'border-slate-200' : 'border-white/10'}`}>
             <div className="absolute inset-0 z-0">
-              <img src="/images/case-study/nailhub_figma_teaser.jpg" alt="Nailhub Figma System" className="w-full h-full object-cover opacity-60 dark:opacity-40" />
+              <img loading="lazy" decoding="async" src="/images/case-study/nailhub_figma_teaser.jpg" alt="Nailhub Figma System" className="w-full h-full object-cover opacity-60 dark:opacity-40" />
               <div className={`absolute inset-0 bg-gradient-to-t ${isLightMode ? 'from-white/95 via-white/80 to-white/10' : 'from-slate-950/95 via-slate-950/80 to-slate-950/10'}`}></div>
             </div>
             

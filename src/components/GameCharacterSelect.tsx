@@ -22,7 +22,7 @@ export const GameCharacterSelect: React.FC = () => {
                 {/* Avatar */}
                 <div className="w-32 h-32 md:w-40 md:h-40 rounded-full p-1.5 mb-6 shadow-2xl bg-gradient-to-tr from-orange-500 via-orange-400 to-amber-400 relative group overflow-hidden">
                    <div className="w-full h-full rounded-full overflow-hidden bg-slate-900">
-                      <img src="/avatar.jpg" alt="Truong Nguyen Son Thao" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                      <img loading="lazy" decoding="async" src="/avatar.jpg" alt="Truong Nguyen Son Thao" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                    </div>
                    <div className="absolute inset-0 rounded-full border-4 border-white/20"></div>
                 </div>

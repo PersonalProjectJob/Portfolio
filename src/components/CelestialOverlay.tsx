@@ -2,11 +2,14 @@ import React, { useMemo, useState, useEffect } from 'react';
 
 interface CelestialOverlayProps {
   isLightMode: boolean;
+  isMobile?: boolean;
 }
 
-export const CelestialOverlay: React.FC<CelestialOverlayProps> = ({ isLightMode }) => {
+export const CelestialOverlay: React.FC<CelestialOverlayProps> = ({ isLightMode, isMobile = false }) => {
   const [sunPos, setSunPos] = useState({ top: 10, left: 50, angle: 0, opacity: 1 });
   const [moonPos, setMoonPos] = useState({ top: 10, left: 50 });
+  
+  const prefersReducedMotion = typeof window !== 'undefined' ? window.matchMedia('(prefers-reduced-motion: reduce)').matches : false;
 
   useEffect(() => {
     const updatePosition = () => {
@@ -47,7 +50,7 @@ export const CelestialOverlay: React.FC<CelestialOverlayProps> = ({ isLightMode 
 
   // Generate random stars once
   const stars = useMemo(() => {
-    return Array.from({ length: 40 }).map((_, i) => ({
+    return Array.from({ length: isMobile ? 15 : 40 }).map((_, i) => ({
       id: i,
       top: `${Math.random() * 100}%`,
       left: `${Math.random() * 100}%`,
@@ -56,10 +59,11 @@ export const CelestialOverlay: React.FC<CelestialOverlayProps> = ({ isLightMode 
       animationDelay: `${Math.random() * 5}s`,
       opacity: Math.random() * 0.5 + 0.3,
     }));
-  }, []);
+  }, [isMobile]);
 
   // Generate a few shooting stars
   const shootingStars = useMemo(() => {
+    if (isMobile) return [];
     return Array.from({ length: 2 }).map((_, i) => ({
       id: i,
       top: `${Math.random() * 30}%`,
@@ -67,7 +71,9 @@ export const CelestialOverlay: React.FC<CelestialOverlayProps> = ({ isLightMode 
       animationDuration: `${Math.random() * 2 + 6}s`, // Slower interval
       animationDelay: `${Math.random() * 15 + i * 5}s`,
     }));
-  }, []);
+  }, [isMobile]);
+
+  if (prefersReducedMotion) return null;
 
   return (
     <div className="absolute inset-0 z-[1] pointer-events-none overflow-hidden mix-blend-screen"
@@ -152,22 +158,6 @@ export const CelestialOverlay: React.FC<CelestialOverlayProps> = ({ isLightMode 
         ))}
       </div>
 
-      <style>{`
-        @keyframes twinkle {
-          0%, 100% { opacity: 0.2; transform: scale(0.8); }
-          50% { opacity: 1; transform: scale(1.2); boxShadow: 0 0 4px rgba(255,255,255,0.8); }
-        }
-        @keyframes shootingStar {
-          0% { transform: translate(0, 0) rotate(-35deg) scale(0); opacity: 0; }
-          10% { opacity: 1; transform: translate(-50px, 35px) rotate(-35deg) scale(1); }
-          20% { opacity: 0; transform: translate(-100px, 70px) rotate(-35deg) scale(0); }
-          100% { opacity: 0; }
-        }
-        @keyframes pulseSun {
-          0% { transform: scale(1); opacity: 0.8; }
-          100% { transform: scale(1.1); opacity: 1; }
-        }
-      `}</style>
     </div>
   );
 };

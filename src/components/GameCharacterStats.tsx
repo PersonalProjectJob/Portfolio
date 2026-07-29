@@ -3,9 +3,21 @@ import { motion } from 'framer-motion';
 import { useStore } from '../store/useStore';
 import { useT } from '../i18n/useT';
 
+const useIsMobile = () => {
+  const [isMobile, setIsMobile] = React.useState(false);
+  React.useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
+  return isMobile;
+};
+
 export const GameCharacterStats: React.FC = () => {
   const t = useT();
   const { isLightMode, setGameState } = useStore();
+  const isMobile = useIsMobile();
 
   return (
     <motion.div 
@@ -21,7 +33,7 @@ export const GameCharacterStats: React.FC = () => {
              {/* LEFT COLUMN */}
              <div className="flex flex-col gap-6 md:gap-8">
                 {/* {t("skills.coreCompetencies")} (Radar Chart) */}
-                <div className={`card-padding rounded-3xl border transition-all duration-500 flex flex-col items-center h-fit lg:min-h-[480px] ${isLightMode ? 'bg-white/90 backdrop-blur-3xl border-white/80 shadow-[0_8px_32px_rgba(30,41,59,0.12)]' : 'premium-card'}`}>
+                <div className={`card-padding rounded-3xl border transition-all duration-500 flex flex-col items-center h-fit lg:min-h-[480px] ${isLightMode ? `bg-white/90 ${isMobile ? 'backdrop-blur-sm' : 'backdrop-blur-3xl'} border-white/80 shadow-[0_8px_32px_rgba(30,41,59,0.12)]` : 'premium-card'}`}>
                    <h3 className={`text-lg font-extrabold mb-4 flex items-center gap-3 w-full transition-colors ${isLightMode ? 'text-slate-900' : 'text-slate-100'}`}>
                       <div className={`w-10 h-10 rounded-xl flex items-center justify-center border shadow-[0_0_10px_rgba(13,148,136,0.2)] transition-colors ${isLightMode ? 'bg-orange-50 text-orange-600 border-orange-200' : 'bg-orange-950/50 text-orange-400 border-orange-500/20'}`}>
                          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"/></svg>
@@ -35,7 +47,7 @@ export const GameCharacterStats: React.FC = () => {
                 </div>
 
                 {/* {t("skills.education")} */}
-                <div className={`p-5 md:p-8 rounded-3xl border transition-all duration-500 flex flex-col h-fit ${isLightMode ? 'bg-white/90 backdrop-blur-3xl border-white/80 shadow-[0_8px_32px_rgba(30,41,59,0.12)]' : 'premium-card'}`}>
+                <div className={`p-5 md:p-8 rounded-3xl border transition-all duration-500 flex flex-col h-fit ${isLightMode ? `bg-white/90 ${isMobile ? 'backdrop-blur-sm' : 'backdrop-blur-3xl'} border-white/80 shadow-[0_8px_32px_rgba(30,41,59,0.12)]` : 'premium-card'}`}>
                    <div className="flex justify-between items-center mb-6 md:mb-8">
                       <h3 className={`text-lg font-extrabold flex items-center gap-3 transition-colors ${isLightMode ? 'text-slate-900' : 'text-slate-100'}`}>
                          <div className={`w-10 h-10 rounded-xl flex items-center justify-center border shadow-[0_0_10px_rgba(59,130,246,0.2)] transition-colors ${isLightMode ? 'bg-blue-50 text-blue-600 border-blue-200' : 'bg-blue-950/50 text-blue-400 border-blue-500/20'}`}>
@@ -61,7 +73,7 @@ export const GameCharacterStats: React.FC = () => {
              {/* RIGHT COLUMN */}
              <div className="flex flex-col gap-6 md:gap-8">
                 {/* Mindset / Passive Skills */}
-                <div className={`p-5 md:p-8 rounded-3xl border transition-all duration-500 flex flex-col h-fit lg:min-h-[480px] ${isLightMode ? 'bg-white/90 backdrop-blur-3xl border-white/80 shadow-[0_8px_32px_rgba(30,41,59,0.12)]' : 'premium-card'}`}>
+                <div className={`p-5 md:p-8 rounded-3xl border transition-all duration-500 flex flex-col h-fit lg:min-h-[480px] ${isLightMode ? `bg-white/90 ${isMobile ? 'backdrop-blur-sm' : 'backdrop-blur-3xl'} border-white/80 shadow-[0_8px_32px_rgba(30,41,59,0.12)]` : 'premium-card'}`}>
                    <h3 className={`text-lg font-extrabold mb-6 flex items-center gap-3 w-full transition-colors ${isLightMode ? 'text-slate-900' : 'text-slate-100'}`}>
                       <div className={`w-10 h-10 rounded-xl flex items-center justify-center border shadow-[0_0_10px_rgba(16,185,129,0.2)] transition-colors ${isLightMode ? 'bg-amber-50 text-amber-600 border-amber-200' : 'bg-amber-950/50 text-amber-400 border-amber-500/20'}`}>
                          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -89,7 +101,7 @@ export const GameCharacterStats: React.FC = () => {
                 </div>
 
                 {/* Toolkit (Gear) */}
-                <div className={`p-5 md:p-8 rounded-3xl border transition-all duration-500 flex flex-col h-fit ${isLightMode ? 'bg-white/90 backdrop-blur-3xl border-white/80 shadow-[0_8px_32px_rgba(30,41,59,0.12)]' : 'premium-card'}`}>
+                <div className={`p-5 md:p-8 rounded-3xl border transition-all duration-500 flex flex-col h-fit ${isLightMode ? `bg-white/90 ${isMobile ? 'backdrop-blur-sm' : 'backdrop-blur-3xl'} border-white/80 shadow-[0_8px_32px_rgba(30,41,59,0.12)]` : 'premium-card'}`}>
                    <div className="flex justify-between items-center mb-6 md:mb-8">
                       <h3 className={`text-lg font-extrabold flex items-center gap-3 transition-colors ${isLightMode ? 'text-slate-900' : 'text-slate-100'}`}>
                          <div className={`w-10 h-10 rounded-xl flex items-center justify-center border shadow-[0_0_10px_rgba(245,158,11,0.2)] transition-colors ${isLightMode ? 'bg-amber-50 text-amber-600 border-amber-200' : 'bg-amber-950/50 text-amber-400 border-amber-500/20'}`}>

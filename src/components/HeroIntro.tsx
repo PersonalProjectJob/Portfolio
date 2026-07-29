@@ -14,7 +14,7 @@ export const HeroIntro: React.FC<HeroIntroProps> = ({ onComplete, onNavigate }) 
   return (
     <motion.div 
       className="fixed inset-0 z-[100] overflow-hidden bg-slate-950 font-sans"
-      exit={{ opacity: 0, scale: 1.05, filter: 'blur(20px)' }}
+      exit={{ opacity: 0, scale: 1.05 }}
       transition={{ duration: 1.2, ease: [0.76, 0, 0.24, 1] }}
     >
       {/* LAYER Z-0: Pre-composited Background Image (Image + Text + Portrait) */}
@@ -25,6 +25,8 @@ export const HeroIntro: React.FC<HeroIntroProps> = ({ onComplete, onNavigate }) 
           transition={{ duration: 1.5, ease: "easeOut" }}
           src="/hero-bg.png" 
           alt="Hero Composite Background" 
+          fetchPriority="high"
+          decoding="async"
           className="w-full h-full object-cover object-center"
           onError={(e) => { 
             e.currentTarget.style.display = 'none'; 

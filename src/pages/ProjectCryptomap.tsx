@@ -86,7 +86,7 @@ export const ProjectCryptomap: React.FC = () => {
         className="min-h-[70vh] flex flex-col justify-center items-center text-center pb-20 md:pb-32 relative z-10"
       >
         <div className="relative w-full max-w-5xl overflow-hidden rounded-[2rem] border border-white/10 bg-[#111827] shadow-2xl group mb-10">
-            <img src="/images/case-study/cryptomap_global_dashboard.png" alt="CryptoMap360 global merchant discovery map" className="aspect-[16/9] w-full object-cover object-center transition-transform duration-1000 group-hover:scale-[1.02]" />
+            <img loading="lazy" decoding="async" src="/images/case-study/cryptomap_global_dashboard.png" alt="CryptoMap360 global merchant discovery map" className="aspect-[16/9] w-full object-cover object-center transition-transform duration-1000 group-hover:scale-[1.02]" />
             <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent" />
             <div className="absolute inset-x-0 bottom-0 flex flex-col gap-4 p-5 text-left sm:flex-row sm:items-end sm:justify-between sm:p-8">
               <div>
@@ -219,7 +219,7 @@ export const ProjectCryptomap: React.FC = () => {
                 
                 <div className="md:w-1/2 w-full flex justify-center items-center">
                   <div className="w-full max-w-lg bg-white/5 p-4 rounded-3xl overflow-hidden shadow-2xl border border-white/10 backdrop-blur-sm">
-                    <img src="/images/case-study/chart_1.png" alt="Where Grassroots Crypto Adoption Is Highest" className="w-full h-auto rounded-xl" />
+                    <img loading="lazy" decoding="async" src="/images/case-study/chart_1.png" alt="Where Grassroots Crypto Adoption Is Highest" className="w-full h-auto rounded-xl" />
                   </div>
                 </div>
               </div>
@@ -322,7 +322,7 @@ export const ProjectCryptomap: React.FC = () => {
                 
                 <div className="md:w-2/3 w-full flex justify-center">
                   <div className="w-full max-w-2xl overflow-hidden rounded-2xl shadow-2xl border border-white/10">
-                    <img src="/images/case-study/chart_3.png" alt="User Personas" className="w-full h-auto" />
+                    <img loading="lazy" decoding="async" src="/images/case-study/chart_3.png" alt="User Personas" className="w-full h-auto" />
                   </div>
                 </div>
               </div>
@@ -345,7 +345,7 @@ export const ProjectCryptomap: React.FC = () => {
                 
                 <div className="md:w-2/3 w-full flex justify-center">
                   <div className="w-full max-w-3xl overflow-hidden rounded-2xl shadow-2xl border border-white/10">
-                    <img src="/images/case-study/chart_4.png" alt="Custom Journey Map" className="w-full h-auto" />
+                    <img loading="lazy" decoding="async" src="/images/case-study/chart_4.png" alt="Custom Journey Map" className="w-full h-auto" />
                   </div>
                 </div>
               </div>
@@ -436,7 +436,7 @@ export const ProjectCryptomap: React.FC = () => {
                 <div className={`relative lg:col-span-7 ${index % 2 === 1 ? 'lg:order-2' : ''}`}>
                   <div className={`absolute -inset-5 rounded-[2rem] blur-3xl opacity-40 ${decision.surface}`} />
                   <div className={`relative overflow-hidden rounded-[2rem] border shadow-2xl ${isLightMode ? 'border-slate-200 bg-white' : 'border-white/10 bg-slate-950'}`}>
-                    <img src={decision.image} alt={decision.alt} className="aspect-[16/10] w-full object-cover object-top transition-transform duration-700 hover:scale-[1.02]" />
+                    <img loading="lazy" decoding="async" src={decision.image} alt={decision.alt} className="aspect-[16/10] w-full object-cover object-top transition-transform duration-700 hover:scale-[1.02]" />
                     <div className={`absolute left-4 top-4 rounded-full border px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.16em] backdrop-blur-md ${decision.surface} ${decision.accent}`}>
                       {t('cryptomap.design.decision')} {decision.number}
                     </div>
