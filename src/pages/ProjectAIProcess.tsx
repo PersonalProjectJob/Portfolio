@@ -7,9 +7,11 @@ const UserIcon = ({ className }: { className?: string }) => <svg className={clas
 
 import { useStore } from '../store/useStore';
 import { CaseStudyLayout } from '../components/layout/CaseStudyLayout';
+import { useT } from '../i18n/useT';
 
 export const ProjectAIProcess: React.FC = () => {
   const { isLightMode } = useStore();
+  const t = useT();
   const theme = {
     bg: isLightMode ? 'bg-slate-50' : 'bg-[#0f172a]',
     text: isLightMode ? 'text-slate-800' : 'text-slate-100',
@@ -32,45 +34,45 @@ export const ProjectAIProcess: React.FC = () => {
 
       <div>
         <motion.section initial="hidden" animate="visible" variants={fadeInUp} className="mb-12 md:mb-20 text-center md:text-left">
-          <span className={`inline-block px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase mb-4 border ${isLightMode ? 'border-amber-200 bg-amber-50 text-amber-700' : 'border-amber-500/30 bg-amber-500/10 text-amber-300'}`}>Tư duy & Quy trình làm việc</span>
+          <span className={`inline-block px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase mb-4 border ${isLightMode ? 'border-amber-200 bg-amber-50 text-amber-700' : 'border-amber-500/30 bg-amber-500/10 text-amber-300'}`}>{t('aiProcess.tag')}</span>
           <h1 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-6">
-            AI Trong Thiết Kế <br className="hidden md:block"/> 
-            <span className="text-amber-500">Người Dùng Quyết Định</span>
+            {t('aiProcess.titlePart1')}<br className="hidden md:block"/> 
+            <span className="text-amber-500">{t('aiProcess.titlePart2')}</span>
           </h1>
           <p className={`text-lg md:text-xl max-w-3xl ${theme.textMuted} leading-relaxed mx-auto md:mx-0`}>
-            Tôi xem AI là một "Builder" để tăng tốc quá trình phát triển (MVP), không phải là người ra quyết định thay cho Product Designer.
+            {t('aiProcess.subtitle')}
           </p>
         </motion.section>
 
         {/* Division of Labor */}
         <motion.section initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeInUp} className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16 md:mb-24">
           <div className={`p-6 md:p-8 rounded-3xl border backdrop-blur-xl ${theme.card} ${theme.glow}`}>
-            <h3 className="text-2xl font-bold mb-6 flex items-center gap-3"><BotIcon/> AI Giúp Tôi (Builder)</h3>
+            <h3 className="text-2xl font-bold mb-6 flex items-center gap-3"><BotIcon/> {t('aiProcess.aiBuilder.title')}</h3>
             <ul className={`space-y-4 ${theme.textMuted}`}>
-              <li className="flex items-start gap-3"><CheckCircleIcon /> <span>Khám phá các hướng bố cục nhanh hơn.</span></li>
-              <li className="flex items-start gap-3"><CheckCircleIcon /> <span>Tạo bản mẫu (Prototype/MVP) nhanh hơn.</span></li>
-              <li className="flex items-start gap-3"><CheckCircleIcon /> <span>Phác thảo nội dung UX (UX Copywriting).</span></li>
-              <li className="flex items-start gap-3"><CheckCircleIcon /> <span>Phác thảo tài liệu hướng dẫn thành phần giao diện.</span></li>
-              <li className="flex items-start gap-3"><CheckCircleIcon /> <span>Tạo ra nhiều phương án để có cơ sở đối chiếu và rà soát.</span></li>
+              <li className="flex items-start gap-3"><CheckCircleIcon /> <span>{t('aiProcess.aiBuilder.item1')}</span></li>
+              <li className="flex items-start gap-3"><CheckCircleIcon /> <span>{t('aiProcess.aiBuilder.item2')}</span></li>
+              <li className="flex items-start gap-3"><CheckCircleIcon /> <span>{t('aiProcess.aiBuilder.item3')}</span></li>
+              <li className="flex items-start gap-3"><CheckCircleIcon /> <span>{t('aiProcess.aiBuilder.item4')}</span></li>
+              <li className="flex items-start gap-3"><CheckCircleIcon /> <span>{t('aiProcess.aiBuilder.item5')}</span></li>
             </ul>
           </div>
           
           <div className={`p-6 md:p-8 rounded-3xl border backdrop-blur-xl ${isLightMode ? 'bg-amber-50/50 border-amber-200' : 'bg-amber-900/10 border-amber-500/30'} ${theme.glow}`}>
-            <h3 className={`text-2xl font-bold mb-6 flex items-center gap-3 ${isLightMode ? 'text-amber-700' : 'text-amber-400'}`}><UserIcon/> Tôi Vẫn Làm Chủ (Decision Maker)</h3>
+            <h3 className={`text-2xl font-bold mb-6 flex items-center gap-3 ${isLightMode ? 'text-amber-700' : 'text-amber-400'}`}><UserIcon/> {t('aiProcess.humanDecision.title')}</h3>
             <ul className={`space-y-4 ${isLightMode ? 'text-amber-900/70' : 'text-amber-200/70'}`}>
-              <li className="flex items-start gap-3"><CheckCircleIcon /> <span><strong>Xác định đúng bài toán:</strong> Dữ liệu và nhu cầu của người dùng.</span></li>
-              <li className="flex items-start gap-3"><CheckCircleIcon /> <span><strong>Quyết định luồng trải nghiệm:</strong> Map User Journey và User Flow.</span></li>
-              <li className="flex items-start gap-3"><CheckCircleIcon /> <span><strong>Xử lý các trạng thái:</strong> Empty, Pending, Error, Success.</span></li>
-              <li className="flex items-start gap-3"><CheckCircleIcon /> <span><strong>Đảm bảo thứ bậc thông tin:</strong> User nhìn thấy gì trước, bấm vào đâu.</span></li>
-              <li className="flex items-start gap-3"><CheckCircleIcon /> <span><strong>Kiểm soát tính nhất quán & khả thi:</strong> Đảm bảo hệ thống Design System chuẩn và dễ code.</span></li>
+              <li className="flex items-start gap-3"><CheckCircleIcon /> <span><strong>{t('aiProcess.humanDecision.item1.bold')}</strong>{t('aiProcess.humanDecision.item1.text')}</span></li>
+              <li className="flex items-start gap-3"><CheckCircleIcon /> <span><strong>{t('aiProcess.humanDecision.item2.bold')}</strong>{t('aiProcess.humanDecision.item2.text')}</span></li>
+              <li className="flex items-start gap-3"><CheckCircleIcon /> <span><strong>{t('aiProcess.humanDecision.item3.bold')}</strong>{t('aiProcess.humanDecision.item3.text')}</span></li>
+              <li className="flex items-start gap-3"><CheckCircleIcon /> <span><strong>{t('aiProcess.humanDecision.item4.bold')}</strong>{t('aiProcess.humanDecision.item4.text')}</span></li>
+              <li className="flex items-start gap-3"><CheckCircleIcon /> <span><strong>{t('aiProcess.humanDecision.item5.bold')}</strong>{t('aiProcess.humanDecision.item5.text')}</span></li>
             </ul>
           </div>
         </motion.section>
 
         <motion.section initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeInUp} className="text-center">
           <blockquote className={`text-2xl md:text-3xl font-black uppercase tracking-tight leading-tight max-w-4xl mx-auto ${theme.text}`}>
-            "AI giúp tôi đi nhanh hơn. <br/> 
-            <span className="text-amber-500">Tư duy sản phẩm giúp tôi đi đúng hướng hơn."</span>
+            {t('aiProcess.quote.part1')}<br/> 
+            <span className="text-amber-500">{t('aiProcess.quote.part2')}</span>
           </blockquote>
         </motion.section>
       </div>

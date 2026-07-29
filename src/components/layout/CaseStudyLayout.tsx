@@ -3,12 +3,14 @@ import { useStore } from '../../store/useStore';
 import { CV_PROJECTS } from '../../data/cvData';
 import { Clock } from '../Clock';
 import { LanguageToggle } from '../LanguageToggle';
+import { useT } from '../../i18n/useT';
 
 interface CaseStudyLayoutProps {
   children: React.ReactNode;
 }
 
 export const CaseStudyLayout: React.FC<CaseStudyLayoutProps> = ({ children }) => {
+  const t = useT();
   const { isLightMode, setGameState, handleQuestSelect, selectedQuest, toggleTheme } = useStore();
 
   const theme = {
@@ -38,13 +40,13 @@ export const CaseStudyLayout: React.FC<CaseStudyLayoutProps> = ({ children }) =>
           >
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="hidden sm:block"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="sm:hidden"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-            <span className="hidden sm:inline">Back</span>
+            <span className="hidden sm:inline">{t("ui.back")}</span>
           </button>
 
           {/* Center: Case Study Title */}
           {currentProject && (
             <div className="hidden md:flex flex-col items-center justify-center flex-1 overflow-hidden px-4">
-              <span className={`text-[10px] font-bold tracking-[0.2em] uppercase mb-0.5 ${isLightMode ? 'text-orange-600' : 'text-orange-400'}`}>Case Study</span>
+              <span className={`text-[10px] font-bold tracking-[0.2em] uppercase mb-0.5 ${isLightMode ? 'text-orange-600' : 'text-orange-400'}`}>{t('ui.caseStudy')}</span>
               <span className="text-sm font-black tracking-widest uppercase truncate w-full text-center">{currentProject.title}</span>
             </div>
           )}
@@ -94,8 +96,8 @@ export const CaseStudyLayout: React.FC<CaseStudyLayoutProps> = ({ children }) =>
               }`}
             >
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-              <span className="hidden sm:inline">{prevProject ? prevProject.title : 'Previous'}</span>
-              <span className="sm:hidden">Previous</span>
+              <span className="hidden sm:inline">{prevProject ? prevProject.title : t('ui.previous')}</span>
+              <span className="sm:hidden">{t('ui.previous')}</span>
             </button>
 
             {/* Back to Journey */}
@@ -122,15 +124,15 @@ export const CaseStudyLayout: React.FC<CaseStudyLayoutProps> = ({ children }) =>
                     : 'border-slate-700 text-slate-300 hover:text-orange-400 hover:border-orange-500 hover:shadow-[0_0_15px_rgba(13,148,136,0.3)]'
               }`}
             >
-              <span className="hidden sm:inline">{nextProject ? nextProject.title : 'Next'}</span>
-              <span className="sm:hidden">Next</span>
+              <span className="hidden sm:inline">{nextProject ? nextProject.title : t('ui.next')}</span>
+              <span className="sm:hidden">{t('ui.next')}</span>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </button>
           </div>
 
           {/* Contact Me */}
           <div className={`mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 text-sm ${isLightMode ? 'text-slate-500' : 'text-slate-400'}`}>
-            <span className="font-bold tracking-widest uppercase text-[11px]">Contact Me</span>
+            <span className="font-bold tracking-widest uppercase text-[11px]">{t('ui.contact')}</span>
             <div className="flex items-center gap-4">
               <a
                 href="mailto:tnsthao94@gmail.com"

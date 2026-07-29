@@ -2,51 +2,56 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useStore } from '../store/useStore';
 
-const processes = [
-  {
-    phase: "Discover",
-    icon: "🔍",
-    desc: "Empathy & Research",
-    details: [
-      "User Interviews (Insight analysis)",
-      "Empathy Map (JTBD)",
-      "User Personas"
-    ]
-  },
-  {
-    phase: "Define",
-    icon: "🎯",
-    desc: "Problem Alignment",
-    details: [
-      "Customer Journey Map",
-      "Problem Statement",
-      "Scope & MVP Strategy"
-    ]
-  },
-  {
-    phase: "Design",
-    icon: "✨",
-    desc: "Ideation & Prototyping",
-    details: [
-      "Wireframing & UI System",
-      "Interactive Prototyping",
-      "Visual Design"
-    ]
-  },
-  {
-    phase: "Deliver",
-    icon: "🚀",
-    desc: "Test & Ship",
-    details: [
-      "A/B Testing & Usability",
-      "Developer Handoff",
-      "Monitor Post-release"
-    ]
-  }
-];
+// processes moved inside component
+import { useT } from '../i18n/useT';
 
 export const GameDesignProcess: React.FC = () => {
+  const t = useT();
   const { isLightMode, setGameState } = useStore();
+
+  const processes = [
+    {
+      phase: t('process.1.phase'),
+      icon: "🔍",
+      desc: t('process.1.desc'),
+      details: [
+        t('process.1.detail.0'),
+        t('process.1.detail.1'),
+        t('process.1.detail.2')
+      ]
+    },
+    {
+      phase: t('process.2.phase'),
+      icon: "🎯",
+      desc: t('process.2.desc'),
+      details: [
+        t('process.2.detail.0'),
+        t('process.2.detail.1'),
+        t('process.2.detail.2')
+      ]
+    },
+    {
+      phase: t('process.3.phase'),
+      icon: "✨",
+      desc: t('process.3.desc'),
+      details: [
+        t('process.3.detail.0'),
+        t('process.3.detail.1'),
+        t('process.3.detail.2')
+      ]
+    },
+    {
+      phase: t('process.4.phase'),
+      icon: "🚀",
+      desc: t('process.4.desc'),
+      details: [
+        t('process.4.detail.0'),
+        t('process.4.detail.1'),
+        t('process.4.detail.2')
+      ]
+    }
+  ];
+
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.95 }}
@@ -66,8 +71,8 @@ export const GameDesignProcess: React.FC = () => {
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 2L2 7l10 5 10-5-10-5z" /><path d="M2 17l10 5 10-5" /><path d="M2 12l10 5 10-5" /></svg>
           </div>
           <div>
-            <h2 className={`font-black text-2xl uppercase tracking-widest ${isLightMode ? 'text-slate-800' : 'text-slate-100'}`}>Design Playbook</h2>
-            <p className={`text-sm font-bold tracking-widest ${isLightMode ? 'text-slate-500' : 'text-slate-400'}`}>Core Methodology Blueprint</p>
+            <h2 className={`font-black text-2xl uppercase tracking-widest ${isLightMode ? 'text-slate-800' : 'text-slate-100'}`}>{t('process.title')}</h2>
+            <p className={`text-sm font-bold tracking-widest ${isLightMode ? 'text-slate-500' : 'text-slate-400'}`}>{t('process.subtitle')}</p>
           </div>
         </div>
         <button 
@@ -78,7 +83,7 @@ export const GameDesignProcess: React.FC = () => {
               : 'bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white'
           }`}
         >
-          Close
+          {t('process.close')}
         </button>
       </div>
 

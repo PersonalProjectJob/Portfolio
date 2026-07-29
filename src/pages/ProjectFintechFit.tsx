@@ -8,9 +8,11 @@ const MailIcon = ({ className }: { className?: string }) => <svg className={clas
 
 import { useStore } from '../store/useStore';
 import { CaseStudyLayout } from '../components/layout/CaseStudyLayout';
+import { useT } from '../i18n/useT';
 
 export const ProjectFintechFit: React.FC = () => {
   const { isLightMode } = useStore();
+  const t = useT();
   const theme = {
     bg: isLightMode ? 'bg-slate-50' : 'bg-[#0f172a]',
     text: isLightMode ? 'text-slate-800' : 'text-slate-100',
@@ -33,33 +35,33 @@ export const ProjectFintechFit: React.FC = () => {
 
       <div>
         <motion.section initial="hidden" animate="visible" variants={fadeInUp} className="mb-12 md:mb-20 text-center md:text-left">
-          <span className={`inline-block px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase mb-4 border ${isLightMode ? 'border-amber-200 bg-amber-50 text-amber-700' : 'border-amber-500/30 bg-amber-500/10 text-amber-300'}`}>Tầm nhìn & Đóng góp</span>
+          <span className={`inline-block px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase mb-4 border ${isLightMode ? 'border-amber-200 bg-amber-50 text-amber-700' : 'border-amber-500/30 bg-amber-500/10 text-amber-300'}`}>{t('fintechFit.tag')}</span>
           <h1 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-6">
-            Mảnh ghép cho <span className="text-amber-500">Ngân hàng số</span>
+            {t('fintechFit.titlePart1')}<span className="text-amber-500">{t('fintechFit.titlePart2')}</span>
           </h1>
           <p className={`text-lg md:text-xl max-w-3xl ${theme.textMuted} leading-relaxed mx-auto md:mx-0`}>
-            Tại sao tư duy thiết kế của tôi lại phù hợp với các sản phẩm Fintech và Ngân hàng số?
+            {t('fintechFit.subtitle')}
           </p>
         </motion.section>
 
         {/* Fintech Fit */}
         <motion.section initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeInUp} className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16 md:mb-24">
           <div className={`p-6 md:p-8 rounded-3xl border backdrop-blur-xl ${theme.card} ${theme.glow}`}>
-            <h3 className="text-2xl font-bold mb-6 flex items-center gap-3"><BankIcon/> Sản phẩm tài chính cần gì?</h3>
+            <h3 className="text-2xl font-bold mb-6 flex items-center gap-3"><BankIcon/> {t('fintechFit.needs.title')}</h3>
             <ul className={`space-y-4 ${theme.textMuted}`}>
-              <li className="flex items-start gap-3"><CheckCircleIcon className="w-5 h-5 shrink-0 mt-0.5" /> <span><strong>Sự tin cậy & Tính minh bạch:</strong> Tiền đang ở đâu, phí bao nhiêu.</span></li>
-              <li className="flex items-start gap-3"><CheckCircleIcon className="w-5 h-5 shrink-0 mt-0.5" /> <span><strong>Luồng rõ ràng:</strong> Đăng ký, kích hoạt, giao dịch không gây bối rối.</span></li>
-              <li className="flex items-start gap-3"><CheckCircleIcon className="w-5 h-5 shrink-0 mt-0.5" /> <span><strong>Quản lý trạng thái:</strong> Xử lý mượt mà khi lỗi, rớt mạng, hoặc chờ xử lý từ phía ngân hàng.</span></li>
-              <li className="flex items-start gap-3"><CheckCircleIcon className="w-5 h-5 shrink-0 mt-0.5" /> <span><strong>Hệ thống thiết kế mạnh:</strong> Đảm bảo an toàn và nhất quán trên mọi điểm chạm.</span></li>
+              <li className="flex items-start gap-3"><CheckCircleIcon className="w-5 h-5 shrink-0 mt-0.5" /> <span><strong>{t('fintechFit.needs.item1.bold')}</strong>{t('fintechFit.needs.item1.text')}</span></li>
+              <li className="flex items-start gap-3"><CheckCircleIcon className="w-5 h-5 shrink-0 mt-0.5" /> <span><strong>{t('fintechFit.needs.item2.bold')}</strong>{t('fintechFit.needs.item2.text')}</span></li>
+              <li className="flex items-start gap-3"><CheckCircleIcon className="w-5 h-5 shrink-0 mt-0.5" /> <span><strong>{t('fintechFit.needs.item3.bold')}</strong>{t('fintechFit.needs.item3.text')}</span></li>
+              <li className="flex items-start gap-3"><CheckCircleIcon className="w-5 h-5 shrink-0 mt-0.5" /> <span><strong>{t('fintechFit.needs.item4.bold')}</strong>{t('fintechFit.needs.item4.text')}</span></li>
             </ul>
           </div>
           
           <div className={`p-6 md:p-8 rounded-3xl border backdrop-blur-xl ${isLightMode ? 'bg-amber-50/50 border-amber-200' : 'bg-amber-900/10 border-amber-500/30'} ${theme.glow}`}>
-            <h3 className={`text-2xl font-bold mb-6 flex items-center gap-3 ${isLightMode ? 'text-amber-700' : 'text-amber-400'}`}><TargetIcon/> Đóng góp của tôi</h3>
+            <h3 className={`text-2xl font-bold mb-6 flex items-center gap-3 ${isLightMode ? 'text-amber-700' : 'text-amber-400'}`}><TargetIcon/> {t('fintechFit.contribution.title')}</h3>
             <ul className={`space-y-4 ${isLightMode ? 'text-amber-900/70' : 'text-amber-200/70'}`}>
-              <li className="flex items-start gap-3"><CheckCircleIcon className="w-5 h-5 shrink-0 mt-0.5" /> <span><strong>Tư duy logic:</strong> Qua dự án VLINKPAY, tôi quen với việc phân tích luồng tiền, tách bạch vai trò người dùng và điểm giao dịch.</span></li>
-              <li className="flex items-start gap-3"><CheckCircleIcon className="w-5 h-5 shrink-0 mt-0.5" /> <span><strong>Giảm sự mơ hồ:</strong> Thói quen phân tích BA/DOCS giúp tôi biến các nghiệp vụ phức tạp thành màn hình UI rõ ràng, dễ implement.</span></li>
-              <li className="flex items-start gap-3"><CheckCircleIcon className="w-5 h-5 shrink-0 mt-0.5" /> <span><strong>Tăng tốc với AI:</strong> Áp dụng AI để rà soát quy trình, tạo bản mẫu nhanh nhưng vẫn giữ nguyên tính hệ thống.</span></li>
+              <li className="flex items-start gap-3"><CheckCircleIcon className="w-5 h-5 shrink-0 mt-0.5" /> <span><strong>{t('fintechFit.contribution.item1.bold')}</strong>{t('fintechFit.contribution.item1.text')}</span></li>
+              <li className="flex items-start gap-3"><CheckCircleIcon className="w-5 h-5 shrink-0 mt-0.5" /> <span><strong>{t('fintechFit.contribution.item2.bold')}</strong>{t('fintechFit.contribution.item2.text')}</span></li>
+              <li className="flex items-start gap-3"><CheckCircleIcon className="w-5 h-5 shrink-0 mt-0.5" /> <span><strong>{t('fintechFit.contribution.item3.bold')}</strong>{t('fintechFit.contribution.item3.text')}</span></li>
             </ul>
           </div>
         </motion.section>
@@ -68,16 +70,16 @@ export const ProjectFintechFit: React.FC = () => {
         <motion.section initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeInUp} className="text-center">
           <div className={`p-10 md:p-16 rounded-3xl border ${isLightMode ? 'bg-amber-600 border-amber-500 text-white' : 'bg-gradient-to-r from-amber-900 to-slate-900 border-amber-500/50'} shadow-2xl`}>
             <MailIcon className={`w-12 h-12 mx-auto mb-6 ${isLightMode ? 'text-amber-100' : 'text-amber-400'}`} />
-            <h2 className={`text-3xl md:text-4xl font-black uppercase tracking-tight mb-4 ${isLightMode ? 'text-white' : 'text-slate-100'}`}>Sẵn sàng Trao đổi</h2>
+            <h2 className={`text-3xl md:text-4xl font-black uppercase tracking-tight mb-4 ${isLightMode ? 'text-white' : 'text-slate-100'}`}>{t('fintechFit.cta.title')}</h2>
             <p className={`text-lg mb-8 max-w-2xl mx-auto ${isLightMode ? 'text-amber-100' : 'text-slate-300'}`}>
-              Tôi rất mong có cơ hội thảo luận sâu hơn về cách tôi có thể đóng góp cho trải nghiệm sản phẩm tại đội ngũ của bạn.
+              {t('fintechFit.cta.desc')}
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <a 
                 href="mailto:hellosonthao@gmail.com" 
                 className={`px-8 py-4 rounded-xl font-bold uppercase tracking-widest transition-all ${isLightMode ? 'bg-white text-amber-700 hover:bg-amber-50' : 'bg-amber-500 text-white hover:bg-amber-400'} shadow-lg hover:scale-105`}
               >
-                Gửi Email
+                {t('fintechFit.cta.email')}
               </a>
               <a 
                 href="https://www.linkedin.com/in/sonthaouid/" 
@@ -85,7 +87,7 @@ export const ProjectFintechFit: React.FC = () => {
                 rel="noopener noreferrer"
                 className={`px-8 py-4 rounded-xl font-bold uppercase tracking-widest border transition-all ${isLightMode ? 'bg-amber-700 border-amber-500 text-white hover:bg-amber-800' : 'bg-slate-800/50 border-amber-500/30 text-amber-400 hover:bg-slate-800 hover:border-amber-500'} shadow-lg hover:scale-105`}
               >
-                LinkedIn Profile
+                {t('fintechFit.cta.linkedin')}
               </a>
             </div>
           </div>

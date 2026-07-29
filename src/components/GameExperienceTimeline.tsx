@@ -1,53 +1,58 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useStore } from '../store/useStore';
+import { useT } from '../i18n/useT';
 
-const experiences = [
-  {
-    period: "Aug 2025 - May 2026",
-    role: "UX Designer - MVP AI Builder",
-    company: "StartechAI",
-    details: [
-      "Projects: Cryptomap360, Bitcoin Nail Bar, Pateso da cóc Cô Tươi",
-      "Specialized in building and designing MVPs using AI (Figma Make, Supabase, Cursor, Deepseek).",
-      "Conducted user research, designed search flows and scalable UI systems.",
-      "Coordinated with PM and Backend Devs to define logic and feasibility.",
-    ]
-  },
-  {
-    period: "Nov 2023 - Jun 2025",
-    role: "UX/UI Designer",
-    company: "StartechAI",
-    details: [
-      "Key Projects: VLINKPAY (US Market), Crypto flow UX, Spin Game.",
-      "Analyzed requirements, brainstormed solutions, and designed wireframes.",
-      "Collaborated with BA & Devs during grooming and implementation.",
-      "Monitored product post-production and handled user feedback."
-    ]
-  },
-  {
-    period: "Mar 2023 - Mar 2024",
-    role: "Freelance Designer",
-    company: "Talucan (E-commerce)",
-    details: [
-      "POD product design.",
-      "Edited and optimized WordPress websites."
-    ]
-  },
-  {
-    period: "Jan 2020 - Mar 2023",
-    role: "Jr. Graphic/UX-UI Designer",
-    company: "5S Group",
-    details: [
-      "Supported analysis and UX/UI design for WMS (Warehouse) and TMS (Transportation).",
-      "Designed the outsourced product 'Quick Order' for Colgate internal use.",
-      "Designed banners and marketing materials."
-    ]
-  }
-];
+
 
 export const GameExperienceTimeline: React.FC = () => {
+  const t = useT();
   const { isLightMode, setGameState } = useStore();
+  
+  const experiences = [
+    {
+      period: t('timeline.exp.1.period'),
+      role: t('timeline.exp.1.role'),
+      company: t('timeline.exp.1.company'),
+      details: [
+        t('timeline.exp.1.detail.0'),
+        t('timeline.exp.1.detail.1'),
+        t('timeline.exp.1.detail.2'),
+        t('timeline.exp.1.detail.3'),
+      ]
+    },
+    {
+      period: t('timeline.exp.2.period'),
+      role: t('timeline.exp.2.role'),
+      company: t('timeline.exp.2.company'),
+      details: [
+        t('timeline.exp.2.detail.0'),
+        t('timeline.exp.2.detail.1'),
+        t('timeline.exp.2.detail.2'),
+        t('timeline.exp.2.detail.3')
+      ]
+    },
+    {
+      period: t('timeline.exp.3.period'),
+      role: t('timeline.exp.3.role'),
+      company: t('timeline.exp.3.company'),
+      details: [
+        t('timeline.exp.3.detail.0'),
+        t('timeline.exp.3.detail.1')
+      ]
+    },
+    {
+      period: t('timeline.exp.4.period'),
+      role: t('timeline.exp.4.role'),
+      company: t('timeline.exp.4.company'),
+      details: [
+        t('timeline.exp.4.detail.0'),
+        t('timeline.exp.4.detail.1'),
+        t('timeline.exp.4.detail.2')
+      ]
+    }
+  ];
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -67,8 +72,8 @@ export const GameExperienceTimeline: React.FC = () => {
             XP
           </div>
           <div>
-            <h2 className={`font-black text-xl md:text-2xl uppercase tracking-wider ${isLightMode ? 'text-slate-800' : 'text-slate-100'}`}>Experience Tree</h2>
-            <p className={`text-xs md:text-sm font-medium ${isLightMode ? 'text-orange-600' : 'text-orange-400'}`}>Leveling up through the years</p>
+            <h2 className={`font-black text-xl md:text-2xl uppercase tracking-wider ${isLightMode ? 'text-slate-800' : 'text-slate-100'}`}>{t('timeline.title')}</h2>
+            <p className={`text-xs md:text-sm font-medium ${isLightMode ? 'text-orange-600' : 'text-orange-400'}`}>{t('timeline.subtitle')}</p>
           </div>
         </div>
         <button 

@@ -2,9 +2,11 @@ import React, { useRef, useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CV_PROJECTS } from '../data/cvData';
 import { useStore } from '../store/useStore';
+import { useT } from '../i18n/useT';
 import { LanguageToggle } from './LanguageToggle';
 
 export const GameWorldMap: React.FC = () => {
+  const t = useT();
   const { isLightMode, setGameState, handleQuestSelect } = useStore();
   const mapRef = useRef<HTMLDivElement>(null);
   const [showDragHint, setShowDragHint] = useState(true);
@@ -25,7 +27,7 @@ export const GameWorldMap: React.FC = () => {
        <div className="absolute top-24 left-10 z-20 flex items-center gap-3">
           <button onClick={() => setGameState('SKILL_MATRIX')} className={`premium-button px-6 py-3 text-sm flex items-center gap-2 border transition-all ${isLightMode ? 'bg-white text-slate-900 border-slate-200 hover:bg-slate-50' : 'bg-slate-900 text-slate-100 border-slate-700 hover:bg-slate-800'}`}>
              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-             Back to Profile
+             {t("map.backToProfile")}
           </button>
           <div className={`h-10 flex items-center rounded-xl border overflow-hidden ${isLightMode ? 'bg-white/90 border-slate-200' : 'bg-slate-900/90 border-slate-700'}`}>
             <LanguageToggle />
@@ -33,8 +35,8 @@ export const GameWorldMap: React.FC = () => {
        </div>
 
        <div className="absolute top-24 right-10 z-20 text-right pointer-events-none">
-          <h2 className={`text-3xl font-extrabold tracking-tight px-4 py-1 rounded-xl backdrop-blur-sm transition-colors ${isLightMode ? 'text-slate-900 bg-white/80' : 'text-slate-100 bg-slate-900/80'}`}>Project Journey</h2>
-          <p className={`font-bold tracking-widest mt-2 uppercase text-xs px-4 py-1 rounded-xl inline-block backdrop-blur-sm transition-colors ${isLightMode ? 'text-orange-600 bg-white/80' : 'text-orange-400 bg-slate-900/80'}`}>Explore Case Studies</p>
+          <h2 className={`text-3xl font-extrabold tracking-tight px-4 py-1 rounded-xl backdrop-blur-sm transition-colors ${isLightMode ? 'text-slate-900 bg-white/80' : 'text-slate-100 bg-slate-900/80'}`}>{t("map.projectJourney")}</h2>
+          <p className={`font-bold tracking-widest mt-2 uppercase text-xs px-4 py-1 rounded-xl inline-block backdrop-blur-sm transition-colors ${isLightMode ? 'text-orange-600 bg-white/80' : 'text-orange-400 bg-slate-900/80'}`}>{t("map.exploreCaseStudies")}</p>
        </div>
 
        {/* ====== MOBILE: Vertical Scroll List (<768px) ====== */}
@@ -64,8 +66,8 @@ export const GameWorldMap: React.FC = () => {
 
                {/* Text */}
                <div className="flex-1 min-w-0">
-                 <p className={`font-extrabold text-sm truncate ${isLightMode ? 'text-slate-900' : 'text-slate-100'}`}>{node.title}</p>
-                 <p className={`text-[10px] font-bold tracking-widest uppercase mt-0.5 truncate ${isLightMode ? 'text-orange-600' : 'text-orange-400'}`}>{node.category}</p>
+                 <p className={`font-extrabold text-sm truncate ${isLightMode ? 'text-slate-900' : 'text-slate-100'}`}>{t(node.title)}</p>
+                 <p className={`text-[10px] font-bold tracking-widest uppercase mt-0.5 truncate ${isLightMode ? 'text-orange-600' : 'text-orange-400'}`}>{t(node.category)}</p>
                </div>
 
                {/* Arrow */}
@@ -132,8 +134,8 @@ export const GameWorldMap: React.FC = () => {
                   </div>
                   
                   <div className={`absolute top-14 left-1/2 -translate-x-1/2 mt-4 whitespace-nowrap text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none premium-card px-5 py-3 border-none shadow-xl ${isLightMode ? 'bg-white' : 'bg-slate-800'}`}>
-                     <p className={`font-extrabold text-sm ${isLightMode ? 'text-slate-900' : 'text-slate-100'}`}>{node.title}</p>
-                     <p className={`font-bold tracking-widest mt-1 uppercase text-[10px] ${isLightMode ? 'text-orange-600' : 'text-orange-400'}`}>{node.category}</p>
+                     <p className={`font-extrabold text-sm ${isLightMode ? 'text-slate-900' : 'text-slate-100'}`}>{t(node.title)}</p>
+                     <p className={`font-bold tracking-widest mt-1 uppercase text-[10px] ${isLightMode ? 'text-orange-600' : 'text-orange-400'}`}>{t(node.category)}</p>
                   </div>
                </motion.div>
              ))}
@@ -160,7 +162,7 @@ export const GameWorldMap: React.FC = () => {
                <path d="M10 10.5V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v8" />
                <path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15" />
              </svg>
-             Drag to explore
+             {t("map.dragToExplore")}
            </motion.div>
          )}
        </AnimatePresence>

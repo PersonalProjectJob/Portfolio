@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { AnimatePresence, motion, useScroll, useTransform } from 'framer-motion';
 import { useStore } from '../store/useStore';
 import { CaseStudyLayout } from '../components/layout/CaseStudyLayout';
+import { useT } from '../i18n/useT';
 
 const ArrowRightIcon = ({ className }: { className?: string }) => (
    <svg className={className} width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
@@ -207,6 +208,7 @@ export const ProjectNexora: React.FC = () => {
    const { scrollY } = useScroll();
    const y1 = useTransform(scrollY, [0, 1000], [0, 200]);
    const opacity = useTransform(scrollY, [0, 300], [1, 0]);
+   const t = useT();
 
    const theme = {
       text: isLightMode ? 'text-slate-900' : 'text-white',
@@ -237,23 +239,23 @@ export const ProjectNexora: React.FC = () => {
                <motion.div style={{ opacity }} className="text-center max-w-4xl mx-auto mb-16">
                   <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5 }} className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-amber-500/30 bg-amber-500/10 text-amber-500 text-xs font-bold tracking-[0.2em] uppercase mb-8">
                      <span className="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
-                     AI-Assisted Workflow
+                     {t('nexora.hero.tag')}
                   </motion.div>
                   <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }} className={`text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter mb-6 ${theme.text}`}>
-                     NEXORA <br/>
-                     <span className={theme.gradientText}>Connected Workflow.</span>
+                     {t('nexora.hero.title')} <br/>
+                     <span className={theme.gradientText}>{t('nexora.hero.subtitle')}</span>
                   </motion.h1>
                   <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }} className={`text-lg md:text-xl md:leading-relaxed ${theme.textMuted} max-w-2xl mx-auto`}>
-                     Dự án xây dựng Full Workflow MVP bằng AI. Khẳng định vai trò "Kiến trúc sư" của UX Designer: AI chỉ là "Thợ xây", con người mới là người định hình logic và hệ thống.
+                     {t('nexora.hero.desc')}
                   </motion.p>
                </motion.div>
 
                {/* Key Meta Info */}
                <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.3 }} className={`grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-12 w-full max-w-5xl p-8 rounded-3xl backdrop-blur-xl border ${theme.bgCard} shadow-2xl`}>
-                  <div><p className={`text-xs uppercase tracking-widest font-bold mb-2 ${theme.textMuted}`}>Vai trò</p><p className={`font-semibold ${theme.text}`}>UX Architect</p></div>
-                  <div><p className={`text-xs uppercase tracking-widest font-bold mb-2 ${theme.textMuted}`}>Nền tảng</p><p className={`font-semibold ${theme.text}`}>Web & Mobile App</p></div>
-                  <div><p className={`text-xs uppercase tracking-widest font-bold mb-2 ${theme.textMuted}`}>Phương pháp</p><p className={`font-semibold ${theme.text}`}>System Thinking</p></div>
-                  <div><p className={`text-xs uppercase tracking-widest font-bold mb-2 ${theme.textMuted}`}>Công cụ</p><p className={`font-semibold ${theme.text}`}>Figma, AI Generator</p></div>
+                  <div><p className={`text-xs uppercase tracking-widest font-bold mb-2 ${theme.textMuted}`}>{t('nexora.meta.role.label')}</p><p className={`font-semibold ${theme.text}`}>{t('nexora.meta.role.value')}</p></div>
+                  <div><p className={`text-xs uppercase tracking-widest font-bold mb-2 ${theme.textMuted}`}>{t('nexora.meta.platform.label')}</p><p className={`font-semibold ${theme.text}`}>{t('nexora.meta.platform.value')}</p></div>
+                  <div><p className={`text-xs uppercase tracking-widest font-bold mb-2 ${theme.textMuted}`}>{t('nexora.meta.method.label')}</p><p className={`font-semibold ${theme.text}`}>{t('nexora.meta.method.value')}</p></div>
+                  <div><p className={`text-xs uppercase tracking-widest font-bold mb-2 ${theme.textMuted}`}>{t('nexora.meta.tool.label')}</p><p className={`font-semibold ${theme.text}`}>{t('nexora.meta.tool.value')}</p></div>
                </motion.div>
             </div>
          </section>
@@ -264,21 +266,21 @@ export const ProjectNexora: React.FC = () => {
             <motion.section initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeInUp} className="py-16 md:py-24 border-t border-slate-200 dark:border-white/10">
                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
                   <div className="lg:col-span-4">
-                     <h2 className="text-sm font-bold tracking-[0.3em] uppercase text-amber-500 mb-4">01. The Context</h2>
-                     <h3 className={`text-3xl md:text-4xl font-bold ${theme.text}`}>Bẫy "Giao diện rời rạc" của AI.</h3>
+                     <h2 className="text-sm font-bold tracking-[0.3em] uppercase text-amber-500 mb-4">{t('nexora.context.tag')}</h2>
+                     <h3 className={`text-3xl md:text-4xl font-bold ${theme.text}`}>{t('nexora.context.title')}</h3>
                   </div>
                   <div className="lg:col-span-8">
                      <p className={`text-lg leading-relaxed ${theme.textMuted} mb-8`}>
-                        Với sự bùng nổ của các công cụ GenAI, việc tạo ra một màn hình UI bóng bẩy chỉ mất vài giây. Tuy nhiên, NEXORA gặp phải một "căn bệnh" phổ biến: các màn hình do AI sinh ra hoàn toàn rời rạc, đứt gãy luồng người dùng (User Flow) và hoàn toàn vắng bóng các Edge Cases.
+                        {t('nexora.context.desc')}
                      </p>
                      <div className={`p-8 rounded-3xl border ${theme.bgCard} shadow-lg border-l-4 border-l-red-500`}>
                         <h4 className={`text-xl font-bold mb-4 flex items-center gap-3 text-red-500`}>
-                           Sự thiếu hụt trầm trọng (The Core Problem)
+                           {t('nexora.context.challenge.title')}
                         </h4>
                         <ul className={`leading-relaxed ${theme.textMuted} space-y-2 list-disc pl-5`}>
-                           <li>Thiếu tính nhất quán (Consistency) giữa các luồng.</li>
-                           <li>Hoàn toàn bỏ qua các trạng thái bắt buộc: Empty State, Error, Loading.</li>
-                           <li>Không hề có khái niệm về "Chuyển tiếp màn hình" (Screen Transition). Mọi thứ đều cứng nhắc.</li>
+                           <li>{t('nexora.context.challenge.list.0')}</li>
+                           <li>{t('nexora.context.challenge.list.1')}</li>
+                           <li>{t('nexora.context.challenge.list.2')}</li>
                         </ul>
                      </div>
                   </div>
@@ -289,22 +291,20 @@ export const ProjectNexora: React.FC = () => {
             <motion.section initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeInUp} className="py-16 md:py-24 border-t border-slate-200 dark:border-white/10">
                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
                   <div className="lg:col-span-4">
-                     <h2 className="text-sm font-bold tracking-[0.3em] uppercase text-amber-500 mb-4">02. Strategy</h2>
-                     <h3 className={`text-3xl md:text-4xl font-bold ${theme.text}`}>AI là Thợ Xây. Mình là Kiến Trúc Sư.</h3>
+                     <h2 className="text-sm font-bold tracking-[0.3em] uppercase text-amber-500 mb-4">{t('nexora.strategy.tag')}</h2>
+                     <h3 className={`text-3xl md:text-4xl font-bold ${theme.text}`}>{t('nexora.strategy.title')}</h3>
                   </div>
                   <div className="lg:col-span-8">
-                     <p className={`text-lg leading-relaxed ${theme.textMuted} mb-8`}>
-                        Thay vì prompt những câu chung chung như "Vẽ cho tôi app bán hàng", chiến lược ở NEXORA là dùng <strong>Product Thinking</strong> (Tư duy sản phẩm) để "điều phối" AI.
-                     </p>
+                     <p className={`text-lg leading-relaxed ${theme.textMuted} mb-8`} dangerouslySetInnerHTML={{ __html: t('nexora.strategy.desc') }}></p>
                      
                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div className={`p-6 rounded-2xl border ${theme.bgCard}`}>
-                           <h4 className={`font-bold mb-3 ${theme.text} flex items-center gap-2`}><CheckCircleIcon className="text-amber-500 w-5 h-5"/> Lên Map & Flow trước</h4>
-                           <p className={`text-sm ${theme.textMuted}`}>Phác thảo toàn bộ Information Architecture (Kiến trúc thông tin) và Sitemap trước khi đụng vào UI.</p>
+                           <h4 className={`font-bold mb-3 ${theme.text} flex items-center gap-2`}><CheckCircleIcon className="text-amber-500 w-5 h-5"/> {t('nexora.strategy.map.title')}</h4>
+                           <p className={`text-sm ${theme.textMuted}`}>{t('nexora.strategy.map.desc')}</p>
                         </div>
                         <div className={`p-6 rounded-2xl border ${theme.bgCard}`}>
-                           <h4 className={`font-bold mb-3 ${theme.text} flex items-center gap-2`}><CheckCircleIcon className="text-amber-500 w-5 h-5"/> Chia để trị (Modularity)</h4>
-                           <p className={`text-sm ${theme.textMuted}`}>Không prompt một cục lớn. Prompt từng Component nhỏ, chuẩn hóa nó rồi mới bảo AI tái sử dụng (Reuse).</p>
+                           <h4 className={`font-bold mb-3 ${theme.text} flex items-center gap-2`}><CheckCircleIcon className="text-amber-500 w-5 h-5"/> {t('nexora.strategy.modular.title')}</h4>
+                           <p className={`text-sm ${theme.textMuted}`}>{t('nexora.strategy.modular.desc')}</p>
                         </div>
                      </div>
                   </div>
@@ -315,12 +315,12 @@ export const ProjectNexora: React.FC = () => {
             <motion.section initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeInUp} className="py-16 md:py-24 border-t border-slate-200 dark:border-white/10">
                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
                   <div className="lg:col-span-4">
-                     <h2 className="text-sm font-bold tracking-[0.3em] uppercase text-amber-500 mb-4">03. Architecture & UX</h2>
-                     <h3 className={`text-3xl md:text-4xl font-bold ${theme.text}`}>One system, three connected roles.</h3>
+                     <h2 className="text-sm font-bold tracking-[0.3em] uppercase text-amber-500 mb-4">{t('nexora.architecture.tag')}</h2>
+                     <h3 className={`text-3xl md:text-4xl font-bold ${theme.text}`}>{t('nexora.architecture.title')}</h3>
                   </div>
                   <div className="lg:col-span-8">
                      <p className={`text-lg leading-relaxed ${theme.textMuted}`}>
-                        Thay vì trình bày toàn bộ sitemap kỹ thuật, kiến trúc được rút về một trục đọc nhất quán. Mỗi vai trò bắt đầu từ một entry point, đi vào workspace phù hợp, hoàn thành tác vụ và luôn kết thúc bằng một trạng thái hệ thống rõ ràng.
+                        {t('nexora.architecture.desc')}
                      </p>
                   </div>
                </div>
@@ -329,10 +329,10 @@ export const ProjectNexora: React.FC = () => {
                   <div className="bg-[#0b1f4d] p-5 sm:p-7">
                      <div className="mb-5 flex items-center justify-between gap-4">
                         <div>
-                           <p className="text-[10px] font-black uppercase tracking-[0.22em] text-cyan-300">System at a glance</p>
-                           <h4 className="mt-1 text-xl font-black text-white">A shared coordinate system</h4>
+                           <p className="text-[10px] font-black uppercase tracking-[0.22em] text-cyan-300">{t('nexora.architecture.system.tag')}</p>
+                           <h4 className="mt-1 text-xl font-black text-white">{t('nexora.architecture.system.title')}</h4>
                         </div>
-                        <span className="hidden rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[10px] font-bold text-slate-300 sm:inline">Meaning first · Route second</span>
+                        <span className="hidden rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[10px] font-bold text-slate-300 sm:inline">{t('nexora.architecture.system.badge')}</span>
                      </div>
                      <div className="grid grid-cols-2 gap-2 sm:grid-cols-5">
                         {[
@@ -383,10 +383,10 @@ export const ProjectNexora: React.FC = () => {
             {/* 04. DESIGN & EXECUTION */}
             <motion.section initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeInUp} className="py-16 md:py-24 border-t border-slate-200 dark:border-white/10">
                <div className="text-center mb-16">
-                  <h2 className="text-sm font-bold tracking-[0.3em] uppercase text-amber-500 mb-4">04. Design & Execution</h2>
-                  <h3 className={`text-4xl md:text-5xl font-black tracking-tighter ${theme.text}`}>Kết Nối & Liền Mạch.</h3>
+                  <h2 className="text-sm font-bold tracking-[0.3em] uppercase text-amber-500 mb-4">{t('nexora.design.tag')}</h2>
+                  <h3 className={`text-4xl md:text-5xl font-black tracking-tighter ${theme.text}`}>{t('nexora.design.title')}</h3>
                   <p className={`mt-4 text-lg max-w-2xl mx-auto ${theme.textMuted}`}>
-                     Từ những bản vẽ thô, chúng tôi refine thành những Flow mượt mà, đầy đủ các điểm chạm.
+                     {t('nexora.design.desc')}
                   </p>
                </div>
 
@@ -400,13 +400,13 @@ export const ProjectNexora: React.FC = () => {
                         </div>
                      </div>
                      <div className="w-full md:w-2/5 order-1 md:order-2">
-                        <h4 className={`text-2xl font-bold mb-4 ${theme.text}`}>Connected Workflow Dashboard</h4>
+                        <h4 className={`text-2xl font-bold mb-4 ${theme.text}`}>{t('nexora.design.dashboard.title')}</h4>
                         <p className={`text-lg ${theme.textMuted} leading-relaxed mb-6`}>
-                           Thay vì những thành phần đứt gãy do AI sinh ra, giao diện được sắp xếp lại với Z-pattern kinh điển. Các khối dữ liệu lớn được thiết kế để có chung ngôn ngữ thiết kế (Design Language).
+                           {t('nexora.design.dashboard.desc')}
                         </p>
                         <ul className={`space-y-3 ${theme.textMuted}`}>
-                           <li className="flex items-start gap-2"><FlowIcon className="text-amber-500 shrink-0 mt-1"/> Cấu trúc Module phân cấp rõ ràng (Primary/Secondary).</li>
-                           <li className="flex items-start gap-2"><FlowIcon className="text-amber-500 shrink-0 mt-1"/> Không gian mở (White space) tối đa cho Data.</li>
+                           <li className="flex items-start gap-2"><FlowIcon className="text-amber-500 shrink-0 mt-1"/> {t('nexora.design.dashboard.list.0')}</li>
+                           <li className="flex items-start gap-2"><FlowIcon className="text-amber-500 shrink-0 mt-1"/> {t('nexora.design.dashboard.list.1')}</li>
                         </ul>
                      </div>
                   </div>
@@ -415,11 +415,11 @@ export const ProjectNexora: React.FC = () => {
                   <div>
                      <div className="mb-10 grid grid-cols-1 gap-6 lg:grid-cols-12 lg:items-end">
                         <div className="lg:col-span-7">
-                           <p className="mb-3 text-xs font-black uppercase tracking-[0.22em] text-violet-500">State Lab · Customer payment</p>
-                           <h4 className={`text-3xl font-black tracking-tight md:text-4xl ${theme.text}`}>Designing the moments between screens.</h4>
+                           <p className="mb-3 text-xs font-black uppercase tracking-[0.22em] text-violet-500">{t('nexora.design.lab.tag')}</p>
+                           <h4 className={`text-3xl font-black tracking-tight md:text-4xl ${theme.text}`}>{t('nexora.design.lab.title')}</h4>
                         </div>
                         <p className={`text-base leading-relaxed lg:col-span-5 ${theme.textMuted}`}>
-                           Một happy path chưa đủ để tạo nên trải nghiệm đáng tin cậy. NEXORA thiết kế cả phản hồi, thời gian chờ và đường phục hồi để người dùng luôn biết điều gì đang xảy ra.
+                           {t('nexora.design.lab.desc')}
                         </p>
                      </div>
 
@@ -429,10 +429,10 @@ export const ProjectNexora: React.FC = () => {
                            <div className="lg:col-span-5">
                               <div className="flex items-center justify-between gap-4">
                                  <div>
-                                    <p className={`text-xs font-black uppercase tracking-[0.18em] ${theme.textMuted}`}>Select a state</p>
-                                    <p className={`mt-2 text-sm ${theme.textMuted}`}>The preview responds immediately.</p>
+                                    <p className={`text-xs font-black uppercase tracking-[0.18em] ${theme.textMuted}`}>{t('nexora.design.lab.select')}</p>
+                                    <p className={`mt-2 text-sm ${theme.textMuted}`}>{t('nexora.design.lab.preview')}</p>
                                  </div>
-                                 <span className="rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-1 text-[10px] font-black uppercase tracking-wider text-emerald-500">Interactive</span>
+                                 <span className="rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-1 text-[10px] font-black uppercase tracking-wider text-emerald-500">{t('nexora.design.lab.interactive')}</span>
                               </div>
 
                               <div className="mt-6 space-y-2" role="tablist" aria-label="Customer payment states">
@@ -475,7 +475,7 @@ export const ProjectNexora: React.FC = () => {
                               </AnimatePresence>
 
                               <div className={`mt-6 border-t pt-5 ${isLightMode ? 'border-slate-200' : 'border-white/10'}`}>
-                                 <p className={`mb-3 text-[10px] font-black uppercase tracking-[0.16em] ${theme.textMuted}`}>System behaviors covered</p>
+                                 <p className={`mb-3 text-[10px] font-black uppercase tracking-[0.16em] ${theme.textMuted}`}>{t('nexora.design.lab.systemBehaviors')}</p>
                                  <div className="flex flex-wrap gap-2">
                                     {['Loading', 'Error & guards', 'Empty state', 'Toast', 'Tooltip'].map((behavior) => (
                                        <span key={behavior} className={`rounded-full border px-3 py-1.5 text-[10px] font-bold ${isLightMode ? 'border-slate-200 bg-white text-slate-600' : 'border-white/10 bg-white/[0.04] text-slate-300'}`}>{behavior}</span>
@@ -495,10 +495,10 @@ export const ProjectNexora: React.FC = () => {
                   <div>
                      <div className="mb-7 flex flex-col justify-between gap-3 sm:flex-row sm:items-end">
                         <div>
-                           <p className="mb-2 text-xs font-black uppercase tracking-[0.22em] text-amber-500">Design coverage</p>
-                           <h4 className={`text-2xl font-black ${theme.text}`}>Evidence, not decoration.</h4>
+                           <p className="mb-2 text-xs font-black uppercase tracking-[0.22em] text-amber-500">{t('nexora.design.coverage.tag')}</p>
+                           <h4 className={`text-2xl font-black ${theme.text}`}>{t('nexora.design.coverage.title')}</h4>
                         </div>
-                        <p className={`max-w-xl text-sm leading-relaxed ${theme.textMuted}`}>Các con số mô tả độ phủ thiết kế và mức độ kiểm tra luồng, tách biệt với business impact.</p>
+                        <p className={`max-w-xl text-sm leading-relaxed ${theme.textMuted}`}>{t('nexora.design.coverage.desc')}</p>
                      </div>
                      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
                         {coverageMetrics.map((metric) => (
@@ -518,7 +518,7 @@ export const ProjectNexora: React.FC = () => {
                            className={`inline-flex items-center gap-2 rounded-xl px-6 py-3 font-bold transition-all ${isLightMode ? 'bg-amber-600 text-white hover:bg-amber-700 hover:shadow-lg hover:shadow-amber-500/30' : 'border border-amber-500/30 bg-amber-500/20 text-amber-400 hover:bg-amber-500 hover:text-slate-900 hover:shadow-[0_0_20px_rgba(245,158,11,0.4)]'}`}
                         >
                            <FigmaIcon className="h-5 w-5" />
-                           Khám phá Product Map trên Figma
+                           {t('nexora.design.figma')}
                         </a>
                      </div>
                   </div>
@@ -529,24 +529,24 @@ export const ProjectNexora: React.FC = () => {
             <motion.section initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeInUp} className="py-16 md:py-24 border-t border-slate-200 dark:border-white/10">
                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
                   <div className="lg:col-span-4">
-                     <h2 className="text-sm font-bold tracking-[0.3em] uppercase text-amber-500 mb-4">05. Outcomes</h2>
-                     <h3 className={`text-3xl md:text-4xl font-bold ${theme.text}`}>Kết quả & Triết lý.</h3>
+                     <h2 className="text-sm font-bold tracking-[0.3em] uppercase text-amber-500 mb-4">{t('nexora.outcomes.tag')}</h2>
+                     <h3 className={`text-3xl md:text-4xl font-bold ${theme.text}`}>{t('nexora.outcomes.title')}</h3>
                   </div>
                   <div className="lg:col-span-8">
                      <div className={`p-8 md:p-12 rounded-3xl border bg-gradient-to-br ${isLightMode ? 'from-amber-50 to-emerald-50 border-amber-100' : 'from-amber-900/20 to-emerald-900/20 border-amber-500/20'} shadow-lg mb-8`}>
                         <p className={`text-xl italic font-medium leading-relaxed ${theme.text} mb-8`}>
-                           "NEXORA chứng minh rằng AI là một công cụ tăng tốc tuyệt vời để xây dựng MVP. Nhưng để sản phẩm thực sự hoạt động, nó cần sự kết nối, logic trạng thái và một hệ thống kiến trúc rõ ràng từ bộ óc của con người."
+                           {t('nexora.outcomes.quote')}
                         </p>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                            <div>
-                              <div className="text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-500 to-emerald-500 mb-2">2 Tuần</div>
-                              <div className={`text-xs font-bold uppercase tracking-widest ${theme.text} mb-1`}>Launch MVP (Thay vì 2 tháng)</div>
-                              <p className={`text-sm ${theme.textMuted}`}>Rút ngắn đáng kể thời gian phát triển bằng cách dùng AI làm Builder, nhưng vẫn giữ được bộ khung logic vững chắc.</p>
+                              <div className="text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-500 to-emerald-500 mb-2">{t('nexora.outcomes.stat1.value')}</div>
+                              <div className={`text-xs font-bold uppercase tracking-widest ${theme.text} mb-1`}>{t('nexora.outcomes.stat1.label')}</div>
+                              <p className={`text-sm ${theme.textMuted}`}>{t('nexora.outcomes.stat1.desc')}</p>
                            </div>
                            <div>
-                              <div className="text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-500 to-emerald-500 mb-2">150+</div>
-                              <div className={`text-xs font-bold uppercase tracking-widest ${theme.text} mb-1`}>Screens Đồng Bộ</div>
-                              <p className={`text-sm ${theme.textMuted}`}>Hệ thống Screen Inventory đồ sộ được quy hoạch khoa học, sẵn sàng để Scale lên các Phase tiếp theo mà không sợ vỡ cấu trúc.</p>
+                              <div className="text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-500 to-emerald-500 mb-2">{t('nexora.outcomes.stat2.value')}</div>
+                              <div className={`text-xs font-bold uppercase tracking-widest ${theme.text} mb-1`}>{t('nexora.outcomes.stat2.label')}</div>
+                              <p className={`text-sm ${theme.textMuted}`}>{t('nexora.outcomes.stat2.desc')}</p>
                            </div>
                         </div>
                      </div>
@@ -557,7 +557,7 @@ export const ProjectNexora: React.FC = () => {
             {/* Next Project CTA */}
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInUp} className="pt-16 md:pt-24 border-t border-slate-200 dark:border-white/10 text-center">
                <button onClick={() => setGameState('CASE_STUDY_VLINKPAY')} className={`inline-flex items-center gap-4 text-2xl md:text-4xl font-black uppercase tracking-tighter ${theme.text} hover:text-amber-500 transition-colors group cursor-pointer`}>
-                  Next Project: VLINKPAY 
+                  {t('nexora.nextProject')} 
                   <ArrowRightIcon className="w-8 h-8 md:w-10 md:h-10 transform group-hover:translate-x-4 transition-transform duration-300" />
                </button>
             </motion.div>
