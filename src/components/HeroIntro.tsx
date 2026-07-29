@@ -79,14 +79,11 @@ export const HeroIntro: React.FC<HeroIntroProps> = ({ onComplete, onNavigate }) 
             className="group relative flex flex-col items-center justify-center overflow-hidden rounded-xl border border-white/20 bg-black/30 backdrop-blur-md px-12 py-4 transition-all hover:bg-white/10 hover:border-white/40 hover:shadow-[0_0_20px_rgba(255,255,255,0.15)]"
           >
             <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/10 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 ease-in-out" />
-            <span className="flex items-center gap-2 text-white font-medium tracking-[0.2em] uppercase text-sm md:text-base mb-1">
+            <span className="flex items-center gap-2 text-white font-medium tracking-[0.2em] uppercase text-sm md:text-base">
               {t('hero.enterWork')} 
               <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform opacity-70" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
               </svg>
-            </span>
-            <span className="text-slate-400 text-[11px] md:text-[10px] tracking-widest uppercase">
-              {t('hero.discover')}
             </span>
           </button>
         </div>
