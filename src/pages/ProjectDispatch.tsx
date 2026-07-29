@@ -71,14 +71,14 @@ export const ProjectDispatch: React.FC = () => {
 
           <div className="relative pl-6 md:pl-8 border-l-2 border-slate-200 dark:border-slate-800 space-y-12">
             {[
-              { title: "{t('dispatch.workflow.step1.title')}", desc: "{t('dispatch.workflow.step1.desc')}", color: "bg-amber-500" },
-              { title: "{t('dispatch.workflow.step2.title')}", desc: "{t('dispatch.workflow.step2.desc')}", color: "bg-slate-500" },
-              { title: "{t('dispatch.workflow.step3.title')}", desc: "{t('dispatch.workflow.step3.desc')}", color: "bg-emerald-500" },
-              { title: "{t('dispatch.workflow.step4.title')}", desc: "{t('dispatch.workflow.step4.desc')}", color: "bg-amber-500" },
-              { title: "{t('dispatch.workflow.step5.title')}", desc: "{t('dispatch.workflow.step5.desc')}", color: "bg-slate-500" },
-              { title: "{t('dispatch.workflow.step6.title')}", desc: "{t('dispatch.workflow.step6.desc')}", color: "bg-emerald-500" },
-              { title: "{t('dispatch.workflow.step7.title')}", desc: "{t('dispatch.workflow.step7.desc')}", color: "bg-amber-500" },
-              { title: "{t('dispatch.workflow.step8.title')}", desc: "{t('dispatch.workflow.step8.desc')}", color: "bg-slate-500" }
+              { title: t('dispatch.workflow.step1.title'), desc: t('dispatch.workflow.step1.desc'), color: "bg-amber-500" },
+              { title: t('dispatch.workflow.step2.title'), desc: t('dispatch.workflow.step2.desc'), color: "bg-slate-500" },
+              { title: t('dispatch.workflow.step3.title'), desc: t('dispatch.workflow.step3.desc'), color: "bg-emerald-500" },
+              { title: t('dispatch.workflow.step4.title'), desc: t('dispatch.workflow.step4.desc'), color: "bg-amber-500" },
+              { title: t('dispatch.workflow.step5.title'), desc: t('dispatch.workflow.step5.desc'), color: "bg-slate-500" },
+              { title: t('dispatch.workflow.step6.title'), desc: t('dispatch.workflow.step6.desc'), color: "bg-emerald-500" },
+              { title: t('dispatch.workflow.step7.title'), desc: t('dispatch.workflow.step7.desc'), color: "bg-amber-500" },
+              { title: t('dispatch.workflow.step8.title'), desc: t('dispatch.workflow.step8.desc'), color: "bg-slate-500" }
             ].map((step, idx) => (
               <div key={idx} className="relative">
                 <div className={`absolute -left-[31px] md:-left-[39px] w-4 h-4 rounded-full ${step.color} ring-4 ${isLightMode ? 'ring-white' : 'ring-[#0f172a]'}`}></div>
@@ -101,12 +101,12 @@ export const ProjectDispatch: React.FC = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              { title: "{t('dispatch.breakdown.card1.title')}", desc: "{t('dispatch.breakdown.card1.desc')}" },
-              { title: "{t('dispatch.breakdown.card2.title')}", desc: "{t('dispatch.breakdown.card2.desc')}" },
-              { title: "{t('dispatch.breakdown.card3.title')}", desc: "{t('dispatch.breakdown.card3.desc')}" },
-              { title: "{t('dispatch.breakdown.card4.title')}", desc: "{t('dispatch.breakdown.card4.desc')}" },
-              { title: "{t('dispatch.breakdown.card5.title')}", desc: "{t('dispatch.breakdown.card5.desc')}" },
-              { title: "{t('dispatch.breakdown.card6.title')}", desc: "{t('dispatch.breakdown.card6.desc')}" }
+              { title: t('dispatch.breakdown.card1.title'), desc: t('dispatch.breakdown.card1.desc') },
+              { title: t('dispatch.breakdown.card2.title'), desc: t('dispatch.breakdown.card2.desc') },
+              { title: t('dispatch.breakdown.card3.title'), desc: t('dispatch.breakdown.card3.desc') },
+              { title: t('dispatch.breakdown.card4.title'), desc: t('dispatch.breakdown.card4.desc') },
+              { title: t('dispatch.breakdown.card5.title'), desc: t('dispatch.breakdown.card5.desc') },
+              { title: t('dispatch.breakdown.card6.title'), desc: t('dispatch.breakdown.card6.desc') }
             ].map((card, idx) => (
               <div key={idx} className={`p-6 rounded-2xl border-l-4 border-l-amber-500 ${theme.card}`}>
                 <h3 className="text-amber-600 dark:text-amber-500 font-bold text-lg mb-3">{card.title}</h3>
@@ -129,11 +129,11 @@ export const ProjectDispatch: React.FC = () => {
 
           <div className="space-y-6">
             {[
-              { num: "01", title: "{t('dispatch.research.step1.title')}", desc: "{t('dispatch.research.step1.desc')}" },
-              { num: "02", title: "{t('dispatch.research.step2.title')}", desc: "{t('dispatch.research.step2.desc')}" },
-              { num: "03", title: "{t('dispatch.research.step3.title')}", desc: "{t('dispatch.research.step3.desc')}" },
-              { num: "04", title: "{t('dispatch.research.step4.title')}", desc: "Đánh dấu những \"ranh giới đỏ\" bắt buộc con người phải nhảy vào duyệt (vd: sửa Database, Auth)." },
-              { num: "05", title: "{t('dispatch.research.step5.title')}", desc: "{t('dispatch.research.step5.desc')}" }
+              { num: "01", title: t('dispatch.research.step1.title'), desc: t('dispatch.research.step1.desc') },
+              { num: "02", title: t('dispatch.research.step2.title'), desc: t('dispatch.research.step2.desc') },
+              { num: "03", title: t('dispatch.research.step3.title'), desc: t('dispatch.research.step3.desc') },
+              { num: "04", title: t('dispatch.research.step4.title'), desc: t('dispatch.research.step4.desc') },
+              { num: "05", title: t('dispatch.research.step5.title'), desc: t('dispatch.research.step5.desc') }
             ].map((step, idx) => (
               <div key={idx} className={`flex items-start gap-4 p-5 rounded-xl ${theme.card}`}>
                 <span className={`text-2xl font-black ${theme.accent} opacity-50`}>{step.num}</span>
@@ -165,7 +165,7 @@ export const ProjectDispatch: React.FC = () => {
               { domain: t('dispatch.solution.table.row1.domain'), before: t('dispatch.solution.table.row1.before'), after: t('dispatch.solution.table.row1.after') },
               { domain: t('dispatch.solution.table.row2.domain'), before: t('dispatch.solution.table.row2.before'), after: t('dispatch.solution.table.row2.after') },
               { domain: t('dispatch.solution.table.row3.domain'), before: t('dispatch.solution.table.row3.before'), after: t('dispatch.solution.table.row3.after') },
-              { domain: t('dispatch.solution.table.row4.domain'), before: t('dispatch.solution.table.row4.before'), after: "{t('dispatch.solution.table.row4.after')}" },
+              { domain: t('dispatch.solution.table.row4.domain'), before: t('dispatch.solution.table.row4.before'), after: t('dispatch.solution.table.row4.after') },
               { domain: t('dispatch.solution.table.row5.domain'), before: t('dispatch.solution.table.row5.before'), after: t('dispatch.solution.table.row5.after') },
               { domain: t('dispatch.solution.table.row6.domain'), before: t('dispatch.solution.table.row6.before'), after: t('dispatch.solution.table.row6.after') },
               { domain: t('dispatch.solution.table.row7.domain'), before: t('dispatch.solution.table.row7.before'), after: t('dispatch.solution.table.row7.after') },
@@ -330,9 +330,9 @@ export const ProjectDispatch: React.FC = () => {
 
           <div className="relative pl-6 md:pl-8 border-l-2 border-slate-200 dark:border-slate-800 space-y-10">
             {[
-              { title: "{t('dispatch.workflow.step1.title')}", desc: t('dispatch.example.step1.desc'), color: "bg-slate-300 dark:bg-slate-700" },
-              { title: "{t('dispatch.workflow.step2.title')}", desc: t('dispatch.example.step2.desc'), color: "bg-slate-300 dark:bg-slate-700" },
-              { title: "{t('dispatch.workflow.step3.title')}", desc: t('dispatch.example.step3.desc'), color: "bg-slate-300 dark:bg-slate-700" },
+              { title: t('dispatch.workflow.step1.title'), desc: t('dispatch.example.step1.desc'), color: "bg-slate-300 dark:bg-slate-700" },
+              { title: t('dispatch.workflow.step2.title'), desc: t('dispatch.example.step2.desc'), color: "bg-slate-300 dark:bg-slate-700" },
+              { title: t('dispatch.workflow.step3.title'), desc: t('dispatch.example.step3.desc'), color: "bg-slate-300 dark:bg-slate-700" },
               { title: t('dispatch.example.step4.title'), desc: t('dispatch.example.step4.desc'), color: "bg-emerald-500" },
               { title: t('dispatch.example.step5.title'), desc: t('dispatch.example.step5.desc'), color: "bg-emerald-500" },
               { title: t('dispatch.example.step6.title'), desc: t('dispatch.example.step6.desc'), color: "bg-emerald-500" },

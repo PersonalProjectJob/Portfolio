@@ -44,7 +44,7 @@ const cryptomapDecisions = [
 ];
 
 export const ProjectCryptomap: React.FC = () => {
-  const { isLightMode } = useStore();
+  const { isLightMode, handleQuestSelect } = useStore();
   const t = useT();
   
   const theme = {
