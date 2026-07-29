@@ -8,9 +8,11 @@ const BookOpenIcon = ({ className }: { className?: string }) => <svg className={
 
 import { useStore } from '../store/useStore';
 import { CaseStudyLayout } from '../components/layout/CaseStudyLayout';
+import { useT } from '../i18n/useT';
 
 export const ProjectHandoff: React.FC = () => {
   const { isLightMode } = useStore();
+  const t = useT();
   const theme = {
     bg: isLightMode ? 'bg-slate-50' : 'bg-[#0f172a]',
     text: isLightMode ? 'text-slate-800' : 'text-slate-100',
@@ -33,59 +35,59 @@ export const ProjectHandoff: React.FC = () => {
 
       <div>
         <motion.section initial="hidden" animate="visible" variants={fadeInUp} className="mb-12 md:mb-20 text-center md:text-left">
-          <span className={`inline-block px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase mb-4 border ${isLightMode ? 'border-sky-200 bg-sky-50 text-sky-700' : 'border-sky-500/30 bg-sky-500/10 text-sky-300'}`}>Hệ thống thiết kế & Bàn giao</span>
+          <span className={`inline-block px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase mb-4 border ${isLightMode ? 'border-sky-200 bg-sky-50 text-sky-700' : 'border-sky-500/30 bg-sky-500/10 text-sky-300'}`}>{t('handoff.tag')}</span>
           <h1 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-6">
-            Thiết kế để <span className="text-sky-500">Triển khai</span>
+            {t('handoff.titlePart1')}<span className="text-sky-500">{t('handoff.titlePart2')}</span>
           </h1>
           <p className={`text-lg md:text-xl max-w-3xl ${theme.textMuted} leading-relaxed mx-auto md:mx-0`}>
-            Tôi không chỉ thiết kế để nhìn đẹp trên Figma. Tôi xây dựng cấu trúc để Frontend Developer có thể hiểu ngay lập tức và tái sử dụng dễ dàng.
+            {t('handoff.subtitle')}
           </p>
         </motion.section>
 
         <motion.section initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeInUp} className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16 md:mb-24">
           <div className={`p-6 md:p-8 rounded-3xl border backdrop-blur-xl ${theme.card} ${theme.glow}`}>
-            <h3 className="text-2xl font-bold mb-6 flex items-center gap-3"><ComponentIcon/> Tư duy thành phần (Design System)</h3>
+            <h3 className="text-2xl font-bold mb-6 flex items-center gap-3"><ComponentIcon/> {t('handoff.system.title')}</h3>
             <ul className={`space-y-4 ${theme.textMuted}`}>
-              <li className="flex items-start gap-3"><LayersIcon className="w-5 h-5 shrink-0 mt-0.5" /> <span><strong>Design Tokens:</strong> Quản lý tập trung Màu sắc, Kiểu chữ, Khoảng cách (Spacing) và Bo góc (Radius).</span></li>
-              <li className="flex items-start gap-3"><LayersIcon className="w-5 h-5 shrink-0 mt-0.5" /> <span><strong>Components:</strong> Cấu trúc Nút bấm, Ô nhập liệu, Hộp thoại, Nhãn trạng thái,... rõ ràng.</span></li>
-              <li className="flex items-start gap-3"><LayersIcon className="w-5 h-5 shrink-0 mt-0.5" /> <span><strong>Variants/States:</strong> Xác định đủ các trạng thái Default, Hover, Active, Disabled, Loading, Error.</span></li>
-              <li className="flex items-start gap-3"><LayersIcon className="w-5 h-5 shrink-0 mt-0.5" /> <span><strong>Auto Layout:</strong> Sử dụng Auto Layout 100% để đảm bảo Responsive.</span></li>
+              <li className="flex items-start gap-3"><LayersIcon className="w-5 h-5 shrink-0 mt-0.5" /> <span><strong>{t('handoff.system.item1.bold')}</strong>{t('handoff.system.item1.text')}</span></li>
+              <li className="flex items-start gap-3"><LayersIcon className="w-5 h-5 shrink-0 mt-0.5" /> <span><strong>{t('handoff.system.item2.bold')}</strong>{t('handoff.system.item2.text')}</span></li>
+              <li className="flex items-start gap-3"><LayersIcon className="w-5 h-5 shrink-0 mt-0.5" /> <span><strong>{t('handoff.system.item3.bold')}</strong>{t('handoff.system.item3.text')}</span></li>
+              <li className="flex items-start gap-3"><LayersIcon className="w-5 h-5 shrink-0 mt-0.5" /> <span><strong>{t('handoff.system.item4.bold')}</strong>{t('handoff.system.item4.text')}</span></li>
             </ul>
           </div>
           
           <div className={`p-6 md:p-8 rounded-3xl border backdrop-blur-xl ${isLightMode ? 'bg-sky-50/50 border-sky-200' : 'bg-sky-900/10 border-sky-500/30'} ${theme.glow}`}>
-            <h3 className={`text-2xl font-bold mb-6 flex items-center gap-3 ${isLightMode ? 'text-sky-700' : 'text-sky-400'}`}><CodeIcon/> Tư duy bàn giao (Handoff)</h3>
+            <h3 className={`text-2xl font-bold mb-6 flex items-center gap-3 ${isLightMode ? 'text-sky-700' : 'text-sky-400'}`}><CodeIcon/> {t('handoff.handoff.title')}</h3>
             <ul className={`space-y-4 ${isLightMode ? 'text-sky-900/70' : 'text-sky-200/70'}`}>
-              <li className="flex items-start gap-3"><BookOpenIcon className="w-5 h-5 shrink-0 mt-0.5" /> <span><strong>Quy ước đặt tên (Naming Convention):</strong> Tên Layer, Component đồng nhất với thư viện code.</span></li>
-              <li className="flex items-start gap-3"><BookOpenIcon className="w-5 h-5 shrink-0 mt-0.5" /> <span><strong>Ghi chú logic (Logic Note):</strong> Giải thích rõ điều kiện hiển thị, giới hạn ký tự, quy tắc validation.</span></li>
-              <li className="flex items-start gap-3"><BookOpenIcon className="w-5 h-5 shrink-0 mt-0.5" /> <span><strong>Cấu trúc File:</strong> Tách biệt Cover, Sandbox, Design System, Ready for Dev và Archive.</span></li>
+              <li className="flex items-start gap-3"><BookOpenIcon className="w-5 h-5 shrink-0 mt-0.5" /> <span><strong>{t('handoff.handoff.item1.bold')}</strong>{t('handoff.handoff.item1.text')}</span></li>
+              <li className="flex items-start gap-3"><BookOpenIcon className="w-5 h-5 shrink-0 mt-0.5" /> <span><strong>{t('handoff.handoff.item2.bold')}</strong>{t('handoff.handoff.item2.text')}</span></li>
+              <li className="flex items-start gap-3"><BookOpenIcon className="w-5 h-5 shrink-0 mt-0.5" /> <span><strong>{t('handoff.handoff.item3.bold')}</strong>{t('handoff.handoff.item3.text')}</span></li>
             </ul>
           </div>
         </motion.section>
 
         <motion.section initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeInUp} className="mb-16 md:mb-24">
           <div className={`p-10 md:p-12 rounded-3xl border bg-gradient-to-br ${isLightMode ? 'from-sky-50 to-blue-50 border-sky-100' : 'from-sky-900/20 to-blue-900/20 border-sky-500/20'} ${theme.glow} text-center`}>
-            <h2 className="text-3xl font-black uppercase tracking-tight mb-8">Giá trị mang lại cho dự án</h2>
+            <h2 className="text-3xl font-black uppercase tracking-tight mb-8">{t('handoff.value.title')}</h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
               <div>
                 <div className={`text-4xl font-black mb-2 ${isLightMode ? 'text-sky-600' : 'text-sky-400'}`}>01</div>
-                <p className={`font-bold ${theme.text}`}>Giảm độ lệch UI</p>
-                <p className={`text-sm mt-2 ${theme.textMuted}`}>Code bám sát thiết kế</p>
+                <p className={`font-bold ${theme.text}`}>{t('handoff.value.item1.title')}</p>
+                <p className={`text-sm mt-2 ${theme.textMuted}`}>{t('handoff.value.item1.desc')}</p>
               </div>
               <div>
                 <div className={`text-4xl font-black mb-2 ${isLightMode ? 'text-sky-600' : 'text-sky-400'}`}>02</div>
-                <p className={`font-bold ${theme.text}`}>Giảm hiểu nhầm</p>
-                <p className={`text-sm mt-2 ${theme.textMuted}`}>Giữa Design & Dev</p>
+                <p className={`font-bold ${theme.text}`}>{t('handoff.value.item2.title')}</p>
+                <p className={`text-sm mt-2 ${theme.textMuted}`}>{t('handoff.value.item2.desc')}</p>
               </div>
               <div>
                 <div className={`text-4xl font-black mb-2 ${isLightMode ? 'text-sky-600' : 'text-sky-400'}`}>03</div>
-                <p className={`font-bold ${theme.text}`}>Tăng tốc thiết kế</p>
-                <p className={`text-sm mt-2 ${theme.textMuted}`}>Tái sử dụng Component</p>
+                <p className={`font-bold ${theme.text}`}>{t('handoff.value.item3.title')}</p>
+                <p className={`text-sm mt-2 ${theme.textMuted}`}>{t('handoff.value.item3.desc')}</p>
               </div>
               <div>
                 <div className={`text-4xl font-black mb-2 ${isLightMode ? 'text-sky-600' : 'text-sky-400'}`}>04</div>
-                <p className={`font-bold ${theme.text}`}>Dễ mở rộng</p>
-                <p className={`text-sm mt-2 ${theme.textMuted}`}>Nhất quán khi scale</p>
+                <p className={`font-bold ${theme.text}`}>{t('handoff.value.item4.title')}</p>
+                <p className={`text-sm mt-2 ${theme.textMuted}`}>{t('handoff.value.item4.desc')}</p>
               </div>
             </div>
           </div>

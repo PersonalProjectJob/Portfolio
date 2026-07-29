@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import { useT } from '../i18n/useT';
 
 // --- Icons ---
 const MapPinIcon = ({ className }: { className?: string }) => <svg className={className} width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>;
@@ -44,6 +45,7 @@ const cryptomapDecisions = [
 
 export const ProjectCryptomap: React.FC = () => {
   const { isLightMode } = useStore();
+  const t = useT();
   
   const theme = {
     bg: isLightMode ? 'bg-slate-50' : 'bg-[#050510]',
@@ -88,8 +90,8 @@ export const ProjectCryptomap: React.FC = () => {
             <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent" />
             <div className="absolute inset-x-0 bottom-0 flex flex-col gap-4 p-5 text-left sm:flex-row sm:items-end sm:justify-between sm:p-8">
               <div>
-                <span className="inline-flex rounded-full border border-amber-400/30 bg-slate-950/70 px-3 py-1 text-[10px] font-black uppercase tracking-[0.18em] text-amber-300 backdrop-blur-md">Live product proof</span>
-                <p className="mt-3 max-w-lg text-sm font-medium text-slate-200 sm:text-base">From a global map to one verified place where crypto can be used now.</p>
+                <span className="inline-flex rounded-full border border-amber-400/30 bg-slate-950/70 px-3 py-1 text-[10px] font-black uppercase tracking-[0.18em] text-amber-300 backdrop-blur-md">{t('cryptomap.hero.tag')}</span>
+                <p className="mt-3 max-w-lg text-sm font-medium text-slate-200 sm:text-base">{t('cryptomap.hero.desc')}</p>
               </div>
               <div className="flex flex-wrap gap-2">
                 {['200+ locations', '8.68k requests', '2-week MVP'].map((proof) => (
@@ -100,10 +102,10 @@ export const ProjectCryptomap: React.FC = () => {
         </div>
         
         <h1 className={`text-4xl md:text-6xl font-black uppercase tracking-tighter mb-6 ${theme.text}`}>
-          Mapping the <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-amber-500">Crypto</span> World
+          {t('cryptomap.hero.title1')} <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-amber-500">{t('cryptomap.hero.title2')}</span>{t('cryptomap.hero.title3')}
         </h1>
         <p className={`text-lg md:text-xl max-w-2xl ${theme.textMuted} leading-relaxed mx-auto px-4`}>
-          A global interactive map ecosystem bridging real-world merchants with the Web3 economy.
+          {t('cryptomap.hero.subtitle')}
         </p>
       </motion.section>
 
@@ -116,40 +118,40 @@ export const ProjectCryptomap: React.FC = () => {
           <div className="absolute top-0 right-0 w-64 h-64 bg-orange-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3"></div>
           
           <div className="mb-12 border-b border-orange-500/20 pb-4">
-            <span className={`text-[10px] font-bold uppercase tracking-[0.3em] ${theme.accent}`}>01. Executive Summary</span>
+            <span className={`text-[10px] font-bold uppercase tracking-[0.3em] ${theme.accent}`}>{t('cryptomap.summary.tag')}</span>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
             <div className="md:col-span-1">
-              <h5 className={`text-xs font-bold uppercase tracking-widest ${theme.textMuted} mb-2`}>Role</h5>
-              <p className={`font-semibold ${theme.text}`}>Product Designer</p>
+              <h5 className={`text-xs font-bold uppercase tracking-widest ${theme.textMuted} mb-2`}>{t('cryptomap.summary.role.label')}</h5>
+              <p className={`font-semibold ${theme.text}`}>{t('cryptomap.summary.role.value')}</p>
             </div>
             <div className="md:col-span-1">
-              <h5 className={`text-xs font-bold uppercase tracking-widest ${theme.textMuted} mb-2`}>Timeline</h5>
-              <p className={`font-semibold ${theme.text}`}>Feb–May 2026</p>
-              <p className={`mt-1 text-[10px] ${theme.textMuted}`}>2-week MVP build sprint</p>
+              <h5 className={`text-xs font-bold uppercase tracking-widest ${theme.textMuted} mb-2`}>{t('cryptomap.summary.timeline.label')}</h5>
+              <p className={`font-semibold ${theme.text}`}>{t('cryptomap.summary.timeline.value')}</p>
+              <p className={`mt-1 text-[10px] ${theme.textMuted}`}>{t('cryptomap.summary.timeline.note')}</p>
             </div>
             <div className="md:col-span-1">
-              <h5 className={`text-xs font-bold uppercase tracking-widest ${theme.textMuted} mb-2`}>Platform</h5>
-              <p className={`font-semibold ${theme.text}`}>Web App (Mobile-First)</p>
+              <h5 className={`text-xs font-bold uppercase tracking-widest ${theme.textMuted} mb-2`}>{t('cryptomap.summary.platform.label')}</h5>
+              <p className={`font-semibold ${theme.text}`}>{t('cryptomap.summary.platform.value')}</p>
             </div>
             <div className="md:col-span-1">
-              <h5 className={`text-xs font-bold uppercase tracking-widest ${theme.textMuted} mb-2`}>Key Metric</h5>
-              <p className={`font-bold ${theme.accent}`}>200+ locations mapped</p>
+              <h5 className={`text-xs font-bold uppercase tracking-widest ${theme.textMuted} mb-2`}>{t('cryptomap.summary.metric.label')}</h5>
+              <p className={`font-bold ${theme.accent}`}>{t('cryptomap.summary.metric.value')}</p>
             </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             <div>
-              <h4 className={`text-xl font-bold mb-4 flex items-center gap-2 ${theme.text}`}><LayersIcon/> The Problem</h4>
+              <h4 className={`text-xl font-bold mb-4 flex items-center gap-2 ${theme.text}`}><LayersIcon/> {t('cryptomap.summary.problem.title')}</h4>
               <p className={`text-sm ${theme.textMuted} leading-relaxed`}>
-                Crypto adoption is growing, but real-world utility remains highly fragmented. Travelers holding crypto struggle to find verified local merchants (cafes, hotels, shops) that accept Web3 payments, relying on outdated directories with poor UX.
+                {t('cryptomap.summary.problem.desc')}
               </p>
             </div>
             <div>
-              <h4 className={`text-xl font-bold mb-4 flex items-center gap-2 ${theme.text}`}><MapPinIcon/> The Solution</h4>
+              <h4 className={`text-xl font-bold mb-4 flex items-center gap-2 ${theme.text}`}><MapPinIcon/> {t('cryptomap.summary.solution.title')}</h4>
               <p className={`text-sm ${theme.textMuted} leading-relaxed`}>
-                Designed a highly performant, mobile-first interactive map. It features map clustering, verified merchant profiles, real-time market data, and a seamless onboarding portal for new businesses to join the ecosystem.
+                {t('cryptomap.summary.solution.desc')}
               </p>
             </div>
           </div>
@@ -163,10 +165,10 @@ export const ProjectCryptomap: React.FC = () => {
       >
         <div className="max-w-6xl mx-auto">
           <div className="mb-20 text-center max-w-3xl mx-auto">
-            <span className={`text-[10px] font-bold uppercase tracking-[0.3em] ${theme.accent} mb-4 block`}>02. Discovery & Research</span>
-            <h3 className={`text-3xl md:text-5xl font-black tracking-tight uppercase ${theme.text} mb-6`}>Uncovering the <br/>Spatial Disconnect</h3>
+            <span className={`text-[10px] font-bold uppercase tracking-[0.3em] ${theme.accent} mb-4 block`}>{t('cryptomap.discovery.tag')}</span>
+            <h3 className={`text-3xl md:text-5xl font-black tracking-tight uppercase ${theme.text} mb-6 whitespace-pre-line`}>{t('cryptomap.discovery.title')}</h3>
             <p className={`text-lg ${theme.textMuted}`}>
-              Từ những dữ liệu thị trường rời rạc đến việc định hình một hệ sinh thái kết nối thực sự. Quá trình Research 4 bước giúp chúng tôi thấu hiểu gốc rễ của vấn đề.
+              {t('cryptomap.discovery.desc')}
             </p>
           </div>
 
@@ -174,44 +176,44 @@ export const ProjectCryptomap: React.FC = () => {
             {/* Research Page 1: Macro Context */}
             <div className={`rounded-3xl relative overflow-hidden border border-white/10 shadow-2xl min-h-[400px] flex flex-col justify-center card-padding-lg bg-gradient-to-br from-[#0B0F19] via-[#111827] to-[#1F2937]`}>
               <div className="absolute top-8 right-8 bg-white/10 border border-white/20 backdrop-blur-md px-6 py-2 rounded-full shadow-sm">
-                 <span className="text-sm font-bold text-white tracking-wide">Nghiên cứu thị trường</span>
+                 <span className="text-sm font-bold text-white tracking-wide">{t('cryptomap.discovery.step1.tag')}</span>
               </div>
               
               <div className="flex flex-col md:flex-row gap-12 mt-12 items-start relative z-10">
                 <div className="md:w-1/2 space-y-8">
                   <div>
-                    <h4 className={`text-xl font-bold mb-4 text-white`}>Insight chính:</h4>
+                    <h4 className={`text-xl font-bold mb-4 text-white`}>{t('cryptomap.discovery.step1.insight')}</h4>
                     <ul className="list-disc pl-6 space-y-4 text-slate-300 font-medium text-lg">
-                      <li>Tỷ lệ người sở hữu crypto toàn cầu đã vượt hàng trăm triệu user.</li>
+                      <li>{t('cryptomap.discovery.step1.bullet1')}</li>
                       <li>
-                        Adoption mạnh ở:
+                        {t('cryptomap.discovery.step1.bullet2')}
                         <ul className="list-disc pl-6 mt-2 space-y-2 text-base text-slate-400">
-                          <li><strong className="text-orange-400">Emerging markets (VN, Ấn Độ, Brazil)</strong></li>
-                          <li>Các quốc gia có lạm phát cao</li>
+                          <li><strong className="text-orange-400">{t('cryptomap.discovery.step1.bullet2a')}</strong></li>
+                          <li>{t('cryptomap.discovery.step1.bullet2b')}</li>
                         </ul>
                       </li>
                       <li>
-                        Use case đang dịch chuyển:
+                        {t('cryptomap.discovery.step1.bullet3')}
                         <ul className="list-disc pl-6 mt-2 space-y-2 text-base text-slate-400">
-                          <li>Từ trading/speculation → thanh toán, remittance, stablecoin</li>
+                          <li>{t('cryptomap.discovery.step1.bullet3a')}</li>
                         </ul>
                       </li>
                     </ul>
                   </div>
                   
                   <div className="border-t-2 border-dashed border-white/10 pt-8 w-full">
-                    <h4 className={`text-xl font-bold mb-4 text-white`}>Pain point hiện tại:</h4>
+                    <h4 className={`text-xl font-bold mb-4 text-white`}>{t('cryptomap.discovery.step1.pain')}</h4>
                     <ul className="list-disc pl-6 space-y-2 text-slate-300 font-medium text-lg">
-                      <li>Người dùng không biết:
+                      <li>{t('cryptomap.discovery.step1.pain1')}
                         <ul className="list-disc pl-6 mt-2 space-y-2 text-base text-slate-400">
-                          <li>Mua crypto ở đâu uy tín?</li>
-                          <li>Dùng crypto ở đâu?</li>
-                          <li>Sàn nào phù hợp?</li>
-                          <li>Địa điểm nào chấp nhận thanh toán crypto?</li>
+                          <li>{t('cryptomap.discovery.step1.pain1a')}</li>
+                          <li>{t('cryptomap.discovery.step1.pain1b')}</li>
+                          <li>{t('cryptomap.discovery.step1.pain1c')}</li>
+                          <li>{t('cryptomap.discovery.step1.pain1d')}</li>
                         </ul>
                       </li>
                     </ul>
-                    <p className="mt-6 text-lg text-slate-300">Đây chính là sứ mệnh của <strong className="font-bold text-white">Cryptomap360</strong>.</p>
+                    <p className="mt-6 text-lg text-slate-300">{t('cryptomap.discovery.step1.mission1')}<strong className="font-bold text-white">{t('cryptomap.discovery.step1.mission2')}</strong>.</p>
                   </div>
                 </div>
                 
@@ -226,7 +228,7 @@ export const ProjectCryptomap: React.FC = () => {
             {/* Research Page 2: Competitive Audit */}
             <div className={`rounded-3xl relative overflow-hidden border border-white/10 shadow-2xl min-h-[400px] flex flex-col card-padding-lg bg-gradient-to-br from-[#1E1B4B] via-[#312E81] to-[#1E1B4B]`}>
               <div className="absolute top-8 right-8 bg-white/10 border border-white/20 backdrop-blur-md px-6 py-2 rounded-full shadow-sm">
-                 <span className="text-sm font-bold text-white tracking-wide">Phân tích đối thủ</span>
+                 <span className="text-sm font-bold text-white tracking-wide">{t('cryptomap.discovery.step2.tag')}</span>
               </div>
               
               <div className="mt-16 w-full max-w-5xl mx-auto bg-[#0B0F19]/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/10 overflow-hidden">
@@ -237,19 +239,19 @@ export const ProjectCryptomap: React.FC = () => {
                          CoinGecko
                        </h3>
                        <div className="mb-6">
-                         <h4 className="text-sm font-bold uppercase text-green-400 mb-3 tracking-wider">Điểm mạnh</h4>
+                         <h4 className="text-sm font-bold uppercase text-green-400 mb-3 tracking-wider">{t('cryptomap.discovery.step2.pros')}</h4>
                          <ul className="space-y-2 text-slate-300 font-medium text-sm">
-                           <li>• Market data cực mạnh</li>
-                           <li>• Exchange ranking</li>
-                           <li>• Volume, liquidity, trust score</li>
+                           <li>{t('cryptomap.discovery.step2.cg.pro1')}</li>
+                           <li>{t('cryptomap.discovery.step2.cg.pro2')}</li>
+                           <li>{t('cryptomap.discovery.step2.cg.pro3')}</li>
                          </ul>
                        </div>
                        <div>
-                         <h4 className="text-sm font-bold uppercase text-red-400 mb-3 tracking-wider">Điểm yếu</h4>
+                         <h4 className="text-sm font-bold uppercase text-red-400 mb-3 tracking-wider">{t('cryptomap.discovery.step2.cons')}</h4>
                          <ul className="space-y-2 text-slate-400 font-medium text-sm">
-                           <li>• Không có physical adoption layer</li>
-                           <li>• Không có geo-based UX</li>
-                           <li>• Không có offline bridge</li>
+                           <li>{t('cryptomap.discovery.step2.cg.con1')}</li>
+                           <li>{t('cryptomap.discovery.step2.cg.con2')}</li>
+                           <li>{t('cryptomap.discovery.step2.cg.con3')}</li>
                          </ul>
                        </div>
                     </div>
@@ -260,19 +262,19 @@ export const ProjectCryptomap: React.FC = () => {
                          CoinATMRadar
                        </h3>
                        <div className="mb-6">
-                         <h4 className="text-sm font-bold uppercase text-green-400 mb-3 tracking-wider">Điểm mạnh</h4>
+                         <h4 className="text-sm font-bold uppercase text-green-400 mb-3 tracking-wider">{t('cryptomap.discovery.step2.pros')}</h4>
                          <ul className="space-y-2 text-slate-300 font-medium text-sm">
-                           <li>• Tập trung crypto ATM</li>
-                           <li>• Data chi tiết (fee, operator)</li>
+                           <li>{t('cryptomap.discovery.step2.car.pro1')}</li>
+                           <li>{t('cryptomap.discovery.step2.car.pro2')}</li>
                          </ul>
                        </div>
                        <div>
-                         <h4 className="text-sm font-bold uppercase text-red-400 mb-3 tracking-wider">Điểm yếu</h4>
+                         <h4 className="text-sm font-bold uppercase text-red-400 mb-3 tracking-wider">{t('cryptomap.discovery.step2.cons')}</h4>
                          <ul className="space-y-2 text-slate-400 font-medium text-sm">
-                           <li>• Chỉ tập trung ATM</li>
-                           <li>• Không có merchant list</li>
-                           <li>• Không có exchange listing</li>
-                           <li>• Không có social layer</li>
+                           <li>{t('cryptomap.discovery.step2.car.con1')}</li>
+                           <li>{t('cryptomap.discovery.step2.car.con2')}</li>
+                           <li>{t('cryptomap.discovery.step2.car.con3')}</li>
+                           <li>{t('cryptomap.discovery.step2.car.con4')}</li>
                          </ul>
                        </div>
                     </div>
@@ -283,19 +285,19 @@ export const ProjectCryptomap: React.FC = () => {
                          Coinmap
                        </h3>
                        <div className="mb-6">
-                         <h4 className="text-sm font-bold uppercase text-green-400 mb-3 tracking-wider">Điểm mạnh</h4>
+                         <h4 className="text-sm font-bold uppercase text-green-400 mb-3 tracking-wider">{t('cryptomap.discovery.step2.pros')}</h4>
                          <ul className="space-y-2 text-slate-300 font-medium text-sm">
-                           <li>• Hiển thị merchant nhận Bitcoin</li>
-                           <li>• Data global</li>
+                           <li>{t('cryptomap.discovery.step2.cm.pro1')}</li>
+                           <li>{t('cryptomap.discovery.step2.cm.pro2')}</li>
                          </ul>
                        </div>
                        <div>
-                         <h4 className="text-sm font-bold uppercase text-red-400 mb-3 tracking-wider">Điểm yếu</h4>
+                         <h4 className="text-sm font-bold uppercase text-red-400 mb-3 tracking-wider">{t('cryptomap.discovery.step2.cons')}</h4>
                          <ul className="space-y-2 text-slate-400 font-medium text-sm">
-                           <li>• UI/UX cũ kỹ, chậm chạp</li>
-                           <li>• Không có layer exchange</li>
-                           <li>• Không có transaction flow</li>
-                           <li>• Thiếu ecosystem integration</li>
+                           <li>{t('cryptomap.discovery.step2.cm.con1')}</li>
+                           <li>{t('cryptomap.discovery.step2.cm.con2')}</li>
+                           <li>{t('cryptomap.discovery.step2.cm.con3')}</li>
+                           <li>{t('cryptomap.discovery.step2.cm.con4')}</li>
                          </ul>
                        </div>
                     </div>
@@ -306,15 +308,15 @@ export const ProjectCryptomap: React.FC = () => {
             {/* Research Page 3: User Persona */}
             <div className={`rounded-3xl relative overflow-hidden border border-white/10 shadow-2xl min-h-[400px] flex flex-col justify-center card-padding-lg bg-gradient-to-br from-[#0B0F19] via-[#111827] to-[#1F2937]`}>
               <div className="absolute top-8 right-8 bg-white/10 border border-white/20 backdrop-blur-md px-6 py-2 rounded-full shadow-sm">
-                 <span className="text-sm font-bold text-white tracking-wide">Phân tích Người dùng</span>
+                 <span className="text-sm font-bold text-white tracking-wide">{t('cryptomap.discovery.step3.tag')}</span>
               </div>
               
               <div className="flex flex-col md:flex-row gap-12 mt-12 items-center relative z-10">
                 <div className="md:w-1/3">
-                   <h3 className="text-4xl font-black text-white mb-4">Pain Point:</h3>
+                   <h3 className="text-4xl font-black text-white mb-4">{t('cryptomap.discovery.step3.pain')}</h3>
                    <div className="w-16 h-1 bg-red-500 rounded-full mb-6"></div>
                    <p className="text-xl text-slate-300 font-medium leading-relaxed">
-                     Thị trường có rất nhiều user sở hữu Crypto nhưng lại không có công cụ kết nối họ với các Doanh nghiệp/Dịch vụ Offline.
+                     {t('cryptomap.discovery.step3.desc')}
                    </p>
                 </div>
                 
@@ -329,15 +331,15 @@ export const ProjectCryptomap: React.FC = () => {
             {/* Research Page 4: Pain Points & Mission */}
             <div className={`rounded-3xl relative overflow-hidden border border-white/10 shadow-2xl min-h-[400px] flex flex-col justify-center card-padding-lg bg-gradient-to-br from-[#1E1B4B] via-[#312E81] to-[#1E1B4B]`}>
               <div className="absolute top-8 right-8 bg-white/10 border border-white/20 backdrop-blur-md px-6 py-2 rounded-full shadow-sm">
-                 <span className="text-sm font-bold text-white tracking-wide">Bản đồ Hành trình</span>
+                 <span className="text-sm font-bold text-white tracking-wide">{t('cryptomap.discovery.step4.tag')}</span>
               </div>
               
               <div className="flex flex-col md:flex-row gap-12 mt-12 items-center relative z-10">
                 <div className="md:w-1/3">
-                   <h3 className="text-3xl font-black text-white mb-4">Custom Journey Map:</h3>
+                   <h3 className="text-3xl font-black text-white mb-4">{t('cryptomap.discovery.step4.title')}</h3>
                    <div className="w-16 h-1 bg-purple-500 rounded-full mb-6"></div>
                    <p className="text-lg text-slate-300 font-medium leading-relaxed">
-                     Quy trình từ lúc user có nhu cầu chi tiêu Crypto đến khi tìm được địa điểm và hoàn tất giao dịch.
+                     {t('cryptomap.discovery.step4.desc')}
                    </p>
                 </div>
                 
@@ -360,38 +362,38 @@ export const ProjectCryptomap: React.FC = () => {
       >
         <div className="max-w-6xl mx-auto">
           <div className="mb-16">
-            <span className={`text-[10px] font-bold uppercase tracking-[0.3em] ${theme.accent} mb-4 block`}>03. Strategy & Architecture</span>
-            <h3 className={`text-3xl md:text-5xl font-black tracking-tight uppercase ${theme.text} mb-6`}>Mapping the <br/>Ecosystem</h3>
+            <span className={`text-[10px] font-bold uppercase tracking-[0.3em] ${theme.accent} mb-4 block`}>{t('cryptomap.strategy.tag')}</span>
+            <h3 className={`text-3xl md:text-5xl font-black tracking-tight uppercase ${theme.text} mb-6 whitespace-pre-line`}>{t('cryptomap.strategy.title')}</h3>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
             {/* Journey Map */}
             <div>
-              <h4 className={`text-xl font-bold mb-8 flex items-center gap-2 ${theme.text}`}><ArrowRightIcon/> Core User Journey</h4>
+              <h4 className={`text-xl font-bold mb-8 flex items-center gap-2 ${theme.text}`}><ArrowRightIcon/> {t('cryptomap.strategy.journey.title')}</h4>
               <div className="relative pl-6 border-l-2 border-orange-500/30 space-y-8">
                 
                 <div className="relative">
                   <div className="absolute -left-[31px] top-1 w-4 h-4 rounded-full bg-orange-500"></div>
-                  <h5 className={`text-md font-bold mb-1 ${theme.text}`}>1. Spatial Discovery</h5>
-                  <p className={`text-sm ${theme.textMuted}`}>User opens the app in a new city. Geo-location centers the map. Clustering prevents UI freeze.</p>
+                  <h5 className={`text-md font-bold mb-1 ${theme.text}`}>{t('cryptomap.strategy.journey.step1.title')}</h5>
+                  <p className={`text-sm ${theme.textMuted}`}>{t('cryptomap.strategy.journey.step1.desc')}</p>
                 </div>
                 
                 <div className="relative">
                   <div className="absolute -left-[31px] top-1 w-4 h-4 rounded-full bg-amber-500"></div>
-                  <h5 className={`text-md font-bold mb-1 ${theme.text}`}>2. Intent Filtering</h5>
-                  <p className={`text-sm ${theme.textMuted}`}>Filters applied: "Coffee shops accepting USDT". The map dynamically re-renders.</p>
+                  <h5 className={`text-md font-bold mb-1 ${theme.text}`}>{t('cryptomap.strategy.journey.step2.title')}</h5>
+                  <p className={`text-sm ${theme.textMuted}`}>{t('cryptomap.strategy.journey.step2.desc')}</p>
                 </div>
 
                 <div className="relative">
                   <div className="absolute -left-[31px] top-1 w-4 h-4 rounded-full bg-orange-500"></div>
-                  <h5 className={`text-md font-bold mb-1 ${theme.text}`}>3. Merchant Evaluation</h5>
-                  <p className={`text-sm ${theme.textMuted}`}>Tapping a pin opens a Bottom Sheet (Mobile-friendly) showing photos, verified status, and exact coins accepted.</p>
+                  <h5 className={`text-md font-bold mb-1 ${theme.text}`}>{t('cryptomap.strategy.journey.step3.title')}</h5>
+                  <p className={`text-sm ${theme.textMuted}`}>{t('cryptomap.strategy.journey.step3.desc')}</p>
                 </div>
 
                 <div className="relative">
                   <div className="absolute -left-[31px] top-1 w-4 h-4 rounded-full bg-green-500"></div>
-                  <h5 className={`text-md font-bold mb-1 ${theme.text}`}>4. Action (Navigate/Pay)</h5>
-                  <p className={`text-sm ${theme.textMuted}`}>Deep links to Google Maps for directions, or triggers VLINKPAY wallet API for transaction.</p>
+                  <h5 className={`text-md font-bold mb-1 ${theme.text}`}>{t('cryptomap.strategy.journey.step4.title')}</h5>
+                  <p className={`text-sm ${theme.textMuted}`}>{t('cryptomap.strategy.journey.step4.desc')}</p>
                 </div>
 
               </div>
@@ -399,7 +401,7 @@ export const ProjectCryptomap: React.FC = () => {
 
             {/* Information Architecture Snippet */}
             <div className={`card-padding rounded-3xl ${theme.card} border-dashed border-2 flex flex-col justify-center`}>
-              <h4 className={`text-xl font-bold mb-6 flex items-center gap-2 ${theme.text}`}><LayersIcon/> Architecture (IA)</h4>
+              <h4 className={`text-xl font-bold mb-6 flex items-center gap-2 ${theme.text}`}><LayersIcon/> {t('cryptomap.strategy.ia.title')}</h4>
               <div className="space-y-4 font-mono text-xs md:text-sm">
                 <div className="p-3 bg-orange-500/10 rounded-lg border border-orange-500/20 text-orange-500 font-bold">1.0 Global Map (Home)</div>
                 <div className="pl-6 space-y-2">
@@ -424,8 +426,8 @@ export const ProjectCryptomap: React.FC = () => {
       >
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-24">
-            <span className={`text-[10px] font-bold uppercase tracking-[0.3em] ${theme.accent} mb-4 block`}>04. Design & Execution</span>
-            <h3 className={`text-3xl md:text-5xl font-black tracking-tight uppercase ${theme.text}`}>Crafting the Interface</h3>
+            <span className={`text-[10px] font-bold uppercase tracking-[0.3em] ${theme.accent} mb-4 block`}>{t('cryptomap.design.tag')}</span>
+            <h3 className={`text-3xl md:text-5xl font-black tracking-tight uppercase ${theme.text}`}>{t('cryptomap.design.title')}</h3>
           </div>
 
           <div className="flex flex-col gap-28">
@@ -436,7 +438,7 @@ export const ProjectCryptomap: React.FC = () => {
                   <div className={`relative overflow-hidden rounded-[2rem] border shadow-2xl ${isLightMode ? 'border-slate-200 bg-white' : 'border-white/10 bg-slate-950'}`}>
                     <img src={decision.image} alt={decision.alt} className="aspect-[16/10] w-full object-cover object-top transition-transform duration-700 hover:scale-[1.02]" />
                     <div className={`absolute left-4 top-4 rounded-full border px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.16em] backdrop-blur-md ${decision.surface} ${decision.accent}`}>
-                      Product decision {decision.number}
+                      {t('cryptomap.design.decision')} {decision.number}
                     </div>
                   </div>
                 </div>
@@ -445,7 +447,7 @@ export const ProjectCryptomap: React.FC = () => {
                   <h4 className={`mt-3 text-2xl font-black tracking-tight md:text-3xl ${theme.text}`}>{decision.title}</h4>
                   <p className={`mt-5 text-base leading-relaxed ${theme.textMuted}`}>{decision.description}</p>
                   <div className={`mt-7 rounded-2xl border p-4 ${decision.surface}`}>
-                    <p className={`text-xs font-black uppercase tracking-[0.14em] ${decision.accent}`}>Decision principle</p>
+                    <p className={`text-xs font-black uppercase tracking-[0.14em] ${decision.accent}`}>{t('cryptomap.design.principle')}</p>
                     <p className={`mt-2 text-sm leading-relaxed ${theme.textMuted}`}>
                       {index === 0 && 'Reduce visual load first, then reveal detail as user intent becomes more specific.'}
                       {index === 1 && 'Use color to communicate change and verification—not to decorate dense data.'}
@@ -460,9 +462,9 @@ export const ProjectCryptomap: React.FC = () => {
               <div className="pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full bg-amber-400/10 blur-[80px]" />
               <div className="relative grid grid-cols-1 gap-10 lg:grid-cols-12 lg:items-center">
                 <div className="lg:col-span-5">
-                  <span className="text-xs font-black uppercase tracking-[0.2em] text-amber-400">Measured performance</span>
-                  <h4 className="mt-3 text-3xl font-black tracking-tight text-white">Performance is part of the UX.</h4>
-                  <p className="mt-5 text-sm leading-relaxed text-slate-300">Clarity exposed a 4–5 second bottleneck when the map loaded more than 200 markers. Clustering, list virtualization and API sequencing reduced the visible wait and protected interaction quality.</p>
+                  <span className="text-xs font-black uppercase tracking-[0.2em] text-amber-400">{t('cryptomap.design.perf.tag')}</span>
+                  <h4 className="mt-3 text-3xl font-black tracking-tight text-white">{t('cryptomap.design.perf.title')}</h4>
+                  <p className="mt-5 text-sm leading-relaxed text-slate-300">{t('cryptomap.design.perf.desc')}</p>
                   <div className="mt-6 flex flex-wrap gap-2">
                     {['Clarity diagnosis', 'Marker clustering', 'Virtualized lists', 'API sequencing'].map((item) => (
                       <span key={item} className="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-[10px] font-bold text-slate-300">{item}</span>
@@ -495,8 +497,8 @@ export const ProjectCryptomap: React.FC = () => {
       >
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <span className={`text-[10px] font-bold uppercase tracking-[0.3em] ${theme.accent} mb-4 block`}>05. Outcomes & Retrospective</span>
-            <h3 className={`text-3xl md:text-5xl font-black tracking-tight uppercase ${theme.text}`}>Measured Outcomes</h3>
+            <span className={`text-[10px] font-bold uppercase tracking-[0.3em] ${theme.accent} mb-4 block`}>{t('cryptomap.outcomes.tag')}</span>
+            <h3 className={`text-3xl md:text-5xl font-black tracking-tight uppercase ${theme.text}`}>{t('cryptomap.outcomes.title')}</h3>
           </div>
 
           <div className={`relative rounded-3xl overflow-hidden shadow-2xl border ${theme.card} card-padding-lg mb-16`}>
@@ -506,50 +508,50 @@ export const ProjectCryptomap: React.FC = () => {
                   <div className="text-4xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-orange-500">
                     {stats.locations > 0 ? '200+' : '0'}
                   </div>
-                  <div className={`text-xs font-bold uppercase tracking-widest ${theme.text}`}>Locations mapped</div>
-                  <div className={`text-[10px] ${theme.textMuted}`}>Initial MVP coverage</div>
+                  <div className={`text-xs font-bold uppercase tracking-widest ${theme.text}`}>{t('cryptomap.outcomes.stat1.label')}</div>
+                  <div className={`text-[10px] ${theme.textMuted}`}>{t('cryptomap.outcomes.stat1.desc')}</div>
                 </div>
                 {/* Stat 2 */}
                 <div className="flex flex-col gap-2">
                   <div className="text-4xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-pink-500">
                     {stats.requests > 0 ? '8.68k' : '0'}
                   </div>
-                  <div className={`text-xs font-bold uppercase tracking-widest ${theme.text}`}>Launch requests</div>
-                  <div className={`text-[10px] ${theme.textMuted}`}>During launch window</div>
+                  <div className={`text-xs font-bold uppercase tracking-widest ${theme.text}`}>{t('cryptomap.outcomes.stat2.label')}</div>
+                  <div className={`text-[10px] ${theme.textMuted}`}>{t('cryptomap.outcomes.stat2.desc')}</div>
                 </div>
                 {/* Stat 3 */}
                 <div className="flex flex-col gap-2">
                   <div className="text-4xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-cyan-500">
                     {stats.lcp > 0 ? '3.3s' : '0'}
                   </div>
-                  <div className={`text-xs font-bold uppercase tracking-widest ${theme.text}`}>LCP Optimized</div>
-                  <div className={`text-[10px] ${theme.textMuted}`}>With heavy map data</div>
+                  <div className={`text-xs font-bold uppercase tracking-widest ${theme.text}`}>{t('cryptomap.outcomes.stat3.label')}</div>
+                  <div className={`text-[10px] ${theme.textMuted}`}>{t('cryptomap.outcomes.stat3.desc')}</div>
                 </div>
                 {/* Stat 4 */}
                 <div className="flex flex-col gap-2">
                   <div className="text-4xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500">
                     {stats.inp > 0 ? '170ms' : '0'}
                   </div>
-                  <div className={`text-xs font-bold uppercase tracking-widest ${theme.text}`}>Interaction latency</div>
-                  <div className={`text-[10px] ${theme.textMuted}`}>INP rated Good</div>
+                  <div className={`text-xs font-bold uppercase tracking-widest ${theme.text}`}>{t('cryptomap.outcomes.stat4.label')}</div>
+                  <div className={`text-[10px] ${theme.textMuted}`}>{t('cryptomap.outcomes.stat4.desc')}</div>
                 </div>
              </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             <div className={`card-padding rounded-3xl ${theme.card}`}>
-              <h4 className={`text-xl font-bold mb-6 text-orange-500`}>Learnings</h4>
+              <h4 className={`text-xl font-bold mb-6 text-orange-500`}>{t('cryptomap.outcomes.learnings.title')}</h4>
               <ul className={`space-y-4 text-sm ${theme.textMuted}`}>
-                <li className="flex items-start gap-3"><CheckCircleIcon className="w-5 h-5 shrink-0 text-orange-400"/> <strong>Performance is UX:</strong> The most beautiful UI fails if the map lags. Prioritizing clustering and frontend optimization was the key to user retention.</li>
-                <li className="flex items-start gap-3"><CheckCircleIcon className="w-5 h-5 shrink-0 text-orange-400"/> <strong>B2B vs B2C:</strong> Designing the merchant portal required a completely different mindset (efficiency & trust) compared to the consumer map (exploration & delight).</li>
+                <li className="flex items-start gap-3"><CheckCircleIcon className="w-5 h-5 shrink-0 text-orange-400"/> <span dangerouslySetInnerHTML={{ __html: t('cryptomap.outcomes.learnings.1').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }} /></li>
+                <li className="flex items-start gap-3"><CheckCircleIcon className="w-5 h-5 shrink-0 text-orange-400"/> <span dangerouslySetInnerHTML={{ __html: t('cryptomap.outcomes.learnings.2').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }} /></li>
               </ul>
             </div>
             
             <div className={`card-padding rounded-3xl ${theme.card}`}>
-              <h4 className={`text-xl font-bold mb-6 text-blue-500`}>Next Steps</h4>
+              <h4 className={`text-xl font-bold mb-6 text-blue-500`}>{t('cryptomap.outcomes.next.title')}</h4>
               <ul className={`space-y-4 text-sm ${theme.textMuted}`}>
-                <li className="flex items-start gap-3"><CheckCircleIcon className="w-5 h-5 shrink-0 text-blue-400"/> <strong>Social Proof:</strong> Implementing user reviews and photos to increase trust in merchants.</li>
-                <li className="flex items-start gap-3"><CheckCircleIcon className="w-5 h-5 shrink-0 text-blue-400"/> <strong>Wallet Integration:</strong> Direct deep-linking to Web3 wallets (MetaMask/VLINKPAY) for seamless in-app payments at the physical locations.</li>
+                <li className="flex items-start gap-3"><CheckCircleIcon className="w-5 h-5 shrink-0 text-blue-400"/> <span dangerouslySetInnerHTML={{ __html: t('cryptomap.outcomes.next.1').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }} /></li>
+                <li className="flex items-start gap-3"><CheckCircleIcon className="w-5 h-5 shrink-0 text-blue-400"/> <span dangerouslySetInnerHTML={{ __html: t('cryptomap.outcomes.next.2').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }} /></li>
               </ul>
             </div>
           </div>

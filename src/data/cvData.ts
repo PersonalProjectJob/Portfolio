@@ -13,163 +13,162 @@ export interface ProjectData {
 export const CV_PROJECTS: ProjectData[] = [
   {
     id: 'cryptomap',
-    title: 'CryptoMap360',
-    category: 'AI Builder MVP',
-    role: 'Product Designer + AI Builder',
-    context: 'Người dùng gặp khó khăn trong việc tìm kiếm các địa điểm hỗ trợ crypto. Thông tin phân mảnh và thiếu tin cậy.',
+    title: 'cv.cryptomap.title',
+    category: 'cv.cryptomap.category',
+    role: 'cv.cryptomap.role',
+    context: 'cv.cryptomap.context',
     solution: [
-      'Nghiên cứu nhu cầu tìm kiếm theo loại coin và khu vực',
-      'Thiết kế luồng tìm kiếm, bộ lọc nâng cao và hệ thống UI dễ dùng',
-      'Định hình cấu trúc dữ liệu địa điểm, tích hợp bản đồ trực quan',
-      'Sử dụng AI để tăng tốc prototype, kiểm soát chất lượng UX'
+      'cv.cryptomap.solution.0',
+      'cv.cryptomap.solution.1',
+      'cv.cryptomap.solution.2',
+      'cv.cryptomap.solution.3'
     ],
     results: [
-      { label: 'Users', value: '8K+' },
-      { label: 'Search Time', value: '-40%' }
+      { label: 'cv.cryptomap.result.0.label', value: 'cv.cryptomap.result.0.value' },
+      { label: 'cv.cryptomap.result.1.label', value: 'cv.cryptomap.result.1.value' }
     ],
     x: 200, y: 350
   },
   {
     id: 'nailhub',
-    title: 'Nailhub.ai',
-    category: 'Traditional Workflow',
-    role: 'Product Designer / UX-UI Designer',
-    context: 'Dự án theo workflow truyền thống từ BA/DOCS. Đòi hỏi làm rõ requirement và flow để giảm sai lệch khi implement.',
+    title: 'cv.nailhub.title',
+    category: 'cv.nailhub.category',
+    role: 'cv.nailhub.role',
+    context: 'cv.nailhub.context',
     solution: [
-      'Phân tích chi tiết tài liệu BA/DOCS',
-      'Chuyển đổi requirement thành user flow rõ ràng',
-      'Thiết kế các trạng thái dữ liệu: empty, pending, success, error',
-      'Chuẩn bị handoff chi tiết cho đội ngũ FE/BE'
+      'cv.nailhub.solution.0',
+      'cv.nailhub.solution.1',
+      'cv.nailhub.solution.2',
+      'cv.nailhub.solution.3'
     ],
     results: [
-      { label: 'Scope', value: 'Rõ ràng' },
-      { label: 'Handoff', value: 'Chi tiết' }
+      { label: 'cv.nailhub.result.0.label', value: 'cv.nailhub.result.0.value' },
+      { label: 'cv.nailhub.result.1.label', value: 'cv.nailhub.result.1.value' }
     ],
     x: 200, y: 550
   },
   {
     id: 'vlinkpay',
-    title: 'VLINKPAY',
-    category: 'Tài chính số / Ví điện tử',
-    role: 'Product Designer / UX-UI Designer',
-    context: 'Luồng tài chính phức tạp yêu cầu sự tin cậy, minh bạch về phí, trạng thái giao dịch rõ ràng.',
+    title: 'cv.vlinkpay.title',
+    category: 'cv.vlinkpay.category',
+    role: 'cv.vlinkpay.role',
+    context: 'cv.vlinkpay.context',
     solution: [
-      'Tách rõ hành động của người dùng và đối tác/ATM',
-      'Hiển thị minh bạch phí, tổng thanh toán',
-      'Thiết kế luồng giao dịch, hướng dẫn rõ ràng ở từng bước',
-      'Làm rõ các trạng thái: đang chờ, hoàn tất, lỗi, tranh chấp'
+      'cv.vlinkpay.solution.0',
+      'cv.vlinkpay.solution.1',
+      'cv.vlinkpay.solution.2',
+      'cv.vlinkpay.solution.3'
     ],
     results: [
-      { label: 'Minh bạch', value: 'Cao' },
-      { label: 'Trải nghiệm', value: 'An toàn' }
+      { label: 'cv.vlinkpay.result.0.label', value: 'cv.vlinkpay.result.0.value' },
+      { label: 'cv.vlinkpay.result.1.label', value: 'cv.vlinkpay.result.1.value' }
     ],
     x: 500, y: 350
   },
   {
     id: 'nexora',
-    title: 'NEXORA',
-    category: 'AI Full Workflow MVP',
-    role: 'Product Designer + AI Builder',
-    context: 'Xây dựng một nền tảng quy trình AI, yêu cầu sự liên kết giữa nhiều màn hình thay vì chỉ tạo màn hình rời rạc.',
+    title: 'cv.nexora.title',
+    category: 'cv.nexora.category',
+    role: 'cv.nexora.role',
+    context: 'cv.nexora.context',
     solution: [
-      'Xác định hành trình người dùng và primary action',
-      'Vẽ flow chuyển tiếp giữa các màn hình',
-      'Bổ sung trạng thái: trống, đang tải, thành công, lỗi',
-      'Chuẩn hoá component để đảm bảo tính nhất quán'
+      'cv.nexora.solution.0',
+      'cv.nexora.solution.1',
+      'cv.nexora.solution.2',
+      'cv.nexora.solution.3'
     ],
     results: [
-      { label: 'Workflow', value: 'Liền mạch' },
-      { label: 'MVP', value: 'Có hệ thống' }
+      { label: 'cv.nexora.result.0.label', value: 'cv.nexora.result.0.value' },
+      { label: 'cv.nexora.result.1.label', value: 'cv.nexora.result.1.value' }
     ],
     x: 500, y: 550
   },
   {
     id: 'ai-process',
-    title: 'AI Product Process',
-    category: 'Phương pháp làm việc',
-    role: 'Tư duy & Quy trình',
-    context: 'Làm thế nào để sử dụng AI tạo giao diện mà không làm hỏng trải nghiệm người dùng?',
+    title: 'cv.ai-process.title',
+    category: 'cv.ai-process.category',
+    role: 'cv.ai-process.role',
+    context: 'cv.ai-process.context',
     solution: [
-      'Sử dụng AI như công cụ tăng tốc, không phải người ra quyết định',
-      'Luôn bắt đầu từ mục tiêu kinh doanh và luồng người dùng',
-      'Kiểm soát thứ bậc thông tin và tính nhất quán'
+      'cv.ai-process.solution.0',
+      'cv.ai-process.solution.1',
+      'cv.ai-process.solution.2'
     ],
     results: [
-      { label: 'Tốc độ', value: 'Nhanh' },
-      { label: 'Kiểm soát', value: 'Cao' }
+      { label: 'cv.ai-process.result.0.label', value: 'cv.ai-process.result.0.value' },
+      { label: 'cv.ai-process.result.1.label', value: 'cv.ai-process.result.1.value' }
     ],
     x: 720, y: 350
   },
   {
     id: 'handoff',
-    title: 'Hệ thống thiết kế',
-    category: 'Design System',
-    role: 'Tư duy bàn giao',
-    context: 'Làm thế nào để thiết kế một lần và dùng được cho mọi màn hình? Làm sao để Frontend dễ code?',
+    title: 'cv.handoff.title',
+    category: 'cv.handoff.category',
+    role: 'cv.handoff.role',
+    context: 'cv.handoff.context',
     solution: [
-      'Xây dựng các Design Token: Màu sắc, Typography, Spacing',
-      'Thiết kế Component với các state rõ ràng',
-      'Auto layout và cấu trúc file gọn gàng',
-      'Bàn giao thiết kế kèm tài liệu mô tả logic'
+      'cv.handoff.solution.0',
+      'cv.handoff.solution.1',
+      'cv.handoff.solution.2',
+      'cv.handoff.solution.3'
     ],
     results: [
-      { label: 'Frontend', value: 'Dễ Code' },
-      { label: 'Bảo trì', value: 'Tốt' }
+      { label: 'cv.handoff.result.0.label', value: 'cv.handoff.result.0.value' },
+      { label: 'cv.handoff.result.1.label', value: 'cv.handoff.result.1.value' }
     ],
     x: 720, y: 550
   },
   {
     id: 'fintech-fit',
-    title: 'Phù hợp Ngân hàng số',
-    category: 'Tầm nhìn & Đóng góp',
-    role: 'Mục tiêu phỏng vấn',
-    context: 'Những yếu tố khiến tôi phù hợp với vị trí Product Designer mảng Fintech / Ngân hàng số.',
+    title: 'cv.fintech-fit.title',
+    category: 'cv.fintech-fit.category',
+    role: 'cv.fintech-fit.role',
+    context: 'cv.fintech-fit.context',
     solution: [
-      'Sự tập trung vào tính minh bạch và độ tin cậy',
-      'Khả năng thiết kế luồng tài chính phức tạp',
-      'Mindset hệ thống và sẵn sàng đóng góp cho team'
+      'cv.fintech-fit.solution.0',
+      'cv.fintech-fit.solution.1',
+      'cv.fintech-fit.solution.2'
     ],
     results: [
-      { label: 'Bảo mật', value: 'Tin cậy' },
-      { label: 'Giao dịch', value: 'Rõ ràng' }
+      { label: 'cv.fintech-fit.result.0.label', value: 'cv.fintech-fit.result.0.value' },
+      { label: 'cv.fintech-fit.result.1.label', value: 'cv.fintech-fit.result.1.value' }
     ],
     x: 900, y: 400
   },
   {
     id: 'dispatch',
-    title: 'Dispatch Workflow',
-    category: 'AI Architecture',
-    role: 'Product Designer + AI Architect',
-    context: 'Hệ thống điều phối AI Agent: từ quy trình thủ công đến hệ thống giao việc có kiểm soát.',
+    title: 'cv.dispatch.title',
+    category: 'cv.dispatch.category',
+    role: 'cv.dispatch.role',
+    context: 'cv.dispatch.context',
     solution: [
-      'Phân tích quy trình cũ, xác định điểm gãy (bottleneck)',
-      'Thiết kế phân luồng Route A/B/C theo mức độ phức tạp',
-      'Xây dựng hệ thống bàn giao thiết kế (Handoff Contract)',
-      'Kiểm soát scope và evidence cho từng tác vụ AI'
+      'cv.dispatch.solution.0',
+      'cv.dispatch.solution.1',
+      'cv.dispatch.solution.2',
+      'cv.dispatch.solution.3'
     ],
     results: [
-      { label: 'Tự động hóa', value: 'Cao' },
-      { label: 'Kiểm soát', value: 'Chặt' }
+      { label: 'cv.dispatch.result.0.label', value: 'cv.dispatch.result.0.value' },
+      { label: 'cv.dispatch.result.1.label', value: 'cv.dispatch.result.1.value' }
     ],
     x: 350, y: 150
   },
   {
     id: 'agent-rules',
-    title: 'Agent Rules',
-    category: 'AI Governance',
-    role: 'AI Workflow Architect',
-    context: 'Biến kiến thức ngầm của team thành hệ thống vận hành chuẩn cho AI Agent.',
+    title: 'cv.agent-rules.title',
+    category: 'cv.agent-rules.category',
+    role: 'cv.agent-rules.role',
+    context: 'cv.agent-rules.context',
     solution: [
-      'Xây dựng kiến trúc tri thức (.agent-rules)',
-      'Phân luồng task theo Micro Task và Full User Story',
-      'Thiết kế mô hình Work Item và kiểm soát Issue',
-      'Đảm bảo tính liên tục và evidence cho mọi tác vụ'
+      'cv.agent-rules.solution.0',
+      'cv.agent-rules.solution.1',
+      'cv.agent-rules.solution.2',
+      'cv.agent-rules.solution.3'
     ],
     results: [
-      { label: 'Tri thức', value: 'Chuẩn hóa' },
-      { label: 'AI Agent', value: 'Tự vận hành' }
+      { label: 'cv.agent-rules.result.0.label', value: 'cv.agent-rules.result.0.value' },
+      { label: 'cv.agent-rules.result.1.label', value: 'cv.agent-rules.result.1.value' }
     ],
     x: 550, y: 150
   }
 ];
-

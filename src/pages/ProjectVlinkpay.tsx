@@ -9,9 +9,11 @@ const MapPinIcon = ({ className }: { className?: string }) => <svg className={cl
 import { useStore } from '../store/useStore';
 import { CaseStudyLayout } from '../components/layout/CaseStudyLayout';
 import { vlinkpayData } from '../data/caseStudies';
+import { useT } from '../i18n/useT';
 
 export const ProjectVlinkpay: React.FC = () => {
   const { isLightMode } = useStore();
+  const t = useT();
   const theme = {
     bg: isLightMode ? 'bg-slate-50' : 'bg-[#0f111a]',
     text: isLightMode ? 'text-slate-800' : 'text-slate-100',
@@ -52,7 +54,7 @@ export const ProjectVlinkpay: React.FC = () => {
               {vlinkpayData.challenges[0].description}
             </p>
             <p className={`${theme.textMuted} leading-relaxed font-bold`}>
-              Bài toán khó nhất: Luồng tài chính cần sự tin cậy tuyệt đối.
+              {t('vlinkpay.hardestChallenge')}
             </p>
             <ul className={`mt-2 space-y-1 text-sm ${theme.textMuted}`}>
               <li>- {vlinkpayData.challenges[0].solution}</li>
@@ -77,28 +79,28 @@ export const ProjectVlinkpay: React.FC = () => {
         {/* The Flow Timeline */}
         <motion.section initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeInUp} className="mb-16 md:mb-24">
           <div className={`p-10 md:p-12 rounded-3xl border ${theme.card} ${theme.glow}`}>
-            <h2 className="text-3xl font-black uppercase tracking-tight mb-8">Luồng đổi tiền P2P qua điểm giao dịch</h2>
+            <h2 className="text-3xl font-black uppercase tracking-tight mb-8">{t('vlinkpay.flow.title')}</h2>
             
             <div className="relative border-l border-slate-700/50 ml-4 md:ml-6 space-y-10 pl-8">
               <div className="relative">
                 <div className="absolute -left-[37px] top-1 w-4 h-4 rounded-full bg-slate-800 border-2 border-orange-500"></div>
-                <h4 className="font-bold text-lg mb-2">1. Người dùng tạo yêu cầu</h4>
-                <p className={`${theme.textMuted}`}>Số tiền, phí, tổng nhận/trả và phương thức được xác nhận trước khi tiếp tục.</p>
+                <h4 className="font-bold text-lg mb-2">{t('vlinkpay.flow.step1.title')}</h4>
+                <p className={`${theme.textMuted}`}>{t('vlinkpay.flow.step1.desc')}</p>
               </div>
               <div className="relative">
                 <div className="absolute -left-[37px] top-1 w-4 h-4 rounded-full bg-slate-800 border-2 border-orange-500"></div>
-                <h4 className="font-bold text-lg mb-2">2. Đối tác / ATM xử lý</h4>
-                <p className={`${theme.textMuted}`}>Điểm giao dịch xác nhận, chấp nhận, từ chối hoặc cập nhật trạng thái giao dịch.</p>
+                <h4 className="font-bold text-lg mb-2">{t('vlinkpay.flow.step2.title')}</h4>
+                <p className={`${theme.textMuted}`}>{t('vlinkpay.flow.step2.desc')}</p>
               </div>
               <div className="relative">
                 <div className="absolute -left-[37px] top-1 w-4 h-4 rounded-full bg-slate-800 border-2 border-orange-500"></div>
-                <h4 className="font-bold text-lg mb-2">3. Trạng thái giao dịch</h4>
-                <p className={`${theme.textMuted}`}>Đang chờ, đã tiếp nhận, đã thanh toán, hoàn tất, đã hủy hoặc tranh chấp được hiển thị rõ.</p>
+                <h4 className="font-bold text-lg mb-2">{t('vlinkpay.flow.step3.title')}</h4>
+                <p className={`${theme.textMuted}`}>{t('vlinkpay.flow.step3.desc')}</p>
               </div>
               <div className="relative">
                 <div className="absolute -left-[37px] top-1 w-4 h-4 rounded-full bg-orange-500 shadow-[0_0_10px_rgba(249,115,22,0.8)]"></div>
-                <h4 className="font-bold text-lg mb-2 text-orange-500">4. Bước tiếp theo</h4>
-                <p className={`${theme.textMuted}`}>Người dùng biết cần chờ, thanh toán, nhận tiền, liên hệ hỗ trợ hoặc mở tranh chấp.</p>
+                <h4 className="font-bold text-lg mb-2 text-orange-500">{t('vlinkpay.flow.step4.title')}</h4>
+                <p className={`${theme.textMuted}`}>{t('vlinkpay.flow.step4.desc')}</p>
               </div>
             </div>
           </div>
@@ -106,7 +108,7 @@ export const ProjectVlinkpay: React.FC = () => {
 
         {/* UX Decisions */}
         <motion.section initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeInUp} className="mb-16 md:mb-24">
-          <h2 className="text-3xl font-black uppercase tracking-tight mb-8">Quyết định UX cốt lõi</h2>
+          <h2 className="text-3xl font-black uppercase tracking-tight mb-8">{t('vlinkpay.ux.title')}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <div className={`p-6 rounded-2xl border ${theme.card} hover:-translate-y-2 transition-transform duration-300`}>
               <ShieldCheckIcon />
@@ -143,11 +145,11 @@ export const ProjectVlinkpay: React.FC = () => {
           <div className="w-full rounded-2xl overflow-hidden border border-slate-300 dark:border-slate-700 shadow-2xl relative group">
             <img 
               src="/assets/vlinkpay-thumbnail.png" 
-              alt="VLINKPAY Thumbnail" 
+              alt={t('vlinkpay.mockup.alt')} 
               className="w-full h-auto object-cover transform transition-transform duration-700 group-hover:scale-105"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-8">
-               <span className="text-white font-bold text-xl drop-shadow-md">Ảnh đại diện VLINKPAY</span>
+               <span className="text-white font-bold text-xl drop-shadow-md">{t('vlinkpay.mockup.caption')}</span>
             </div>
           </div>
           
