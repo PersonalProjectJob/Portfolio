@@ -25,7 +25,7 @@ export const DesktopHeader: React.FC<DesktopHeaderProps> = ({ className = '', on
           <img 
             src="/images/logo.png" 
             alt="Logo" 
-            className={`w-full h-full object-contain scale-[1.35] md:scale-[1.3] group-hover:scale-[1.45] md:group-hover:scale-[1.4] transition-all duration-300 ${isLightMode ? 'drop-shadow-[0_2px_8px_rgba(249,115,22,0.7)]' : 'drop-shadow-[0_0_15px_rgba(249,115,22,0.9)] drop-shadow-[0_0_5px_rgba(255,255,255,0.4)]'}`} 
+            className={`w-full h-full object-contain scale-110 group-hover:scale-125 transition-all duration-300 ${isLightMode ? 'drop-shadow-[0_2px_8px_rgba(249,115,22,0.7)]' : 'drop-shadow-[0_0_15px_rgba(249,115,22,0.9)] drop-shadow-[0_0_5px_rgba(255,255,255,0.4)]'}`} 
           />
         </button>
         <div className="flex flex-col min-w-0 pointer-events-auto cursor-pointer" onClick={onLogoClick}>
