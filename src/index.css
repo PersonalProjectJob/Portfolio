@@ -1,4 +1,6 @@
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark-theme, .dark-theme *));
+
 /* ─── Tailwind v4 Theme Tokens ─── */
 @theme {
   --font-sans: 'Plus Jakarta Sans', sans-serif;
