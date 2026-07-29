@@ -79,7 +79,7 @@ export const MobileNavigation: React.FC<MobileNavigationProps> = ({ className = 
               className={`relative w-[56px] h-[56px] rounded-full flex items-center justify-center text-white transition-all duration-500 group ${isNavActive(centerItem, gameState) ? 'scale-105' : 'scale-95 opacity-60 hover:scale-100 hover:opacity-100'}`}
             >
               {/* Animated Outer Glow Ring */}
-              <div className={`absolute inset-0 rounded-full transition-all duration-500 ${isNavActive(centerItem, gameState) ? (isLightMode ? 'bg-orange-400 blur-md opacity-60' : 'bg-[#ea580c] blur-xl opacity-80') : 'opacity-0 group-hover:opacity-30'}`} />
+              <div className={`absolute inset-0 rounded-full transition-all duration-500 ${isNavActive(centerItem, gameState) ? (isLightMode ? 'bg-orange-400 blur-md opacity-60' : 'bg-[#ea580c] blur-md opacity-80') : 'opacity-0 group-hover:opacity-30'}`} />
               
               {/* Button Base */}
               <div className={`relative w-full h-full rounded-full flex items-center justify-center border-2 transition-all duration-500 ${isNavActive(centerItem, gameState) ? (isLightMode ? 'bg-orange-600 border-white' : 'bg-gradient-to-tr from-orange-600 to-orange-500 border-orange-300 shadow-[inset_0_0_15px_rgba(255,255,255,0.3)]') : (isLightMode ? 'bg-slate-200 border-slate-300 text-slate-400' : 'bg-[#0f172a] border-slate-700 text-slate-500 shadow-[inset_0_0_10px_rgba(0,0,0,0.8)]')}`}>
@@ -121,7 +121,7 @@ const SideTabButton: React.FC<SideTabButtonProps> = ({ item, gameState, isLightM
       className={`relative flex flex-col items-center justify-center w-[20%] h-full transition-all duration-300 group touch-target ${active ? (isLightMode ? 'text-orange-600' : 'text-[#fdba74]') : (isLightMode ? 'text-slate-400 hover:text-orange-500' : 'text-slate-500 hover:text-slate-200')}`}
     >
       {/* Spotlight Glow */}
-      <div className={`absolute bottom-0 w-20 h-20 bg-orange-500/20 blur-xl rounded-full pointer-events-none transition-opacity duration-500 ${active ? 'opacity-100' : 'opacity-0'}`} />
+      <div className={`absolute bottom-0 w-20 h-20 bg-orange-500/20 blur-md rounded-full pointer-events-none transition-opacity duration-500 ${active ? 'opacity-100' : 'opacity-0'}`} />
       
       <div className={`transition-all duration-300 z-10 ${active ? (isLightMode ? 'drop-shadow-[0_0_8px_rgba(13,148,136,0.5)]' : 'drop-shadow-[0_0_12px_rgba(45,212,191,0.8)]') : ''}`}>
         {NavIcons[item.icon]}

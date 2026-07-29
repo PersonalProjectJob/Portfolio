@@ -58,7 +58,7 @@ export const CaseStudyLayout: React.FC<CaseStudyLayoutProps> = ({ children }) =>
   return (
     <div className={`fixed inset-0 z-[100] h-[100dvh] w-full overflow-x-hidden overflow-y-auto overscroll-y-contain scroll-pt-20 custom-scrollbar ${theme.bg} ${theme.text} font-sans`}>
       <header
-        className={`sticky top-0 z-50 border-b backdrop-blur-xl ${isLightMode ? 'border-slate-200/80 bg-slate-50/90' : 'border-white/10 bg-[#050510]/90'}`}
+        className={`sticky top-0 z-50 border-b backdrop-blur-md ${isLightMode ? 'border-slate-200/80 bg-slate-50/90' : 'border-white/10 bg-[#050510]/90'}`}
         style={{ paddingTop: 'env(safe-area-inset-top)' }}
       >
         <div className="mx-auto flex min-h-16 w-full max-w-6xl items-center justify-between px-4 sm:px-6 md:px-12 py-2 gap-4">
@@ -182,7 +182,7 @@ export const CaseStudyLayout: React.FC<CaseStudyLayoutProps> = ({ children }) =>
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: 10, scale: 0.95 }}
                       transition={{ duration: 0.2 }}
-                      className={`absolute bottom-full mb-3 left-1/2 -translate-x-1/2 w-56 rounded-xl border p-1 shadow-2xl backdrop-blur-xl ${
+                      className={`absolute bottom-full mb-3 left-1/2 -translate-x-1/2 w-56 rounded-xl border p-1 shadow-2xl backdrop-blur-md ${
                         isLightMode 
                           ? 'bg-white/90 border-slate-200' 
                           : 'bg-[#1e293b]/90 border-white/10'
