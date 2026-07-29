@@ -205,7 +205,7 @@ export const ProjectDispatch: React.FC = () => {
               </div>
               <p className={`text-sm mb-6 ${theme.textMuted}`}>Task lặt vặt, phạm vi hẹp, không đụng vào code dùng chung hay database.</p>
               <ul className="space-y-3 text-sm mb-6">
-                <li className="flex flex-col gap-1"><span className="font-bold text-emerald-600 dark:text-emerald-500">Agent</span> <span className={theme.text}>Sonnet / Gemini Flash / Codex (tốc độ cao, chi phí thấp)</span></li>
+                <li className="flex flex-col gap-1"><span className="font-bold text-emerald-600 dark:text-emerald-500">Agent</span> <span className={theme.text}>Gpt 5.6 Luna (tốc độ cao, chi phí thấp)</span></li>
                 <li className="flex flex-col gap-1"><span className="font-bold text-emerald-600 dark:text-emerald-500">Môi trường</span> <span className={theme.text}>Tạo nhánh Git thông thường</span></li>
                 <li className="flex flex-col gap-1"><span className="font-bold text-emerald-600 dark:text-emerald-500">Kiểm tra</span> <span className={theme.text}>Agent tự kiểm tra (Self-test)</span></li>
               </ul>
@@ -222,7 +222,7 @@ export const ProjectDispatch: React.FC = () => {
               </div>
               <p className={`text-sm mb-6 ${theme.textMuted}`}>Làm tính năng mới hoặc refactor đụng chạm nhiều file. Bắt buộc cách ly an toàn.</p>
               <ul className="space-y-3 text-sm mb-6">
-                <li className="flex flex-col gap-1"><span className="font-bold text-amber-600 dark:text-amber-500">Agent</span> <span className={theme.text}>Opus / Gemini Pro / Codex (khả năng suy luận sâu)</span></li>
+                <li className="flex flex-col gap-1"><span className="font-bold text-amber-600 dark:text-amber-500">Agent</span> <span className={theme.text}>Gpt 5.6 Terra (khả năng suy luận sâu)</span></li>
                 <li className="flex flex-col gap-1"><span className="font-bold text-amber-600 dark:text-amber-500">Môi trường</span> <span className={theme.text}>Sử dụng Git Worktree riêng biệt</span></li>
                 <li className="flex flex-col gap-1"><span className="font-bold text-amber-600 dark:text-amber-500">Kiểm tra</span> <span className={theme.text}>Gọi một Agent độc lập để review Code Diff</span></li>
               </ul>
@@ -239,7 +239,7 @@ export const ProjectDispatch: React.FC = () => {
               </div>
               <p className={`text-sm mb-6 text-slate-300`}>Đụng đến Đăng nhập, Thanh toán, Database, hoặc kiến trúc lõi. <strong className="text-red-400">BẮT BUỘC Con người phải nhúng tay duyệt.</strong></p>
               <ul className="space-y-3 text-sm mb-6">
-                <li className="flex flex-col gap-1"><span className="font-bold text-red-400">Agent</span> <span className="text-slate-200">Opus / Codex (thông minh nhất) + Chốt chặn Con người</span></li>
+                <li className="flex flex-col gap-1"><span className="font-bold text-red-400">Agent</span> <span className="text-slate-200">Gpt 5.6 Sol (thông minh nhất) + Chốt chặn Con người</span></li>
                 <li className="flex flex-col gap-1"><span className="font-bold text-red-400">Môi trường</span> <span className="text-slate-200">Worktree cách ly + Khoanh vùng <code className="text-emerald-400 px-1">Do NOT touch</code> cực đoan</span></li>
                 <li className="flex flex-col gap-1"><span className="font-bold text-red-400">Kiểm tra</span> <span className="text-slate-200">Con người review trực tiếp + Agent QA chéo</span></li>
               </ul>
