@@ -19,10 +19,14 @@ export const DesktopHeader: React.FC<DesktopHeaderProps> = ({ className = '', on
           type="button"
           onClick={onLogoClick}
           aria-label="Return to cover page"
-          className={`w-11 h-11 md:w-12 md:h-12 shrink-0 border rounded-xl shadow-[0_5px_15px_rgba(0,0,0,0.5)] flex items-center justify-center pointer-events-auto transition-colors overflow-hidden relative group ${isLightMode ? 'bg-white/90 backdrop-blur-md border-slate-300 hover:bg-white' : 'bg-slate-900/90 backdrop-blur-md border-slate-700 hover:bg-slate-800'}`}
+          className="w-10 h-10 md:w-11 md:h-11 shrink-0 flex items-center justify-center pointer-events-auto group relative"
           title="Return to Cover Page"
         >
-          <img src="/images/logo.png" alt="Logo" className="w-full h-full object-cover scale-[1.35] md:scale-[1.3] group-hover:scale-[1.45] md:group-hover:scale-[1.4] transition-transform duration-300" />
+          <img 
+            src="/images/logo.png" 
+            alt="Logo" 
+            className={`w-full h-full object-contain scale-[1.35] md:scale-[1.3] group-hover:scale-[1.45] md:group-hover:scale-[1.4] transition-all duration-300 ${isLightMode ? 'drop-shadow-[0_2px_8px_rgba(249,115,22,0.7)]' : 'drop-shadow-[0_0_15px_rgba(249,115,22,0.9)] drop-shadow-[0_0_5px_rgba(255,255,255,0.4)]'}`} 
+          />
         </button>
         <div className="flex flex-col min-w-0 pointer-events-auto cursor-pointer" onClick={onLogoClick}>
           <span className={`font-black tracking-widest text-[11px] md:text-base leading-none uppercase drop-shadow-md truncate transition-colors hover:text-orange-500 ${isLightMode ? 'text-slate-800' : 'text-slate-200'}`}>Son Thao</span>
