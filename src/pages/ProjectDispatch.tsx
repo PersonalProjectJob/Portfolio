@@ -60,7 +60,7 @@ export const ProjectDispatch: React.FC = () => {
           <div className="mb-12">
             <p className={`text-sm font-bold tracking-widest uppercase mb-3 ${theme.accent}`}>{t('dispatch.workflow.label')}</p>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">{t('dispatch.workflow.title')}</h2>
-            <p className={`text-lg max-w-3xl ${theme.textMuted}`}>
+            <p className={`text-lg ${theme.textMuted}`}>
               {t('dispatch.workflow.desc1')}<code className={`px-2 py-1 rounded ${theme.accentBg} ${theme.accent} font-mono text-sm`}>/dispatch</code>{t('dispatch.workflow.desc2')}
             </p>
           </div>
@@ -94,7 +94,7 @@ export const ProjectDispatch: React.FC = () => {
           <div className="mb-12">
             <p className={`text-sm font-bold tracking-widest uppercase mb-3 ${theme.accent}`}>{t('dispatch.breakdown.label')}</p>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">{t('dispatch.breakdown.title')}</h2>
-            <p className={`text-lg max-w-3xl ${theme.textMuted}`}>
+            <p className={`text-lg ${theme.textMuted}`}>
               {t('dispatch.breakdown.desc')}
             </p>
           </div>
@@ -150,7 +150,7 @@ export const ProjectDispatch: React.FC = () => {
           <div className="mb-12">
             <p className={`text-sm font-bold tracking-widest uppercase mb-3 ${theme.accent}`}>{t('dispatch.solution.label')}</p>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">{t('dispatch.solution.title')}</h2>
-            <p className={`text-lg max-w-3xl ${theme.textMuted}`}>
+            <p className={`text-lg ${theme.textMuted}`}>
               {t('dispatch.solution.desc1')}<strong>{t('dispatch.solution.desc2')}</strong>{t('dispatch.solution.desc3')}<strong>{t('dispatch.solution.desc4')}</strong>).
             </p>
           </div>
@@ -193,7 +193,7 @@ export const ProjectDispatch: React.FC = () => {
           <div className="mb-12">
             <p className={`text-sm font-bold tracking-widest uppercase mb-3 ${theme.accent}`}>{t('dispatch.route.label')}</p>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">{t('dispatch.route.title')}</h2>
-            <p className={`text-lg max-w-4xl ${theme.textMuted}`}>
+            <p className={`text-lg ${theme.textMuted}`}>
               {t('dispatch.route.desc1')}<code className={`px-2 py-1 rounded ${theme.accentBg} ${theme.accent} font-mono text-sm`}>/dispatch</code>{t('dispatch.route.desc2')}
             </p>
           </div>
@@ -261,7 +261,7 @@ export const ProjectDispatch: React.FC = () => {
           <div className="mb-12">
             <p className={`text-sm font-bold tracking-widest uppercase mb-3 ${theme.accent}`}>{t('dispatch.role.label')}</p>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">{t('dispatch.role.title')}</h2>
-            <p className={`text-lg max-w-4xl ${theme.textMuted}`}>
+            <p className={`text-lg ${theme.textMuted}`}>
               {t('dispatch.role.desc')}
             </p>
           </div>
@@ -293,7 +293,7 @@ export const ProjectDispatch: React.FC = () => {
           <div className="mb-12">
             <p className={`text-sm font-bold tracking-widest uppercase mb-3 ${theme.accent}`}>{t('dispatch.handoff.label')}</p>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">{t('dispatch.handoff.title')}</h2>
-            <p className={`text-lg max-w-4xl ${theme.textMuted}`}>
+            <p className={`text-lg ${theme.textMuted}`}>
               {t('dispatch.handoff.desc')}
             </p>
           </div>
@@ -323,7 +323,7 @@ export const ProjectDispatch: React.FC = () => {
           <div className="mb-12">
             <p className={`text-sm font-bold tracking-widest uppercase mb-3 ${theme.accent}`}>{t('dispatch.example.label')}</p>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">{t('dispatch.example.title')}</h2>
-            <p className={`text-lg max-w-3xl ${theme.textMuted}`}>
+            <p className={`text-lg ${theme.textMuted}`}>
               {t('dispatch.example.desc')}
             </p>
           </div>
