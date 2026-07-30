@@ -110,23 +110,22 @@ export const GameCharacterSelect: React.FC = () => {
                    ))}
                 </div>
 
-                {/* Call to Action -> View Skills */}
-                <div className="mt-10 pt-8 border-t border-slate-500/20 flex justify-end">
+                {/* Actions: secondary Experience/Playbook shortcuts (hidden at 2xl+, where the scattered desktop UI takes over) + primary View Skills CTA */}
+                <div className="mt-10 pt-8 border-t border-slate-500/20 flex flex-col-reverse gap-4 md:flex-row md:items-center md:justify-between 2xl:justify-end">
+                   <div className="2xl:hidden flex gap-2">
+                      <button onClick={() => setGameState('EXPERIENCE')} className={`flex-1 md:flex-none flex items-center justify-center gap-2 px-4 py-2.5 rounded-full text-[10px] font-bold tracking-widest uppercase transition-all ${isLightMode ? 'text-slate-600 hover:bg-orange-50 hover:text-orange-600' : 'text-slate-400 hover:bg-slate-800/60 hover:text-orange-400'}`}>
+                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg>
+                         {t("profile.experience")}
+                      </button>
+                      <button onClick={() => setGameState('PROCESS')} className={`flex-1 md:flex-none flex items-center justify-center gap-2 px-4 py-2.5 rounded-full text-[10px] font-bold tracking-widest uppercase transition-all ${isLightMode ? 'text-slate-600 hover:bg-orange-50 hover:text-orange-600' : 'text-slate-400 hover:bg-slate-800/60 hover:text-orange-400'}`}>
+                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                         {t("profile.playbook")}
+                      </button>
+                   </div>
+
                    <button onClick={() => setGameState('SKILL_MATRIX')} className={`w-full md:w-auto px-8 py-4 rounded-xl text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase transition-all flex items-center justify-center gap-4 shadow-[0_0_20px_rgba(13,148,136,0.3)] ${isLightMode ? 'bg-slate-900 text-white hover:bg-slate-800 hover:shadow-[0_10px_20px_rgba(0,0,0,0.2)]' : 'bg-gradient-to-r from-orange-600 to-orange-500 text-white hover:shadow-[0_0_30px_rgba(13,148,136,0.6)]'}`}>
                       {t("profile.exploreSkills")}
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                   </button>
-                </div>
-
-                {/* Mobile & Small Desktop: {t("profile.experience")} & {t("profile.playbook")} shortcuts */}
-                <div className="2xl:hidden flex gap-3 mt-6 pt-6 border-t border-slate-500/20">
-                   <button onClick={() => setGameState('EXPERIENCE')} className={`flex-1 flex items-center justify-center gap-2 py-3 rounded-xl text-[10px] font-bold tracking-widest uppercase border transition-all ${isLightMode ? 'bg-white border-slate-200 text-slate-700 active:bg-orange-50' : 'bg-slate-800/50 border-slate-600 text-slate-300 active:bg-slate-700'}`}>
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg>
-                      Experience
-                   </button>
-                   <button onClick={() => setGameState('PROCESS')} className={`flex-1 flex items-center justify-center gap-2 py-3 rounded-xl text-[10px] font-bold tracking-widest uppercase border transition-all ${isLightMode ? 'bg-white border-slate-200 text-slate-700 active:bg-orange-50' : 'bg-slate-800/50 border-slate-600 text-slate-300 active:bg-slate-700'}`}>
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-                      Playbook
                    </button>
                 </div>
              </div>
