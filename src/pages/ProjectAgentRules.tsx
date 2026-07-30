@@ -590,7 +590,7 @@ export const ProjectAgentRules: React.FC = () => {
         {/* 14. GRAND FINALE */}
         <motion.section initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeInUp} className="mb-20 text-center">
           <div className="rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/50 relative">
-            <ZoomableImage src="/images/case-study/farewell_team.jpg" alt="Farewell Team" className="w-full h-64 md:h-80 object-cover object-center" />
+            <ZoomableImage src="/images/case-study/farewell_team.webp" alt="Farewell Team" className="w-full h-64 md:h-80 object-cover object-center" />
             <div className="px-6 py-8 md:p-16 relative z-10">
               <h2 className="text-3xl md:text-4xl font-black mb-4 md:mb-6">{t('agentRules.s14.title')}</h2>
               <p className={`text-lg max-w-2xl mx-auto mb-8 md:mb-10 ${theme.textMuted}`} dangerouslySetInnerHTML={{ __html: t('agentRules.s14.desc') }} />

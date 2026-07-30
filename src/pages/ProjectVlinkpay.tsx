@@ -1,15 +1,13 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useStore } from '../store/useStore';
+import { CaseStudyLayout } from '../components/layout/CaseStudyLayout';
+import { useT } from '../i18n/useT';
 
 const CreditCardIcon = ({ className }: { className?: string }) => <svg className={className} width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>;
 const ActivityIcon = ({ className }: { className?: string }) => <svg className={className} width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>;
 const ShieldCheckIcon = ({ className }: { className?: string }) => <svg className={className} width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="m9 12 2 2 4-4"/></svg>;
 const MapPinIcon = ({ className }: { className?: string }) => <svg className={className} width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>;
-
-import { useStore } from '../store/useStore';
-import { CaseStudyLayout } from '../components/layout/CaseStudyLayout';
-import { vlinkpayData } from '../data/caseStudies';
-import { useT } from '../i18n/useT';
 
 export const ProjectVlinkpay: React.FC = () => {
   const { isLightMode } = useStore();
@@ -161,7 +159,7 @@ export const ProjectVlinkpay: React.FC = () => {
           <div className="flex justify-center mb-8">
               <a
                 className={`px-8 py-4 rounded-full font-bold flex items-center gap-3 transition-transform hover:scale-105 ${isLightMode ? 'bg-orange-600 text-white shadow-lg shadow-orange-500/30' : 'bg-orange-500 text-slate-900 shadow-[0_0_20px_rgba(249,115,22,0.4)]'}`}
-                href={vlinkpayData.projectUrl}
+                href="https://www.figma.com/design/upTvpWOIHNFC8Vzqf4AJ3f/Program-Hub--Copy-?node-id=52-11225"
                 target="_blank"
                 rel="noopener noreferrer"
               >

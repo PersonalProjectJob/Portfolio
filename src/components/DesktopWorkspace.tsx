@@ -60,7 +60,7 @@ export const DesktopWorkspace: React.FC<Props> = ({ children, disableParallax = 
           className="absolute inset-[-5%] z-0" // Extended inset to prevent edges showing during parallax
           style={{ x: layer1X, y: layer1Y }}
         >
-          <img src="/cantho-floating-market.png" 
+          <img src="/cantho-floating-market.webp" 
                className="absolute inset-0 w-full h-full object-cover transition-all duration-1000 blur-[2px]"
                style={{
                  filter: isLightMode 
@@ -92,7 +92,7 @@ export const DesktopWorkspace: React.FC<Props> = ({ children, disableParallax = 
         style={{ x: layer3X, y: layer3Y }}
       >
         {/* The generated transparent room (green screen removed) */}
-        <img loading="lazy" decoding="async" src="/workspace-transparent.png" className="absolute inset-0 w-full h-full object-cover" alt="Workspace Desk" />
+        <img loading="lazy" decoding="async" src="/workspace-transparent.webp" className="absolute inset-0 w-full h-full object-cover" alt="Workspace Desk" />
         
         {/* Realistic Glass Reflection (Bóng kính) */}
         <div className={`absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-transparent skew-x-[45deg] translate-x-[-100%] animate-[shimmer_10s_infinite_linear] transition-opacity duration-1000 ${isLightMode ? 'opacity-100' : 'opacity-20'}`} />
