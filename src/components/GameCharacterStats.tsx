@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useStore } from '../store/useStore';
 import { useT } from '../i18n/useT';
 
@@ -58,10 +58,13 @@ export const GameCharacterStats: React.FC = () => {
                    </div>
                    
                    <div className="flex flex-col gap-4">
-                      <AwardBadge 
-                         title={t("skills.award.title")} 
-                         subtitle={t("skills.award.subtitle")} 
-                         isLightMode={isLightMode} 
+                      <AwardBadge
+                         title={t("skills.award.title")}
+                         subtitle={t("skills.award.subtitle")}
+                         certificateImage="/images/certificates/pxd-k17-best-team-certificate.jpg"
+                         certificateAlt={t("skills.award.certificateAlt")}
+                         viewCertificateLabel={t("skills.award.viewCertificate")}
+                         isLightMode={isLightMode}
                       />
                       <EduItem title={t("skills.edu.1.title")} school="Uxfoundation.vn" date="JUN 2025" isLightMode={isLightMode} />
                       <EduItem title={t("skills.edu.2.title")} school="Uxfoundation.vn" date="OCT 2024" isLightMode={isLightMode} />
@@ -125,16 +128,16 @@ export const GameCharacterStats: React.FC = () => {
                          icon={<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#10A37F"><path d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.073zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944zm-9.6607-4.1254a4.4708 4.4708 0 0 1-.5346-3.0137l.142.0852 4.783 2.7582a.7712.7712 0 0 0 .7806 0l5.8428-3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.485 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.8956zm16.0993 3.8558L12.596 8.3829 14.6163 7.214a.0757.0757 0 0 1 .071 0l4.8303 2.7913a4.4944 4.4944 0 0 1-.6765 8.1042v-5.6772a.79.79 0 0 0-.3927-.6813zm2.0107-3.0231l-.142-.0852-4.7735-2.7818a.7759.7759 0 0 0-.7854 0L9.409 9.2297V6.8974a.0662.0662 0 0 1 .0284-.0615l4.8303-2.7866a4.4992 4.4992 0 0 1 6.6802 4.66zM8.3065 12.863l-2.02-1.1638a.0804.0804 0 0 1-.038-.0567V6.0742a4.4992 4.4992 0 0 1 7.3757-3.4537l-.142.0805L8.704 5.459a.7948.7948 0 0 0-.3927.6813zm1.0976-2.3654l2.602-1.4998 2.6069 1.4998v2.9994l-2.5974 1.4997-2.6067-1.4997Z"/></svg>} 
                       />
                       <ToolCard 
-                         name="VS Code" 
-                         category={t("skills.tool.development")} 
+                         name="Cursor" 
+                         category={t("skills.tool.aiIde")} 
                          isLightMode={isLightMode}
-                         icon={<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 100 100"><mask id="vsm"><rect width="100" height="100" fill="#fff"/></mask><g mask="url(#vsm)"><path d="M74.7 100c1.3 0 2.6-.3 3.7-1l17.1-8.5c2.8-1.4 4.5-4.2 4.5-7.2V16.7c0-3-1.7-5.8-4.5-7.2L78.4 1c-2.1-1-4.5-.8-6.4.3L29.2 38.5 12.1 25.4c-1.7-1.3-4-.1-4-.1L1.4 31.5c-1.9 1.5-1.9 4.4 0 5.9L16 50 1.4 62.6c-1.9 1.5-1.9 4.4 0 5.9l6.7 6.2s2.3 1.2 4-.1L29.2 61.5l42.8 37.2c1.6 1 3.5 1.3 5.4 1.3h-2.7zM75 27.2L45.7 50 75 72.8V27.2z" fill="#007ACC"/></g></svg>} 
+                         icon={<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="-2 -2 28 28"><defs><linearGradient id="cursorGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#3b82f6" /><stop offset="100%" stopColor="#8b5cf6" /></linearGradient></defs><path d="M11.503.131 1.891 5.678a.84.84 0 0 0-.42.726v11.188c0 .3.162.575.42.724l9.609 5.55a1 1 0 0 0 .998 0l9.61-5.55a.84.84 0 0 0 .42-.724V6.404a.84.84 0 0 0-.42-.726L12.497.131a1.01 1.01 0 0 0-.996 0M2.657 6.338h18.55c.263 0 .43.287.297.515L12.23 22.918c-.062.107-.229.064-.229-.06V12.335a.59.59 0 0 0-.295-.51l-9.11-5.257c-.109-.063-.064-.23.061-.23" fill="url(#cursorGrad)"/></svg>} 
                       />
                       <ToolCard 
-                         name="React JS" 
-                         category={t("skills.tool.frontendUi")} 
+                         name="Framer" 
+                         category={t("skills.tool.rapidPrototyping")} 
                          isLightMode={isLightMode}
-                         icon={<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#61DAFB"><circle cx="12" cy="12" r="2.5" /><ellipse cx="12" cy="12" rx="10" ry="3.5" fill="none" stroke="#61DAFB" strokeWidth="1.5" /><ellipse cx="12" cy="12" rx="10" ry="3.5" fill="none" stroke="#61DAFB" strokeWidth="1.5" transform="rotate(60 12 12)" /><ellipse cx="12" cy="12" rx="10" ry="3.5" fill="none" stroke="#61DAFB" strokeWidth="1.5" transform="rotate(120 12 12)" /></svg>} 
+                         icon={<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="-4 -4 32 32"><defs><linearGradient id="framerGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#0ea5e9" /><stop offset="100%" stopColor="#2563eb" /></linearGradient></defs><path d="M4 0h16v8h-8zM4 8h8l8 8H4zM4 16h8v8z" fill="url(#framerGrad)"/></svg>} 
                       />
                     </div>
                  </div>
@@ -294,26 +297,131 @@ const HexagonNode = ({ title, desc, isLightMode = false }: { title: string; desc
    );
 };
 
-const AwardBadge = ({ title, subtitle, isLightMode = false }: { title: string; subtitle: string; isLightMode?: boolean }) => (
-   <div className={`flex items-center gap-4 p-4 rounded-2xl border transition-all duration-300 relative overflow-hidden group ${isLightMode ? 'bg-gradient-to-r from-amber-50 to-white border-amber-200 hover:shadow-lg' : 'bg-gradient-to-r from-amber-950/40 to-slate-900/40 border-amber-500/30 hover:border-amber-500/60 hover:shadow-[0_0_20px_rgba(245,158,11,0.15)]'}`}>
-      <div className="absolute -right-4 -top-4 w-24 h-24 bg-amber-400/20 blur-2xl rounded-full group-hover:bg-amber-400/40 transition-all duration-500"></div>
-      <div className={`w-12 h-12 rounded-full flex items-center justify-center shrink-0 shadow-inner z-10 ${isLightMode ? 'bg-amber-100 text-amber-600' : 'bg-amber-900/50 text-amber-400'}`}>
-         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
-      </div>
-      <div className="z-10">
-         <h4 className={`font-black text-sm uppercase tracking-wide ${isLightMode ? 'text-amber-700' : 'text-amber-400'}`}>{title}</h4>
-         <p className={`text-[10px] font-bold uppercase tracking-widest mt-1 ${isLightMode ? 'text-amber-600/80' : 'text-amber-400/70'}`}>{subtitle}</p>
-      </div>
-   </div>
-);
+const AwardBadge = ({
+   title,
+   subtitle,
+   certificateImage,
+   certificateAlt = '',
+   viewCertificateLabel,
+   isLightMode = false,
+}: {
+   title: string;
+   subtitle: string;
+   certificateImage?: string;
+   certificateAlt?: string;
+   viewCertificateLabel?: string;
+   isLightMode?: boolean;
+}) => {
+   const [isOpen, setIsOpen] = React.useState(false);
+   const clickable = Boolean(certificateImage);
+
+   React.useEffect(() => {
+      if (!clickable) return;
+      document.body.style.overflow = isOpen ? 'hidden' : 'unset';
+      return () => {
+         document.body.style.overflow = 'unset';
+      };
+   }, [isOpen, clickable]);
+
+   React.useEffect(() => {
+      if (!clickable || !isOpen) return;
+      const handleKeyDown = (e: KeyboardEvent) => {
+         if (e.key === 'Escape') setIsOpen(false);
+      };
+      window.addEventListener('keydown', handleKeyDown);
+      return () => window.removeEventListener('keydown', handleKeyDown);
+   }, [isOpen, clickable]);
+
+   return (
+      <>
+         <div
+            onClick={clickable ? () => setIsOpen(true) : undefined}
+            onKeyDown={clickable ? (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setIsOpen(true); } } : undefined}
+            role={clickable ? 'button' : undefined}
+            tabIndex={clickable ? 0 : undefined}
+            className={`flex items-center gap-4 p-4 rounded-2xl border transition-all duration-300 relative overflow-hidden group ${clickable ? 'cursor-pointer' : ''} ${isLightMode ? 'bg-gradient-to-r from-amber-50 to-white border-amber-200 hover:shadow-lg' : 'bg-gradient-to-r from-amber-950/40 to-slate-900/40 border-amber-500/30 hover:border-amber-500/60 hover:shadow-[0_0_20px_rgba(245,158,11,0.15)]'}`}
+         >
+            <div className="absolute -right-4 -top-4 w-24 h-24 bg-amber-400/20 blur-2xl rounded-full group-hover:bg-amber-400/40 transition-all duration-500"></div>
+            <div className={`w-12 h-12 rounded-full flex items-center justify-center shrink-0 shadow-inner z-10 ${isLightMode ? 'bg-amber-100 text-amber-600' : 'bg-amber-900/50 text-amber-400'}`}>
+               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+            </div>
+            <div className="z-10 flex-1 min-w-0">
+               <h4 className={`font-black text-sm uppercase tracking-wide ${isLightMode ? 'text-amber-700' : 'text-amber-400'}`}>{title}</h4>
+               <p className={`text-[10px] font-bold uppercase tracking-widest mt-1 ${isLightMode ? 'text-amber-600/80' : 'text-amber-400/70'}`}>{subtitle}</p>
+            </div>
+            {clickable && (
+               <span className={`z-10 text-[9px] font-bold uppercase tracking-widest shrink-0 group-hover:underline underline-offset-2 ${isLightMode ? 'text-amber-700' : 'text-amber-400'}`}>
+                  {viewCertificateLabel}
+               </span>
+            )}
+         </div>
+
+         {clickable && (
+            <AnimatePresence>
+               {isOpen && (
+                  <div className="fixed inset-0 z-[99999] flex items-center justify-center p-4 sm:p-8" onClick={() => setIsOpen(false)}>
+                     <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.2 }}
+                        className={`absolute inset-0 ${isLightMode ? 'bg-slate-100/95' : 'bg-slate-950/95'} backdrop-blur-md`}
+                     />
+                     <motion.div
+                        initial={{ opacity: 0, scale: 0.95, y: 10 }}
+                        animate={{ opacity: 1, scale: 1, y: 0 }}
+                        exit={{ opacity: 0, scale: 0.95, y: 10 }}
+                        transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+                        className="relative z-10 max-w-[95vw] max-h-[95vh] flex flex-col items-center justify-center"
+                     >
+                        <a
+                           href={certificateImage}
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           onClick={(e) => e.stopPropagation()}
+                        >
+                           <img
+                              src={certificateImage}
+                              alt={certificateAlt}
+                              className="max-w-full max-h-[90vh] object-contain rounded-xl shadow-2xl border border-slate-200/20 cursor-zoom-in"
+                           />
+                        </a>
+                        <div className="absolute top-4 right-4 flex gap-2 z-20">
+                           <a
+                              href={certificateImage}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              onClick={(e) => e.stopPropagation()}
+                              className={`p-2.5 rounded-full ${isLightMode ? 'bg-white text-slate-800 shadow-md hover:bg-slate-100' : 'bg-slate-800 text-slate-200 shadow-md hover:bg-slate-700 hover:text-white'} transition-all`}
+                              aria-label="Open full-size certificate in a new tab"
+                           >
+                              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 3l-9 9M21 3h-6M21 3v6"/><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg>
+                           </a>
+                           <button
+                              type="button"
+                              className={`p-2.5 rounded-full ${isLightMode ? 'bg-white text-slate-800 shadow-md hover:bg-slate-100' : 'bg-slate-800 text-slate-200 shadow-md hover:bg-slate-700 hover:text-white'} transition-all`}
+                              onClick={(e) => { e.stopPropagation(); setIsOpen(false); }}
+                              aria-label="Close certificate"
+                           >
+                              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                           </button>
+                        </div>
+                     </motion.div>
+                  </div>
+               )}
+            </AnimatePresence>
+         )}
+      </>
+   );
+};
 
 const ToolCard = ({ name, category, icon, isLightMode = false }: { name: string; category: string; icon: React.ReactNode; isLightMode?: boolean }) => {
   return (
-    <div className={`border rounded-2xl p-4 flex flex-col items-center justify-center text-center gap-3 transition-all cursor-pointer ${isLightMode ? 'bg-white/60 border-white/60 hover:bg-white hover:border-orange-300 hover:shadow-[0_0_15px_rgba(13,148,136,0.15)]' : 'bg-slate-900/40 border-slate-700/50 hover:bg-slate-800 hover:border-orange-500/50 hover:shadow-[0_0_15px_rgba(13,148,136,0.3)]'} hover:-translate-y-1`}>
-       <div className={`w-12 h-12 rounded-xl flex items-center justify-center text-orange-500 shadow-[0_0_10px_rgba(0,0,0,0.1)] border transition-colors ${isLightMode ? 'bg-white border-slate-100' : 'bg-slate-800/80 border-slate-600/50 shadow-[0_0_10px_rgba(0,0,0,0.5)]'}`}>
+    <div className={`border h-full rounded-2xl p-4 flex flex-col items-center justify-start text-center gap-3 transition-all cursor-pointer ${isLightMode ? 'bg-white/60 border-white/60 hover:bg-white hover:border-orange-300 hover:shadow-[0_0_15px_rgba(13,148,136,0.15)]' : 'bg-slate-900/40 border-slate-700/50 hover:bg-slate-800 hover:border-orange-500/50 hover:shadow-[0_0_15px_rgba(13,148,136,0.3)]'} hover:-translate-y-1`}>
+       <div className={`w-12 h-12 shrink-0 rounded-xl flex items-center justify-center text-orange-500 shadow-[0_0_10px_rgba(0,0,0,0.1)] border transition-colors ${isLightMode ? 'bg-white border-slate-100' : 'bg-slate-800/80 border-slate-600/50 shadow-[0_0_10px_rgba(0,0,0,0.5)]'}`}>
           {icon}
        </div>
-       <div>
+       <div className="flex flex-col items-center justify-center flex-grow">
           <h4 className={`font-bold text-sm transition-colors ${isLightMode ? 'text-slate-900' : 'text-slate-200'}`}>{name}</h4>
           <p className={`text-[9px] uppercase tracking-widest font-bold mt-1 transition-colors ${isLightMode ? 'text-slate-500' : 'text-slate-400'}`}>{category}</p>
        </div>
