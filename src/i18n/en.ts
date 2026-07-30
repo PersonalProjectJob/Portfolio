@@ -617,7 +617,7 @@ export const en: Record<string, string> = {
   'agentRules.s13.l5': 'Forcing paper rules into <strong>Tool Constraints</strong> (e.g., hand-coding the <code className="bg-slate-800 px-1 rounded">capture-evidence.mjs</code> script to automatically integrate auth tokens and auto-detect ports seamlessly).',
   'agentRules.s13.l6': 'Defining explicit boundaries: Where AI is allowed to run autonomously, and where <strong>Human Control</strong> is mandatory for approval.',
   'agentRules.s14.title': 'Thank you for reading!',
-  'agentRules.s14.desc': 'The <strong>.agent-rules</strong> protocol ensures every Agent receives the right context. But who stands up to decide <strong>"Which Agent runs, when, and in what order?"</strong>?',
+  'agentRules.s14.desc': 'The <strong>.agent-rules</strong> protocol ensures every Agent receives the right context. But who stands up to decide <strong>"Which Agent runs, when, and in what order?"</strong>',
   'agentRules.s14.btn': 'Discover the Orchestration System',
 
   // --- Phase 2: GameCharacterSelect (Profile) ---

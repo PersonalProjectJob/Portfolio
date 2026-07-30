@@ -616,7 +616,7 @@ export const vi: Record<string, string> = {
   'agentRules.s13.l5': 'Ép buộc các luật lệ giấy tờ (paper rules) thành các <strong>Ràng buộc Công cụ (Tool Constraints)</strong> (VD: tự code script <code className="bg-slate-800 px-1 rounded">capture-evidence.mjs</code> để tự động tích hợp auth token và auto-detect port một cách mượt mà).',
   'agentRules.s13.l6': 'Định nghĩa các ranh giới rõ ràng: Nơi nào AI được phép chạy tự trị (autonomously), và nơi nào <strong>Sự kiểm soát của Con người</strong> là bắt buộc để phê duyệt.',
   'agentRules.s14.title': 'Cảm ơn bạn đã đọc!',
-  'agentRules.s14.desc': 'Giao thức <strong>.agent-rules</strong> đảm bảo mọi Agent nhận được đúng context. Nhưng ai sẽ đứng ra quyết định <strong>"Agent nào chạy, khi nào, và theo thứ tự nào?"</strong>?',
+  'agentRules.s14.desc': 'Giao thức <strong>.agent-rules</strong> đảm bảo mọi Agent nhận được đúng context. Nhưng ai sẽ đứng ra quyết định <strong>"Agent nào chạy, khi nào, và theo thứ tự nào?"</strong>',
   'agentRules.s14.btn': 'Khám phá Hệ thống Orchestration',
 
   // --- Phase 2: GameCharacterSelect (Profile) ---
