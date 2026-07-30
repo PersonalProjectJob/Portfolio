@@ -44,7 +44,7 @@ const URL_TO_STATE: Record<string, { gameState: GameState; selectedQuest?: strin
 };
 
 /** Resolve initial state from current URL pathname */
-export function resolveStateFromURL(): { gameState: GameState; selectedQuest: string | null } {
+function resolveStateFromURL(): { gameState: GameState; selectedQuest: string | null } {
   const path = window.location.pathname.replace(/\/+$/, '') || '/';
   const match = URL_TO_STATE[path];
   if (match) {

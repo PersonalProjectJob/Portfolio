@@ -47,7 +47,7 @@ export const ProjectFintechFit: React.FC = () => {
           <div className="mb-16 relative">
             <div className={`absolute inset-0 bg-amber-500 rounded-3xl blur-3xl opacity-20`}></div>
             <ZoomableImage 
-              src="/images/case-study/fintech_cs_2.jpg" 
+              src="/images/case-study/fintech_cs_2.webp" 
               alt="Fintech Blueprint - Coming Soon" 
               className="w-full relative z-10 rounded-[2rem] border border-amber-500/20 shadow-2xl object-cover"
             />

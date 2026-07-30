@@ -219,7 +219,7 @@ export const ProjectCryptomap: React.FC = () => {
                 
                 <div className="md:w-1/2 w-full flex justify-center items-center">
                   <div className="w-full max-w-lg bg-white/5 p-4 rounded-3xl overflow-hidden shadow-2xl border border-white/10 backdrop-blur-sm">
-                    <img loading="lazy" decoding="async" src="/images/case-study/chart_1.png" alt="Where Grassroots Crypto Adoption Is Highest" className="w-full h-auto rounded-xl" />
+                    <img loading="lazy" decoding="async" src="/images/case-study/chart_1.webp" alt="Where Grassroots Crypto Adoption Is Highest" className="w-full h-auto rounded-xl" />
                   </div>
                 </div>
               </div>
@@ -345,7 +345,7 @@ export const ProjectCryptomap: React.FC = () => {
                 
                 <div className="md:w-2/3 w-full flex justify-center">
                   <div className="w-full max-w-3xl overflow-hidden rounded-2xl shadow-2xl border border-white/10">
-                    <img loading="lazy" decoding="async" src="/images/case-study/chart_4.png" alt="Custom Journey Map" className="w-full h-auto" />
+                    <img loading="lazy" decoding="async" src="/images/case-study/chart_4.webp" alt="Custom Journey Map" className="w-full h-auto" />
                   </div>
                 </div>
               </div>
