@@ -67,6 +67,13 @@
 - **Headings** (`h1`–`h6`): `'Space Grotesk', sans-serif`
 - **Body / UI**: `'DM Sans', sans-serif`
 
+### Vietnamese Typography & Semantic Wrapping
+
+- **Semantic Wrapping (Widow/Orphan Control)**: Never allow compound words or meaningful semantic clusters in Vietnamese (e.g., "Thế giới", "Giao dịch", "Sản phẩm") to be broken across lines.
+- **Rule**: Use non-breaking spaces (`\u00A0` in TS/JS or `&nbsp;` in HTML) to bind words within a semantic cluster together. Do NOT rely solely on automated css `text-wrap: balance` for Vietnamese texts, as it may incorrectly split semantic clusters.
+  - *Correct:* `với thế\u00A0giới\u00A0thực`
+  - *Incorrect:* `với thế giới\u00A0thực` (can break "thế" and "giới")
+
 ---
 
 ## 3. Spacing Scale
