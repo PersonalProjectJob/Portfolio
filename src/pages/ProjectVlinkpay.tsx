@@ -176,12 +176,12 @@ export const ProjectVlinkpay: React.FC = () => {
               alt={t('vlinkpay.mockup.alt')} 
               className="w-full h-auto object-cover transform transition-transform duration-700 group-hover:scale-105"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-8">
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6 md:p-8">
                <span className="text-white font-bold text-xl drop-shadow-md">{t('vlinkpay.mockup.caption')}</span>
             </div>
           </div>
           
-          <div className={`mt-12 p-8 rounded-2xl border-l-4 border-orange-500 text-left max-w-3xl mx-auto ${isLightMode ? 'bg-orange-50/50' : 'bg-orange-900/10'}`}>
+          <div className={`mt-12 p-6 md:p-8 rounded-2xl border-l-4 border-orange-500 text-left max-w-3xl mx-auto ${isLightMode ? 'bg-orange-50/50' : 'bg-orange-900/10'}`}>
             <h4 className="font-bold uppercase tracking-widest text-sm mb-4 text-orange-600 dark:text-orange-400">{t('vlinkpay.conclusion.title')}</h4>
             <p className={`italic ${theme.textMuted} leading-relaxed`} dangerouslySetInnerHTML={{__html: t('vlinkpay.conclusion.description')}}>
             </p>

@@ -200,7 +200,7 @@ export const ProjectDispatch: React.FC = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Route A */}
-            <div className={`p-8 rounded-2xl border-t-4 border-t-emerald-500 ${theme.card}`}>
+            <div className={`p-6 md:p-8 rounded-2xl border-t-4 border-t-emerald-500 ${theme.card}`}>
               <div className="flex items-center gap-4 mb-6">
                 <span className="w-12 h-12 rounded-full bg-emerald-500/10 text-emerald-600 flex items-center justify-center text-xl font-bold">A</span>
                 <h3 className="text-xl font-bold text-emerald-600 dark:text-emerald-500">{t('dispatch.route.a.title')}</h3>
@@ -217,7 +217,7 @@ export const ProjectDispatch: React.FC = () => {
             </div>
 
             {/* Route B */}
-            <div className={`p-8 rounded-2xl border-t-4 border-t-amber-500 ${theme.card}`}>
+            <div className={`p-6 md:p-8 rounded-2xl border-t-4 border-t-amber-500 ${theme.card}`}>
               <div className="flex items-center gap-4 mb-6">
                 <span className="w-12 h-12 rounded-full bg-amber-500/10 text-amber-600 flex items-center justify-center text-xl font-bold">B</span>
                 <h3 className="text-xl font-bold text-amber-600 dark:text-amber-500">{t('dispatch.route.b.title')}</h3>
@@ -234,7 +234,7 @@ export const ProjectDispatch: React.FC = () => {
             </div>
 
             {/* Route C */}
-            <div className={`p-8 rounded-2xl border-t-4 border-t-red-500 bg-slate-900 border border-slate-800`}>
+            <div className={`p-6 md:p-8 rounded-2xl border-t-4 border-t-red-500 bg-slate-900 border border-slate-800`}>
               <div className="flex items-center gap-4 mb-6">
                 <span className="w-12 h-12 rounded-full bg-red-500/15 text-red-500 flex items-center justify-center text-xl font-bold">C</span>
                 <h3 className="text-xl font-bold text-slate-100">{t('dispatch.route.c.title')}</h3>
@@ -267,7 +267,7 @@ export const ProjectDispatch: React.FC = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className={`p-8 rounded-2xl ${theme.card}`}>
+            <div className={`p-6 md:p-8 rounded-2xl ${theme.card}`}>
               <h3 className="text-emerald-600 dark:text-emerald-500 font-bold text-2xl mb-6">{t('dispatch.role.focus1.title')}</h3>
               <ul className="space-y-4 list-disc list-inside">
                 <li className={theme.textMuted}>{t('dispatch.role.focus1.item1')}</li>
@@ -276,7 +276,7 @@ export const ProjectDispatch: React.FC = () => {
                 <li className={theme.textMuted}>{t('dispatch.role.focus1.item4')}</li>
               </ul>
             </div>
-            <div className={`p-8 rounded-2xl ${theme.card}`}>
+            <div className={`p-6 md:p-8 rounded-2xl ${theme.card}`}>
               <h3 className="text-amber-600 dark:text-amber-500 font-bold text-2xl mb-6">{t('dispatch.role.focus2.title')}</h3>
               <ul className="space-y-4 list-disc list-inside">
                 <li className={theme.textMuted}>{t('dispatch.role.focus2.item1')}</li>

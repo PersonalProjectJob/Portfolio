@@ -233,7 +233,7 @@ export const ProjectCryptomap: React.FC = () => {
               
               <div className="mt-16 w-full max-w-5xl mx-auto bg-[#0B0F19]/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/10 overflow-hidden">
                  <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-white/10">
-                    <div className="p-8 hover:bg-white/5 transition-colors group">
+                    <div className="p-6 md:p-8 hover:bg-white/5 transition-colors group">
                        <h3 className="text-2xl font-black text-white mb-6 flex items-center gap-3">
                          <div className="w-8 h-8 rounded bg-green-500/20 flex items-center justify-center text-green-400"><CheckCircleIcon /></div>
                          CoinGecko
@@ -256,7 +256,7 @@ export const ProjectCryptomap: React.FC = () => {
                        </div>
                     </div>
                     
-                    <div className="p-8 hover:bg-white/5 transition-colors group">
+                    <div className="p-6 md:p-8 hover:bg-white/5 transition-colors group">
                        <h3 className="text-2xl font-black text-white mb-6 flex items-center gap-3">
                          <div className="w-8 h-8 rounded bg-blue-500/20 flex items-center justify-center text-blue-400"><CheckCircleIcon /></div>
                          CoinATMRadar
@@ -279,7 +279,7 @@ export const ProjectCryptomap: React.FC = () => {
                        </div>
                     </div>
                     
-                    <div className="p-8 hover:bg-white/5 transition-colors group">
+                    <div className="p-6 md:p-8 hover:bg-white/5 transition-colors group">
                        <h3 className="text-2xl font-black text-white mb-6 flex items-center gap-3">
                          <div className="w-8 h-8 rounded bg-orange-500/20 flex items-center justify-center text-orange-400"><CheckCircleIcon /></div>
                          Coinmap
