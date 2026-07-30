@@ -354,9 +354,9 @@ export const ProjectDispatch: React.FC = () => {
         <motion.section initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeInUp} className="mb-20">
           <div className={`rounded-3xl overflow-hidden border ${isLightMode ? 'border-slate-200 bg-slate-50' : 'border-slate-800 bg-slate-900/50'} relative`}>
             <ZoomableImage src="/images/case-study/dispatch_farewell.jpg" alt="Dispatch Command Center" className="w-full h-64 md:h-80 object-cover object-center" />
-            <div className="p-10 md:p-16 text-center max-w-4xl mx-auto">
-              <h2 className="text-3xl md:text-4xl font-black mb-6">{t('dispatch.farewell.title')}</h2>
-              <p className={`text-lg max-w-2xl mx-auto mb-10 ${theme.textMuted}`}>
+            <div className="px-6 py-8 md:p-16 text-center max-w-4xl mx-auto">
+              <h2 className="text-3xl md:text-4xl font-black mb-4 md:mb-6">{t('dispatch.farewell.title')}</h2>
+              <p className={`text-lg max-w-2xl mx-auto mb-8 md:mb-10 ${theme.textMuted}`}>
                 {t('dispatch.farewell.desc1')}<strong>{t('dispatch.farewell.desc2')}</strong>{t('dispatch.farewell.desc3')}<strong>{t('dispatch.farewell.desc4')}</strong>{t('dispatch.farewell.desc5')}
               </p>
               <button onClick={() => handleQuestSelect('agent-rules')} className="inline-flex items-center gap-3 px-8 py-4 bg-emerald-500 hover:bg-emerald-600 text-white rounded-full font-bold transition-colors cursor-pointer">
