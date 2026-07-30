@@ -60,7 +60,7 @@ export const ProjectDispatch: React.FC = () => {
           <div className="mb-12">
             <p className={`text-sm font-bold tracking-widest uppercase mb-3 ${theme.accent}`}>{t('dispatch.workflow.label')}</p>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">{t('dispatch.workflow.title')}</h2>
-            <p className={`text-lg max-w-3xl ${theme.textMuted}`}>
+            <p className={`text-lg ${theme.textMuted}`}>
               {t('dispatch.workflow.desc1')}<code className={`px-2 py-1 rounded ${theme.accentBg} ${theme.accent} font-mono text-sm`}>/dispatch</code>{t('dispatch.workflow.desc2')}
             </p>
           </div>
@@ -94,7 +94,7 @@ export const ProjectDispatch: React.FC = () => {
           <div className="mb-12">
             <p className={`text-sm font-bold tracking-widest uppercase mb-3 ${theme.accent}`}>{t('dispatch.breakdown.label')}</p>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">{t('dispatch.breakdown.title')}</h2>
-            <p className={`text-lg max-w-3xl ${theme.textMuted}`}>
+            <p className={`text-lg ${theme.textMuted}`}>
               {t('dispatch.breakdown.desc')}
             </p>
           </div>
@@ -150,7 +150,7 @@ export const ProjectDispatch: React.FC = () => {
           <div className="mb-12">
             <p className={`text-sm font-bold tracking-widest uppercase mb-3 ${theme.accent}`}>{t('dispatch.solution.label')}</p>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">{t('dispatch.solution.title')}</h2>
-            <p className={`text-lg max-w-3xl ${theme.textMuted}`}>
+            <p className={`text-lg ${theme.textMuted}`}>
               {t('dispatch.solution.desc1')}<strong>{t('dispatch.solution.desc2')}</strong>{t('dispatch.solution.desc3')}<strong>{t('dispatch.solution.desc4')}</strong>).
             </p>
           </div>
@@ -193,14 +193,14 @@ export const ProjectDispatch: React.FC = () => {
           <div className="mb-12">
             <p className={`text-sm font-bold tracking-widest uppercase mb-3 ${theme.accent}`}>{t('dispatch.route.label')}</p>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">{t('dispatch.route.title')}</h2>
-            <p className={`text-lg max-w-4xl ${theme.textMuted}`}>
+            <p className={`text-lg ${theme.textMuted}`}>
               {t('dispatch.route.desc1')}<code className={`px-2 py-1 rounded ${theme.accentBg} ${theme.accent} font-mono text-sm`}>/dispatch</code>{t('dispatch.route.desc2')}
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Route A */}
-            <div className={`p-8 rounded-2xl border-t-4 border-t-emerald-500 ${theme.card}`}>
+            <div className={`p-6 md:p-8 rounded-2xl border-t-4 border-t-emerald-500 ${theme.card}`}>
               <div className="flex items-center gap-4 mb-6">
                 <span className="w-12 h-12 rounded-full bg-emerald-500/10 text-emerald-600 flex items-center justify-center text-xl font-bold">A</span>
                 <h3 className="text-xl font-bold text-emerald-600 dark:text-emerald-500">{t('dispatch.route.a.title')}</h3>
@@ -217,7 +217,7 @@ export const ProjectDispatch: React.FC = () => {
             </div>
 
             {/* Route B */}
-            <div className={`p-8 rounded-2xl border-t-4 border-t-amber-500 ${theme.card}`}>
+            <div className={`p-6 md:p-8 rounded-2xl border-t-4 border-t-amber-500 ${theme.card}`}>
               <div className="flex items-center gap-4 mb-6">
                 <span className="w-12 h-12 rounded-full bg-amber-500/10 text-amber-600 flex items-center justify-center text-xl font-bold">B</span>
                 <h3 className="text-xl font-bold text-amber-600 dark:text-amber-500">{t('dispatch.route.b.title')}</h3>
@@ -234,7 +234,7 @@ export const ProjectDispatch: React.FC = () => {
             </div>
 
             {/* Route C */}
-            <div className={`p-8 rounded-2xl border-t-4 border-t-red-500 bg-slate-900 border border-slate-800`}>
+            <div className={`p-6 md:p-8 rounded-2xl border-t-4 border-t-red-500 bg-slate-900 border border-slate-800`}>
               <div className="flex items-center gap-4 mb-6">
                 <span className="w-12 h-12 rounded-full bg-red-500/15 text-red-500 flex items-center justify-center text-xl font-bold">C</span>
                 <h3 className="text-xl font-bold text-slate-100">{t('dispatch.route.c.title')}</h3>
@@ -261,13 +261,13 @@ export const ProjectDispatch: React.FC = () => {
           <div className="mb-12">
             <p className={`text-sm font-bold tracking-widest uppercase mb-3 ${theme.accent}`}>{t('dispatch.role.label')}</p>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">{t('dispatch.role.title')}</h2>
-            <p className={`text-lg max-w-4xl ${theme.textMuted}`}>
+            <p className={`text-lg ${theme.textMuted}`}>
               {t('dispatch.role.desc')}
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className={`p-8 rounded-2xl ${theme.card}`}>
+            <div className={`p-6 md:p-8 rounded-2xl ${theme.card}`}>
               <h3 className="text-emerald-600 dark:text-emerald-500 font-bold text-2xl mb-6">{t('dispatch.role.focus1.title')}</h3>
               <ul className="space-y-4 list-disc list-inside">
                 <li className={theme.textMuted}>{t('dispatch.role.focus1.item1')}</li>
@@ -276,7 +276,7 @@ export const ProjectDispatch: React.FC = () => {
                 <li className={theme.textMuted}>{t('dispatch.role.focus1.item4')}</li>
               </ul>
             </div>
-            <div className={`p-8 rounded-2xl ${theme.card}`}>
+            <div className={`p-6 md:p-8 rounded-2xl ${theme.card}`}>
               <h3 className="text-amber-600 dark:text-amber-500 font-bold text-2xl mb-6">{t('dispatch.role.focus2.title')}</h3>
               <ul className="space-y-4 list-disc list-inside">
                 <li className={theme.textMuted}>{t('dispatch.role.focus2.item1')}</li>
@@ -293,7 +293,7 @@ export const ProjectDispatch: React.FC = () => {
           <div className="mb-12">
             <p className={`text-sm font-bold tracking-widest uppercase mb-3 ${theme.accent}`}>{t('dispatch.handoff.label')}</p>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">{t('dispatch.handoff.title')}</h2>
-            <p className={`text-lg max-w-4xl ${theme.textMuted}`}>
+            <p className={`text-lg ${theme.textMuted}`}>
               {t('dispatch.handoff.desc')}
             </p>
           </div>
@@ -323,7 +323,7 @@ export const ProjectDispatch: React.FC = () => {
           <div className="mb-12">
             <p className={`text-sm font-bold tracking-widest uppercase mb-3 ${theme.accent}`}>{t('dispatch.example.label')}</p>
             <h2 className="text-3xl md:text-4xl font-bold mb-4">{t('dispatch.example.title')}</h2>
-            <p className={`text-lg max-w-3xl ${theme.textMuted}`}>
+            <p className={`text-lg ${theme.textMuted}`}>
               {t('dispatch.example.desc')}
             </p>
           </div>
@@ -354,9 +354,9 @@ export const ProjectDispatch: React.FC = () => {
         <motion.section initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeInUp} className="mb-20">
           <div className={`rounded-3xl overflow-hidden border ${isLightMode ? 'border-slate-200 bg-slate-50' : 'border-slate-800 bg-slate-900/50'} relative`}>
             <ZoomableImage src="/images/case-study/dispatch_farewell.jpg" alt="Dispatch Command Center" className="w-full h-64 md:h-80 object-cover object-center" />
-            <div className="p-10 md:p-16 text-center max-w-4xl mx-auto">
-              <h2 className="text-3xl md:text-4xl font-black mb-6">{t('dispatch.farewell.title')}</h2>
-              <p className={`text-lg max-w-2xl mx-auto mb-10 ${theme.textMuted}`}>
+            <div className="px-6 py-8 md:p-16 text-center max-w-4xl mx-auto">
+              <h2 className="text-3xl md:text-4xl font-black mb-4 md:mb-6">{t('dispatch.farewell.title')}</h2>
+              <p className={`text-lg max-w-2xl mx-auto mb-8 md:mb-10 ${theme.textMuted}`}>
                 {t('dispatch.farewell.desc1')}<strong>{t('dispatch.farewell.desc2')}</strong>{t('dispatch.farewell.desc3')}<strong>{t('dispatch.farewell.desc4')}</strong>{t('dispatch.farewell.desc5')}
               </p>
               <button onClick={() => handleQuestSelect('agent-rules')} className="inline-flex items-center gap-3 px-8 py-4 bg-emerald-500 hover:bg-emerald-600 text-white rounded-full font-bold transition-colors cursor-pointer">

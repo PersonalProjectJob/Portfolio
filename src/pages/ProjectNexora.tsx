@@ -251,7 +251,7 @@ export const ProjectNexora: React.FC = () => {
                </motion.div>
 
                {/* Key Meta Info */}
-               <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.3 }} className={`grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-12 w-full max-w-5xl p-8 rounded-3xl backdrop-blur-xl border ${theme.bgCard} shadow-2xl`}>
+               <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.3 }} className={`grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-12 w-full max-w-5xl p-6 md:p-8 rounded-3xl backdrop-blur-xl border ${theme.bgCard} shadow-2xl`}>
                   <div><p className={`text-xs uppercase tracking-widest font-bold mb-2 ${theme.textMuted}`}>{t('nexora.meta.role.label')}</p><p className={`font-semibold ${theme.text}`}>{t('nexora.meta.role.value')}</p></div>
                   <div><p className={`text-xs uppercase tracking-widest font-bold mb-2 ${theme.textMuted}`}>{t('nexora.meta.platform.label')}</p><p className={`font-semibold ${theme.text}`}>{t('nexora.meta.platform.value')}</p></div>
                   <div><p className={`text-xs uppercase tracking-widest font-bold mb-2 ${theme.textMuted}`}>{t('nexora.meta.method.label')}</p><p className={`font-semibold ${theme.text}`}>{t('nexora.meta.method.value')}</p></div>
@@ -273,7 +273,7 @@ export const ProjectNexora: React.FC = () => {
                      <p className={`text-lg leading-relaxed ${theme.textMuted} mb-8`}>
                         {t('nexora.context.desc')}
                      </p>
-                     <div className={`p-8 rounded-3xl border ${theme.bgCard} shadow-lg border-l-4 border-l-red-500`}>
+                     <div className={`p-6 md:p-8 rounded-3xl border ${theme.bgCard} shadow-lg border-l-4 border-l-red-500`}>
                         <h4 className={`text-xl font-bold mb-4 flex items-center gap-3 text-red-500`}>
                            {t('nexora.context.challenge.title')}
                         </h4>

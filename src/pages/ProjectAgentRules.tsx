@@ -191,7 +191,7 @@ export const ProjectAgentRules: React.FC = () => {
           <h2 className="text-3xl font-bold mb-6">{t('agentRules.s4.title')}</h2>
           <p className={`mb-8 ${theme.textMuted}`}>{t('agentRules.s4.desc1')}<code className="px-2 py-1 bg-slate-100 dark:bg-slate-800 rounded">.agent-rules</code>{t('agentRules.s4.desc2')}</p>
           
-          <div className={`p-8 rounded-2xl ${theme.card} relative`}>
+          <div className={`px-4 py-6 md:p-8 rounded-2xl ${theme.card} relative`}>
             <div className="flex justify-center mb-8">
               <div className="px-6 py-4 rounded-xl bg-indigo-600 text-white shadow-lg text-center relative z-10">
                 <span className="text-2xl mb-2 block">🧭</span>
@@ -230,7 +230,7 @@ export const ProjectAgentRules: React.FC = () => {
           <p className={`mb-8 ${theme.textMuted}`}>{t('agentRules.s5.desc')}</p>
 
           <div className="grid md:grid-cols-2 gap-6 mb-8">
-            <div className={`p-8 rounded-xl border-l-4 border-emerald-500 ${theme.card}`}>
+            <div className={`p-5 md:p-8 rounded-xl border-l-4 border-emerald-500 ${theme.card}`}>
               <h3 className="text-xl font-bold text-emerald-600 dark:text-emerald-400 mb-4">{t('agentRules.s5.micro.title')}</h3>
               <ul className={`space-y-2 ${theme.text} list-disc list-inside`}>
                 <li dangerouslySetInnerHTML={{ __html: t('agentRules.s5.micro.1') }} />
@@ -240,7 +240,7 @@ export const ProjectAgentRules: React.FC = () => {
                 <li>{t('agentRules.s5.micro.5')}</li>
               </ul>
             </div>
-            <div className={`p-8 rounded-xl border-l-4 border-amber-500 ${theme.card}`}>
+            <div className={`p-5 md:p-8 rounded-xl border-l-4 border-amber-500 ${theme.card}`}>
               <h3 className="text-xl font-bold text-amber-600 dark:text-amber-500 mb-4">{t('agentRules.s5.macro.title')}</h3>
               <ul className={`space-y-2 ${theme.text} list-disc list-inside`}>
                 <li dangerouslySetInnerHTML={{ __html: t('agentRules.s5.macro.1') }} />
@@ -267,7 +267,7 @@ export const ProjectAgentRules: React.FC = () => {
           <div className="space-y-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-slate-200 dark:before:bg-slate-800">
             <div className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
               <div className="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white dark:border-slate-900 bg-emerald-500 shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow"></div>
-              <div className={`w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-6 rounded-xl border ${theme.card}`}>
+              <div className={`w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-4 md:p-6 rounded-xl border ${theme.card}`}>
                 <h3 className="font-bold text-emerald-600 dark:text-emerald-400 mb-4">Lane A — {t('agentRules.s5.micro.title')}</h3>
                 <div className="space-y-4">
                   <div className="flex gap-3">
@@ -288,7 +288,7 @@ export const ProjectAgentRules: React.FC = () => {
             
             <div className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
               <div className="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white dark:border-slate-900 bg-amber-500 shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow"></div>
-              <div className={`w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-6 rounded-xl border ${theme.card}`}>
+              <div className={`w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-4 md:p-6 rounded-xl border ${theme.card}`}>
                 <h3 className="font-bold text-amber-600 dark:text-amber-500 mb-4">Lane B — {t('agentRules.s5.macro.title')}</h3>
                 <div className="space-y-4">
                   <div className="flex gap-3">
@@ -591,9 +591,9 @@ export const ProjectAgentRules: React.FC = () => {
         <motion.section initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeInUp} className="mb-20 text-center">
           <div className="rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/50 relative">
             <ZoomableImage src="/images/case-study/farewell_team.jpg" alt="Farewell Team" className="w-full h-64 md:h-80 object-cover object-center" />
-            <div className="p-10 md:p-16 relative z-10">
-              <h2 className="text-3xl md:text-4xl font-black mb-6">{t('agentRules.s14.title')}</h2>
-              <p className={`text-lg max-w-2xl mx-auto mb-10 ${theme.textMuted}`} dangerouslySetInnerHTML={{ __html: t('agentRules.s14.desc') }} />
+            <div className="px-6 py-8 md:p-16 relative z-10">
+              <h2 className="text-3xl md:text-4xl font-black mb-4 md:mb-6">{t('agentRules.s14.title')}</h2>
+              <p className={`text-lg max-w-2xl mx-auto mb-8 md:mb-10 ${theme.textMuted}`} dangerouslySetInnerHTML={{ __html: t('agentRules.s14.desc') }} />
               <button onClick={() => handleQuestSelect('dispatch')} className="inline-flex items-center gap-3 px-8 py-4 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-full transition-transform hover:scale-105 shadow-lg shadow-indigo-500/30 cursor-pointer">
                 <IconArrowRight className="w-5 h-5 rotate-180" />{t('agentRules.s14.btn')}</button>
             </div>
