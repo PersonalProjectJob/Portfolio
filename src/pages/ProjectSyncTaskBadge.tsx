@@ -70,7 +70,7 @@ function Stat({ value, label, theme }: { value: string; label: string; theme: an
 function FlowConnector() {
   return (
     <div aria-hidden="true" className="hidden items-center justify-center lg:flex">
-      <span className="text-2xl text-zinc-300 dark:text-zinc-600">→</span>
+      <span className="text-2xl text-zinc-300">→</span>
     </div>
   );
 }
@@ -206,6 +206,62 @@ export default function ProjectSyncTaskBadge() {
           </div>
         </div>
       </motion.section>
+
+      {/* Bối cảnh tạo ra skill / Why I built this */}
+      <Section
+        eyebrow={p('context.eyebrow')}
+        title={p('context.title')}
+        description={p('context.desc')}
+        theme={theme}
+      >
+        <div className="grid gap-6 lg:gap-10 lg:grid-cols-2">
+          {/* Workflow comparison */}
+          <div className="space-y-8">
+            {/* Before */}
+            <div className={`rounded-2xl border ${theme.border} p-6 sm:p-8 ${theme.cardAlt}`}>
+              <h3 className={`text-lg font-semibold mb-3 ${isLightMode ? 'text-rose-600' : 'text-rose-400'}`}>{p('context.before.title')}</h3>
+              <p className={`text-sm leading-6 mb-6 ${theme.textBody}`}>{p('context.before.desc')}</p>
+              <div className={`flex flex-wrap items-center gap-2 text-xs font-mono p-4 rounded-xl border ${isLightMode ? 'text-zinc-500 bg-zinc-200/50 border-zinc-300' : 'text-zinc-400 bg-zinc-800/50 border-zinc-700/50'}`}>
+                {p('context.flow.before').split('→').map((segment: string, idx: number, arr: string[]) => (
+                  <span key={idx} className="contents">
+                    <span>{segment.trim()}</span>
+                    {idx < arr.length - 1 && <span className="opacity-50">→</span>}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* After */}
+            <div className={`rounded-2xl border p-6 sm:p-8 ${isLightMode ? 'border-emerald-200 bg-emerald-50/50' : 'border-emerald-500/20 bg-emerald-500/5'}`}>
+              <h3 className={`text-lg font-semibold mb-3 ${isLightMode ? 'text-emerald-600' : 'text-emerald-400'}`}>{p('context.after.title')}</h3>
+              <p className={`text-sm leading-6 mb-6 ${theme.textBody}`}>{p('context.after.desc')}</p>
+              <div className={`flex flex-wrap items-center gap-2 text-xs font-mono p-4 rounded-xl border ${isLightMode ? 'text-emerald-800 bg-emerald-100/50 border-emerald-200' : 'text-emerald-300 bg-emerald-900/30 border-emerald-800/50'}`}>
+                {p('context.flow.after').split('→').map((segment: string, idx: number, arr: string[]) => (
+                  <span key={idx} className="contents">
+                    <span>{segment.trim()}</span>
+                    {idx < arr.length - 1 && <span className="opacity-50">→</span>}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Pain point & Outcome */}
+          <div className="flex flex-col space-y-8">
+            <div className={`rounded-2xl border ${theme.border} p-6 sm:p-8 ${theme.card}`}>
+              <h3 className="text-xl font-semibold mb-4">{p('context.pain.title')}</h3>
+              <p className={`text-base leading-7 ${theme.textBody}`}>{p('context.pain.desc')}</p>
+            </div>
+            
+            <div className="rounded-2xl bg-zinc-950 p-8 sm:p-10 text-zinc-100 flex-1 flex flex-col justify-center relative overflow-hidden border border-zinc-800">
+              <div className="absolute top-0 right-0 p-8 opacity-10 text-8xl" aria-hidden="true">💡</div>
+              <blockquote className="relative z-10 text-xl sm:text-2xl font-medium leading-relaxed tracking-tight">
+                "{p('context.outcome')}"
+              </blockquote>
+            </div>
+          </div>
+        </div>
+      </Section>
 
       <Section
         eyebrow={p('gap.eyebrow')}
