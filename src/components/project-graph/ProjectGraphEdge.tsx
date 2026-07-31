@@ -34,7 +34,7 @@ export const ProjectGraphEdge: React.FC<ProjectGraphEdgeProps> = ({
     path = `M ${sourcePos.x} ${sourcePos.y} L ${targetPos.x} ${targetPos.y}`;
   }
 
-  const baseStroke = isLightMode ? 'rgba(15,23,42,0.4)' : 'rgba(255,255,255,0.4)';
+  const baseStroke = isLightMode ? 'rgba(15,23,42,0.1)' : 'rgba(255,255,255,0.15)';
   const activeStroke = isLightMode ? 'rgba(249,115,22,0.8)' : 'rgba(249,115,22,0.8)'; // orange-500
   
   const strokeColor = isActive ? activeStroke : baseStroke;

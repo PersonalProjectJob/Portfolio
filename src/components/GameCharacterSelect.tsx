@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useStore } from '../store/useStore';
 import { useT } from '../i18n/useT';
+import { CV_PROJECTS } from '../data/cvData';
 
 export const GameCharacterSelect: React.FC = () => {
   const t = useT();
@@ -51,7 +52,7 @@ export const GameCharacterSelect: React.FC = () => {
                        <span className={`text-[10px] font-bold uppercase tracking-widest mt-2 ${isLightMode ? 'text-slate-500' : 'text-slate-400'}`}>{t("profile.yearsExp")}</span>
                     </div>
                     <div className="flex flex-col">
-                       <span className={`text-4xl font-black ${isLightMode ? 'text-amber-600' : 'text-amber-400 drop-shadow-[0_0_10px_rgba(245,158,11,0.5)]'}`}>8</span>
+                       <span className={`text-4xl font-black ${isLightMode ? 'text-amber-600' : 'text-amber-400 drop-shadow-[0_0_10px_rgba(245,158,11,0.5)]'}`}>{CV_PROJECTS.length}</span>
                        <span className={`text-[10px] font-bold uppercase tracking-widest mt-2 ${isLightMode ? 'text-slate-500' : 'text-slate-400'}`}>{t("profile.keySectors")}</span>
                     </div>
                  </div>

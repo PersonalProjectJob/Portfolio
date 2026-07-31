@@ -1,7 +1,6 @@
 import React from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { useStore } from '../store/useStore';
-import { CelestialOverlay } from './CelestialOverlay';
 
 interface Props {
   children: React.ReactNode;
@@ -74,15 +73,7 @@ export const DesktopWorkspace: React.FC<Props> = ({ children, disableParallax = 
       {/* =========================================
           LAYER 2 (z-1): CELESTIAL OVERLAY (STARS)
           ========================================= */}
-      {/* Chỉ hiện ban đêm, đè lên phong cảnh */}
-      {!isMobile && (
-        <motion.div 
-          className="absolute inset-[-5%] z-[1] mix-blend-screen pointer-events-none"
-          style={{ x: layer1X, y: layer1Y }} // Celestial moves with the sky
-        >
-          <CelestialOverlay isLightMode={isLightMode} isMobile={isMobile} />
-        </motion.div>
-      )}
+      {/* Removed CelestialOverlay to improve performance */}
 
       {/* =========================================
           LAYER 3 (z-2): ROOM DESK WITH TRANSPARENT WINDOWS
