@@ -106,14 +106,14 @@ export const GameWorldMap: React.FC = () => {
                 <path d={`M ${CV_PROJECTS[0].x} ${CV_PROJECTS[0].y} L ${CV_PROJECTS[2].x} ${CV_PROJECTS[2].y}`} stroke={isLightMode ? "rgba(15,23,42,0.2)" : "rgba(255,255,255,0.2)"} strokeWidth="3" strokeDasharray="6,6" />
                 <path d={`M ${CV_PROJECTS[1].x} ${CV_PROJECTS[1].y} L ${CV_PROJECTS[3].x} ${CV_PROJECTS[3].y}`} stroke={isLightMode ? "rgba(15,23,42,0.2)" : "rgba(255,255,255,0.2)"} strokeWidth="3" strokeDasharray="6,6" />
                 <path d={`M ${CV_PROJECTS[2].x} ${CV_PROJECTS[2].y} L ${CV_PROJECTS[3].x} ${CV_PROJECTS[3].y}`} stroke={isLightMode ? "rgba(15,23,42,0.2)" : "rgba(255,255,255,0.2)"} strokeWidth="3" strokeDasharray="6,6" />
-                {/* Cluster B — AI Architecture: 08↔09 */}
-                <path d={`M ${CV_PROJECTS[7].x} ${CV_PROJECTS[7].y} L ${CV_PROJECTS[8].x} ${CV_PROJECTS[8].y}`} stroke={isLightMode ? "rgba(15,23,42,0.2)" : "rgba(255,255,255,0.2)"} strokeWidth="3" strokeDasharray="6,6" />
-                {/* Cluster C — Process & Vision: 05↔06, 06↔07 */}
+                {/* Cluster B — AI Architecture: 07↔08 */}
+                <path d={`M ${CV_PROJECTS[6].x} ${CV_PROJECTS[6].y} L ${CV_PROJECTS[7].x} ${CV_PROJECTS[7].y}`} stroke={isLightMode ? "rgba(15,23,42,0.2)" : "rgba(255,255,255,0.2)"} strokeWidth="3" strokeDasharray="6,6" />
+                {/* Cluster C — Process & Vision: 05↔06, 06↔09 */}
                 <path d={`M ${CV_PROJECTS[4].x} ${CV_PROJECTS[4].y} L ${CV_PROJECTS[5].x} ${CV_PROJECTS[5].y}`} stroke={isLightMode ? "rgba(15,23,42,0.2)" : "rgba(255,255,255,0.2)"} strokeWidth="3" strokeDasharray="6,6" />
-                <path d={`M ${CV_PROJECTS[5].x} ${CV_PROJECTS[5].y} L ${CV_PROJECTS[6].x} ${CV_PROJECTS[6].y}`} stroke={isLightMode ? "rgba(15,23,42,0.2)" : "rgba(255,255,255,0.2)"} strokeWidth="3" strokeDasharray="6,6" />
-                {/* Inter-cluster: 08→01 (AI→Product), 09→05 (AI→Process), 03→05 (Product→Process) */}
-                <path d={`M ${CV_PROJECTS[7].x} ${CV_PROJECTS[7].y} L ${CV_PROJECTS[0].x} ${CV_PROJECTS[0].y}`} stroke={isLightMode ? "rgba(15,23,42,0.2)" : "rgba(255,255,255,0.2)"} strokeWidth="3" strokeDasharray="6,6" />
-                <path d={`M ${CV_PROJECTS[8].x} ${CV_PROJECTS[8].y} L ${CV_PROJECTS[4].x} ${CV_PROJECTS[4].y}`} stroke={isLightMode ? "rgba(15,23,42,0.2)" : "rgba(255,255,255,0.2)"} strokeWidth="3" strokeDasharray="6,6" />
+                <path d={`M ${CV_PROJECTS[5].x} ${CV_PROJECTS[5].y} L ${CV_PROJECTS[8].x} ${CV_PROJECTS[8].y}`} stroke={isLightMode ? "rgba(15,23,42,0.2)" : "rgba(255,255,255,0.2)"} strokeWidth="3" strokeDasharray="6,6" />
+                {/* Inter-cluster: 07→01 (AI→Product), 08→05 (AI→Process), 03→05 (Product→Process) */}
+                <path d={`M ${CV_PROJECTS[6].x} ${CV_PROJECTS[6].y} L ${CV_PROJECTS[0].x} ${CV_PROJECTS[0].y}`} stroke={isLightMode ? "rgba(15,23,42,0.2)" : "rgba(255,255,255,0.2)"} strokeWidth="3" strokeDasharray="6,6" />
+                <path d={`M ${CV_PROJECTS[7].x} ${CV_PROJECTS[7].y} L ${CV_PROJECTS[4].x} ${CV_PROJECTS[4].y}`} stroke={isLightMode ? "rgba(15,23,42,0.2)" : "rgba(255,255,255,0.2)"} strokeWidth="3" strokeDasharray="6,6" />
                 <path d={`M ${CV_PROJECTS[2].x} ${CV_PROJECTS[2].y} L ${CV_PROJECTS[4].x} ${CV_PROJECTS[4].y}`} stroke={isLightMode ? "rgba(15,23,42,0.2)" : "rgba(255,255,255,0.2)"} strokeWidth="3" strokeDasharray="6,6" />
               </svg>
 
