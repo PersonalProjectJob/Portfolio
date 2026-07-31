@@ -109,7 +109,7 @@ export const useStore = create<AppState>((set) => ({
   selectedQuest: initialState.selectedQuest,
   isLightMode: false,
   isManualTheme: false,
-  language: (typeof window !== 'undefined' && localStorage.getItem('portfolio-lang') === 'en' ? 'en' : 'vi') as 'vi' | 'en',
+  language: (typeof window !== 'undefined' && localStorage.getItem('portfolio-lang') === 'vi' ? 'vi' : 'en') as 'vi' | 'en',
 
   setGameState: (state) => {
     pushURL(state);
