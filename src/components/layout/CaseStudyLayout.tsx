@@ -85,7 +85,7 @@ export const CaseStudyLayout: React.FC<CaseStudyLayoutProps> = ({ children }) =>
           {/* Right: Language + Clock & Theme */}
           <div className="flex shrink-0 items-center gap-2">
             <LanguageToggle />
-            <div className={`flex items-center gap-0.5 overflow-hidden rounded-lg p-0.5 border shadow-sm transition-all ${isLightMode ? 'bg-slate-100 border-slate-200' : 'bg-slate-800/80 border-slate-700'}`}>
+            <div className={`flex items-center h-9 gap-0.5 overflow-hidden rounded-lg p-[3px] border shadow-sm transition-all ${isLightMode ? 'bg-slate-100 border-slate-200' : 'bg-slate-800/80 border-slate-700'}`}>
               <Clock />
               <div className={`w-[1px] self-stretch my-1 transition-colors ${isLightMode ? 'bg-slate-300' : 'bg-slate-600'}`} />
               <button 
