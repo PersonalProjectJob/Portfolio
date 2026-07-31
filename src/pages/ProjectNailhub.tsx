@@ -811,31 +811,31 @@ export const ProjectNailhub: React.FC = () => {
 
   return (
     <CaseStudyLayout>
-      <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
-        <div
-          className={`absolute inset-0 bg-gradient-to-b opacity-50 ${
-            isLightMode
-              ? 'from-[#fff8f3] via-slate-50 to-transparent'
-              : 'from-[#2a1716]/45 via-[#07151a]/25 to-transparent'
-          }`}
-        />
-        <motion.div
-          style={{ y: backgroundY }}
-          className="absolute -right-[15%] -top-[25%] h-[65vw] w-[65vw] rounded-full bg-[#c98d72]/15 blur-[120px]"
-        />
-        <motion.div
-          style={{ y: backgroundY }}
-          className="absolute -left-[15%] top-[35%] h-[50vw] w-[50vw] rounded-full bg-teal-500/10 blur-[110px]"
-        />
-      </div>
-
       <div className="relative z-10 container mx-auto px-4 pb-16">
-        <motion.section 
+        <motion.section
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="mb-20 md:mb-32"
+          className="relative mb-20 overflow-hidden md:mb-32"
         >
-          <div className="flex flex-col md:flex-row gap-12 lg:gap-20 items-start">
+          <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+            <div
+              className={`absolute inset-0 bg-gradient-to-b opacity-50 ${
+                isLightMode
+                  ? 'from-[#fff8f3] via-slate-50 to-transparent'
+                  : 'from-[#2a1716]/45 via-[#07151a]/25 to-transparent'
+              }`}
+            />
+            <motion.div
+              style={{ y: backgroundY }}
+              className="absolute -right-[15%] -top-[25%] h-[65vw] w-[65vw] rounded-full bg-[#c98d72]/15 blur-[120px]"
+            />
+            <motion.div
+              style={{ y: backgroundY }}
+              className="absolute -left-[15%] top-[35%] h-[50vw] w-[50vw] rounded-full bg-teal-500/10 blur-[110px]"
+            />
+          </div>
+
+          <div className="relative z-10 flex flex-col md:flex-row gap-12 lg:gap-20 items-start">
             <motion.div
               style={{ opacity: heroOpacity }}
               className="flex-1 w-full text-left"
