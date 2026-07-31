@@ -1,3 +1,18 @@
+import type { ProjectNodeGroup, NodeAnchor, ProjectEdge } from "../components/project-graph/projectGraph.types";
+
+export interface ProjectGraphMetadata {
+  shortName: string;
+  zone: ProjectNodeGroup;
+  order: number;
+  parentId?: string;
+  edgeType?: ProjectEdge["type"];
+  slot?: string;
+  positionOverride?: { x: number; y: number };
+  noteAnchor?: NodeAnchor;
+  noteOffset?: { x: number; y: number };
+  eyebrow?: string;
+}
+
 export interface ProjectData {
   id: string;
   title: string;
@@ -6,8 +21,9 @@ export interface ProjectData {
   context: string;
   solution: string[];
   results: { label: string; value: string }[];
-  x: number;
-  y: number;
+  x?: number; // legacy
+  y?: number; // legacy
+  graphMetadata?: ProjectGraphMetadata;
 }
 
 export const CV_PROJECTS: ProjectData[] = [
@@ -27,7 +43,16 @@ export const CV_PROJECTS: ProjectData[] = [
       { label: 'cv.cryptomap.result.0.label', value: 'cv.cryptomap.result.0.value' },
       { label: 'cv.cryptomap.result.1.label', value: 'cv.cryptomap.result.1.value' }
     ],
-    x: 200, y: 350
+    graphMetadata: {
+      shortName: 'CryptoMap360',
+      zone: 'product',
+      parentId: 'nexora',
+      edgeType: 'primary-flow',
+      order: 2,
+      eyebrow: 'Web3 Product',
+      positionOverride: { x: 0.51, y: 0.55 }, // Body 2
+      noteAnchor: 'right'
+    }
   },
   {
     id: 'nailhub',
@@ -45,7 +70,16 @@ export const CV_PROJECTS: ProjectData[] = [
       { label: 'cv.nailhub.result.0.label', value: 'cv.nailhub.result.0.value' },
       { label: 'cv.nailhub.result.1.label', value: 'cv.nailhub.result.1.value' }
     ],
-    x: 200, y: 550
+    graphMetadata: {
+      shortName: 'NailHub',
+      zone: 'product',
+      parentId: 'cryptomap',
+      edgeType: 'primary-flow',
+      order: 3,
+      eyebrow: 'B2B SaaS',
+      positionOverride: { x: 0.46, y: 0.68 }, // Body 3
+      noteAnchor: 'right'
+    }
   },
   {
     id: 'vlinkpay',
@@ -63,7 +97,16 @@ export const CV_PROJECTS: ProjectData[] = [
       { label: 'cv.vlinkpay.result.0.label', value: 'cv.vlinkpay.result.0.value' },
       { label: 'cv.vlinkpay.result.1.label', value: 'cv.vlinkpay.result.1.value' }
     ],
-    x: 500, y: 350
+    graphMetadata: {
+      shortName: 'VLINKPAY',
+      zone: 'product',
+      parentId: 'nailhub',
+      edgeType: 'primary-flow',
+      order: 4,
+      eyebrow: 'Fintech Platform',
+      positionOverride: { x: 0.36, y: 0.78 }, // Body 4 / Tail base
+      noteAnchor: 'left'
+    }
   },
   {
     id: 'nexora',
@@ -81,7 +124,16 @@ export const CV_PROJECTS: ProjectData[] = [
       { label: 'cv.nexora.result.0.label', value: 'cv.nexora.result.0.value' },
       { label: 'cv.nexora.result.1.label', value: 'cv.nexora.result.1.value' }
     ],
-    x: 500, y: 550
+    graphMetadata: {
+      shortName: 'NEXORA',
+      zone: 'product',
+      parentId: 'profile',
+      edgeType: 'primary-flow',
+      order: 1,
+      eyebrow: 'Hardware & Interface',
+      positionOverride: { x: 0.52, y: 0.41 }, // Body 1
+      noteAnchor: 'right'
+    }
   },
   {
     id: 'ai-process',
@@ -98,7 +150,14 @@ export const CV_PROJECTS: ProjectData[] = [
       { label: 'cv.ai-process.result.0.label', value: 'cv.ai-process.result.0.value' },
       { label: 'cv.ai-process.result.1.label', value: 'cv.ai-process.result.1.value' }
     ],
-    x: 720, y: 350
+    graphMetadata: {
+      shortName: 'AI Process',
+      zone: 'process',
+      order: 1,
+      eyebrow: 'AI Integration',
+      positionOverride: { x: 0.25, y: 0.13 }, // Left claw
+      noteAnchor: 'left'
+    }
   },
   {
     id: 'handoff',
@@ -116,7 +175,14 @@ export const CV_PROJECTS: ProjectData[] = [
       { label: 'cv.handoff.result.0.label', value: 'cv.handoff.result.0.value' },
       { label: 'cv.handoff.result.1.label', value: 'cv.handoff.result.1.value' }
     ],
-    x: 720, y: 550
+    graphMetadata: {
+      shortName: 'Handoff',
+      zone: 'process',
+      order: 2,
+      eyebrow: 'Process',
+      positionOverride: { x: 0.75, y: 0.13 }, // Right claw
+      noteAnchor: 'right'
+    }
   },
   {
     id: 'dispatch',
@@ -134,7 +200,16 @@ export const CV_PROJECTS: ProjectData[] = [
       { label: 'cv.dispatch.result.0.label', value: 'cv.dispatch.result.0.value' },
       { label: 'cv.dispatch.result.1.label', value: 'cv.dispatch.result.1.value' }
     ],
-    x: 350, y: 150
+    graphMetadata: {
+      shortName: 'Dispatch',
+      zone: 'automation',
+      parentId: 'vlinkpay',
+      edgeType: 'automation-sequence',
+      order: 1,
+      eyebrow: 'Automation 01',
+      positionOverride: { x: 0.19, y: 0.81 },
+      noteAnchor: 'bottom'
+    }
   },
   {
     id: 'agent-rules',
@@ -152,7 +227,16 @@ export const CV_PROJECTS: ProjectData[] = [
       { label: 'cv.agent-rules.result.0.label', value: 'cv.agent-rules.result.0.value' },
       { label: 'cv.agent-rules.result.1.label', value: 'cv.agent-rules.result.1.value' }
     ],
-    x: 550, y: 150
+    graphMetadata: {
+      shortName: 'Agent Rules',
+      zone: 'automation',
+      parentId: 'dispatch',
+      edgeType: 'automation-sequence',
+      order: 2,
+      eyebrow: 'Automation 02',
+      positionOverride: { x: 0.10, y: 0.66 },
+      noteAnchor: 'left'
+    }
   },
   {
     id: 'sync-task-badge',
@@ -170,6 +254,15 @@ export const CV_PROJECTS: ProjectData[] = [
       { label: 'cv.sync-task-badge.result.0.label', value: 'cv.sync-task-badge.result.0.value' },
       { label: 'cv.sync-task-badge.result.1.label', value: 'cv.sync-task-badge.result.1.value' }
     ],
-    x: 900, y: 400
+    graphMetadata: {
+      shortName: 'Status Report',
+      zone: 'automation',
+      parentId: 'agent-rules',
+      edgeType: 'automation-sequence',
+      order: 3,
+      eyebrow: 'Automation 03',
+      positionOverride: { x: 0.18, y: 0.49 },
+      noteAnchor: 'top'
+    }
   }
 ];

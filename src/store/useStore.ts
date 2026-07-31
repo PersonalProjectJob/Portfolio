@@ -69,7 +69,7 @@ export function replaceURL(state: GameState) {
 
 // --- Quest → GameState mapping ---
 
-const QUEST_STATE_MAP: Record<string, GameState> = {
+export const QUEST_STATE_MAP: Record<string, GameState> = {
   'cryptomap': 'CASE_STUDY_CRYPTOMAP',
   'nailhub': 'CASE_STUDY_NAILHUB',
   'nexora': 'CASE_STUDY_NEXORA',
