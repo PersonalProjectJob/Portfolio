@@ -15,12 +15,15 @@ export const ProjectGraphMobile: React.FC<ProjectGraphMobileProps> = ({ nodes, o
   const t = useT();
 
   // Group nodes
-  const groupedNodes = mobileGroupOrder.map(group => {
-    return {
-      group,
-      items: nodes.filter(n => n.group === group).sort((a, b) => (a.sequence || 99) - (b.sequence || 99))
-    };
-  }).filter(g => g.items.length > 0);
+  const groupedNodes = mobileGroupOrder
+    .filter(group => group !== 'identity') // Hide identity card on mobile
+    .map(group => {
+      return {
+        group,
+        items: nodes.filter(n => n.group === group).sort((a, b) => (a.sequence || 99) - (b.sequence || 99))
+      };
+    })
+    .filter(g => g.items.length > 0);
 
   const getGroupName = (group: string) => {
     const keys: Record<string, string> = {

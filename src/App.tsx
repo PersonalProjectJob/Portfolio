@@ -220,7 +220,7 @@ function App() {
           Placed here at root level so `fixed` is relative to viewport,
           not trapped inside framer-motion's transform containing block. */}
       {gameState === 'PROJECT_JOURNEY' && (
-        <div className={`md:hidden fixed inset-0 z-[25] pointer-events-none transition-colors duration-500 ${
+        <div className={`md:hidden fixed inset-0 z-[15] pointer-events-none transition-colors duration-500 ${
           isLightMode ? 'bg-white/40 backdrop-blur-lg' : 'bg-[#0b101e]/60 backdrop-blur-lg'
         }`} />
       )}
