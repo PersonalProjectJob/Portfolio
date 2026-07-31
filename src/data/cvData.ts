@@ -119,23 +119,6 @@ export const CV_PROJECTS: ProjectData[] = [
     x: 720, y: 550
   },
   {
-    id: 'fintech-fit',
-    title: 'cv.fintech-fit.title',
-    category: 'cv.fintech-fit.category',
-    role: 'cv.fintech-fit.role',
-    context: 'cv.fintech-fit.context',
-    solution: [
-      'cv.fintech-fit.solution.0',
-      'cv.fintech-fit.solution.1',
-      'cv.fintech-fit.solution.2'
-    ],
-    results: [
-      { label: 'cv.fintech-fit.result.0.label', value: 'cv.fintech-fit.result.0.value' },
-      { label: 'cv.fintech-fit.result.1.label', value: 'cv.fintech-fit.result.1.value' }
-    ],
-    x: 900, y: 400
-  },
-  {
     id: 'dispatch',
     title: 'cv.dispatch.title',
     category: 'cv.dispatch.category',
@@ -170,5 +153,23 @@ export const CV_PROJECTS: ProjectData[] = [
       { label: 'cv.agent-rules.result.1.label', value: 'cv.agent-rules.result.1.value' }
     ],
     x: 550, y: 150
+  },
+  {
+    id: 'sync-task-badge',
+    title: 'cv.sync-task-badge.title',
+    category: 'cv.sync-task-badge.category',
+    role: 'cv.sync-task-badge.role',
+    context: 'cv.sync-task-badge.context',
+    solution: [
+      'cv.sync-task-badge.solution.0',
+      'cv.sync-task-badge.solution.1',
+      'cv.sync-task-badge.solution.2',
+      'cv.sync-task-badge.solution.3'
+    ],
+    results: [
+      { label: 'cv.sync-task-badge.result.0.label', value: 'cv.sync-task-badge.result.0.value' },
+      { label: 'cv.sync-task-badge.result.1.label', value: 'cv.sync-task-badge.result.1.value' }
+    ],
+    x: 900, y: 400
   }
 ];

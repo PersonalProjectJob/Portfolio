@@ -28,7 +28,7 @@ const ProjectNexora = lazy(() => import('./pages/ProjectNexora').then(m => ({ de
 const ProjectVlinkpay = lazy(() => import('./pages/ProjectVlinkpay').then(m => ({ default: m.ProjectVlinkpay })));
 const ProjectAIProcess = lazy(() => import('./pages/ProjectAIProcess').then(m => ({ default: m.ProjectAIProcess })));
 const ProjectHandoff = lazy(() => import('./pages/ProjectHandoff').then(m => ({ default: m.ProjectHandoff })));
-const ProjectFintechFit = lazy(() => import('./pages/ProjectFintechFit').then(m => ({ default: m.ProjectFintechFit })));
+const ProjectSyncTaskBadge = lazy(() => import('./pages/ProjectSyncTaskBadge'));
 const ProjectDispatch = lazy(() => import('./pages/ProjectDispatch').then(m => ({ default: m.ProjectDispatch })));
 const ProjectAgentRules = lazy(() => import('./pages/ProjectAgentRules').then(m => ({ default: m.ProjectAgentRules })));
 
@@ -44,7 +44,7 @@ const ROUTES: Partial<Record<GameState, React.LazyExoticComponent<React.FC>>> = 
   CASE_STUDY_VLINKPAY: ProjectVlinkpay,
   CASE_STUDY_AIPROCESS: ProjectAIProcess,
   CASE_STUDY_HANDOFF: ProjectHandoff,
-  CASE_STUDY_FINTECHFIT: ProjectFintechFit,
+  CASE_STUDY_SYNCTASKBADGE: ProjectSyncTaskBadge,
   CASE_STUDY_DISPATCH: ProjectDispatch,
   CASE_STUDY_AGENTRULES: ProjectAgentRules,
   EXPERIENCE: GameExperienceTimeline,

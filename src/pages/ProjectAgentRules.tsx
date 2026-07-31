@@ -594,8 +594,14 @@ export const ProjectAgentRules: React.FC = () => {
             <div className="px-6 py-8 md:p-16 relative z-10">
               <h2 className="text-3xl md:text-4xl font-black mb-4 md:mb-6">{t('agentRules.s14.title')}</h2>
               <p className={`text-lg max-w-2xl mx-auto mb-8 md:mb-10 ${theme.textMuted}`} dangerouslySetInnerHTML={{ __html: t('agentRules.s14.desc') }} />
-              <button onClick={() => handleQuestSelect('dispatch')} className="inline-flex items-center gap-3 px-8 py-4 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-full transition-transform hover:scale-105 shadow-lg shadow-indigo-500/30 cursor-pointer">
-                <IconArrowRight className="w-5 h-5 rotate-180" />{t('agentRules.s14.btn')}</button>
+              <div className="flex flex-wrap justify-center gap-4">
+                <button onClick={() => handleQuestSelect('dispatch')} className="inline-flex items-center gap-2 px-6 py-3 border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800/80 text-slate-700 dark:text-slate-300 font-bold rounded-full transition-colors cursor-pointer">
+                  <IconArrowRight className="w-4 h-4 rotate-180" />{t('agentRules.s14.btn')}
+                </button>
+                <button onClick={() => handleQuestSelect('sync-task-badge')} className="inline-flex items-center gap-3 px-8 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-full transition-transform hover:scale-105 shadow-lg shadow-indigo-500/30 cursor-pointer">
+                  {t('agentRules.s14.btn2')} <IconArrowRight className="w-5 h-5" />
+                </button>
+              </div>
             </div>
           </div>
         </motion.section>
