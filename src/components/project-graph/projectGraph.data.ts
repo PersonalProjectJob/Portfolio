@@ -24,14 +24,7 @@ projectNodes.push({
   group: "identity",
   status: "published",
   position: { x: 0.5, y: 0.28 },
-  importance: "primary",
-  note: {
-    eyebrow: "Identity",
-    title: "Sơn Thảo",
-    description: "Designing product systems, AI-assisted workflows and scalable automation.",
-    preferredAnchor: "right",
-    offset: { x: 16, y: 0 }
-  }
+  importance: "primary"
 });
 
 // Auto-derive primary and automation edges
