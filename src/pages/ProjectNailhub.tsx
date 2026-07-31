@@ -764,11 +764,6 @@ export const ProjectNailhub: React.FC = () => {
   const [activeRole, setActiveRole] = useState<RoleId>('technician');
   const reduceMotion = useReducedMotion();
   const { scrollY } = useScroll();
-  const backgroundY = useTransform(
-    scrollY,
-    [0, 1000],
-    reduceMotion ? [0, 0] : [0, 160],
-  );
   const heroOpacity = useTransform(
     scrollY,
     [0, 360],
@@ -817,24 +812,6 @@ export const ProjectNailhub: React.FC = () => {
           animate={{ opacity: 1 }}
           className="relative mb-20 overflow-hidden md:mb-32"
         >
-          <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-            <div
-              className={`absolute inset-0 bg-gradient-to-b opacity-50 ${
-                isLightMode
-                  ? 'from-[#fff8f3] via-slate-50 to-transparent'
-                  : 'from-[#2a1716]/45 via-[#07151a]/25 to-transparent'
-              }`}
-            />
-            <motion.div
-              style={{ y: backgroundY }}
-              className="absolute -right-[15%] -top-[25%] h-[65vw] w-[65vw] rounded-full bg-[#c98d72]/15 blur-[120px]"
-            />
-            <motion.div
-              style={{ y: backgroundY }}
-              className="absolute -left-[15%] top-[35%] h-[50vw] w-[50vw] rounded-full bg-teal-500/10 blur-[110px]"
-            />
-          </div>
-
           <div className="relative z-10 flex flex-col md:flex-row gap-12 lg:gap-20 items-start">
             <motion.div
               style={{ opacity: heroOpacity }}
@@ -939,8 +916,7 @@ export const ProjectNailhub: React.FC = () => {
               transition={{ delay: reduceMotion ? 0 : 0.28 }}
               className="flex-1 w-full relative mt-8 md:mt-0 md:sticky md:top-24"
             >
-              <div className="absolute inset-0 bg-teal-500 rounded-3xl blur-3xl opacity-20" />
-              <ZoomableImage 
+              <ZoomableImage
                 src="/images/case-study/nailhub_hero_abstract.jpg" 
                 alt={copy.hero.mockupAlt} 
                 className={`relative z-10 w-full rounded-3xl shadow-2xl object-cover border ${
