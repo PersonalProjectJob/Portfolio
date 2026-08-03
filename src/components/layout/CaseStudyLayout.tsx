@@ -85,20 +85,22 @@ export const CaseStudyLayout: React.FC<CaseStudyLayoutProps> = ({ children }) =>
           {/* Right: Language + Clock & Theme */}
           <div className="flex shrink-0 items-center gap-2">
             <LanguageToggle />
-            <div className={`flex items-center h-9 gap-0.5 overflow-hidden rounded-lg p-[3px] border shadow-sm transition-all ${isLightMode ? 'bg-slate-100 border-slate-200' : 'bg-slate-800/80 border-slate-700'}`}>
-              <Clock />
+            <div className={`flex items-center gap-0.5 h-10 md:h-[42px] rounded-lg p-0.5 border transition-all ${isLightMode ? 'bg-slate-100 border-slate-200' : 'bg-slate-800/80 border-slate-700'}`}>
+              <div className="h-full">
+                <Clock />
+              </div>
               <div className={`w-[1px] self-stretch my-1 transition-colors ${isLightMode ? 'bg-slate-300' : 'bg-slate-600'}`} />
               <button 
                 type="button"
                 onClick={toggleTheme}
                 aria-label={isLightMode ? 'Switch to dark mode' : 'Switch to light mode'}
-                className={`px-2 py-1.5 rounded-md flex items-center justify-center cursor-pointer transition-colors ${isLightMode ? 'text-orange-600 hover:bg-white' : 'text-slate-300 hover:text-white hover:bg-slate-700'}`}
+                className={`w-9 md:w-[38px] h-full rounded-md flex items-center justify-center cursor-pointer transition-colors ${isLightMode ? 'text-orange-600 hover:bg-white' : 'text-slate-300 hover:text-white hover:bg-slate-700'}`}
                 title="Toggle Theme"
               >
                 {isLightMode ? (
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
                 ) : (
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
                 )}
               </button>
             </div>
