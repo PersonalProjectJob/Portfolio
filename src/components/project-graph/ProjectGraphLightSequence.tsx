@@ -28,7 +28,7 @@ export const ProjectGraphLightSequence: React.FC<ProjectGraphLightSequenceProps>
   const commonTransition = {
     duration: duration,
     times: [0, 0.1, 0.9, 1],
-    ease: 'linear',
+    ease: 'linear' as const,
     repeat: Infinity,
     repeatDelay: 1.5,
   };
