@@ -12,8 +12,8 @@ export const LanguageToggle: React.FC = () => {
     <div
       className={`flex items-center gap-0.5 rounded-lg p-0.5 h-10 md:h-[42px] transition-colors ${
         isLightMode
-          ? 'bg-slate-100 border border-slate-200'
-          : 'bg-slate-800/80 border border-slate-700'
+          ? 'bg-slate-100 border border-slate-200 backdrop-blur-md'
+          : 'bg-slate-800/80 border border-slate-700 backdrop-blur-md'
       }`}
     >
       <button
@@ -51,3 +51,4 @@ export const LanguageToggle: React.FC = () => {
     </div>
   );
 };
+
