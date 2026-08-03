@@ -7,11 +7,23 @@ interface Props {
   disableParallax?: boolean; // Kept for prop compatibility
 }
 
-
+/** Custom hook for `prefers-reduced-motion` — reactive & SSR-safe (BUG-008 fix) */
+const useReducedMotion = (): boolean => {
+  const [reduced, setReduced] = React.useState(false);
+  React.useEffect(() => {
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    setReduced(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setReduced(e.matches);
+    mq.addEventListener('change', handler);
+    return () => mq.removeEventListener('change', handler);
+  }, []);
+  return reduced;
+};
 
 export const DesktopWorkspace: React.FC<Props> = ({ children, disableParallax = false }) => {
   const { isLightMode } = useStore();
   const [isMobile, setIsMobile] = React.useState(false);
+  const prefersReducedMotion = useReducedMotion();
 
   React.useEffect(() => {
     const checkMobile = () => {
@@ -29,14 +41,9 @@ export const DesktopWorkspace: React.FC<Props> = ({ children, disableParallax = 
   const smoothX = useSpring(mouseX, springConfig);
   const smoothY = useSpring(mouseY, springConfig);
   
-  // Landscape (far away) moves more
+  // Background layer parallax (BUG-005: removed unused layer3X/layer3Y)
   const layer1X = useTransform(smoothX, [-0.5, 0.5], [30, -30]);
   const layer1Y = useTransform(smoothY, [-0.5, 0.5], [15, -15]);
-  // Room (close) moves slightly
-  const layer3X = useTransform(smoothX, [-0.5, 0.5], [5, -5]);
-  const layer3Y = useTransform(smoothY, [-0.5, 0.5], [2, -2]);
-
-  const prefersReducedMotion = typeof window !== 'undefined' ? window.matchMedia('(prefers-reduced-motion: reduce)').matches : false;
 
   const handleMouseMove = (e: React.MouseEvent) => {
     if (disableParallax || isMobile || prefersReducedMotion) return;
@@ -50,68 +57,63 @@ export const DesktopWorkspace: React.FC<Props> = ({ children, disableParallax = 
       className={`relative w-full h-screen overflow-hidden flex items-center justify-center transition-all duration-1000 ${isMobile ? (isLightMode ? 'bg-[radial-gradient(ellipse_at_center,_rgba(255,237,213,0.5)_0%,_#050505_100%)]' : 'bg-[radial-gradient(ellipse_at_center,_rgba(219,39,119,0.2)_0%,_#050505_100%)]') : 'bg-[#050505]'}`}
       onMouseMove={handleMouseMove}
     >
-      
       {/* =========================================
-          LAYER 1 (z-0): OUTSIDE LANDSCAPE (CẦN THƠ)
+          LAYER 1 (z-0): BACKGROUND (PAPER DESK)
           ========================================= */}
       {!isMobile && (
         <motion.div 
-          className="absolute inset-[-5%] z-0" // Extended inset to prevent edges showing during parallax
+          className="absolute inset-0 z-0 bg-[#0a0f1c]" 
           style={{ x: layer1X, y: layer1Y }}
         >
-          <img src="/cantho-floating-market.webp" 
-               className="absolute inset-0 w-full h-full object-cover transition-all duration-1000 blur-[2px]"
-               style={{
-                 filter: isLightMode 
-                   ? 'brightness(1.1) saturate(1.2)' 
-                   : 'brightness(0.15) contrast(1.2) sepia(0.3) hue-rotate(180deg) saturate(0.5)'
-               }}
-               alt="Chợ Nổi Cái Răng Cần Thơ" />
+          {/* Same desk image for both modes → perfectly smooth transition (BUG-003: WebP) */}
+          <img src="/designer-desk-bg.webp" 
+               className={`absolute inset-0 w-full h-full object-cover transition-all duration-1000 ${
+                 isLightMode 
+                   ? 'opacity-100 filter-none' 
+                   : 'opacity-40 brightness-50 contrast-125 saturate-50'
+               }`}
+               alt="Designer Workspace Sketchpad" />
+               
+          {/* Dark Mode Overlay for cinematic deep shadows on the desk */}
+          <div className={`absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_20%,_rgba(2,6,23,0.9)_100%)] mix-blend-multiply transition-opacity duration-1000 pointer-events-none ${isLightMode ? 'opacity-0' : 'opacity-100'}`} />
+          <div className={`absolute inset-0 bg-blue-950/40 mix-blend-overlay transition-opacity duration-1000 pointer-events-none ${isLightMode ? 'opacity-0' : 'opacity-100'}`} />
         </motion.div>
       )}
 
-      {/* =========================================
-          LAYER 2 (z-1): CELESTIAL OVERLAY (STARS)
-          ========================================= */}
-      {/* Removed CelestialOverlay to improve performance */}
-
-      {/* =========================================
-          LAYER 3 (z-2): ROOM DESK WITH TRANSPARENT WINDOWS
-          ========================================= */}
-      <motion.div 
-        className="absolute inset-[-2%] z-[2] pointer-events-none transition-all duration-1000"
-        style={{ x: layer3X, y: layer3Y }}
-      >
-        {/* The generated transparent room (green screen removed) */}
-        <img loading="lazy" decoding="async" src="/workspace-transparent.webp" className="absolute inset-0 w-full h-full object-cover" alt="Workspace Desk" />
-        
-        {/* Realistic Glass Reflection (Bóng kính) */}
-        <div className={`absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-transparent skew-x-[45deg] translate-x-[-100%] animate-[shimmer_10s_infinite_linear] transition-opacity duration-1000 ${isLightMode ? 'opacity-100' : 'opacity-20'}`} />
-
-        {/* Cinematic Vignette for deeper room shadows */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_40%,_rgba(0,0,0,0.6)_100%)] mix-blend-multiply" />
-
-        {/* Đổ bóng cho phòng khi trời tối */}
-        <div className={`absolute inset-0 bg-blue-950/90 mix-blend-multiply transition-opacity duration-[3000ms] ${isLightMode ? 'opacity-0' : 'opacity-100'}`} />
-        <div className={`absolute inset-0 bg-slate-950/70 transition-opacity duration-[3000ms] ${isLightMode ? 'opacity-0' : 'opacity-100'}`} />
-      </motion.div>
+      {/* Dot grid overlay for Dark mode tech feel */}
+      <div className={`absolute inset-0 z-[1] opacity-20 pointer-events-none transition-opacity duration-1000 ${
+        isLightMode ? 'opacity-0' : 'bg-[radial-gradient(rgba(255,255,255,0.1)_1px,transparent_1px)]'
+      }`} style={{ backgroundSize: '20px 20px' }} />
 
       {/* =========================================
           LAYER 4 (z-3): AMBIENT GLOW
+          BUG-001 FIX: blur 150→80px, removed mix-blend-screen (GPU saver)
           ========================================= */}
-      {!isMobile && (
-        <div className="absolute inset-0 z-[3] pointer-events-none transition-all duration-1000">
+      {!isMobile && !prefersReducedMotion && (
+        <div className="absolute inset-0 z-[3] pointer-events-none transition-all duration-1000 overflow-hidden">
+           {/* Glow trên bên trái */}
            <motion.div 
-              className={`absolute top-[-10%] left-[-20%] w-[70%] h-[80%] blur-[130px] rounded-full mix-blend-screen transition-colors duration-1000 ${isLightMode ? 'bg-orange-100/30' : 'bg-pink-600/20'}`}
-              animate={{ opacity: [0.3, 0.6, 0.3] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              className={`absolute top-[-10%] left-[-20%] w-[70%] h-[80%] blur-[80px] rounded-full transition-colors duration-1000 will-change-transform ${
+                isLightMode ? 'bg-orange-100/30' : 'bg-pink-600/10'
+              }`}
+              style={{ transform: 'translateZ(0)' }}
+              animate={{ opacity: [0.3, 0.5, 0.3] }}
+              transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
            />
-           <div className={`absolute bottom-[-10%] right-[-10%] w-[50%] h-[60%] blur-[150px] rounded-full mix-blend-screen transition-colors duration-1000 ${isLightMode ? 'bg-yellow-50/20' : 'bg-cyan-600/10'}`} />
+           {/* Glow dưới bên phải */}
+           <motion.div 
+              className={`absolute bottom-[-10%] right-[-10%] w-[50%] h-[60%] blur-[80px] rounded-full transition-colors duration-1000 will-change-transform ${
+                isLightMode ? 'bg-blue-100/30' : 'bg-cyan-600/10'
+              }`}
+              style={{ transform: 'translateZ(0)' }}
+              animate={{ opacity: [0.2, 0.4, 0.2] }}
+              transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+           />
         </div>
       )}
 
       {/* =========================================
-          LAYER 5 (z-10): UI CONTENT CONTAINER
+          LAYER 5 (z-10): UI CONTENT CONTAINER (Graph)
           ========================================= */}
       <motion.div 
         className="relative z-[10] w-full h-full flex items-center justify-center origin-center transition-all duration-700"
