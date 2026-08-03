@@ -39,9 +39,9 @@ export const DesktopHeader: React.FC<DesktopHeaderProps> = ({ className = '', on
       {/* Language + Clock & Theme */}
       <div className="flex items-center gap-2 pointer-events-auto">
         <LanguageToggle />
-        <div className={`flex items-center gap-0.5 rounded-lg p-0.5 border transition-all ${isLightMode ? 'bg-slate-100 border-slate-200 backdrop-blur-md' : 'bg-slate-800/80 border-slate-700 backdrop-blur-md'}`}>
+        <div className={`flex items-center gap-0.5 rounded-lg p-0.5 h-10 md:h-[42px] border transition-all ${isLightMode ? 'bg-slate-100 border-slate-200 backdrop-blur-md' : 'bg-slate-800/80 border-slate-700 backdrop-blur-md'}`}>
           {/* Digital Clock — hidden on mobile */}
-          <div className="hidden md:flex">
+          <div className="hidden md:flex h-full">
             <Clock />
           </div>
           
@@ -53,7 +53,7 @@ export const DesktopHeader: React.FC<DesktopHeaderProps> = ({ className = '', on
             type="button"
             onClick={toggleTheme}
             aria-label={isLightMode ? 'Switch to dark mode' : 'Switch to light mode'}
-            className={`w-9 h-9 md:w-[38px] md:h-[38px] flex items-center justify-center rounded-md cursor-pointer transition-colors ${isLightMode ? 'text-orange-600 hover:bg-white' : 'text-slate-300 hover:text-white hover:bg-slate-700'}`}
+            className={`w-9 md:w-[38px] h-full flex items-center justify-center rounded-md cursor-pointer transition-colors ${isLightMode ? 'text-orange-600 hover:bg-white' : 'text-slate-300 hover:text-white hover:bg-slate-700'}`}
             title="Toggle Day/Night Mode (Manual Override)"
           >
             {isLightMode ? (
