@@ -189,6 +189,9 @@ export const CaseStudyLayout: React.FC<CaseStudyLayoutProps> = ({ children }) =>
                       }`}
                     >
                       <div className="flex flex-col">
+                        <div className={`px-3 py-2 text-xs font-semibold mb-1 border-b ${isLightMode ? 'text-slate-500 border-slate-100' : 'text-slate-400 border-slate-700/50'}`}>
+                          Email: tnsthao94@gmail.com
+                        </div>
                         <button
                           onClick={handleCopyEmail}
                           className={`flex items-center gap-3 w-full px-3 py-2.5 rounded-lg text-sm text-left transition-colors ${
