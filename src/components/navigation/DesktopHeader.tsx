@@ -41,7 +41,7 @@ export const DesktopHeader: React.FC<DesktopHeaderProps> = ({ className = '', on
         <LanguageToggle />
         <div className={`flex items-center h-11 md:h-[44px] overflow-hidden rounded-lg p-0.5 border shadow-[0_5px_15px_rgba(0,0,0,0.5)] transition-all ${isLightMode ? 'bg-slate-100 border-slate-200 backdrop-blur-md' : 'bg-slate-800/80 border-slate-700 backdrop-blur-md'}`}>
           {/* Digital Clock — hidden on mobile */}
-          <div className="hidden md:flex">
+          <div className="hidden md:flex h-full">
             <Clock />
           </div>
           

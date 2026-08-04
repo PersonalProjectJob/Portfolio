@@ -12,19 +12,19 @@ interface ProjectGraphCanvasProps {
   onSelectNode: (id: string) => void;
 }
 
-// Decorative component for Dark Mode to emphasize the Scorpio shape (Legs and Stinger) and the Night Sky
+// Decorative component for Dark Mode — Scorpio constellation (legs, stinger, night sky)
+// BUG-002 FIX: Reduced stars 100→50, replaced inline drop-shadow with shared SVG filter (BUG-004)
 const ScorpioStars: React.FC = () => {
   const { isLightMode } = useStore();
   
-  // Memoize random background stars to prevent re-generation on render
-  // MEDIUM sparkle for background stars
+  // BUG-002: Reduced from 100 to 50 stars (visually indistinguishable difference)
   const backgroundStars = React.useMemo(() => {
-    return Array.from({ length: 100 }).map(() => ({
+    return Array.from({ length: 50 }).map(() => ({
       x: Math.random() * 1000,
       y: Math.random() * 1000,
       r: Math.random() * 1.5 + 0.5,
-      maxOpacity: Math.random() * 0.5 + 0.2, // up to 0.7
-      dur: Math.random() * 4 + 2, // 2s to 6s twinkle
+      maxOpacity: Math.random() * 0.5 + 0.2,
+      dur: Math.random() * 4 + 2,
       delay: Math.random() * 5,
     }));
   }, []);
@@ -34,22 +34,36 @@ const ScorpioStars: React.FC = () => {
   // Leg data: [startX, startY, jointX, jointY, endX, endY]
   const legs = [
     // Left legs
-    [520, 410, 380, 400, 350, 430], // from Nexora
-    [510, 550, 350, 540, 310, 570], // from Cryptomap
-    [460, 680, 300, 670, 260, 710], // from Nailhub
-    [360, 780, 220, 790, 180, 830], // from Vlinkpay
+    [520, 410, 380, 400, 350, 430],
+    [510, 550, 350, 540, 310, 570],
+    [460, 680, 300, 670, 260, 710],
+    [360, 780, 220, 790, 180, 830],
     // Right legs
-    [520, 410, 660, 400, 700, 430], // from Nexora
-    [510, 550, 670, 540, 710, 570], // from Cryptomap
-    [460, 680, 630, 670, 670, 710], // from Nailhub
-    [360, 780, 530, 790, 570, 830], // from Vlinkpay
-    // Stinger extra curve (from sync-task-badge at 170, 510)
+    [520, 410, 660, 400, 700, 430],
+    [510, 550, 670, 540, 710, 570],
+    [460, 680, 630, 670, 670, 710],
+    [360, 780, 530, 790, 570, 830],
+    // Stinger extra curve
     [170, 510, 140, 470, 180, 430],
   ];
 
   return (
     <g className="pointer-events-none">
-      {/* Background Night Sky Stars (Medium Sparkle) */}
+      {/* BUG-004 FIX: Shared SVG filters via <defs> instead of inline drop-shadow per element */}
+      <defs>
+        <filter id="glow-joint" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="2" />
+        </filter>
+        <filter id="glow-tip" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur" />
+          <feMerge>
+            <feMergeNode in="blur" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+      </defs>
+
+      {/* Background Night Sky Stars (Reduced to 50) */}
       {backgroundStars.map((star, i) => (
         <circle key={`bg-${i}`} cx={star.x} cy={star.y} r={star.r} fill="#ffffff" opacity="0">
           <animate
@@ -62,7 +76,7 @@ const ScorpioStars: React.FC = () => {
         </circle>
       ))}
 
-      {/* Constellation Scorpio Legs & Stinger (Strong Sparkle) */}
+      {/* Constellation Scorpio Legs & Stinger */}
       <g className="opacity-80">
         {legs.map((leg, i) => (
           <React.Fragment key={`leg-${i}`}>
@@ -73,13 +87,13 @@ const ScorpioStars: React.FC = () => {
               strokeWidth="1.5"
               fill="none"
             />
-            {/* Joint dot (Strong Twinkle) */}
-            <circle cx={leg[2]} cy={leg[3]} r="2" fill="#ffffff" filter="drop-shadow(0 0 3px rgba(255,255,255,0.8))">
+            {/* Joint dot — uses shared filter (BUG-004 fix) */}
+            <circle cx={leg[2]} cy={leg[3]} r="2" fill="#ffffff" filter="url(#glow-joint)">
               <animate attributeName="r" values="1.5; 3.5; 1.5" dur="1.5s" begin={`${i * 0.15}s`} repeatCount="indefinite" />
               <animate attributeName="opacity" values="0.2; 1; 0.2" dur="1.5s" begin={`${i * 0.15}s`} repeatCount="indefinite" />
             </circle>
-            {/* Tip dot (Intense Shining star) */}
-            <circle cx={leg[4]} cy={leg[5]} r="3" fill="#ffffff" filter="drop-shadow(0 0 8px rgba(255,255,255,1)) drop-shadow(0 0 15px rgba(249,115,22,0.6))">
+            {/* Tip dot — uses shared filter (BUG-004 fix) */}
+            <circle cx={leg[4]} cy={leg[5]} r="3" fill="#ffffff" filter="url(#glow-tip)">
               <animate attributeName="r" values="2.5; 5; 2.5" dur="1.2s" begin={`${i * 0.25}s`} repeatCount="indefinite" />
               <animate attributeName="opacity" values="0.4; 1; 0.4" dur="1.2s" begin={`${i * 0.25}s`} repeatCount="indefinite" />
             </circle>
@@ -133,13 +147,11 @@ export const ProjectGraphCanvas: React.FC<ProjectGraphCanvasProps> = ({
             d += `M ${sourcePos.x} ${sourcePos.y} `;
           }
           
-          if (edge.type === 'automation-sequence') {
-            const cx = sourcePos.x + dx * 0.5 + dy * 0.1;
-            const cy = sourcePos.y + dy * 0.5 - dx * 0.1;
-            d += `Q ${cx} ${cy} ${targetPos.x} ${targetPos.y} `;
-          } else {
-            d += `L ${targetPos.x} ${targetPos.y} `;
-          }
+          // Must exactly match the curve calculation in ProjectGraphEdge
+          const cx = sourcePos.x + dx * 0.5 - dy * 0.35;
+          const cy = sourcePos.y + dy * 0.5 + dx * 0.35;
+          
+          d += `Q ${cx} ${cy} ${targetPos.x} ${targetPos.y} `;
         }
       }
       return d.trim();
@@ -197,9 +209,13 @@ export const ProjectGraphCanvas: React.FC<ProjectGraphCanvasProps> = ({
         ))}
         {/* Decorative Scorpio Constellation Legs (Dark Mode Only) */}
         <ScorpioStars />
-        {/* Animated Light Sequences */}
-        <ProjectGraphLightSequence pathD={mainPathD} />
-        <ProjectGraphLightSequence pathD={secondaryPathD} />
+        {/* Animated Light Sequences (Dark Mode Only) */}
+        {!isLightMode && (
+          <>
+            <ProjectGraphLightSequence pathD={mainPathD} />
+            <ProjectGraphLightSequence pathD={secondaryPathD} />
+          </>
+        )}
       </svg>
 
       {/* HTML Container for Nodes */}
