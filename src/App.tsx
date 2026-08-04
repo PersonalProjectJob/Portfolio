@@ -229,7 +229,7 @@ function App() {
       <MobileNavigation />
 
       {/* Màn hình chính giữa (Monitor) */}
-      <div ref={mainScrollRef} role="main" className="w-full h-[100dvh] flex flex-col items-center justify-start relative z-20 pointer-events-auto overflow-y-auto overflow-x-hidden hide-scrollbar pt-24 pb-24 md:pb-12 px-0 scroll-smooth">
+      <div ref={mainScrollRef} role="main" className="w-full h-[100dvh] flex flex-col items-center justify-start relative z-20 pointer-events-auto overflow-y-auto overflow-x-hidden hide-scrollbar pt-24 px-0 scroll-smooth page-bottom">
         {currentPageContent}
       </div>
 
