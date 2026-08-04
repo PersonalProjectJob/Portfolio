@@ -12,7 +12,7 @@ export const DesktopHeader: React.FC<DesktopHeaderProps> = ({ className = '', on
   const { isLightMode, toggleTheme } = useStore();
 
   return (
-    <div className={`absolute top-2 left-0 w-full px-3 md:top-8 md:px-8 z-50 flex items-center justify-between pointer-events-none transform-style-preserve-3d translate-z-10 h-12 md:h-auto ${className}`}>
+    <div className={`absolute top-[calc(8px+env(safe-area-inset-top,0px))] left-0 w-full px-3 md:top-8 md:px-8 z-50 flex items-center justify-between pointer-events-none transform-style-preserve-3d translate-z-10 h-12 md:h-auto ${className}`}>
       
       {/* Header Brand */}
       <div className="flex items-center gap-2 pointer-events-auto">
