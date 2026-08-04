@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useRef, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useStore } from '../store/useStore';
 import { useT } from '../i18n/useT';
 import { CV_PROJECTS } from '../data/cvData';
@@ -7,6 +7,32 @@ import { CV_PROJECTS } from '../data/cvData';
 export const GameCharacterSelect: React.FC = () => {
   const t = useT();
   const { isLightMode, setGameState } = useStore();
+  const [isEmailMenuOpen, setIsEmailMenuOpen] = useState(false);
+  const [isEmailCopied, setIsEmailCopied] = useState(false);
+  const emailMenuRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (emailMenuRef.current && !emailMenuRef.current.contains(event.target as Node)) {
+        setIsEmailMenuOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  const handleCopyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText('tnsthao94@gmail.com');
+      setIsEmailCopied(true);
+      setTimeout(() => {
+        setIsEmailCopied(false);
+        setIsEmailMenuOpen(false);
+      }, 2000);
+    } catch (err) {
+      console.error('Failed to copy email:', err);
+    }
+  };
   return (
     <motion.div 
       initial={{ opacity: 0, y: 20 }}
@@ -19,7 +45,7 @@ export const GameCharacterSelect: React.FC = () => {
           
           {/* Left Column: Hero & Contact */}
           <div className="w-full lg:w-1/3 flex flex-col gap-6 md:gap-8">
-             <div id="portfolio-contact" tabIndex={-1} className={`scroll-mt-28 card-padding flex flex-col items-center text-center rounded-3xl border outline-none transition-all duration-500 focus-visible:ring-2 focus-visible:ring-orange-400 ${isLightMode ? 'bg-white/90 backdrop-blur-3xl border-white/80 shadow-[0_8px_32px_rgba(30,41,59,0.12)]' : 'premium-card'}`}>
+             <div id="portfolio-contact" tabIndex={-1} className={`scroll-mt-28 relative z-20 card-padding flex flex-col items-center text-center rounded-3xl border outline-none transition-all duration-500 focus-visible:ring-2 focus-visible:ring-orange-400 ${isLightMode ? 'bg-white/90 backdrop-blur-3xl border-white/80 shadow-[0_8px_32px_rgba(30,41,59,0.12)]' : 'premium-card'}`}>
                 {/* Avatar */}
                 <div className="w-32 h-32 md:w-40 md:h-40 rounded-full p-1.5 mb-6 shadow-2xl bg-gradient-to-tr from-orange-500 via-orange-400 to-amber-400 relative group overflow-hidden">
                    <div className="w-full h-full rounded-full overflow-hidden bg-slate-900">
@@ -33,10 +59,75 @@ export const GameCharacterSelect: React.FC = () => {
                 
                 {/* Contact Links */}
                 <div className="flex flex-wrap justify-center gap-3 w-full">
-                   <a href="mailto:tnsthao94@gmail.com" className={`flex-1 min-w-[120px] py-3 rounded-xl border flex flex-col items-center justify-center gap-1.5 transition-all hover:-translate-y-1 ${isLightMode ? 'bg-white/80 border-slate-300 text-slate-700 hover:shadow-lg hover:border-orange-300 hover:text-orange-600' : 'bg-slate-800/80 border-slate-700 text-slate-300 hover:shadow-[0_5px_15px_rgba(13,148,136,0.3)] hover:border-orange-500/50 hover:text-orange-400'}`}>
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                      <span className="text-[10px] font-bold uppercase tracking-wider">{t("profile.emailMe")}</span>
-                   </a>
+                   <div className="flex-1 min-w-[120px] relative" ref={emailMenuRef}>
+                     <button 
+                       onClick={() => setIsEmailMenuOpen(!isEmailMenuOpen)}
+                       className={`w-full py-3 rounded-xl border flex flex-col items-center justify-center gap-1.5 transition-all hover:-translate-y-1 ${isLightMode ? 'bg-white/80 border-slate-300 text-slate-700 hover:shadow-lg hover:border-orange-300 hover:text-orange-600' : 'bg-slate-800/80 border-slate-700 text-slate-300 hover:shadow-[0_5px_15px_rgba(13,148,136,0.3)] hover:border-orange-500/50 hover:text-orange-400'}`}>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                        <span className="text-[10px] font-bold uppercase tracking-wider">{t("profile.emailMe")}</span>
+                     </button>
+                     
+                     <AnimatePresence>
+                        {isEmailMenuOpen && (
+                          <motion.div
+                            initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                            animate={{ opacity: 1, y: 0, scale: 1 }}
+                            exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                            transition={{ duration: 0.2 }}
+                            className={`absolute top-full mt-2 left-0 w-56 rounded-xl border p-1 shadow-2xl backdrop-blur-md z-50 ${
+                              isLightMode 
+                                ? 'bg-white/90 border-slate-200' 
+                                : 'bg-[#1e293b]/90 border-white/10'
+                            }`}
+                          >
+                            <div className="flex flex-col">
+                              <div className={`px-3 py-2 text-xs font-semibold mb-1 border-b ${isLightMode ? 'text-slate-500 border-slate-100' : 'text-slate-400 border-slate-700/50'}`}>
+                                Email: tnsthao94@gmail.com
+                              </div>
+                              <button
+                                onClick={handleCopyEmail}
+                                className={`flex items-center gap-3 w-full px-3 py-2.5 rounded-lg text-sm text-left transition-colors ${
+                                  isLightMode ? 'hover:bg-slate-100 text-slate-700' : 'hover:bg-white/10 text-slate-200'
+                                }`}
+                              >
+                                {isEmailCopied ? (
+                                  <svg className="w-4 h-4 text-green-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                                ) : (
+                                  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                                )}
+                                <span className={isEmailCopied ? 'text-green-500 font-medium' : ''}>
+                                  {isEmailCopied ? 'Copied!' : 'Copy Email Address'}
+                                </span>
+                              </button>
+                              
+                              <a
+                                href="https://mail.google.com/mail/?view=cm&fs=1&to=tnsthao94@gmail.com"
+                                target="_blank"
+                                rel="noreferrer"
+                                onClick={() => setIsEmailMenuOpen(false)}
+                                className={`flex items-center gap-3 w-full px-3 py-2.5 rounded-lg text-sm text-left transition-colors ${
+                                  isLightMode ? 'hover:bg-slate-100 text-slate-700' : 'hover:bg-white/10 text-slate-200'
+                                }`}
+                              >
+                                <svg className="w-4 h-4 text-rose-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 4L12 14.01l-3-3"/><path d="M22 4L11 20 7 14 2 11l20-7z"/></svg>
+                                Open in Gmail
+                              </a>
+                              
+                              <a
+                                href="mailto:tnsthao94@gmail.com"
+                                onClick={() => setIsEmailMenuOpen(false)}
+                                className={`flex items-center gap-3 w-full px-3 py-2.5 rounded-lg text-sm text-left transition-colors ${
+                                  isLightMode ? 'hover:bg-slate-100 text-slate-700' : 'hover:bg-white/10 text-slate-200'
+                                }`}
+                              >
+                                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                                Open Default App
+                              </a>
+                            </div>
+                          </motion.div>
+                        )}
+                     </AnimatePresence>
+                   </div>
                    <a href="https://www.linkedin.com/in/thaotns" target="_blank" rel="noreferrer" className={`flex-1 min-w-[120px] py-3 rounded-xl border flex flex-col items-center justify-center gap-1.5 transition-all hover:-translate-y-1 ${isLightMode ? 'bg-white/80 border-slate-300 text-slate-700 hover:shadow-lg hover:border-orange-300 hover:text-orange-600' : 'bg-slate-800/80 border-slate-700 text-slate-300 hover:shadow-[0_5px_15px_rgba(13,148,136,0.3)] hover:border-orange-500/50 hover:text-orange-400'}`}>
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
                       <span className="text-[10px] font-bold uppercase tracking-wider">{t("profile.linkedin")}</span>
