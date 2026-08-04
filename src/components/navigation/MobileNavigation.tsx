@@ -45,7 +45,7 @@ export const MobileNavigation: React.FC<MobileNavigationProps> = ({ className = 
     <nav
       role="navigation"
       aria-label="Main navigation"
-      className={`md:hidden fixed bottom-0 left-0 w-full z-50 pointer-events-auto flex flex-col justify-end ${className}`}
+      className={`md:hidden fixed bottom-0 left-0 w-full z-50 pointer-events-auto flex flex-col justify-end touch-none ${className}`}
       style={{ paddingBottom: 'calc(12px + env(safe-area-inset-bottom, 0px))' }}
     >
       <div className="relative w-full h-[54px] flex items-center justify-between px-6 z-10">

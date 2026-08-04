@@ -19,7 +19,7 @@ export const LanguageToggle: React.FC = () => {
       <button
         type="button"
         onClick={() => setLanguage('vi')}
-        className={`relative flex items-center justify-center px-3 h-full rounded-md text-[11px] md:text-xs font-bold tracking-wider cursor-pointer transition-all duration-200 ${
+        className={`relative flex items-center justify-center px-3 h-9 md:h-[38px] rounded-md text-[11px] md:text-xs font-bold tracking-wider cursor-pointer transition-all duration-200 after:absolute after:-inset-y-1 after:-inset-x-0.5 after:content-[''] ${
           language === 'vi'
             ? isLightMode
               ? 'bg-white text-orange-600 shadow-sm'
@@ -35,7 +35,7 @@ export const LanguageToggle: React.FC = () => {
       <button
         type="button"
         onClick={() => setLanguage('en')}
-        className={`relative flex items-center justify-center px-3 h-full rounded-md text-[11px] md:text-xs font-bold tracking-wider cursor-pointer transition-all duration-200 ${
+        className={`relative flex items-center justify-center px-3 h-9 md:h-[38px] rounded-md text-[11px] md:text-xs font-bold tracking-wider cursor-pointer transition-all duration-200 after:absolute after:-inset-y-1 after:-inset-x-0.5 after:content-[''] ${
           language === 'en'
             ? isLightMode
               ? 'bg-white text-orange-600 shadow-sm'

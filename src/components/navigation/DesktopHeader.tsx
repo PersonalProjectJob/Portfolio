@@ -15,12 +15,12 @@ export const DesktopHeader: React.FC<DesktopHeaderProps> = ({ className = '', on
     <div className={`absolute top-[calc(8px+env(safe-area-inset-top,0px))] left-0 w-full px-3 md:top-8 md:px-8 z-50 flex items-center justify-between pointer-events-none transform-style-preserve-3d translate-z-10 h-12 md:h-auto ${className}`}>
       
       {/* Header Brand */}
-      <div className="flex items-center gap-2 pointer-events-auto">
+      <div className="flex items-center gap-2 pointer-events-auto touch-none">
         <button 
           type="button"
           onClick={onLogoClick}
           aria-label="Return to cover page"
-          className="w-10 h-10 md:w-11 md:h-11 shrink-0 flex items-center justify-center group relative"
+          className="w-11 h-11 md:w-12 md:h-12 shrink-0 flex items-center justify-center group relative"
           title="Return to Cover Page"
         >
           <img 
@@ -37,9 +37,9 @@ export const DesktopHeader: React.FC<DesktopHeaderProps> = ({ className = '', on
       </div>
 
       {/* Language + Clock & Theme */}
-      <div className="flex items-center gap-2 pointer-events-auto">
+      <div className="flex items-center gap-2 pointer-events-auto touch-none">
         <LanguageToggle />
-        <div className={`flex items-center gap-0.5 rounded-lg p-0.5 h-10 md:h-[42px] border transition-all ${isLightMode ? 'bg-slate-100 border-slate-200 backdrop-blur-md' : 'bg-slate-800/80 border-slate-700 backdrop-blur-md'}`}>
+        <div className={`flex items-center h-11 md:h-[44px] overflow-hidden rounded-lg p-0.5 border shadow-[0_5px_15px_rgba(0,0,0,0.5)] transition-all ${isLightMode ? 'bg-slate-100 border-slate-200 backdrop-blur-md' : 'bg-slate-800/80 border-slate-700 backdrop-blur-md'}`}>
           {/* Digital Clock — hidden on mobile */}
           <div className="hidden md:flex h-full">
             <Clock />
@@ -53,7 +53,7 @@ export const DesktopHeader: React.FC<DesktopHeaderProps> = ({ className = '', on
             type="button"
             onClick={toggleTheme}
             aria-label={isLightMode ? 'Switch to dark mode' : 'Switch to light mode'}
-            className={`w-9 md:w-[38px] h-full flex items-center justify-center rounded-md cursor-pointer transition-colors ${isLightMode ? 'text-orange-600 hover:bg-white' : 'text-slate-300 hover:text-white hover:bg-slate-700'}`}
+            className={`w-11 h-full flex items-center justify-center rounded-md cursor-pointer transition-colors ${isLightMode ? 'text-orange-600 hover:bg-white' : 'text-slate-300 hover:text-white hover:bg-slate-700'}`}
             title="Toggle Day/Night Mode (Manual Override)"
           >
             {isLightMode ? (
