@@ -66,6 +66,9 @@ body.light-theme {
 
 /* ─── Base Styles ─── */
 @layer base {
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
   body {
     background-color: var(--color-surface);
     color: var(--color-text);
@@ -110,7 +113,7 @@ body.light-theme {
     padding-top: 5rem;      /* 80px mobile */
   }
   .page-bottom {
-    padding-bottom: 5rem;   /* 80px mobile */
+    padding-bottom: calc(110px + env(safe-area-inset-bottom, 0px));
   }
   .container-padding {
     padding-left: 1rem;     /* 16px mobile */
