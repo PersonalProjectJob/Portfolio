@@ -64,14 +64,19 @@ export const DesktopWorkspace: React.FC<Props> = ({ children, disableParallax = 
         className="absolute inset-0 z-0 bg-[#0a0f1c]" 
         style={{ x: layer1X, y: layer1Y }}
       >
-        {/* Same desk image for both modes → perfectly smooth transition (BUG-003: WebP) */}
+        {/* LIGHT MODE BACKGROUND */}
         <img src="/designer-desk-bg.webp" 
-             className={`absolute inset-0 w-full h-full object-cover transition-all duration-1000 ${
-               isLightMode 
-                 ? 'opacity-100 filter-none' 
-                 : 'opacity-40 brightness-50 contrast-125 saturate-50'
+             className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
+               isLightMode ? 'opacity-100' : 'opacity-0'
              }`}
              alt="Designer Workspace Sketchpad" />
+             
+        {/* DARK MODE BACKGROUND (Option 3 AI image) */}
+        <img src="/dark-mode-scorpion-bg.jpg" 
+             className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
+               !isLightMode ? 'opacity-100' : 'opacity-0'
+             }`}
+             alt="Dark Mode Scorpion Silhouette" />
              
         {/* Dark Mode Overlay for cinematic deep shadows on the desk */}
         <div className={`absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_20%,_rgba(2,6,23,0.9)_100%)] mix-blend-multiply transition-opacity duration-1000 pointer-events-none ${isLightMode ? 'opacity-0' : 'opacity-100'}`} />
