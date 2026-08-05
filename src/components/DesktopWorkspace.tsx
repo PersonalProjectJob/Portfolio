@@ -54,7 +54,7 @@ export const DesktopWorkspace: React.FC<Props> = ({ children, disableParallax = 
   
   return (
     <div 
-      className={`relative w-full h-screen overflow-hidden flex items-center justify-center transition-all duration-1000 ${isMobile ? (isLightMode ? 'bg-[radial-gradient(ellipse_at_center,_rgba(255,237,213,0.5)_0%,_#050505_100%)]' : 'bg-[radial-gradient(ellipse_at_center,_rgba(219,39,119,0.2)_0%,_#050505_100%)]') : 'bg-[#050505]'}`}
+      className="relative w-full h-screen overflow-hidden flex items-center justify-center transition-all duration-1000 bg-[#050505]"
       onMouseMove={handleMouseMove}
     >
       {/* =========================================
@@ -89,28 +89,14 @@ export const DesktopWorkspace: React.FC<Props> = ({ children, disableParallax = 
           LAYER 4 (z-3): AMBIENT GLOW
           BUG-001 FIX: blur 150→80px, removed mix-blend-screen (GPU saver)
           ========================================= */}
-      {!isMobile && !prefersReducedMotion && (
-        <div className="absolute inset-0 z-[3] pointer-events-none transition-all duration-1000 overflow-hidden">
-           {/* Glow trên bên trái */}
-           <motion.div 
-              className={`absolute top-[-10%] left-[-20%] w-[70%] h-[80%] blur-[80px] rounded-full transition-colors duration-1000 will-change-transform ${
-                isLightMode ? 'bg-orange-100/30' : 'bg-pink-600/10'
-              }`}
-              style={{ transform: 'translateZ(0)' }}
-              animate={{ opacity: [0.3, 0.5, 0.3] }}
-              transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-           />
-           {/* Glow dưới bên phải */}
-           <motion.div 
-              className={`absolute bottom-[-10%] right-[-10%] w-[50%] h-[60%] blur-[80px] rounded-full transition-colors duration-1000 will-change-transform ${
-                isLightMode ? 'bg-blue-100/30' : 'bg-cyan-600/10'
-              }`}
-              style={{ transform: 'translateZ(0)' }}
-              animate={{ opacity: [0.2, 0.4, 0.2] }}
-              transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-           />
-        </div>
-      )}
+      <div className="absolute inset-0 z-[3] pointer-events-none transition-all duration-1000">
+         <motion.div 
+            className={`absolute top-[-10%] left-[-20%] w-[70%] h-[80%] blur-[130px] rounded-full mix-blend-screen transition-colors duration-1000 ${isLightMode ? 'bg-orange-100/30' : 'bg-pink-600/20'}`}
+            animate={{ opacity: [0.3, 0.6, 0.3] }}
+            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+         />
+         <div className={`absolute bottom-[-10%] right-[-10%] w-[50%] h-[60%] blur-[150px] rounded-full mix-blend-screen transition-colors duration-1000 ${isLightMode ? 'bg-yellow-50/20' : 'bg-cyan-600/10'}`} />
+      </div>
 
       {/* =========================================
           LAYER 5 (z-10): UI CONTENT CONTAINER (Graph)
