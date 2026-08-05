@@ -12,98 +12,7 @@ interface ProjectGraphCanvasProps {
   onSelectNode: (id: string) => void;
 }
 
-// Decorative component for Dark Mode — Scorpio constellation (legs, stinger, night sky)
-// BUG-002 FIX: Reduced stars 100→50, replaced inline drop-shadow with shared SVG filter (BUG-004)
-const ScorpioStars: React.FC = () => {
-  const { isLightMode } = useStore();
-  
-  // BUG-002: Reduced from 100 to 50 stars (visually indistinguishable difference)
-  const backgroundStars = React.useMemo(() => {
-    return Array.from({ length: 50 }).map(() => ({
-      x: Math.random() * 1000,
-      y: Math.random() * 1000,
-      r: Math.random() * 1.5 + 0.5,
-      maxOpacity: Math.random() * 0.5 + 0.2,
-      dur: Math.random() * 4 + 2,
-      delay: Math.random() * 5,
-    }));
-  }, []);
-
-  if (isLightMode) return null;
-
-  // Leg data: [startX, startY, jointX, jointY, endX, endY]
-  const legs = [
-    // Left legs
-    [520, 410, 380, 400, 350, 430],
-    [510, 550, 350, 540, 310, 570],
-    [460, 680, 300, 670, 260, 710],
-    [360, 780, 220, 790, 180, 830],
-    // Right legs
-    [520, 410, 660, 400, 700, 430],
-    [510, 550, 670, 540, 710, 570],
-    [460, 680, 630, 670, 670, 710],
-    [360, 780, 530, 790, 570, 830],
-    // Stinger extra curve
-    [170, 510, 140, 470, 180, 430],
-  ];
-
-  return (
-    <g className="pointer-events-none">
-      {/* BUG-004 FIX: Shared SVG filters via <defs> instead of inline drop-shadow per element */}
-      <defs>
-        <filter id="glow-joint" x="-50%" y="-50%" width="200%" height="200%">
-          <feGaussianBlur in="SourceGraphic" stdDeviation="2" />
-        </filter>
-        <filter id="glow-tip" x="-50%" y="-50%" width="200%" height="200%">
-          <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur" />
-          <feMerge>
-            <feMergeNode in="blur" />
-            <feMergeNode in="SourceGraphic" />
-          </feMerge>
-        </filter>
-      </defs>
-
-      {/* Background Night Sky Stars (Reduced to 50) */}
-      {backgroundStars.map((star, i) => (
-        <circle key={`bg-${i}`} cx={star.x} cy={star.y} r={star.r} fill="#ffffff" opacity="0">
-          <animate
-            attributeName="opacity"
-            values={`0; ${star.maxOpacity}; 0`}
-            dur={`${star.dur}s`}
-            begin={`${star.delay}s`}
-            repeatCount="indefinite"
-          />
-        </circle>
-      ))}
-
-      {/* Constellation Scorpio Legs & Stinger */}
-      <g className="opacity-80">
-        {legs.map((leg, i) => (
-          <React.Fragment key={`leg-${i}`}>
-            {/* Leg joint lines */}
-            <path
-              d={`M ${leg[0]} ${leg[1]} L ${leg[2]} ${leg[3]} L ${leg[4]} ${leg[5]}`}
-              stroke="rgba(255,255,255,0.15)"
-              strokeWidth="1.5"
-              fill="none"
-            />
-            {/* Joint dot — uses shared filter (BUG-004 fix) */}
-            <circle cx={leg[2]} cy={leg[3]} r="2" fill="#ffffff" filter="url(#glow-joint)">
-              <animate attributeName="r" values="1.5; 3.5; 1.5" dur="1.5s" begin={`${i * 0.15}s`} repeatCount="indefinite" />
-              <animate attributeName="opacity" values="0.2; 1; 0.2" dur="1.5s" begin={`${i * 0.15}s`} repeatCount="indefinite" />
-            </circle>
-            {/* Tip dot — uses shared filter (BUG-004 fix) */}
-            <circle cx={leg[4]} cy={leg[5]} r="3" fill="#ffffff" filter="url(#glow-tip)">
-              <animate attributeName="r" values="2.5; 5; 2.5" dur="1.2s" begin={`${i * 0.25}s`} repeatCount="indefinite" />
-              <animate attributeName="opacity" values="0.4; 1; 0.4" dur="1.2s" begin={`${i * 0.25}s`} repeatCount="indefinite" />
-            </circle>
-          </React.Fragment>
-        ))}
-      </g>
-    </g>
-  );
-};
-
+// Removed ScorpioStars component per user request
 export const ProjectGraphCanvas: React.FC<ProjectGraphCanvasProps> = ({
   nodes,
   edges,
@@ -139,7 +48,6 @@ export const ProjectGraphCanvas: React.FC<ProjectGraphCanvasProps> = ({
           const sourcePos = { x: sourceNode.position.x * 1000, y: sourceNode.position.y * 1000 };
           const targetPos = { x: targetNode.position.x * 1000, y: targetNode.position.y * 1000 };
           
-          // Always draw from current sequence source to target
           const dx = targetPos.x - sourcePos.x;
           const dy = targetPos.y - sourcePos.y;
           
@@ -147,7 +55,6 @@ export const ProjectGraphCanvas: React.FC<ProjectGraphCanvasProps> = ({
             d += `M ${sourcePos.x} ${sourcePos.y} `;
           }
           
-          // Must exactly match the curve calculation in ProjectGraphEdge
           const cx = sourcePos.x + dx * 0.5 - dy * 0.35;
           const cy = sourcePos.y + dy * 0.5 + dx * 0.35;
           
@@ -192,12 +99,28 @@ export const ProjectGraphCanvas: React.FC<ProjectGraphCanvasProps> = ({
         </svg>
       </div>
 
-      {/* SVG Container for Edges */}
+      {/* SVG Container for Edges & Decoratives */}
       <svg 
         className="absolute inset-0 w-full h-full pointer-events-none z-10" 
         viewBox="0 0 1000 1000" 
         preserveAspectRatio="none"
       >
+        <defs>
+          <filter id="glow-star-heavy" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+          {/* 8-Pointed StarLight SVG for nodes */}
+          <g id="starlight-8pt">
+            <path d="M 0 -10 Q 0 0 10 0 Q 0 0 0 10 Q 0 0 -10 0 Q 0 0 0 -10 Z" fill="#ffffff" />
+            <path d="M 0 -7 Q 0 0 7 0 Q 0 0 0 7 Q 0 0 -7 0 Q 0 0 0 -7 Z" fill="#ffffff" transform="rotate(45)" opacity="0.8" />
+          </g>
+        </defs>
+
+        {/* Edges */}
         {edgesWithPos.map(edge => (
           <ProjectGraphEdge
             key={edge.id}
@@ -207,8 +130,7 @@ export const ProjectGraphCanvas: React.FC<ProjectGraphCanvasProps> = ({
             isActive={activeNodeId === edge.source || activeNodeId === edge.target}
           />
         ))}
-        {/* Decorative Scorpio Constellation Legs (Dark Mode Only) */}
-        <ScorpioStars />
+
         {/* Animated Light Sequences (Dark Mode Only) */}
         {!isLightMode && (
           <>

@@ -21,11 +21,19 @@ export const ProjectGraphNode: React.FC<ProjectGraphNodeProps> = ({
 
   const showNote = isActive; // Condition 8, 9: only one active at a time, we will rely on isActive for note
 
-  // Pill styling instead of circle
-  const baseBg = isLightMode ? 'bg-white' : 'bg-slate-900/80';
-  const baseBorder = isLightMode ? 'border-slate-200' : 'border-slate-700/60';
-  const hoverBorder = isLightMode ? 'group-hover:border-orange-400' : 'group-hover:border-orange-400';
-  const activeBorder = isLightMode ? 'border-orange-500' : 'border-orange-500';
+  // Premium Glassmorphism styling instead of standard flat colors
+  const baseBg = isLightMode 
+    ? 'bg-white/70 backdrop-blur-xl' 
+    : 'bg-[#0a0f1c]/40 backdrop-blur-xl';
+  const baseBorder = isLightMode 
+    ? 'border-white/50' 
+    : 'border-white/10';
+  const hoverBorder = isLightMode 
+    ? 'group-hover:border-orange-400/50 group-hover:bg-white/90' 
+    : 'group-hover:border-orange-500/30 group-hover:bg-[#0a0f1c]/60';
+  const activeBorder = isLightMode 
+    ? 'border-orange-500 bg-white' 
+    : 'border-orange-500 bg-[#0a0f1c]/80';
   
   // Primary node (Profile) might have different styling
   const textClass = isActive 
@@ -35,23 +43,22 @@ export const ProjectGraphNode: React.FC<ProjectGraphNodeProps> = ({
   const currentBorder = isActive ? activeBorder : `${baseBorder} ${hoverBorder}`;
   const shadowClass = isActive 
     ? (isLightMode ? 'shadow-[0_0_20px_rgba(249,115,22,0.3)]' : 'shadow-[0_0_30px_rgba(249,115,22,0.4)]')
-    : 'group-hover:shadow-lg';
+    : 'group-hover:shadow-[0_0_15px_rgba(249,115,22,0.15)]';
 
   const shortName = node.shortTitle || t(node.title);
 
   return (
     <div
       className="absolute group z-20"
-
     >
       <motion.button
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         onClick={() => onSelect(node.id)}
         aria-label={`Project: ${t(node.title)}`}
-        className={`whitespace-nowrap px-4 py-2 md:px-5 md:py-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full flex items-center justify-center cursor-pointer border-2 backdrop-blur-md transition-all premium-card ${baseBg} ${currentBorder} ${shadowClass}`}
+        className={`whitespace-nowrap px-4 py-2 md:px-5 md:py-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full flex items-center justify-center cursor-pointer border-[1px] transition-all premium-card ${baseBg} ${currentBorder} ${shadowClass}`}
       >
-        <span className={`font-extrabold text-xs md:text-sm transition-colors ${textClass}`}>
+        <span className={`font-extrabold uppercase tracking-widest text-[10px] md:text-[11px] transition-colors ${textClass}`}>
           {shortName}
         </span>
       </motion.button>
