@@ -10,16 +10,16 @@ export const LanguageToggle: React.FC = () => {
 
   return (
     <div
-      className={`flex items-center gap-0.5 rounded-lg p-0.5 transition-colors ${
+      className={`flex items-center gap-0.5 rounded-lg p-0.5 h-10 md:h-[42px] transition-colors ${
         isLightMode
-          ? 'bg-slate-100 border border-slate-200'
-          : 'bg-slate-800/80 border border-slate-700'
+          ? 'bg-slate-100 border border-slate-200 backdrop-blur-md'
+          : 'bg-slate-800/80 border border-slate-700 backdrop-blur-md'
       }`}
     >
       <button
         type="button"
         onClick={() => setLanguage('vi')}
-        className={`relative flex items-center justify-center px-3 h-9 md:h-[38px] rounded-md text-[11px] md:text-xs font-bold tracking-wider cursor-pointer transition-all duration-200 ${
+        className={`relative flex items-center justify-center px-3 h-9 md:h-[38px] rounded-md text-[11px] md:text-xs font-bold tracking-wider cursor-pointer transition-all duration-200 after:absolute after:-inset-y-1 after:-inset-x-0.5 after:content-[''] ${
           language === 'vi'
             ? isLightMode
               ? 'bg-white text-orange-600 shadow-sm'
@@ -35,7 +35,7 @@ export const LanguageToggle: React.FC = () => {
       <button
         type="button"
         onClick={() => setLanguage('en')}
-        className={`relative flex items-center justify-center px-3 h-9 md:h-[38px] rounded-md text-[11px] md:text-xs font-bold tracking-wider cursor-pointer transition-all duration-200 ${
+        className={`relative flex items-center justify-center px-3 h-9 md:h-[38px] rounded-md text-[11px] md:text-xs font-bold tracking-wider cursor-pointer transition-all duration-200 after:absolute after:-inset-y-1 after:-inset-x-0.5 after:content-[''] ${
           language === 'en'
             ? isLightMode
               ? 'bg-white text-orange-600 shadow-sm'
@@ -51,3 +51,4 @@ export const LanguageToggle: React.FC = () => {
     </div>
   );
 };
+

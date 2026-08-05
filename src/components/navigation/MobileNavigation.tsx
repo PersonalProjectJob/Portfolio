@@ -45,8 +45,8 @@ export const MobileNavigation: React.FC<MobileNavigationProps> = ({ className = 
     <nav
       role="navigation"
       aria-label="Main navigation"
-      className={`md:hidden fixed bottom-0 left-0 w-full z-50 pointer-events-auto flex flex-col justify-end ${className}`}
-      style={{ height: '88px', paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}
+      className={`md:hidden fixed bottom-0 left-0 w-full z-50 pointer-events-auto flex flex-col justify-end touch-none ${className}`}
+      style={{ paddingBottom: 'calc(12px + env(safe-area-inset-bottom, 0px))' }}
     >
       <div className="relative w-full h-[54px] flex items-center justify-between px-6 z-10">
         
@@ -87,11 +87,8 @@ export const MobileNavigation: React.FC<MobileNavigationProps> = ({ className = 
               onClick={() => setGameState(centerItem.id)}
               className={`relative w-[56px] h-[56px] rounded-full flex items-center justify-center text-white transition-all duration-500 group ${isNavActive(centerItem, gameState) ? 'scale-105' : 'scale-95 opacity-60 hover:scale-100 hover:opacity-100'}`}
             >
-              {/* Animated Outer Glow Ring */}
-              <div className={`absolute inset-0 rounded-full transition-all duration-500 ${isNavActive(centerItem, gameState) ? (isLightMode ? 'bg-orange-400 blur-md opacity-60' : 'bg-[#ea580c] blur-md opacity-80') : 'opacity-0 group-hover:opacity-30'}`} />
-              
-              {/* Button Base */}
-              <div className={`relative w-full h-full rounded-full flex items-center justify-center border-2 transition-all duration-500 ${isNavActive(centerItem, gameState) ? (isLightMode ? 'bg-orange-600 border-white' : 'bg-gradient-to-tr from-orange-600 to-orange-500 border-orange-300 shadow-[inset_0_0_15px_rgba(255,255,255,0.3)]') : (isLightMode ? 'bg-slate-200 border-slate-300 text-slate-400' : 'bg-[#0f172a] border-slate-700 text-slate-500 shadow-[inset_0_0_10px_rgba(0,0,0,0.8)]')}`}>
+              {/* Button Base with native box-shadow glow (Fixes iOS Safari blur clipping) */}
+              <div className={`relative w-full h-full rounded-full flex items-center justify-center border-2 transition-all duration-500 ${isNavActive(centerItem, gameState) ? (isLightMode ? 'bg-orange-600 border-white shadow-[0_0_15px_5px_rgba(251,146,60,0.4)]' : 'bg-gradient-to-tr from-orange-600 to-orange-500 border-orange-300 shadow-[0_0_20px_5px_rgba(234,88,12,0.5),inset_0_0_15px_rgba(255,255,255,0.3)]') : (isLightMode ? 'bg-slate-200 border-slate-300 text-slate-400 hover:shadow-[0_0_15px_rgba(251,146,60,0.2)]' : 'bg-[#0f172a] border-slate-700 text-slate-500 shadow-[inset_0_0_10px_rgba(0,0,0,0.8)] hover:shadow-[0_0_15px_rgba(234,88,12,0.2)]')}`}>
                 <div className={`transition-all duration-500 ${isNavActive(centerItem, gameState) ? 'drop-shadow-[0_0_5px_rgba(255,255,255,0.8)]' : ''}`}>
                   {NavIcons[centerItem.icon]}
                 </div>

@@ -64,10 +64,10 @@ export const HeroIntro: React.FC<HeroIntroProps> = ({ onComplete, onNavigate }) 
             </div>
           </div>
           <div className="hidden md:flex gap-8 text-xs font-medium tracking-widest text-slate-300 items-center">
-            <button type="button" onClick={() => onNavigate('projects')} className="hover:text-white transition-colors tracking-widest uppercase">{t('ui.projects')}</button>
-            <button type="button" onClick={() => onNavigate('about')} className="hover:text-white transition-colors tracking-widest uppercase">{t('ui.about')}</button>
-            <button type="button" onClick={() => onNavigate('services')} className="hover:text-white transition-colors tracking-widest uppercase">{t('ui.services')}</button>
-            <button type="button" onClick={() => onNavigate('contact')} className="hover:text-white transition-colors tracking-widest uppercase">{t('ui.contact')}</button>
+            <button type="button" onClick={() => onNavigate('projects')} className="hover:text-white transition-colors tracking-widest uppercase py-2">{t('ui.projects')}</button>
+            <button type="button" onClick={() => onNavigate('about')} className="hover:text-white transition-colors tracking-widest uppercase py-2">{t('ui.about')}</button>
+            <button type="button" onClick={() => onNavigate('services')} className="hover:text-white transition-colors tracking-widest uppercase py-2">{t('ui.services')}</button>
+            <button type="button" onClick={() => onNavigate('contact')} className="hover:text-white transition-colors tracking-widest uppercase py-2">{t('ui.contact')}</button>
           </div>
         </div>
 

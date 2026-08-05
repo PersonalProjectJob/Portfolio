@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import type { ProjectNode } from './projectGraph.types';
 import { ProjectGraphNote } from './ProjectGraphNote';
@@ -18,7 +18,6 @@ export const ProjectGraphNode: React.FC<ProjectGraphNodeProps> = ({
 }) => {
   const { isLightMode } = useStore();
   const t = useT();
-  const [, setIsHovered] = useState(false);
 
   const showNote = isActive; // Condition 8, 9: only one active at a time, we will rely on isActive for note
 
@@ -43,8 +42,7 @@ export const ProjectGraphNode: React.FC<ProjectGraphNodeProps> = ({
   return (
     <div
       className="absolute group z-20"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+
     >
       <motion.button
         whileHover={{ scale: 1.05 }}
