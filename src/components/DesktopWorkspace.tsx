@@ -47,28 +47,26 @@ export const DesktopWorkspace: React.FC<Props> = ({ children, disableParallax = 
   
   return (
     <div 
-      className={`relative w-full h-screen overflow-hidden flex items-center justify-center transition-all duration-1000 ${isMobile ? (isLightMode ? 'bg-[radial-gradient(ellipse_at_center,_rgba(255,237,213,0.5)_0%,_#050505_100%)]' : 'bg-[radial-gradient(ellipse_at_center,_rgba(219,39,119,0.2)_0%,_#050505_100%)]') : 'bg-[#050505]'}`}
+      className="relative w-full h-screen overflow-hidden flex items-center justify-center transition-all duration-1000 bg-[#050505]"
       onMouseMove={handleMouseMove}
     >
       
       {/* =========================================
           LAYER 1 (z-0): OUTSIDE LANDSCAPE (CẦN THƠ)
           ========================================= */}
-      {!isMobile && (
-        <motion.div 
-          className="absolute inset-[-5%] z-0" // Extended inset to prevent edges showing during parallax
-          style={{ x: layer1X, y: layer1Y }}
-        >
-          <img src="/cantho-floating-market.webp" 
-               className="absolute inset-0 w-full h-full object-cover transition-all duration-1000 blur-[2px]"
-               style={{
-                 filter: isLightMode 
-                   ? 'brightness(1.1) saturate(1.2)' 
-                   : 'brightness(0.15) contrast(1.2) sepia(0.3) hue-rotate(180deg) saturate(0.5)'
-               }}
-               alt="Chợ Nổi Cái Răng Cần Thơ" />
-        </motion.div>
-      )}
+      <motion.div 
+        className="absolute inset-[-5%] z-0" // Extended inset to prevent edges showing during parallax
+        style={{ x: layer1X, y: layer1Y }}
+      >
+        <img src="/cantho-floating-market.webp" 
+             className="absolute inset-0 w-full h-full object-cover transition-all duration-1000 blur-[2px]"
+             style={{
+               filter: isLightMode 
+                 ? 'brightness(1.1) saturate(1.2)' 
+                 : 'brightness(0.15) contrast(1.2) sepia(0.3) hue-rotate(180deg) saturate(0.5)'
+             }}
+             alt="Chợ Nổi Cái Răng Cần Thơ" />
+      </motion.div>
 
       {/* =========================================
           LAYER 2 (z-1): CELESTIAL OVERLAY (STARS)
@@ -99,16 +97,14 @@ export const DesktopWorkspace: React.FC<Props> = ({ children, disableParallax = 
       {/* =========================================
           LAYER 4 (z-3): AMBIENT GLOW
           ========================================= */}
-      {!isMobile && (
-        <div className="absolute inset-0 z-[3] pointer-events-none transition-all duration-1000">
-           <motion.div 
-              className={`absolute top-[-10%] left-[-20%] w-[70%] h-[80%] blur-[130px] rounded-full mix-blend-screen transition-colors duration-1000 ${isLightMode ? 'bg-orange-100/30' : 'bg-pink-600/20'}`}
-              animate={{ opacity: [0.3, 0.6, 0.3] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-           />
-           <div className={`absolute bottom-[-10%] right-[-10%] w-[50%] h-[60%] blur-[150px] rounded-full mix-blend-screen transition-colors duration-1000 ${isLightMode ? 'bg-yellow-50/20' : 'bg-cyan-600/10'}`} />
-        </div>
-      )}
+      <div className="absolute inset-0 z-[3] pointer-events-none transition-all duration-1000">
+         <motion.div 
+            className={`absolute top-[-10%] left-[-20%] w-[70%] h-[80%] blur-[130px] rounded-full mix-blend-screen transition-colors duration-1000 ${isLightMode ? 'bg-orange-100/30' : 'bg-pink-600/20'}`}
+            animate={{ opacity: [0.3, 0.6, 0.3] }}
+            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+         />
+         <div className={`absolute bottom-[-10%] right-[-10%] w-[50%] h-[60%] blur-[150px] rounded-full mix-blend-screen transition-colors duration-1000 ${isLightMode ? 'bg-yellow-50/20' : 'bg-cyan-600/10'}`} />
+      </div>
 
       {/* =========================================
           LAYER 5 (z-10): UI CONTENT CONTAINER
