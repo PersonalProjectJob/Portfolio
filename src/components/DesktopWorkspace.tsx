@@ -60,25 +60,23 @@ export const DesktopWorkspace: React.FC<Props> = ({ children, disableParallax = 
       {/* =========================================
           LAYER 1 (z-0): BACKGROUND (PAPER DESK)
           ========================================= */}
-      {!isMobile && (
-        <motion.div 
-          className="absolute inset-0 z-0 bg-[#0a0f1c]" 
-          style={{ x: layer1X, y: layer1Y }}
-        >
-          {/* Same desk image for both modes → perfectly smooth transition (BUG-003: WebP) */}
-          <img src="/designer-desk-bg.webp" 
-               className={`absolute inset-0 w-full h-full object-cover transition-all duration-1000 ${
-                 isLightMode 
-                   ? 'opacity-100 filter-none' 
-                   : 'opacity-40 brightness-50 contrast-125 saturate-50'
-               }`}
-               alt="Designer Workspace Sketchpad" />
-               
-          {/* Dark Mode Overlay for cinematic deep shadows on the desk */}
-          <div className={`absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_20%,_rgba(2,6,23,0.9)_100%)] mix-blend-multiply transition-opacity duration-1000 pointer-events-none ${isLightMode ? 'opacity-0' : 'opacity-100'}`} />
-          <div className={`absolute inset-0 bg-blue-950/40 mix-blend-overlay transition-opacity duration-1000 pointer-events-none ${isLightMode ? 'opacity-0' : 'opacity-100'}`} />
-        </motion.div>
-      )}
+      <motion.div 
+        className="absolute inset-0 z-0 bg-[#0a0f1c]" 
+        style={{ x: layer1X, y: layer1Y }}
+      >
+        {/* Same desk image for both modes → perfectly smooth transition (BUG-003: WebP) */}
+        <img src="/designer-desk-bg.webp" 
+             className={`absolute inset-0 w-full h-full object-cover transition-all duration-1000 ${
+               isLightMode 
+                 ? 'opacity-100 filter-none' 
+                 : 'opacity-40 brightness-50 contrast-125 saturate-50'
+             }`}
+             alt="Designer Workspace Sketchpad" />
+             
+        {/* Dark Mode Overlay for cinematic deep shadows on the desk */}
+        <div className={`absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_20%,_rgba(2,6,23,0.9)_100%)] mix-blend-multiply transition-opacity duration-1000 pointer-events-none ${isLightMode ? 'opacity-0' : 'opacity-100'}`} />
+        <div className={`absolute inset-0 bg-blue-950/40 mix-blend-overlay transition-opacity duration-1000 pointer-events-none ${isLightMode ? 'opacity-0' : 'opacity-100'}`} />
+      </motion.div>
 
       {/* Dot grid overlay for Dark mode tech feel */}
       <div className={`absolute inset-0 z-[1] opacity-20 pointer-events-none transition-opacity duration-1000 ${
