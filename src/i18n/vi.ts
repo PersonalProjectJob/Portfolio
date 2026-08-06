@@ -634,6 +634,8 @@ export const vi: Record<string, string> = {
   'profile.role': 'Product Designer / UX-UI',
   'profile.emailMe': 'Email Me',
   'profile.linkedin': 'LinkedIn',
+  'profile.viewCV': 'Xem CV',
+  'profile.downloadCV': 'Tải CV',
   'profile.yearsExp': 'Năm Kinh nghiệm',
   'profile.keySectors': 'Dự án',
   'profile.domainExpertise': 'Chuyên môn',
