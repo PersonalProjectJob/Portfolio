@@ -1584,12 +1584,13 @@ export const ProjectNexora: React.FC = () => {
 
   return (
     <CaseStudyLayout>
-      {/* 00 · HERO */}
+      <div className="relative z-10 max-w-5xl mx-auto">
+        {/* 00 · HERO */}
       <motion.section 
         initial="hidden" 
         animate="visible" 
         variants={reveal} 
-        className="container mx-auto px-4 md:px-8 lg:px-12 mb-20 md:mb-32"
+        className="mb-20 md:mb-32"
       >
         <div className="flex flex-col md:flex-row gap-12 lg:gap-16 items-start">
 
@@ -2611,6 +2612,7 @@ export const ProjectNexora: React.FC = () => {
 
         </motion.section>
       </div>
+          </div>
     </CaseStudyLayout>
   );
 };
