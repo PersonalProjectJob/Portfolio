@@ -1,5 +1,6 @@
 import { create } from 'zustand';
-
+import { trackEvent } from '../utils/analytics';
+import { CV_PROJECTS } from '../data/cvData';
 export type GameState = 'HERO_LANDING' | 'SELECT_PROFILE' | 'SKILL_MATRIX' | 'PROJECT_JOURNEY' | 'CASE_BRIEF' | 'CASE_STUDY_CRYPTOMAP' | 'CASE_STUDY_NAILHUB' | 'CASE_STUDY_NEXORA' | 'CASE_STUDY_VLINKPAY' | 'CASE_STUDY_AIPROCESS' | 'CASE_STUDY_HANDOFF' | 'CASE_STUDY_SYNCTASKBADGE' | 'CASE_STUDY_DISPATCH' | 'CASE_STUDY_AGENTRULES' | 'EXPERIENCE' | 'PROCESS';
 
 // --- URL ↔ State mapping ---
@@ -129,6 +130,17 @@ export const useStore = create<AppState>((set) => ({
 
   handleQuestSelect: (questId: string) => {
     const gameState = QUEST_STATE_MAP[questId] || 'CASE_BRIEF';
+    
+    const project = CV_PROJECTS.find(p => p.id === questId);
+    if (project) {
+      trackEvent("select_content", {
+        content_type: "portfolio_project",
+        content_id: project.id,
+        project_name: project.title,
+        project_category: project.category
+      });
+    }
+
     pushURL(gameState);
     set({ selectedQuest: questId, gameState });
   },
