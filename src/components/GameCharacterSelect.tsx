@@ -153,7 +153,7 @@ export const GameCharacterSelect: React.FC = () => {
                       rel="noopener noreferrer"
                       onClick={handleViewCV}
                       aria-label="View CV in a new tab"
-                      className={`flex-1 min-w-[120px] py-3 rounded-xl border flex flex-col items-center justify-center gap-1.5 transition-all hover:-translate-y-1 ${isLightMode ? 'bg-white/80 border-slate-300 text-slate-700 hover:shadow-lg hover:border-orange-300 hover:text-orange-600' : 'bg-slate-800/80 border-slate-700 text-slate-300 hover:shadow-[0_5px_15px_rgba(13,148,136,0.3)] hover:border-orange-500/50 hover:text-orange-400'}`}
+                      className={`flex-1 min-w-[120px] py-3 rounded-xl border-none flex flex-col items-center justify-center gap-1.5 transition-all hover:-translate-y-1 shadow-[0_0_15px_rgba(249,115,22,0.3)] ${isLightMode ? 'bg-orange-500 text-white hover:bg-orange-600 hover:shadow-[0_8px_20px_rgba(249,115,22,0.4)]' : 'bg-gradient-to-r from-orange-600 to-orange-500 text-white hover:shadow-[0_5px_25px_rgba(249,115,22,0.6)]'}`}
                    >
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
                       <span className="text-[10px] font-bold uppercase tracking-wider">View CV</span>
