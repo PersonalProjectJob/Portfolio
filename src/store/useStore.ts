@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { trackEvent } from '../utils/analytics';
 import { CV_PROJECTS } from '../data/cvData';
+
 export type GameState = 'HERO_LANDING' | 'SELECT_PROFILE' | 'SKILL_MATRIX' | 'PROJECT_JOURNEY' | 'CASE_BRIEF' | 'CASE_STUDY_CRYPTOMAP' | 'CASE_STUDY_NAILHUB' | 'CASE_STUDY_NEXORA' | 'CASE_STUDY_VLINKPAY' | 'CASE_STUDY_AIPROCESS' | 'CASE_STUDY_HANDOFF' | 'CASE_STUDY_SYNCTASKBADGE' | 'CASE_STUDY_DISPATCH' | 'CASE_STUDY_AGENTRULES' | 'EXPERIENCE' | 'PROCESS';
 
 // --- URL ↔ State mapping ---
@@ -136,8 +137,8 @@ export const useStore = create<AppState>((set) => ({
       trackEvent("select_content", {
         content_type: "portfolio_project",
         content_id: project.id,
-        project_name: project.title,
-        project_category: project.category
+        project_name: project.graphMetadata?.shortName ?? project.id,
+        project_category: project.graphMetadata?.zone ?? "unknown"
       });
     }
 
