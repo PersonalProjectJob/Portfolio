@@ -4,6 +4,7 @@ import { useStore } from '../store/useStore';
 import { useT } from '../i18n/useT';
 import { CV_PROJECTS } from '../data/cvData';
 import { trackEvent } from '../utils/analytics';
+
 export const GameCharacterSelect: React.FC = () => {
   const t = useT();
   const { isLightMode, setGameState } = useStore();
