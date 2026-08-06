@@ -806,7 +806,7 @@ export const ProjectNailhub: React.FC = () => {
 
   return (
     <CaseStudyLayout>
-      <div className="relative z-10 container mx-auto px-4 pb-16">
+      <div className="relative z-10 max-w-5xl mx-auto pb-16">
         <motion.section
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}

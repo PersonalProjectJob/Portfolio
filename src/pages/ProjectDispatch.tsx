@@ -47,6 +47,11 @@ export const ProjectDispatch: React.FC = () => {
               <blockquote className={`pl-6 border-l-4 ${isLightMode ? 'border-emerald-500 bg-emerald-50/50' : 'border-emerald-500 bg-emerald-900/10'} py-4 pr-4 rounded-r-xl italic text-lg ${theme.text}`}>
                 {t('dispatch.hero.quote')}
               </blockquote>
+              <div className="mt-8">
+                <a href="https://github.com/PersonalProjectJob/personal-skill-and-plugin/tree/main/skill-principal" target="_blank" rel="noopener noreferrer" className={`inline-flex items-center gap-2 px-6 py-3 rounded-full font-bold transition-all ${isLightMode ? 'bg-emerald-600 text-white hover:bg-emerald-700 shadow-lg hover:shadow-emerald-600/30' : 'bg-emerald-500 text-slate-900 hover:bg-emerald-400 shadow-[0_0_20px_rgba(16,185,129,0.3)] hover:shadow-[0_0_30px_rgba(16,185,129,0.5)]'}`}>
+                  View in Repo <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                </a>
+              </div>
             </div>
             <div className="flex-1 w-full relative">
               <div className={`absolute inset-0 bg-emerald-500 rounded-3xl blur-3xl opacity-20`}></div>

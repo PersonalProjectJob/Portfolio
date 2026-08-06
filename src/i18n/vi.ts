@@ -216,16 +216,16 @@ export const vi: Record<string, string> = {
   'nexora.nextProject': 'Dự án tiếp theo: VLINKPAY',
 
   // --- Nailhub ---Dispatch ---
-  'dispatch.hero.label': '01. TẦM NHÌN — ỦY QUYỀN THÔNG MINH CHO AI',
+  'dispatch.hero.label': 'TẦM NHÌN — ỦY QUYỀN THÔNG MINH CHO AI',
   'dispatch.hero.title1': 'Từ workflow thủ công đến hệ thống ',
-  'dispatch.hero.title2': 'Orchestration (Dispatch)',
+  'dispatch.hero.title2': 'Orchestration',
   'dispatch.hero.title3': ' có kiểm soát',
   'dispatch.hero.desc1': 'Làm thế nào để quản lý hàng chục task, issue, và file thiết kế mà không rơi vào hỗn loạn? Tôi đã chia tách toàn bộ workflow thành hai tầng riêng biệt: ',
   'dispatch.hero.desc2': ' chuyên trách orchestration các task, và ',
   'dispatch.hero.desc3': ' chịu trách nhiệm thực thi các tiêu chuẩn của dự án.',
   'dispatch.hero.quote': 'Mục tiêu ở đây không phải để AI cướp đi công việc của Product Designer. Thay vào đó, mục tiêu là loại bỏ các thao tác thủ công lặp đi lặp lại, trả lại cho Designer không gian để thực sự tập trung vào thiết kế và giải quyết vấn đề.',
   
-  'dispatch.workflow.label': '02. WORKFLOW NGUYÊN BẢN',
+  'dispatch.workflow.label': '01. WORKFLOW NGUYÊN BẢN',
   'dispatch.workflow.title': 'Chúng tôi đã có quy trình, nhưng...',
   'dispatch.workflow.desc1': 'Trước khi ',
   'dispatch.workflow.desc2': ' xuất hiện, mọi bước từ Design đến QA đều được định nghĩa chặt chẽ. Vấn đề duy nhất là: Con người phải chắp vá và orchestration từng bước một cách thủ công.',
@@ -247,7 +247,7 @@ export const vi: Record<string, string> = {
   'dispatch.workflow.step8.title': '8. Cập nhật Status',
   'dispatch.workflow.step8.desc': 'Người quản lý phải liên tục nhảy giữa các công cụ (Jira, GitHub) để cập nhật trạng thái.',
 
-  'dispatch.breakdown.label': '03. ĐIỂM ĐỨT GÃY',
+  'dispatch.breakdown.label': '02. ĐIỂM ĐỨT GÃY',
   'dispatch.breakdown.title': 'Khi Con Người Trở Thành "Nút Thắt Cổ Chai"',
   'dispatch.breakdown.desc': 'Quy trình thì vững, nhưng khi hàng chục Agent nhảy vào làm việc cùng lúc, việc orchestration thủ công dẫn đến quá tải, mất bối cảnh (context) và liên tục xảy ra lỗi.',
   
@@ -264,7 +264,7 @@ export const vi: Record<string, string> = {
   'dispatch.breakdown.card6.title': 'Status Phân Mảnh',
   'dispatch.breakdown.card6.desc': 'Không có protocol báo cáo khi task phình to. Trạng thái task bị mất đồng bộ giữa GitHub, Jira và Obsidian.',
 
-  'dispatch.research.label': '04. RESEARCH & PHÂN TÍCH',
+  'dispatch.research.label': '03. RESEARCH & PHÂN TÍCH',
   'dispatch.research.title': 'Quan sát, Phân loại & Thử nghiệm',
   'dispatch.research.step1.title': 'Quan sát Workflow:',
   'dispatch.research.step1.desc': 'Theo sát quá trình vận hành để xác định các nút thắt thực tế.',
@@ -277,7 +277,7 @@ export const vi: Record<string, string> = {
   'dispatch.research.step5.title': 'Thực chiến & Tinh chỉnh:',
   'dispatch.research.step5.desc': 'Chạy trên các task thực tế, thu thập lỗi, tối ưu prompt, và đóng gói chúng thành các Reusable Skills.',
 
-  'dispatch.solution.label': '05. GIẢI PHÁP: /DISPATCH & .AGENT-RULES',
+  'dispatch.solution.label': '04. GIẢI PHÁP: /DISPATCH & .AGENT-RULES',
   'dispatch.solution.title': 'Biến Workflow thủ công thành một "Hệ điều hành" (OS)',
   'dispatch.solution.desc1': 'Tôi đã hệ thống hóa toàn bộ quy trình thành 2 tầng riêng biệt: Workflow Orchestration Layer (quyết định ',
   'dispatch.solution.desc2': 'ai làm việc, và trong môi trường nào',
@@ -322,7 +322,7 @@ export const vi: Record<string, string> = {
   'dispatch.solution.table.row10.before': 'AI bị "mất trí nhớ" ngay khi mở session mới',
   'dispatch.solution.table.row10.after': 'Được lưu trữ vĩnh viễn trong các Shared Files (Knowledge Landing)',
 
-  'dispatch.route.label': '06. ROUTING (ROUTE A/B/C)',
+  'dispatch.route.label': '05. ROUTING (ROUTE A/B/C)',
   'dispatch.route.title': 'Routes A / B / C là gì?',
   'dispatch.route.desc1': 'Thay vì phỏng đoán mù quáng, ',
   'dispatch.route.desc2': ' quét độ phức tạp của task và tự động đề xuất một trong ba route. Mỗi route định nghĩa chặt chẽ: Dùng Agent nào? Mức độ cô lập môi trường ra sao? Và quy trình testing phải khắt khe đến mức nào.',
@@ -357,7 +357,7 @@ export const vi: Record<string, string> = {
 
   'dispatch.route.note': '💡 Nguyên tắc bất di bất dịch: Task càng nhạy cảm &rarr; Agent càng thông minh &rarr; Môi trường càng cô lập &rarr; Kiểm chứng càng khắt khe. Tuyệt đối không có ngoại lệ.',
 
-  'dispatch.role.label': '07. VAI TRÒ CỦA TÁC GIẢ',
+  'dispatch.role.label': '06. VAI TRÒ CỦA TÁC GIẢ',
   'dispatch.role.title': 'Là một Designer, không phải thợ máy AI Orchestration',
   'dispatch.role.desc': 'Tôi xây dựng hệ thống này để giải phóng bản thân khỏi những task orchestration nhàm chán. Thời gian và chất xám của tôi cần được dành trọn vẹn cho việc thiết kế và giải quyết vấn đề của người dùng.',
   
@@ -373,7 +373,7 @@ export const vi: Record<string, string> = {
   'dispatch.role.focus2.item3': 'Xây dựng hệ thống knowledge governance (.agent-rules) và các cơ chế cô lập an toàn.',
   'dispatch.role.focus2.item4': 'Đích thân thực thi các thử nghiệm, tinh chỉnh prompt và đóng gói thành Reusable Skills cho AI.',
 
-  'dispatch.handoff.label': '08. DESIGN HANDOFF',
+  'dispatch.handoff.label': '07. DESIGN HANDOFF',
   'dispatch.handoff.title': 'Tài liệu Thiết kế: Bản hợp đồng thép',
   'dispatch.handoff.desc': 'Các Agent viết code dựa trên thiết kế của tôi. Thiết kế ở đây không chỉ là một bức hình đẹp; nó là một "Bản hợp đồng" ràng buộc với Goals, ACs, và Scope. Nếu Agent phát hiện xung đột giữa hình ảnh Visual và AC, hệ thống ngay lập tức giương cờ Escalation để kéo con người vào xử lý.',
   
@@ -384,7 +384,7 @@ export const vi: Record<string, string> = {
   'dispatch.handoff.card3.title': 'Hình ảnh tham khảo (PNG)',
   'dispatch.handoff.card3.desc': 'Dùng cho các tinh chỉnh UI nhỏ (Route A). Nhanh gọn, trực quan, đủ để Agent nắm bắt ngay ý đồ.',
 
-  'dispatch.example.label': '09. VÍ DỤ THỰC TẾ',
+  'dispatch.example.label': '08. VÍ DỤ THỰC TẾ',
   'dispatch.example.title': 'Thực tiễn: Chạy một Task từ A đến Z',
   'dispatch.example.desc': 'Hãy xem hệ thống chạy trơn tru từ khi nhận request đến lúc hoàn thiện code, không cần bất kỳ sự can thiệp thủ công nào.',
   
@@ -419,11 +419,11 @@ export const vi: Record<string, string> = {
   'dispatch.farewell.desc5': ' — một bộ quy tắc nghiêm ngặt buộc AI phải tuân thủ kỷ luật dự án.',
   'dispatch.farewell.btn': 'Khám phá Knowledge Governance',
 
-  'agentRules.s1.tag': '01. TỔNG QUAN',
+  'agentRules.s1.tag': 'TỔNG QUAN',
   'agentRules.s1.title': 'Biến "Kiến thức ngầm" (Tacit Knowledge) thành một Hệ điều hành Tiêu chuẩn cho AI Agents',
   'agentRules.s1.desc': 'Làm thế nào để một đội AI Agents phối hợp mượt mà như một team con người thực sự? Tôi đã chắt lọc các quyết định thủ công (trước đây nằm trong đầu con người) thành một hệ thống luật lệ nghiêm ngặt — bao gồm các workflow orchestration, vòng đời (lifecycles) chuẩn hóa, và các ràng buộc (gating constraints) rõ ràng.',
   'agentRules.s1.quote': 'Mục tiêu cốt lõi không phải là để AI tự trị một cách hoang dã. Mà là để đảm bảo mỗi Agent nhận được đúng context, thực thi đúng phạm vi (scope) của mình, và handoff kết quả sạch sẽ cho giai đoạn tiếp theo một cách trơn tru.',
-  'agentRules.s2.tag': '02. WORKFLOW NGUYÊN BẢN',
+  'agentRules.s2.tag': '01. WORKFLOW NGUYÊN BẢN',
   'agentRules.s2.title': 'Workflow ban đầu trông như thế nào?',
   'agentRules.s2.desc1': 'Thực ra, trước khi ',
   'agentRules.s2.desc2': ' được đưa vào, team chúng tôi ĐÃ sở hữu một quy trình Delivery có cấu trúc. Nút thắt không phải là "thiếu quy trình," mà là quy trình này ngốn quá nhiều thời gian orchestration thủ công.',
@@ -443,7 +443,7 @@ export const vi: Record<string, string> = {
   'agentRules.s2.t6.bot': 'Chính xác thì khi nào chuyển state sang Testing / Done?',
   'agentRules.s2.t7.art': 'Sprint / US / Board',
   'agentRules.s2.t7.bot': 'Làm sao để cập nhật chéo (cross-update) các status mà không bị conflict?',
-  'agentRules.s3.tag': '03. KIẾN THỨC NGẦM',
+  'agentRules.s3.tag': '02. KIẾN THỨC NGẦM',
   'agentRules.s3.title': 'Điểm đứt gãy của "Kiến thức ngầm"',
   'agentRules.s3.c1.title': 'Mất Bối cảnh (Context Loss)',
   'agentRules.s3.c1.desc': 'Mỗi khi một session chat mới được mở, AI bị "mất trí nhớ" về Active Sprint, quên mất User Story hiện tại, nhận diện sai tên màn hình, và phớt lờ các quy tắc về Evidence đã thiết lập ở các session trước.',
@@ -454,7 +454,7 @@ export const vi: Record<string, string> = {
   'agentRules.s3.q1': 'Vấn đề cốt lõi không nằm ở trí thông minh của model, mà là sự thiếu vắng một ',
   'agentRules.s3.q2': '"bộ nhớ vận hành chung" (shared operational memory)',
   'agentRules.s3.q3': ' vừa tập trung vừa được kiểm soát.',
-  'agentRules.s4.tag': '04. KIẾN TRÚC KIẾN THỨC',
+  'agentRules.s4.tag': '03. KIẾN TRÚC KIẾN THỨC',
   'agentRules.s4.title': 'Kiến trúc "Phân rã Kiến thức"',
   'agentRules.s4.desc1': 'Đừng lầm tưởng ',
   'agentRules.s4.desc2': ' là một mega-prompt nguyên khối nhồi nhét mọi thứ vào. Thực tế, nó hoạt động như một "Router Điều phối" (Orchestration Router), phân rã các luật lệ thành các domain chuyên biệt cực sâu.',
@@ -467,7 +467,7 @@ export const vi: Record<string, string> = {
   'agentRules.s4.f5.desc': 'Quy trình xuất báo cáo và đóng gói kết quả.',
   'agentRules.s4.f6.desc': 'Xử lý các task tồn đọng sang Sprint tiếp theo.',
   'agentRules.s4.tool': 'Một số chính sách được thực thi qua các tool tự động thay vì chỉ thị trong prompt.',
-  'agentRules.s5.tag': '05. ROUTING TASK',
+  'agentRules.s5.tag': '04. ROUTING TASK',
   'agentRules.s5.title': 'Routing theo Cấp độ Phức tạp (Complexity Tier)',
   'agentRules.s5.desc': 'Quy tắc vàng: Mức độ khắt khe của Tài liệu và Governance phải tỷ lệ thuận với độ phức tạp và rủi ro của task.',
   'agentRules.s5.micro.title': 'Micro Task (Task siêu nhỏ)',
@@ -485,7 +485,7 @@ export const vi: Record<string, string> = {
   'agentRules.s5.macro.6': 'Kéo dài qua nhiều session.',
   'agentRules.s5.esc.title': 'Cơ chế Leo thang (Escalation)',
   'agentRules.s5.esc.desc': 'Nếu đang thực thi một Micro task nhưng phát hiện nó đụng đến business logic, cần sửa đổi file thứ 3, hoặc gọi API mới, Agent <strong>BẮT BUỘC DỪNG LẠI</strong> ngay lập tức. Không được phép code tiếp; nó phải được <strong>leo thang thành một Full US</strong>.',
-  'agentRules.s6.tag': '06. PIPELINE DELIVERY KÉP',
+  'agentRules.s6.tag': '05. PIPELINE DELIVERY KÉP',
   'agentRules.s6.title': 'Hai Pipeline Delivery Song song',
   'agentRules.s6.l1.title': 'Làn A — Micro Task',
   'agentRules.s6.l1.i1': 'Bỏ qua User Story và Folders',
@@ -501,7 +501,7 @@ export const vi: Record<string, string> = {
   'agentRules.s6.l2.d2': 'Phải kiểm tra chéo (cross-verify) với API Spec hoặc file Design trước khi chốt ACs.',
   'agentRules.s6.l2.i3': 'Đồng bộ Log (Sprint & Dispatch Log Sync)',
   'agentRules.s6.l2.d3': 'Ghi log trạng thái thực thi để các Agent phía sau giữ được toàn vẹn context.',
-  'agentRules.s7.tag': '07. MÔ HÌNH HẠNG MỤC CÔNG VIỆC (WORK ITEM)',
+  'agentRules.s7.tag': '06. MÔ HÌNH HẠNG MỤC CÔNG VIỆC (WORK ITEM)',
   'agentRules.s7.title': 'User Story, Task, và Dev Task',
   'agentRules.s7.desc': 'Mỗi Item gánh một sứ mệnh riêng. Lưu ý: <strong>Một Dev Task chuyển "Done" KHÔNG CÓ NGHĨA LÀ tính năng đó đã "Done".</strong>',
   'agentRules.s7.i1.title': 'User Story (Obsidian)',
@@ -516,7 +516,7 @@ export const vi: Record<string, string> = {
   'agentRules.s7.i3.2': 'Được liên kết trực tiếp với một Pull Request.',
   'agentRules.s7.i3.3': 'Chỉ đóng lại khi code hoàn tất và đã tự kiểm chứng (self-verified).',
   'agentRules.s7.fail': 'Nếu QA cắm cờ lỗi (Fail): Parent Task bị Mở lại (Re-Opened) &rarr; Dev phải iterate bản fix &rarr; verify lại từ đầu.',
-  'agentRules.s8.tag': '08. QUẢN TRỊ ISSUE & UI',
+  'agentRules.s8.tag': '07. QUẢN TRỊ ISSUE & UI',
   'agentRules.s8.title': 'Chuẩn hóa Thuật ngữ & Các Hợp đồng Giao tiếp',
   'agentRules.s8.i1.title': 'GitHub Issues là Hợp đồng hướng tới Thành viên (Member-facing Contracts)',
   'agentRules.s8.i1.desc': 'Issues tồn tại để bất kỳ ai cũng có thể đọc hiểu (kể cả người ngoài dự án). Không dùng thuật ngữ kỹ thuật lố, không paste filepath hay tên component. Chỉ cho phép các mô tả trực quan: <strong>Trạng thái Hiện tại (Current State)</strong> là gì, và <strong>Kết quả Mong đợi (Expected Outcome)</strong> là gì (Không nhồi nhét ACs vào Issue).',
@@ -537,7 +537,7 @@ export const vi: Record<string, string> = {
   'agentRules.s8.t2': 'Route (Tuyến)',
   'agentRules.s8.t3': 'Screen-slug',
   'agentRules.s8.v7': 'Chi tiết Nhân viên (Staff Details)',
-  'agentRules.s9.tag': '09. EVIDENCE & TÍNH LIÊN TỤC',
+  'agentRules.s9.tag': '08. EVIDENCE & TÍNH LIÊN TỤC',
   'agentRules.s9.title': 'Evidence là "Bộ nhớ Vận hành"',
   'agentRules.s9.desc': 'Evidence không chỉ để log chơi. Nó phục vụ cho Reviewers, QA, các Agent thế hệ sau, truy vết Regression (lỗi hồi quy), và hoạt động như một Audit Trail (dấu vết kiểm toán) thép để loại bỏ mọi sự mập mờ.',
   'agentRules.s9.i1.title': 'Quy tắc Đặt tên & Lưu trữ',
@@ -546,7 +546,7 @@ export const vi: Record<string, string> = {
   'agentRules.s9.i2.desc': 'Sprint kết thúc nhưng User Story chưa Done? <strong>NGHIÊM CẤM</strong> lấp liếm hoặc vứt bỏ nó. Nó phải được carry-over sang Sprint mới, và Agent phải <strong>chủ động hỏi người dùng lý do</strong> để ghi vào Lịch sử Thay đổi (Change History).',
   'agentRules.s9.log1': '| Ngày | Từ | Đến | Lý do (Người dùng) |',
   'agentRules.s9.log2': '| 22/6 | W-03 | W-04 | Chờ BE chốt API |',
-  'agentRules.s10.tag': '10. VÍ DỤ THỰC TẾ',
+  'agentRules.s10.tag': '09. VÍ DỤ THỰC TẾ',
   'agentRules.s10.title': 'Ví dụ thực tiễn: Xử lý US-093',
   'agentRules.s10.i1': '1. User Story (Obsidian)',
   'agentRules.s10.v1': 'Là một nhân viên, tôi muốn hủy liên kết bản thân khỏi một salon, để tôi có thể quản lý các nơi làm việc đang hoạt động của mình.',
@@ -562,7 +562,7 @@ export const vi: Record<string, string> = {
   'agentRules.s10.i4': '4. Evidence',
   'agentRules.s10.v4a': 'Hiện tại (Thiếu nút Rời đi)',
   'agentRules.s10.v4b': 'Mong đợi (Có hành động Rời đi)',
-  'agentRules.s11.tag': '11. TRƯỚC & SAU',
+  'agentRules.s11.tag': '10. TRƯỚC & SAU',
   'agentRules.s11.title': 'Tác động Thực tế của Hệ thống',
   'agentRules.s11.old': 'Trạng thái Cũ (Legacy State)',
   'agentRules.s11.new': 'Hệ thống Mới (New System)',
@@ -580,7 +580,7 @@ export const vi: Record<string, string> = {
   'agentRules.s11.r6b': 'Dispatch logs bảo tồn tỉ mỉ Trạng thái Thực thi (Execution State)',
   'agentRules.s11.r7a': 'Tồn đọng (Carry-overs) dễ dàng trôi vào quên lãng',
   'agentRules.s11.r7b': 'Ép buộc carry-over khắt khe + Ghi log Change History',
-  'agentRules.s12.tag': '12. GOVERNANCE (QUẢN TRỊ)',
+  'agentRules.s12.tag': '11. GOVERNANCE (QUẢN TRỊ)',
   'agentRules.s12.title': 'Sự can thiệp của Con Người & Các Đánh đổi',
   'agentRules.s12.st1': 'Ai quyết định cái gì? (Con người vs AI Agent)',
   'agentRules.s12.t1.title': 'Quyết định scope Task (Micro hay Full US?)',
@@ -613,7 +613,7 @@ export const vi: Record<string, string> = {
   'agentRules.s12.q1': 'Tóm lại: Trong phát triển phần mềm thực tế, chúng ta ưu tiên ',
   'agentRules.s12.q2': '"Tự động hóa có Kiểm soát" (Controlled Automation)',
   'agentRules.s12.q3': ' hơn là để AI đơn phương quyết định mọi thứ.',
-  'agentRules.s13.tag': '13. VAI TRÒ CỦA TÔI',
+  'agentRules.s13.tag': '12. VAI TRÒ CỦA TÔI',
   'agentRules.s13.title': 'Hệ thống Phân cấp & Vai trò của Tác giả',
   'agentRules.s13.st1': 'Hệ thống Phân cấp Source of Truth',
   'agentRules.s13.desc1': 'Trong hệ sinh thái này, mỗi Artifact nắm giữ một quyền lực riêng biệt. Không một file nào được phép độc tài định đoạt mọi thứ:',
@@ -1189,7 +1189,7 @@ export const vi: Record<string, string> = {
   'vlinkpay.mockup.alt': 'Mockup Giao diện Ứng dụng VLINKPAY',
   
   // --- useT fallback ---
-  'dispatch.hero.title': 'Hệ thống Orchestration (Dispatch)',
+  'dispatch.hero.title': 'Hệ thống Orchestration',
 
   // --- Automatically Added ---
   'agentRules.s7.i3.4': 'Assignee: strictly <code>dev-owner</code>.',

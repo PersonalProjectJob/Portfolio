@@ -883,7 +883,7 @@ export const ProjectVlinkpay: React.FC = () => {
           </div>
 
           <figure
-            className={`mx-auto mt-12 w-full max-w-6xl overflow-hidden rounded-[2rem] border shadow-2xl ${theme.card}`}
+            className={`mx-auto mt-12 w-full max-w-5xl overflow-hidden rounded-[2rem] border shadow-2xl ${theme.card}`}
           >
             <div
               className={`flex items-center gap-2 border-b px-5 py-3 ${theme.divider}`}

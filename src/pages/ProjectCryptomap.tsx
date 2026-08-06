@@ -713,7 +713,7 @@ export const ProjectCryptomap: React.FC = () => {
         variants={fadeInUp}
         className="relative z-10 flex min-h-[78vh] flex-col items-center justify-center pb-20 text-center md:pb-28"
       >
-        <figure className="group relative mb-10 w-full max-w-6xl overflow-hidden rounded-[2rem] border border-white/10 bg-[#111827] shadow-2xl">
+        <figure className="group relative mb-10 w-full max-w-5xl overflow-hidden rounded-[2rem] border border-white/10 bg-[#111827] shadow-2xl">
           <img
             loading="eager"
             decoding="async"
@@ -755,7 +755,7 @@ export const ProjectCryptomap: React.FC = () => {
       </motion.section>
 
       <motion.section {...revealProps} className="relative z-10 py-16 md:py-24">
-        <div className="mx-auto max-w-6xl">
+        <div className="mx-auto max-w-5xl">
           <SectionHeading eyebrow={copy.section.overview} title={copy.snapshot.title} textClass={theme.text} mutedClass={theme.textMuted} />
 
           <div className={`overflow-hidden rounded-3xl border ${theme.card}`}>
@@ -786,7 +786,7 @@ export const ProjectCryptomap: React.FC = () => {
       </motion.section>
 
       <motion.section {...revealProps} className="relative z-10 py-16 md:py-24">
-        <div className="mx-auto max-w-6xl">
+        <div className="mx-auto max-w-5xl">
           <SectionHeading eyebrow={copy.section.challenge} title={copy.challenge.title} textClass={theme.text} mutedClass={theme.textMuted} centered />
 
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
@@ -807,7 +807,7 @@ export const ProjectCryptomap: React.FC = () => {
       </motion.section>
 
       <motion.section {...revealProps} className="relative z-10 border-y border-white/5 py-16 md:py-24">
-        <div className="mx-auto max-w-6xl">
+        <div className="mx-auto max-w-5xl">
           <SectionHeading
             eyebrow={copy.section.research}
             title={copy.research.title}
@@ -891,7 +891,7 @@ export const ProjectCryptomap: React.FC = () => {
       </motion.section>
 
       <motion.section {...revealProps} className="relative z-10 py-16 md:py-24">
-        <div className="mx-auto max-w-6xl">
+        <div className="mx-auto max-w-5xl">
           <SectionHeading eyebrow={copy.section.strategy} title={copy.strategy.title} textClass={theme.text} mutedClass={theme.textMuted} />
 
           <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
@@ -939,7 +939,7 @@ export const ProjectCryptomap: React.FC = () => {
       </motion.section>
 
       <motion.section {...revealProps} className="relative z-10 py-16 md:py-24" id="cryptomap-decisions">
-        <div className="mx-auto max-w-6xl">
+        <div className="mx-auto max-w-5xl">
           <SectionHeading eyebrow={copy.section.decisions} title={copy.decisions.title} textClass={theme.text} mutedClass={theme.textMuted} centered />
 
           <div className="space-y-24 md:space-y-32">
@@ -986,7 +986,7 @@ export const ProjectCryptomap: React.FC = () => {
       </motion.section>
 
       <motion.section {...revealProps} className="relative z-10 border-y border-white/5 py-16 md:py-24">
-        <div className="mx-auto max-w-6xl">
+        <div className="mx-auto max-w-5xl">
           <SectionHeading
             eyebrow={copy.section.performance}
             title={copy.performance.title}
@@ -1040,7 +1040,7 @@ export const ProjectCryptomap: React.FC = () => {
       </motion.section>
 
       <motion.section {...revealProps} className="relative z-10 py-16 md:py-24">
-        <div className="mx-auto max-w-6xl">
+        <div className="mx-auto max-w-5xl">
           <SectionHeading eyebrow={copy.section.reflection} title={copy.reflection.title} textClass={theme.text} mutedClass={theme.textMuted} centered />
 
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
