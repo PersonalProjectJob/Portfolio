@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useStore } from '../store/useStore';
 import { useT } from '../i18n/useT';
 import { CV_PROJECTS } from '../data/cvData';
-
+import { trackEvent } from '../utils/analytics';
 export const GameCharacterSelect: React.FC = () => {
   const t = useT();
   const { isLightMode, setGameState } = useStore();
@@ -25,6 +25,7 @@ export const GameCharacterSelect: React.FC = () => {
     try {
       await navigator.clipboard.writeText('tnsthao94@gmail.com');
       setIsEmailCopied(true);
+      trackEvent("contact_click", { contact_method: "email", contact_location: "hero" });
       setTimeout(() => {
         setIsEmailCopied(false);
         setIsEmailMenuOpen(false);
@@ -103,8 +104,11 @@ export const GameCharacterSelect: React.FC = () => {
                               <a
                                 href="https://mail.google.com/mail/?view=cm&fs=1&to=tnsthao94@gmail.com"
                                 target="_blank"
-                                rel="noreferrer"
-                                onClick={() => setIsEmailMenuOpen(false)}
+                                rel="noopener noreferrer"
+                                onClick={() => {
+                                  setIsEmailMenuOpen(false);
+                                  trackEvent("contact_click", { contact_method: "email", contact_location: "hero" });
+                                }}
                                 className={`flex items-center gap-3 w-full px-3 py-2.5 rounded-lg text-sm text-left transition-colors ${
                                   isLightMode ? 'hover:bg-slate-100 text-slate-700' : 'hover:bg-white/10 text-slate-200'
                                 }`}
@@ -115,7 +119,10 @@ export const GameCharacterSelect: React.FC = () => {
                               
                               <a
                                 href="mailto:tnsthao94@gmail.com"
-                                onClick={() => setIsEmailMenuOpen(false)}
+                                onClick={() => {
+                                  setIsEmailMenuOpen(false);
+                                  trackEvent("contact_click", { contact_method: "email", contact_location: "hero" });
+                                }}
                                 className={`flex items-center gap-3 w-full px-3 py-2.5 rounded-lg text-sm text-left transition-colors ${
                                   isLightMode ? 'hover:bg-slate-100 text-slate-700' : 'hover:bg-white/10 text-slate-200'
                                 }`}
@@ -128,7 +135,7 @@ export const GameCharacterSelect: React.FC = () => {
                         )}
                      </AnimatePresence>
                    </div>
-                   <a href="https://www.linkedin.com/in/thaotns" target="_blank" rel="noreferrer" className={`flex-1 min-w-[120px] py-3 rounded-xl border flex flex-col items-center justify-center gap-1.5 transition-all hover:-translate-y-1 ${isLightMode ? 'bg-white/80 border-slate-300 text-slate-700 hover:shadow-lg hover:border-orange-300 hover:text-orange-600' : 'bg-slate-800/80 border-slate-700 text-slate-300 hover:shadow-[0_5px_15px_rgba(13,148,136,0.3)] hover:border-orange-500/50 hover:text-orange-400'}`}>
+                   <a href="https://www.linkedin.com/in/thaotns" target="_blank" rel="noopener noreferrer" onClick={() => trackEvent("contact_click", { contact_method: "linkedin", contact_location: "hero" })} className={`flex-1 min-w-[120px] py-3 rounded-xl border flex flex-col items-center justify-center gap-1.5 transition-all hover:-translate-y-1 ${isLightMode ? 'bg-white/80 border-slate-300 text-slate-700 hover:shadow-lg hover:border-orange-300 hover:text-orange-600' : 'bg-slate-800/80 border-slate-700 text-slate-300 hover:shadow-[0_5px_15px_rgba(13,148,136,0.3)] hover:border-orange-500/50 hover:text-orange-400'}`}>
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
                       <span className="text-[10px] font-bold uppercase tracking-wider">{t("profile.linkedin")}</span>
                    </a>

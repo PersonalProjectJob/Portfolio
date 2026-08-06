@@ -5,6 +5,7 @@ import { CV_PROJECTS } from '../../data/cvData';
 import { Clock } from '../Clock';
 import { LanguageToggle } from '../LanguageToggle';
 import { useT } from '../../i18n/useT';
+import { trackEvent } from '../../utils/analytics';
 
 interface CaseStudyLayoutProps {
   children: React.ReactNode;
@@ -31,6 +32,7 @@ export const CaseStudyLayout: React.FC<CaseStudyLayoutProps> = ({ children }) =>
     try {
       await navigator.clipboard.writeText('tnsthao94@gmail.com');
       setIsEmailCopied(true);
+      trackEvent("contact_click", { contact_method: "email", contact_location: "contact_section" });
       setTimeout(() => {
         setIsEmailCopied(false);
         setIsEmailMenuOpen(false);
@@ -213,8 +215,11 @@ export const CaseStudyLayout: React.FC<CaseStudyLayoutProps> = ({ children }) =>
                         <a
                           href="https://mail.google.com/mail/?view=cm&fs=1&to=tnsthao94@gmail.com"
                           target="_blank"
-                          rel="noreferrer"
-                          onClick={() => setIsEmailMenuOpen(false)}
+                          rel="noopener noreferrer"
+                          onClick={() => {
+                            setIsEmailMenuOpen(false);
+                            trackEvent("contact_click", { contact_method: "email", contact_location: "contact_section" });
+                          }}
                           className={`flex items-center gap-3 w-full px-3 py-2.5 rounded-lg text-sm text-left transition-colors ${
                             isLightMode ? 'hover:bg-slate-100 text-slate-700' : 'hover:bg-white/10 text-slate-200'
                           }`}
@@ -225,7 +230,10 @@ export const CaseStudyLayout: React.FC<CaseStudyLayoutProps> = ({ children }) =>
                         
                         <a
                           href="mailto:tnsthao94@gmail.com"
-                          onClick={() => setIsEmailMenuOpen(false)}
+                          onClick={() => {
+                            setIsEmailMenuOpen(false);
+                            trackEvent("contact_click", { contact_method: "email", contact_location: "contact_section" });
+                          }}
                           className={`flex items-center gap-3 w-full px-3 py-2.5 rounded-lg text-sm text-left transition-colors ${
                             isLightMode ? 'hover:bg-slate-100 text-slate-700' : 'hover:bg-white/10 text-slate-200'
                           }`}
@@ -242,7 +250,8 @@ export const CaseStudyLayout: React.FC<CaseStudyLayoutProps> = ({ children }) =>
               <a
                 href="https://www.linkedin.com/in/thaotns"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
+                onClick={() => trackEvent("contact_click", { contact_method: "linkedin", contact_location: "contact_section" })}
                 className={`flex items-center gap-2 font-semibold transition-colors ${isLightMode ? 'text-amber-500 hover:text-amber-600' : 'text-amber-400 hover:text-amber-300'}`}
               >
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
