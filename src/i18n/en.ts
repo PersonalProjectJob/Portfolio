@@ -635,6 +635,8 @@ export const en: Record<string, string> = {
   'profile.role': 'Product Designer / UX-UI',
   'profile.emailMe': 'Email Me',
   'profile.linkedin': 'LinkedIn',
+  'profile.viewCV': 'View CV',
+  'profile.downloadCV': 'Download CV',
   'profile.yearsExp': 'Years Exp.',
   'profile.keySectors': 'Projects',
   'profile.domainExpertise': 'Domain Expertise',
