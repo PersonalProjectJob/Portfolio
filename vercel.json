@@ -1,3 +1,25 @@
 {
+  "redirects": [
+    {
+      "source": "/linkedin",
+      "destination": "/?utm_source=linkedin&utm_medium=social&utm_campaign=portfolio&utm_content=profile",
+      "permanent": false
+    },
+    {
+      "source": "/cv-link",
+      "destination": "/?utm_source=cv&utm_medium=document&utm_campaign=job_application&utm_content=cv_pdf",
+      "permanent": false
+    },
+    {
+      "source": "/recruiter",
+      "destination": "/?utm_source=recruiter_email&utm_medium=email&utm_campaign=job_application&utm_content=portfolio_link",
+      "permanent": false
+    },
+    {
+      "source": "/zalo",
+      "destination": "/?utm_source=zalo&utm_medium=message&utm_campaign=portfolio&utm_content=shared_link",
+      "permanent": false
+    }
+  ],
   "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
 }
