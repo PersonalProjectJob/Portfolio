@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useStore } from '../store/useStore';
 import { useT } from '../i18n/useT';
 import { CV_PROJECTS } from '../data/cvData';
+import { trackEvent } from '../utils/analytics';
 
 export const GameCharacterSelect: React.FC = () => {
   const t = useT();
@@ -33,6 +34,14 @@ export const GameCharacterSelect: React.FC = () => {
       console.error('Failed to copy email:', err);
     }
   };
+
+  const handleViewCV = () => {
+    trackEvent("cv_view", {
+      file_name: "Truong-Nguyen-Son-Thao-Product-Designer-CV.pdf",
+      contact_location: "profile_contact"
+    });
+  };
+
   return (
     <motion.div 
       initial={{ opacity: 0, y: 20 }}
@@ -103,8 +112,11 @@ export const GameCharacterSelect: React.FC = () => {
                               <a
                                 href="https://mail.google.com/mail/?view=cm&fs=1&to=tnsthao94@gmail.com"
                                 target="_blank"
-                                rel="noreferrer"
-                                onClick={() => setIsEmailMenuOpen(false)}
+                                rel="noopener noreferrer"
+                                onClick={() => {
+                                  setIsEmailMenuOpen(false);
+                                  trackEvent("contact_click", { contact_method: "email", contact_location: "hero" });
+                                }}
                                 className={`flex items-center gap-3 w-full px-3 py-2.5 rounded-lg text-sm text-left transition-colors ${
                                   isLightMode ? 'hover:bg-slate-100 text-slate-700' : 'hover:bg-white/10 text-slate-200'
                                 }`}
@@ -115,7 +127,10 @@ export const GameCharacterSelect: React.FC = () => {
                               
                               <a
                                 href="mailto:tnsthao94@gmail.com"
-                                onClick={() => setIsEmailMenuOpen(false)}
+                                onClick={() => {
+                                  setIsEmailMenuOpen(false);
+                                  trackEvent("contact_click", { contact_method: "email", contact_location: "hero" });
+                                }}
                                 className={`flex items-center gap-3 w-full px-3 py-2.5 rounded-lg text-sm text-left transition-colors ${
                                   isLightMode ? 'hover:bg-slate-100 text-slate-700' : 'hover:bg-white/10 text-slate-200'
                                 }`}
@@ -131,6 +146,26 @@ export const GameCharacterSelect: React.FC = () => {
                    <a href="https://www.linkedin.com/in/thaotns" target="_blank" rel="noreferrer" className={`flex-1 min-w-[120px] py-3 rounded-xl border flex flex-col items-center justify-center gap-1.5 transition-all hover:-translate-y-1 ${isLightMode ? 'bg-white/80 border-slate-300 text-slate-700 hover:shadow-lg hover:border-orange-300 hover:text-orange-600' : 'bg-slate-800/80 border-slate-700 text-slate-300 hover:shadow-[0_5px_15px_rgba(13,148,136,0.3)] hover:border-orange-500/50 hover:text-orange-400'}`}>
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
                       <span className="text-[10px] font-bold uppercase tracking-wider">{t("profile.linkedin")}</span>
+                   </a>
+                   <a 
+                      href="/cv/Truong-Nguyen-Son-Thao-Product-Designer-CV.pdf" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      onClick={handleViewCV}
+                      aria-label="View CV in a new tab"
+                      className={`flex-1 min-w-[120px] py-3 rounded-xl border-none flex flex-col items-center justify-center gap-1.5 transition-all hover:-translate-y-1 shadow-[0_0_15px_rgba(249,115,22,0.3)] ${isLightMode ? 'bg-orange-500 text-white hover:bg-orange-600 hover:shadow-[0_8px_20px_rgba(249,115,22,0.4)]' : 'bg-gradient-to-r from-orange-600 to-orange-500 text-white hover:shadow-[0_5px_25px_rgba(249,115,22,0.6)]'}`}
+                   >
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                      <span className="text-[10px] font-bold uppercase tracking-wider">{t("profile.viewCV")}</span>
+                   </a>
+                   <a 
+                      href="/cv/Truong-Nguyen-Son-Thao-Product-Designer-CV.pdf" 
+                      download="Truong-Nguyen-Son-Thao-Product-Designer-CV.pdf"
+                      aria-label="Download CV"
+                      className={`flex-1 min-w-[120px] py-3 rounded-xl border flex flex-col items-center justify-center gap-1.5 transition-all hover:-translate-y-1 ${isLightMode ? 'bg-white/80 border-slate-300 text-slate-700 hover:shadow-lg hover:border-orange-300 hover:text-orange-600' : 'bg-slate-800/80 border-slate-700 text-slate-300 hover:shadow-[0_5px_15px_rgba(13,148,136,0.3)] hover:border-orange-500/50 hover:text-orange-400'}`}
+                   >
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                      <span className="text-[10px] font-bold uppercase tracking-wider">{t("profile.downloadCV")}</span>
                    </a>
                 </div>
              </div>
