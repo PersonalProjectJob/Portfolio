@@ -31,6 +31,7 @@ const ProjectHandoff = lazy(() => import('./pages/ProjectHandoff').then(m => ({ 
 const ProjectSyncTaskBadge = lazy(() => import('./pages/ProjectSyncTaskBadge'));
 const ProjectDispatch = lazy(() => import('./pages/ProjectDispatch').then(m => ({ default: m.ProjectDispatch })));
 const ProjectAgentRules = lazy(() => import('./pages/ProjectAgentRules').then(m => ({ default: m.ProjectAgentRules })));
+const AdminApp = lazy(() => import('./admin/AdminApp'));
 
 // Route map: GameState → lazy component (HERO_LANDING handled separately)
 const ROUTES: Partial<Record<GameState, React.LazyExoticComponent<React.FC>>> = {
@@ -53,6 +54,9 @@ const ROUTES: Partial<Record<GameState, React.LazyExoticComponent<React.FC>>> = 
 
 function App() {
   const { gameState, setGameState, isLightMode, syncFromURL } = useStore();
+  const [isAdminRoute, setIsAdminRoute] = useState(() => 
+    typeof window !== 'undefined' && window.location.pathname.startsWith('/admin')
+  );
   const isHero = gameState === 'HERO_LANDING';
   const [landingTarget, setLandingTarget] = useState<'about' | 'contact' | null>(null);
   const mainScrollRef = useRef<HTMLDivElement>(null);
@@ -74,7 +78,11 @@ function App() {
   // Sync state from URL on browser back/forward
   useEffect(() => {
     const handlePopState = () => {
-      syncFromURL();
+      const isAdmin = typeof window !== 'undefined' && window.location.pathname.startsWith('/admin');
+      setIsAdminRoute(isAdmin);
+      if (!isAdmin) {
+        syncFromURL();
+      }
     };
     window.addEventListener('popstate', handlePopState);
     return () => window.removeEventListener('popstate', handlePopState);
@@ -82,7 +90,9 @@ function App() {
 
   // Replace URL on initial mount (so history entry has correct state)
   useEffect(() => {
-    replaceURL(gameState);
+    if (!window.location.pathname.startsWith('/admin')) {
+      replaceURL(gameState);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -109,6 +119,25 @@ function App() {
 
     return () => window.clearInterval(timer);
   }, [isHero, gameState, landingTarget]);
+
+  if (isAdminRoute) {
+    return (
+      <ErrorBoundary>
+        <Suspense
+          fallback={
+            <div className="min-h-screen w-full flex items-center justify-center bg-slate-950 text-slate-400">
+              <div className="flex items-center gap-2">
+                <span className="w-2.5 h-2.5 rounded-full bg-teal-400 animate-pulse" />
+                <span className="text-sm font-medium tracking-wide">Loading Admin Workspace...</span>
+              </div>
+            </div>
+          }
+        >
+          <AdminApp />
+        </Suspense>
+      </ErrorBoundary>
+    );
+  }
 
   const handleLandingNavigation = (destination: 'projects' | 'about' | 'services' | 'contact') => {
     setGameState(destination === 'projects' ? 'PROJECT_JOURNEY' : destination === 'services' ? 'PROCESS' : 'SELECT_PROFILE');

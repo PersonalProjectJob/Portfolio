@@ -25,3 +25,13 @@ dist-ssr
 
 # Claude Code local worktrees (nested git checkouts, must never be committed)
 .claude/worktrees/
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+
+# Agent tasks and PR body scratchpads
+.agent-tasks/
+scripts/pr-body*.md
+*-body*.md
