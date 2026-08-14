@@ -47,6 +47,9 @@ const URL_TO_STATE: Record<string, { gameState: GameState; selectedQuest?: strin
 
 /** Resolve initial state from current URL pathname */
 function resolveStateFromURL(): { gameState: GameState; selectedQuest: string | null } {
+  if (typeof window === 'undefined') {
+    return { gameState: 'HERO_LANDING', selectedQuest: null };
+  }
   const path = window.location.pathname.replace(/\/+$/, '') || '/';
   const match = URL_TO_STATE[path];
   if (match) {
@@ -57,16 +60,26 @@ function resolveStateFromURL(): { gameState: GameState; selectedQuest: string | 
 
 /** Push URL to browser history without triggering popstate */
 function pushURL(state: GameState) {
+  if (typeof window === 'undefined') return;
+  if (window.location.pathname.startsWith('/admin')) {
+    return;
+  }
   const url = STATE_TO_URL[state] || '/';
   if (window.location.pathname !== url) {
     window.history.pushState({ gameState: state }, '', url);
   }
 }
 
-/** Replace current URL (for init, no history entry) */
+/** Replace current URL in browser history */
 export function replaceURL(state: GameState) {
+  if (typeof window === 'undefined') return;
+  if (window.location.pathname.startsWith('/admin')) {
+    return;
+  }
   const url = STATE_TO_URL[state] || '/';
-  window.history.replaceState({ gameState: state }, '', url);
+  if (window.location.pathname !== url) {
+    window.history.replaceState({ gameState: state }, '', url);
+  }
 }
 
 // --- Quest → GameState mapping ---
