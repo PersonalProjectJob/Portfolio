@@ -1,5 +1,6 @@
-import type { VercelRequest, VercelResponse } from '@vercel/node';
-import crypto from 'crypto';
+export const config = {
+  runtime: 'edge',
+};
 
 /**
  * Parses CLOUDINARY_URL environment variable:
@@ -21,37 +22,64 @@ function parseCloudinaryUrl(urlStr?: string) {
   return null;
 }
 
+async function sha1Hex(str: string): Promise<string> {
+  const enc = new TextEncoder();
+  const data = enc.encode(str);
+  const hashBuf = await crypto.subtle.digest('SHA-1', data);
+  const hashArr = Array.from(new Uint8Array(hashBuf));
+  return hashArr.map((b) => b.toString(16).padStart(2, '0')).join('');
+}
+
 /**
  * Cloudinary Signature Generator for Signed Uploads & Access Security
- * Generates secure HMAC SHA-1 / SHA-256 signature on the server side
+ * Generates secure SHA-1 signature on the server side using Web Crypto
  * so API_SECRET is NEVER exposed in client bundle.
  */
-export default async function handler(req: VercelRequest, res: VercelResponse) {
+export default async function handler(req: Request) {
   // CORS configuration
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  const corsHeaders = {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+  };
 
   if (req.method === 'OPTIONS') {
-    return res.status(200).end();
+    return new Response(null, { status: 200, headers: corsHeaders });
   }
 
   // Extract credentials from CLOUDINARY_URL or individual env variables
-  const parsedFromUrl = parseCloudinaryUrl(process.env.CLOUDINARY_URL);
+  const envUrl = process.env.CLOUDINARY_URL || (typeof process !== 'undefined' ? process.env?.CLOUDINARY_URL : '');
+  const parsedFromUrl = parseCloudinaryUrl(envUrl);
   const cloudName = process.env.CLOUDINARY_CLOUD_NAME || parsedFromUrl?.cloudName || 'dbnyy6zmo';
   const apiKey = process.env.CLOUDINARY_API_KEY || parsedFromUrl?.apiKey;
   const apiSecret = process.env.CLOUDINARY_API_SECRET || parsedFromUrl?.apiSecret;
 
   if (!apiKey || !apiSecret) {
-    return res.status(500).json({
-      error: 'Missing Cloudinary API Key or Secret on server environment.',
-      hint: 'Please set CLOUDINARY_URL or CLOUDINARY_API_KEY and CLOUDINARY_API_SECRET on Vercel environment variables.',
-      cloudName,
-    });
+    return new Response(
+      JSON.stringify({
+        error: 'Missing Cloudinary API Key or Secret on server environment.',
+        hint: 'Please set CLOUDINARY_URL or CLOUDINARY_API_KEY and CLOUDINARY_API_SECRET on Vercel environment variables.',
+        cloudName,
+      }),
+      { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+    );
   }
 
   try {
-    const body = req.method === 'POST' ? req.body : req.query;
+    let body: Record<string, any> = {};
+    if (req.method === 'POST') {
+      try {
+        body = await req.json();
+      } catch {
+        body = {};
+      }
+    } else {
+      const url = new URL(req.url);
+      url.searchParams.forEach((val, key) => {
+        body[key] = val;
+      });
+    }
+
     const timestamp = Math.round(Date.now() / 1000);
     const folder = body?.folder || 'portfolio/documents';
     const accessMode = body?.access_mode || 'public'; // 'public' | 'authenticated'
@@ -76,21 +104,27 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       .map((key) => `${key}=${paramsToSign[key]}`)
       .join('&');
 
-    // Generate SHA-1 or SHA-256 signature using api_secret
+    // Generate SHA-1 signature using api_secret
     const stringToSign = `${serializedParams}${apiSecret}`;
-    const signature = crypto.createHash('sha1').update(stringToSign).digest('hex');
+    const signature = await sha1Hex(stringToSign);
 
-    return res.status(200).json({
-      signature,
-      timestamp,
-      apiKey,
-      cloudName,
-      folder,
-      accessMode,
-      endpoint: `https://api.cloudinary.com/v1_1/${cloudName}/auto/upload`,
-    });
+    return new Response(
+      JSON.stringify({
+        signature,
+        timestamp,
+        apiKey,
+        cloudName,
+        folder,
+        accessMode,
+        endpoint: `https://api.cloudinary.com/v1_1/${cloudName}/auto/upload`,
+      }),
+      { status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+    );
   } catch (err: unknown) {
     const msg = err instanceof Error ? err.message : 'Unknown signing error';
-    return res.status(500).json({ error: msg });
+    return new Response(JSON.stringify({ error: msg }), {
+      status: 500,
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+    });
   }
 }
