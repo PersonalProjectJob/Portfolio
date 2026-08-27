@@ -1,4 +1,8 @@
-import { createClient } from '@supabase/supabase-js';
+/// <reference types="node" />
+
+declare const process: {
+  env: Record<string, string | undefined>;
+};
 
 export const config = {
   runtime: 'edge',
@@ -11,25 +15,6 @@ const FALLBACK_ROUTES: Record<string, string> = {
   zalo: '/?utm_source=zalo&utm_medium=message&utm_campaign=portfolio&utm_content=shared_link',
 };
 
-function getSupabaseClient() {
-  const supabaseUrl = process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL;
-  const supabaseKey =
-    process.env.SUPABASE_SERVICE_ROLE_KEY ||
-    process.env.SUPABASE_ANON_KEY ||
-    process.env.VITE_SUPABASE_ANON_KEY;
-
-  if (!supabaseUrl || !supabaseKey) {
-    return null;
-  }
-
-  return createClient(supabaseUrl, supabaseKey, {
-    auth: {
-      persistSession: false,
-      autoRefreshToken: false,
-    },
-  });
-}
-
 export default async function handler(req: Request) {
   const url = new URL(req.url);
   const slugParam = url.searchParams.get('slug');
@@ -37,45 +22,71 @@ export default async function handler(req: Request) {
   const rawSlug = slugParam || pathParts[0] || '';
   const slug = rawSlug.trim().toLowerCase();
 
-  // 1. Try Supabase lookup if configured
-  const supabase = getSupabaseClient();
-  if (supabase && slug) {
+  const supabaseUrl = process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL;
+  const supabaseKey =
+    process.env.SUPABASE_SERVICE_ROLE_KEY ||
+    process.env.SUPABASE_ANON_KEY ||
+    process.env.VITE_SUPABASE_ANON_KEY;
+
+  // 1. Try Supabase lookup via native REST API if configured
+  if (supabaseUrl && supabaseKey && slug) {
     try {
-      const { data, error } = await supabase
-        .from('tracking_links')
-        .select('id, slug, destination_path, utm_source, utm_medium, utm_campaign, utm_content, clicks_count, is_active')
-        .eq('slug', slug)
-        .eq('is_active', true)
-        .maybeSingle();
+      const endpoint = `${supabaseUrl.replace(/\/$/, '')}/rest/v1/tracking_links?slug=eq.${encodeURIComponent(slug)}&is_active=eq.true&select=id,slug,destination_path,utm_source,utm_medium,utm_campaign,utm_content,clicks_count,is_active&limit=1`;
+      const res = await fetch(endpoint, {
+        headers: {
+          apikey: supabaseKey,
+          Authorization: `Bearer ${supabaseKey}`,
+          'Content-Type': 'application/json',
+        },
+      });
 
-      if (!error && data) {
-        // Fire-and-forget / non-blocking click count increment
-        const incrementPromise = Promise.resolve(
-          supabase
-            .from('tracking_links')
-            .update({ clicks_count: (data.clicks_count || 0) + 1 })
-            .eq('id', data.id)
-        );
+      if (res.ok) {
+        const rows = (await res.json()) as Array<{
+          id: string;
+          slug: string;
+          destination_path?: string;
+          utm_source?: string;
+          utm_medium?: string;
+          utm_campaign?: string;
+          utm_content?: string;
+          clicks_count?: number;
+        }>;
 
-        const ctx = req as unknown as { waitUntil?: (p: Promise<unknown>) => void };
-        if (typeof ctx.waitUntil === 'function') {
-          ctx.waitUntil(incrementPromise);
-        } else {
-          incrementPromise.catch(() => {});
+        if (rows && rows.length > 0) {
+          const data = rows[0];
+          // Non-blocking click increment
+          const updatePromise = fetch(
+            `${supabaseUrl.replace(/\/$/, '')}/rest/v1/tracking_links?id=eq.${encodeURIComponent(data.id)}`,
+            {
+              method: 'PATCH',
+              headers: {
+                apikey: supabaseKey,
+                Authorization: `Bearer ${supabaseKey}`,
+                'Content-Type': 'application/json',
+                Prefer: 'return=minimal',
+              },
+              body: JSON.stringify({ clicks_count: (data.clicks_count || 0) + 1 }),
+            }
+          ).catch(() => {});
+
+          const ctx = req as unknown as { waitUntil?: (p: Promise<unknown>) => void };
+          if (typeof ctx.waitUntil === 'function') {
+            ctx.waitUntil(updatePromise);
+          }
+
+          // Build target destination with UTMs
+          const dest = data.destination_path || '/';
+          const isAbsolute = /^https?:\/\//i.test(dest);
+          const targetUrl = new URL(dest, url.origin);
+
+          if (data.utm_source) targetUrl.searchParams.set('utm_source', data.utm_source);
+          if (data.utm_medium) targetUrl.searchParams.set('utm_medium', data.utm_medium);
+          if (data.utm_campaign) targetUrl.searchParams.set('utm_campaign', data.utm_campaign);
+          if (data.utm_content) targetUrl.searchParams.set('utm_content', data.utm_content);
+
+          const location = isAbsolute ? targetUrl.toString() : `${targetUrl.pathname}${targetUrl.search}${targetUrl.hash}`;
+          return Response.redirect(location, 302);
         }
-
-        // Build target destination with UTMs
-        const dest = data.destination_path || '/';
-        const isAbsolute = /^https?:\/\//i.test(dest);
-        const targetUrl = new URL(dest, url.origin);
-
-        if (data.utm_source) targetUrl.searchParams.set('utm_source', data.utm_source);
-        if (data.utm_medium) targetUrl.searchParams.set('utm_medium', data.utm_medium);
-        if (data.utm_campaign) targetUrl.searchParams.set('utm_campaign', data.utm_campaign);
-        if (data.utm_content) targetUrl.searchParams.set('utm_content', data.utm_content);
-
-        const location = isAbsolute ? targetUrl.toString() : `${targetUrl.pathname}${targetUrl.search}${targetUrl.hash}`;
-        return Response.redirect(location, 302);
       }
     } catch (err) {
       console.error('Error querying tracking_links:', err);
