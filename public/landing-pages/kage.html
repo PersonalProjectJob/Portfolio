@@ -104,10 +104,9 @@ h1,h2,h3{ font-weight:400; margin:0; letter-spacing:-.005em; }
 .pre-mark svg{ width:100%; height:100%; display:block; }
 .pre-jp{ font-size:12px; letter-spacing:.5em; color:var(--bone-dim); margin-bottom:20px; }
 .pre-bar{ position:relative; height:1px; background:rgba(223,231,224,.14); overflow:hidden; }
-.pre-bar i{ position:absolute; inset:0 100% 0 0; background:var(--bone); transition:right .35s linear; }
-.pre-meta{ display:flex; justify-content:space-between; margin-top:12px;
-  font-size:10px; letter-spacing:.2em; text-transform:uppercase; color:var(--muted); }
-.pre-meta b{ font-weight:500; color:var(--bone-dim); font-variant-numeric:tabular-nums; }
+.pre-meta{ display:flex; justify-content:space-between; align-items:center; margin-top:12px;
+  font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); white-space:nowrap; }
+.pre-meta b{ font-weight:500; color:var(--bone-dim); font-variant-numeric:tabular-nums; margin-left:8px; }
 
 /* ============================================================= nav */
 .nav{
@@ -138,11 +137,12 @@ h1,h2,h3{ font-weight:400; margin:0; letter-spacing:-.005em; }
 }
 .nav.stuck::after{ opacity:1; }
 .nav.hide{ transform:translate3d(0,-101%,0); }
-.brand{ display:flex; align-items:center; gap:11px; flex:0 0 auto; }
-.brand svg{ width:34px; height:34px; display:block; }
-.brand-tx{ display:flex; flex-direction:column; line-height:1; gap:3px; }
-.brand-tx b{ font-size:12px; font-weight:500; letter-spacing:.26em; }
-.brand-tx i{ font-style:normal; font-size:8px; letter-spacing:.34em; color:var(--muted); }
+.brand{ display:flex; align-items:center; gap:10px; flex:0 1 auto; min-width:0; }
+.brand svg{ width:34px; height:34px; display:block; flex-shrink:0; }
+.brand img{ width:34px; height:34px; object-fit:contain; flex-shrink:0; }
+.brand-tx{ display:flex; flex-direction:column; line-height:1.2; gap:2px; min-width:0; }
+.brand-tx b{ font-size:11.5px; font-weight:600; letter-spacing:.08em; white-space:nowrap; }
+.brand-tx i{ font-style:normal; font-size:8.5px; letter-spacing:.16em; color:var(--muted); white-space:nowrap; }
 .nav-links{ display:flex; gap:clamp(18px,2.6vw,46px); margin-left:auto; }
 .nav-link{
   position:relative; font-size:11px; font-weight:500; letter-spacing:.2em; text-transform:uppercase;
@@ -160,6 +160,24 @@ h1,h2,h3{ font-weight:400; margin:0; letter-spacing:-.005em; }
 .nav-burger i:nth-child(2){ top:11px; width:17px; }
 .nav-burger:hover i:nth-child(2){ width:26px; }
 .nav-burger:hover i:nth-child(1){ width:17px; }
+
+.kage-lang-toggle{
+  display:inline-flex; align-items:center; gap:2px;
+  background:rgba(18,24,28,.65); border:1px solid rgba(223,231,224,.18);
+  border-radius:6px; padding:2px; backdrop-filter:blur(8px);
+  margin-left:clamp(12px,1.8vw,28px); flex:0 0 auto;
+}
+.kage-lang-toggle .lang-btn{
+  background:transparent; border:none; color:var(--muted);
+  font-size:10px; font-weight:600; letter-spacing:.12em;
+  padding:4px 9px; border-radius:4px; cursor:pointer;
+  transition:all .25s var(--ease); text-transform:uppercase;
+}
+.kage-lang-toggle .lang-btn:hover{ color:var(--bone); }
+.kage-lang-toggle .lang-btn.is-active{
+  background:rgba(223,231,224,.16); color:var(--bone);
+  box-shadow:0 0 10px rgba(0,0,0,.5);
+}
 
 /* ============================================================= hero */
 .hero{ position:relative; min-height:100svh; padding:0 var(--pad); display:flex; flex-direction:column; }
@@ -377,8 +395,10 @@ h1,h2,h3{ font-weight:400; margin:0; letter-spacing:-.005em; }
 .no-webgl .hero::after{ content:''; position:absolute; left:0; right:0; bottom:0; height:34%;
   pointer-events:none; background:linear-gradient(transparent, rgba(3,5,8,.72) 52%, rgba(3,5,8,.96)); }
 .no-webgl .sec::before, .no-webgl #pathways::before, .no-webgl #eternity::before{ background:none; }
-.card-lab{ position:absolute; left:16px; right:16px; bottom:14px; z-index:2;
-  display:flex; align-items:flex-end; justify-content:space-between; gap:10px; }
+.card{ position:relative; }
+.card-body{ position:relative; width:100%; }
+.card-lab{ position:absolute; left:16px; right:16px; bottom:38px; z-index:2;
+  display:flex; align-items:flex-end; justify-content:space-between; gap:10px; pointer-events:none; }
 .card-lab b{ font-size:clamp(13px,1.15vw,17px); font-weight:400; letter-spacing:.02em; text-transform:uppercase; }
 .card-lab .jp{ font-size:11px; letter-spacing:.3em; color:rgba(223,231,224,.62); }
 .card-ar{ position:absolute; top:14px; right:14px; z-index:2; width:26px; height:26px;
@@ -559,8 +579,15 @@ h1,h2,h3{ font-weight:400; margin:0; letter-spacing:-.005em; }
   /* A hide transform still promotes the bar, so drop it the instant the sheet
      opens. Without transition:none it eases out over .55s and the sheet spends
      that whole time measured against the bar. */
+  .nav{ padding:0 16px; gap:8px; justify-content:space-between; }
+  .brand{ flex:1 1 auto; min-width:0; overflow:hidden; gap:10px; }
+  .brand img{ width:30px !important; height:30px !important; flex-shrink:0; }
+  .brand-tx{ flex:1 1 auto; min-width:0; overflow:hidden; }
+  .brand-tx b{ font-size:10.5px !important; letter-spacing:.02em !important; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:100%; display:block; }
+  .brand-tx i{ font-size:8px !important; letter-spacing:.04em !important; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:100%; display:block; }
+  .kage-lang-toggle{ margin-left:auto; flex-shrink:0; }
   .nav.menu-open{ transform:none; transition:none; }
-  .nav-burger{ margin-left:auto; }
+  .nav-burger{ margin-left:10px; flex-shrink:0; }
   .nav-burger.active i:nth-child(1){ top:7px; width:26px; transform:rotate(45deg); }
   .nav-burger.active i:nth-child(2){ top:7px; width:26px; transform:rotate(-45deg); }
   html.nav-open,html.nav-open body{ overflow:hidden; }
@@ -617,6 +644,12 @@ body[data-layout-hero="b"] .hero-side .v{
   position:static; transform:none;
   font-size:clamp(30px,3.2vw,54px); letter-spacing:.12em; color:rgba(223,231,224,.62);
 }
+@media (max-width: 1024px) {
+  body[data-layout-hero="b"] .hero-side,
+  .hero-side {
+    display: none !important;
+  }
+}
 
 /* — story B · spread: the title crosses two columns, the reading column is
      held to the right, and the figures become a ruled band. */
@@ -657,7 +690,107 @@ body[data-layout-story="b"] .gate-stats div:last-child{ border-right:1px solid v
   grid-template-rows:repeat(2,minmax(0,1fr)); gap:14px; align-items:stretch;
 }
 @media (max-width:900px){
-  .mosaic-group{ grid-template-columns:1fr; grid-template-rows:auto; }
+  .brand-tx b{ font-size:10.5px; letter-spacing:.03em; }
+  .brand-tx i{ font-size:8px; letter-spacing:.06em; }
+  #pathways .sec-head{
+    display:flex; flex-direction:column; align-items:flex-start; gap:12px; margin-bottom:20px;
+  }
+  #pathways .sec-head .rule{ display:none; }
+  .kage-filter-tags{
+    margin-left:0; width:100%; display:flex; gap:8px; flex-wrap:nowrap;
+    overflow-x:auto; -webkit-overflow-scrolling:touch; padding-bottom:4px;
+    scrollbar-width:none;
+  }
+  .kage-filter-tags::-webkit-scrollbar{ display:none; }
+  .filter-chip{ white-space:nowrap; flex-shrink:0; font-size:11px; padding:6px 14px; }
+  
+  /* Vertical List Item Cards on Mobile (Top to Bottom) */
+  .mosaic-slider-wrap{
+    overflow:visible !important; width:100% !important;
+    padding:0 0 20px 0 !important; cursor:default !important;
+  }
+  .mosaic-track{
+    display:flex !important; flex-direction:column !important;
+    width:100% !important; gap:12px !important; padding:0 !important;
+  }
+  .mosaic-group{
+    display:contents !important;
+  }
+  body[data-layout-gallery="b"] .mosaic-group .card,
+  .card{
+    flex:0 0 auto !important; width:100% !important; max-width:100% !important; min-width:0 !important;
+    background:transparent !important; border:none !important;
+    border-bottom:1px solid rgba(223,231,224,.15) !important;
+    border-radius:0 !important; padding:14px 0 !important;
+    display:flex !important; flex-direction:row !important; align-items:center !important;
+    gap:14px !important; box-sizing:border-box !important;
+    box-shadow:none !important; transform:none !important; cursor:pointer !important;
+    transition:background .2s !important;
+  }
+  .card:first-child{
+    border-top:1px solid rgba(223,231,224,.15) !important;
+  }
+  .card:active{
+    background:rgba(223,231,224,.05) !important;
+  }
+  
+  /* 1. Left Thumbnail Icon (Clean image without text overlay) */
+  body[data-layout-gallery="b"] .mosaic-group .card .card-fr,
+  body[data-layout-gallery="b"] .mosaic-group .card:first-child .card-fr,
+  body[data-layout-gallery="b"] .mosaic-group .card:only-child .card-fr,
+  body[data-layout-gallery="b"] .mosaic-group .card:nth-child(2):last-child .card-fr{
+    position:relative !important;
+    width:76px !important; min-width:76px !important; max-width:76px !important;
+    height:76px !important; min-height:76px !important; max-height:76px !important;
+    flex:0 0 76px !important; aspect-ratio:1 / 1 !important;
+    border-radius:12px !important; overflow:hidden !important;
+    box-shadow:0 4px 14px rgba(0,0,0,.5) !important;
+    border:1px solid rgba(223,231,224,.12) !important;
+  }
+  .card .card-fr .glow{ display:none !important; }
+  .card .card-fr .card-ar{ display:none !important; }
+  
+  /* 2. Right Side Content Body */
+  .card .card-body{
+    flex:1 !important; min-width:0 !important;
+    display:flex !important; flex-direction:column !important;
+    gap:3px !important;
+  }
+  
+  /* 3. Right Top (Hashtag + Title + Subtitle) */
+  body[data-layout-gallery="b"] .mosaic-group .card .card-lab{
+    position:static !important; inset:auto !important;
+    display:flex !important; flex-direction:column !important; align-items:flex-start !important;
+    gap:2px !important; padding:0 !important; min-width:0 !important; width:100% !important;
+  }
+  body[data-layout-gallery="b"] .mosaic-group .card .card-tag{
+    display:inline-block !important; font-size:8.5px !important; font-weight:700 !important;
+    padding:1px 6px !important; border-radius:4px !important; margin-bottom:2px !important;
+  }
+  body[data-layout-gallery="b"] .mosaic-group .card .card-lab b{
+    font-size:14.5px !important; font-weight:600 !important; color:#FFFFFF !important;
+    line-height:1.25 !important; letter-spacing:-.01em !important;
+    white-space:nowrap !important; overflow:hidden !important; text-overflow:ellipsis !important; width:100% !important;
+  }
+  body[data-layout-gallery="b"] .mosaic-group .card .card-lab .jp{
+    font-size:10px !important; letter-spacing:.06em !important; color:rgba(223,231,224,.6) !important;
+    white-space:nowrap !important; overflow:hidden !important; text-overflow:ellipsis !important; width:100% !important;
+  }
+  
+  /* 4. Right Bottom (Summary Description + Index) */
+  body[data-layout-gallery="b"] .mosaic-group .card .card-meta{
+    margin-top:2px !important; padding-top:4px !important;
+    border-top:1px solid rgba(223,231,224,.08) !important;
+    display:flex !important; justify-content:space-between !important; align-items:center !important;
+    gap:8px !important; font-size:11px !important; color:#9cb1a5 !important; line-height:1.35 !important;
+    min-width:0 !important; width:100% !important;
+  }
+  body[data-layout-gallery="b"] .mosaic-group .card .card-meta span:first-child{
+    white-space:nowrap !important; overflow:hidden !important; text-overflow:ellipsis !important; flex:1 !important;
+  }
+  body[data-layout-gallery="b"] .mosaic-group .card .card-meta span:last-child{
+    flex-shrink:0 !important; font-size:10px !important; font-weight:600 !important; color:var(--vermilion) !important;
+  }
 }
 body[data-layout-gallery="b"] .mosaic-group .card{ transform:none; display:flex; flex-direction:column; min-height:0; }
 body[data-layout-gallery="b"] .mosaic-group .card-fr{ aspect-ratio:auto; flex:1 1 auto; min-height:0; }
@@ -747,8 +880,33 @@ body[data-layout-closing="b"] .fin h2{
 body[data-layout-closing="b"] .fin p{
   margin:0 auto 28px; max-width:56ch; font-size:clamp(14px,1.2vw,17px); line-height:1.65; color:#9cb1a5;
 }
-body[data-layout-closing="b"] .fin .cta-group{
-  display:flex; gap:12px; flex-wrap:wrap; justify-content:center; align-items:center;
+body[data-layout-closing="b"] .fin .cta-group,
+.cta-group{
+  display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px 16px;
+  max-width:540px; width:100%; margin:24px auto 0; box-sizing:border-box;
+}
+.cta-group .cta{
+  width:100%; margin-top:0; display:inline-flex; justify-content:center; align-items:center;
+  text-align:center; box-sizing:border-box; padding:16px 20px; white-space:nowrap;
+}
+@media (max-width:480px){
+  .nav{ padding:0 10px; gap:6px; }
+  .brand{ gap:6px; flex:1 1 auto; min-width:0; }
+  .brand img{ width:26px !important; height:26px !important; }
+  .brand-tx b{ font-size:9.5px !important; letter-spacing:0 !important; }
+  .brand-tx i{ font-size:7px !important; letter-spacing:0 !important; }
+  .kage-lang-toggle{ padding:1px; margin-left:auto; }
+  .kage-lang-toggle .lang-btn{ padding:3px 6px; font-size:9px; }
+  .nav-burger{ margin-left:6px; width:22px; }
+  .nav-burger i:nth-child(1){ width:22px; }
+  .nav-burger i:nth-child(2){ width:15px; }
+  body[data-layout-closing="b"] .fin .cta-group,
+  .cta-group{ gap:10px; max-width:100%; }
+  .cta-group .cta{ padding:14px 10px; font-size:10px; letter-spacing:.12em; gap:8px; }
+}
+@media (max-width:370px){
+  .brand-tx b{ font-size:8.5px !important; }
+  .brand-tx i{ font-size:6.8px !important; }
 }
 
 /* — footer B · manifesto: the statement leads, the navigation becomes a
@@ -765,8 +923,7 @@ body[data-layout-footer="b"] .foot-brand p{
 body[data-layout-footer="b"] .foot-grid > div:nth-child(n+3){
   padding-left:clamp(18px,2.2vw,34px); border-left:1px solid var(--line-soft);
 }
-body[data-layout-footer="b"] .foot-base{ display:grid; grid-template-columns:1fr auto 1fr; }
-body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
+body[data-layout-footer="b"] .foot-base{ display:flex; justify-content:center; align-items:center; text-align:center; }
 
 /* ================================================= foreground layers (KAGE)
    The transparent PNG library in secret-pathways-assets/foreground/png is
@@ -990,11 +1147,27 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
   body[data-layout-closing="b"] .fin p{ margin:26px auto 0; }
   body[data-layout-closing="b"] .fin .cta{ margin-top:40px; }
 
-  body[data-layout-footer="b"] .foot-grid{ grid-template-columns:1fr; }
-  body[data-layout-footer="b"] .foot-brand{ grid-column:auto; grid-template-columns:minmax(0,1fr); row-gap:16px; }
+  body[data-layout-footer="b"] .foot-grid{
+    display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:28px 20px;
+  }
+  body[data-layout-footer="b"] .foot-brand{
+    grid-column:1 / -1; display:grid; grid-template-columns:44px minmax(0,1fr); gap:14px;
+    align-items:center; padding-bottom:20px; margin-bottom:4px; border-bottom:1px solid var(--line-soft);
+  }
+  body[data-layout-footer="b"] .foot-brand img{ margin-bottom:0; }
+  body[data-layout-footer="b"] .foot-brand p{ font-size:13px; line-height:1.45; }
   body[data-layout-footer="b"] .foot-grid > div:nth-child(n+3){ padding-left:0; border-left:0; }
-  body[data-layout-footer="b"] .foot-base{ display:flex; }
-  body[data-layout-footer="b"] .foot-base span:last-child{ text-align:left; }
+  body[data-layout-footer="b"] .foot-grid > div:last-child{
+    grid-column:1 / -1; padding-top:18px; border-top:1px solid var(--line-soft);
+  }
+  body[data-layout-footer="b"] .foot-grid > div:last-child ul{
+    display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px 14px;
+  }
+  body[data-layout-footer="b"] .foot-base{ display:flex; justify-content:center; align-items:center; text-align:center; }
+}
+
+@media (max-width:440px){
+  body[data-layout-footer="b"] .foot-grid > div:last-child ul{ grid-template-columns:1fr; }
 }
 
 /* On a phone two columns leave the chip's copy about 110px once the numeral
@@ -1032,7 +1205,7 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
     <div class="pre-jp">SON THAO · PORTFOLIO</div>
     <div class="pre-bar"><i id="pre-fill"></i></div>
     <div class="pre-meta">
-      <span>Khởi tạo Không Gian & Hồ Sơ Năng Lực</span><b><span id="pre-pct">0</span>%</b>
+      <span id="pre-status">Khởi tạo không gian</span><b><span id="pre-pct">0</span>%</b>
     </div>
   </div>
 </div>
@@ -1041,7 +1214,7 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
 <header class="nav" id="nav">
   <a class="brand" href="#top" data-cursor style="display:flex; align-items:center; gap:12px;">
     <img src="../images/logo.png" alt="ST Logo" style="width:34px; height:34px; object-fit:contain; filter:drop-shadow(0 0 10px rgba(249,115,22,0.85));" />
-    <span class="brand-tx"><b>TRƯƠNG NGUYỄN SƠN THẢO (SOTA TRƯƠNG)</b><i>PRODUCT DESIGNER & UX/UI DESIGNER</i></span>
+    <span class="brand-tx"><b>TRƯƠNG NGUYỄN SƠN THẢO</b><i>PRODUCT DESIGNER & UX/UI DESIGNER</i></span>
   </a>
   <nav class="nav-links" id="navlinks">
     <a class="nav-link" href="#gate" data-cursor><span>HỒ SƠ</span><span class="alt">PROFILE</span></a>
@@ -1049,6 +1222,10 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
     <a class="nav-link" href="#lessons" data-cursor><span>KINH NGHIỆM</span><span class="alt">EXPERIENCE</span></a>
     <a class="nav-link" href="#eternity" data-cursor><span>LIÊN HỆ</span><span class="alt">CONTACT</span></a>
   </nav>
+  <div class="kage-lang-toggle" id="kage-lang-toggle" role="group" aria-label="Ngôn ngữ / Language">
+    <button type="button" class="lang-btn is-active" data-lang="vi">VN</button>
+    <button type="button" class="lang-btn" data-lang="en">EN</button>
+  </div>
   <button class="nav-burger" aria-label="Menu" data-cursor><i></i><i></i></button>
 </header>
 
@@ -1166,9 +1343,11 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
           <div class="card-fr" data-frame style="background: linear-gradient(180deg,rgba(3,6,9,.04) 36%,rgba(3,6,9,.82) 100%), url('secret-pathways-assets/generated/ui_cryptomap_webapp.jpg') center / cover no-repeat;">
             <span class="card-ar"><svg viewBox="0 0 14 14" fill="none"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg></span>
             <i class="glow" style="--gx:32.0%; --gy:42.0%; --gr:24%; --gt:6.1s; --gt2:9.7s; --gc1:rgba(85,221,255,.70); --gc2:rgba(30,120,220,.35)"></i>
-            <div class="card-lab"><span class="card-tag">#Project</span><b>CryptoMap 360</b><span class="jp">WEB3 & FINTECH WEB-APP</span></div>
           </div>
-          <div class="card-meta"><span>Bản đồ trực quan hóa dữ liệu on-chain thời gian thực</span><span>01 / 09</span></div>
+          <div class="card-body">
+            <div class="card-lab"><span class="card-tag">#Project</span><b>CryptoMap 360</b><span class="jp">WEB3 & FINTECH WEB-APP</span></div>
+            <div class="card-meta"><span>Bản đồ trực quan hóa dữ liệu on-chain thời gian thực</span><span>01 / 09</span></div>
+          </div>
         </article>
 
         <!-- Card 2 (Top Right): NailHub POS SaaS App -->
@@ -1176,9 +1355,11 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
           <div class="card-fr" data-frame style="background: linear-gradient(180deg,rgba(3,6,9,.04) 36%,rgba(3,6,9,.82) 100%), url('secret-pathways-assets/generated/ui_nailhub_pos_app.jpg') center / cover no-repeat;">
             <span class="card-ar"><svg viewBox="0 0 14 14" fill="none"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg></span>
             <i class="glow glow--flame" style="--gx:50.0%; --gy:50.0%; --gr:22%; --gt:4.2s; --gt2:6.3s; --gc1:rgba(255,180,120,.70); --gc2:rgba(0,220,180,.35)"></i>
-            <div class="card-lab"><span class="card-tag">#Project</span><b>NailHub POS SaaS</b><span class="jp">B2B POS & SALON APP</span></div>
           </div>
-          <div class="card-meta"><span>Hệ điều hành quản lý lịch hẹn, POS & thanh toán US</span><span>02 / 09</span></div>
+          <div class="card-body">
+            <div class="card-lab"><span class="card-tag">#Project</span><b>NailHub POS SaaS</b><span class="jp">B2B POS & SALON APP</span></div>
+            <div class="card-meta"><span>Hệ điều hành quản lý lịch hẹn, POS & thanh toán US</span><span>02 / 09</span></div>
+          </div>
         </article>
 
         <!-- Card 3 (Bottom Right): VLINKPAY Fintech Mobile App -->
@@ -1186,9 +1367,11 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
           <div class="card-fr" data-frame style="background: linear-gradient(180deg,rgba(3,6,9,.04) 36%,rgba(3,6,9,.82) 100%), url('secret-pathways-assets/generated/ui_vlinkpay_fintech_app.jpg') center / cover no-repeat;">
             <span class="card-ar"><svg viewBox="0 0 14 14" fill="none"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg></span>
             <i class="glow" style="--gx:50.0%; --gy:50.0%; --gr:22%; --gt:5.3s; --gt2:8.2s; --gc1:rgba(0,220,130,.65); --gc2:rgba(30,140,255,.35)"></i>
-            <div class="card-lab"><span class="card-tag">#Project</span><b>VLINKPAY Fintech</b><span class="jp">FINTECH & CRYPTO MOBILE APP</span></div>
           </div>
-          <div class="card-meta"><span>Cổng thanh toán đa tiền tệ, thẻ ghi nợ & ví Crypto</span><span>03 / 09</span></div>
+          <div class="card-body">
+            <div class="card-lab"><span class="card-tag">#Project</span><b>VLINKPAY Fintech</b><span class="jp">FINTECH & CRYPTO MOBILE APP</span></div>
+            <div class="card-meta"><span>Cổng thanh toán đa tiền tệ, thẻ ghi nợ & ví Crypto</span><span>03 / 09</span></div>
+          </div>
         </article>
       </div>
 
@@ -1199,9 +1382,11 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
           <div class="card-fr" data-frame style="background: linear-gradient(180deg,rgba(3,6,9,.04) 36%,rgba(3,6,9,.82) 100%), url('secret-pathways-assets/generated/ui_nexora_hardware_dashboard.jpg') center / cover no-repeat;">
             <span class="card-ar"><svg viewBox="0 0 14 14" fill="none"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg></span>
             <i class="glow" style="--gx:50.0%; --gy:36.0%; --gr:24%; --gt:6.8s; --gt2:10.5s; --gc1:rgba(180,60,255,.65); --gc2:rgba(0,200,255,.35)"></i>
-            <div class="card-lab"><span class="card-tag">#Project</span><b>NEXORA Hardware UI</b><span class="jp">TELEMETRY & IOT DASHBOARD</span></div>
           </div>
-          <div class="card-meta"><span>Bảng điều khiển vi mạch & radar đo lường telemetry</span><span>04 / 09</span></div>
+          <div class="card-body">
+            <div class="card-lab"><span class="card-tag">#Project</span><b>NEXORA Hardware UI</b><span class="jp">TELEMETRY & IOT DASHBOARD</span></div>
+            <div class="card-meta"><span>Bảng điều khiển vi mạch & radar đo lường telemetry</span><span>04 / 09</span></div>
+          </div>
         </article>
 
         <!-- Card 5 (Top Right): AI Process & Prototyping -->
@@ -1209,9 +1394,11 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
           <div class="card-fr" data-frame style="background: linear-gradient(180deg,rgba(3,6,9,.04) 36%,rgba(3,6,9,.82) 100%), url('secret-pathways-assets/generated/ui_ai_workflow_orchestrator.jpg') center / cover no-repeat;">
             <span class="card-ar"><svg viewBox="0 0 14 14" fill="none"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg></span>
             <i class="glow glow--flame" style="--gx:48.0%; --gy:50.0%; --gr:22%; --gt:5.0s; --gt2:7.5s; --gc1:rgba(255,100,50,.70); --gc2:rgba(80,180,255,.35)"></i>
-            <div class="card-lab"><span class="card-tag">#Workflow AI</span><b>AI Process & Builder</b><span class="jp">AI MULTI-AGENT WORKFLOW</span></div>
           </div>
-          <div class="card-meta"><span>Tạo mẫu nhanh MVP & tăng tốc vòng đời thiết kế</span><span>05 / 09</span></div>
+          <div class="card-body">
+            <div class="card-lab"><span class="card-tag">#Workflow AI</span><b>AI Process & Builder</b><span class="jp">AI MULTI-AGENT WORKFLOW</span></div>
+            <div class="card-meta"><span>Tạo mẫu nhanh MVP & tăng tốc vòng đời thiết kế</span><span>05 / 09</span></div>
+          </div>
         </article>
 
         <!-- Card 6 (Bottom Right): Design Handoff & Tokens Parity -->
@@ -1219,9 +1406,11 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
           <div class="card-fr" data-frame style="background: linear-gradient(180deg,rgba(3,6,9,.04) 36%,rgba(3,6,9,.82) 100%), url('secret-pathways-assets/generated/ui_design_tokens_handoff.jpg') center / cover no-repeat;">
             <span class="card-ar"><svg viewBox="0 0 14 14" fill="none"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg></span>
             <i class="glow glow--flame" style="--gx:48.0%; --gy:68.0%; --gr:25%; --gt:5.0s; --gt2:7.5s; --gc1:rgba(0,180,255,.65); --gc2:rgba(30,100,255,.35)"></i>
-            <div class="card-lab"><span class="card-tag">#Workflow AI</span><b>Design Handoff & Tokens</b><span class="jp">FIGMA TO CODE PARITY</span></div>
           </div>
-          <div class="card-meta"><span>Hệ thống Token đồng bộ 100% Figma & React Codebase</span><span>06 / 09</span></div>
+          <div class="card-body">
+            <div class="card-lab"><span class="card-tag">#Workflow AI</span><b>Design Handoff & Tokens</b><span class="jp">FIGMA TO CODE PARITY</span></div>
+            <div class="card-meta"><span>Hệ thống Token đồng bộ 100% Figma & React Codebase</span><span>06 / 09</span></div>
+          </div>
         </article>
       </div>
 
@@ -1232,9 +1421,11 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
           <div class="card-fr" data-frame style="background: linear-gradient(180deg,rgba(3,6,9,.04) 36%,rgba(3,6,9,.82) 100%), url('secret-pathways-assets/generated/ui_dispatch_workflow.jpg') center / cover no-repeat;">
             <span class="card-ar"><svg viewBox="0 0 14 14" fill="none"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg></span>
             <i class="glow" style="--gx:35.0%; --gy:40.0%; --gr:24%; --gt:6.0s; --gt2:9.0s; --gc1:rgba(255,160,50,.65); --gc2:rgba(220,50,50,.35)"></i>
-            <div class="card-lab"><span class="card-tag">#Workflow AI</span><b>Dispatch Workflow</b><span class="jp">AI ARCHITECTURE</span></div>
           </div>
-          <div class="card-meta"><span>Phân luồng Route A/B/C & Handoff Contract kiểm soát scope</span><span>07 / 09</span></div>
+          <div class="card-body">
+            <div class="card-lab"><span class="card-tag">#Workflow AI</span><b>Dispatch Workflow</b><span class="jp">AI ARCHITECTURE</span></div>
+            <div class="card-meta"><span>Phân luồng Route A/B/C & Handoff Contract kiểm soát scope</span><span>07 / 09</span></div>
+          </div>
         </article>
 
         <!-- Card 8 (Top Right): Agent Rules Harness -->
@@ -1242,9 +1433,11 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
           <div class="card-fr" data-frame style="background: linear-gradient(180deg,rgba(3,6,9,.04) 36%,rgba(3,6,9,.82) 100%), url('secret-pathways-assets/generated/ui_agent_rules_governance.jpg') center / cover no-repeat;">
             <span class="card-ar"><svg viewBox="0 0 14 14" fill="none"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg></span>
             <i class="glow glow--flame" style="--gx:50.0%; --gy:50.0%; --gr:22%; --gt:4.5s; --gt2:6.8s; --gc1:rgba(0,200,255,.65); --gc2:rgba(30,100,255,.35)"></i>
-            <div class="card-lab"><span class="card-tag">#Workflow AI</span><b>Agent Rules Harness</b><span class="jp">AI GOVERNANCE</span></div>
           </div>
-          <div class="card-meta"><span>Kiến trúc tri thức (.agent-rules) & kiểm soát Quality Gates</span><span>08 / 09</span></div>
+          <div class="card-body">
+            <div class="card-lab"><span class="card-tag">#Workflow AI</span><b>Agent Rules Harness</b><span class="jp">AI GOVERNANCE</span></div>
+            <div class="card-meta"><span>Kiến trúc tri thức (.agent-rules) & kiểm soát Quality Gates</span><span>08 / 09</span></div>
+          </div>
         </article>
 
         <!-- Card 9 (Bottom Right): Sync Task Status & Telemetry Loop -->
@@ -1252,9 +1445,11 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
           <div class="card-fr" data-frame style="background: linear-gradient(180deg,rgba(3,6,9,.04) 36%,rgba(3,6,9,.82) 100%), url('secret-pathways-assets/generated/ui_sync_task_telemetry.jpg') center / cover no-repeat;">
             <span class="card-ar"><svg viewBox="0 0 14 14" fill="none"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg></span>
             <i class="glow" style="--gx:50.0%; --gy:50.0%; --gr:22%; --gt:5.5s; --gt2:8.5s; --gc1:rgba(120,255,100,.65); --gc2:rgba(0,180,120,.35)"></i>
-            <div class="card-lab"><span class="card-tag">#Workflow AI</span><b>Sync Task Status</b><span class="jp">TELEMETRY SYSTEM</span></div>
           </div>
-          <div class="card-meta"><span>Giám sát trạng thái task, evidence logs & đóng vòng lặp</span><span>09 / 09</span></div>
+          <div class="card-body">
+            <div class="card-lab"><span class="card-tag">#Workflow AI</span><b>Sync Task Status</b><span class="jp">TELEMETRY SYSTEM</span></div>
+            <div class="card-meta"><span>Giám sát trạng thái task, evidence logs & đóng vòng lặp</span><span>09 / 09</span></div>
+          </div>
         </article>
       </div>
     </div>
@@ -1411,7 +1606,7 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
   <div class="eyebrow" data-rv="fade"><span class="dot"></span> CHƯƠNG 04 — KẾT NỐI & HỢP TÁC</div>
   <h2 class="display" data-rv="up">SẴN SÀNG ĐỒNG HÀNH CÙNG DỰ ÁN CỦA BẠN.</h2>
   <p class="body-lg" data-rv="up">Dù là một bài toán Fintech phức tạp, xây dựng hệ thống Design System từ con số 0 hay tạo mẫu sản phẩm AI MVP với tốc độ cao, tôi luôn sẵn sàng lắng nghe và hiện thực hóa cùng bạn.</p>
-  <div class="cta-group" data-rv="up" style="display:flex; gap:12px; flex-wrap:wrap; justify-content:center; margin-top:16px;">
+  <div class="cta-group" data-rv="up">
     <a class="cta cta-primary" id="btn-view-cv" href="/cv/Truong-Nguyen-Son-Thao-Product-Designer-CV.pdf" target="_blank" rel="noopener noreferrer" data-rv="fade" data-cursor>
       <i></i><span>Xem CV</span>
       <svg viewBox="0 0 14 14" fill="none" width="13" height="13"><path d="M3 11 11 3M5 3h6v6" stroke="#fff" stroke-width="1.3"/></svg>
@@ -1470,9 +1665,7 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
     </ul></div>
   </div>
   <div class="foot-base">
-    <span>© 2026 Trương Nguyễn Sơn Thảo · Sota Trương Portfolio</span>
-    <span class="jp">SOTA TRƯƠNG · PRODUCT DESIGNER</span>
-    <span>TP. Hồ Chí Minh · Việt Nam</span>
+    <span>© 2026 Sota Trương Portfolio</span>
   </div>
 </footer>
 
@@ -4798,10 +4991,23 @@ function wireNav() {
     }
   }, { passive: true });
   $$('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
-    const t = document.querySelector(a.getAttribute('href'));
+    const href = a.getAttribute('href');
+    if (href === '#top' || href === '#') {
+      e.preventDefault();
+      closeMenu();
+      scrollTo({ top: 0, behavior: REDUCE ? 'auto' : 'smooth' });
+      return;
+    }
+    const t = document.querySelector(href);
     if (!t) return;
+    const secIdx = SECS.indexOf(t);
     e.preventDefault();
-    scrollTo({ top: a.getAttribute('href') === '#top' ? 0 : t.offsetTop - 40, behavior: REDUCE ? 'auto' : 'smooth' });
+    closeMenu();
+    if (secIdx >= 0 && anchors[secIdx] !== undefined) {
+      scrollTo({ top: anchors[secIdx], behavior: REDUCE ? 'auto' : 'smooth' });
+    } else {
+      scrollTo({ top: t.offsetTop - 40, behavior: REDUCE ? 'auto' : 'smooth' });
+    }
   }));
 }
 
@@ -4810,6 +5016,16 @@ function wireFocus() {
   $$('[data-chip]').forEach(el => {
     el.addEventListener('mouseenter', () => { set(+el.dataset.chip); $$('[data-chip]').forEach(o => o.classList.toggle('on', o === el)); });
     el.addEventListener('mouseleave', () => { set(-1); el.classList.remove('on'); });
+    el.addEventListener('click', e => {
+      e.preventDefault();
+      const idx = +el.dataset.chip;
+      const targetSec = idx + 1;
+      if (targetSec < SECS.length && anchors[targetSec] !== undefined) {
+        scrollTo({ top: anchors[targetSec], behavior: REDUCE ? 'auto' : 'smooth' });
+      } else if (SECS[targetSec]) {
+        scrollTo({ top: SECS[targetSec].offsetTop - 40, behavior: REDUCE ? 'auto' : 'smooth' });
+      }
+    });
   });
   $$('[data-les]').forEach(el => {
     el.addEventListener('mouseenter', () => set(+el.dataset.les % 4));
@@ -5156,6 +5372,7 @@ const JOBS = [
 ];
 
 function boot() {
+  applyKageTranslations(currentLanguage);
   makeGrain();
   wireReveals(); wireForegroundStages(); wireNav(); wireHeroExit(); wireFocus(); wireCursor();
   document.body.classList.add('is-locked');
@@ -5189,83 +5406,333 @@ function fallback(err) {
   window.__kage = window.__secret = { fallback: true, error: String(err && err.message || err) };
 }
 
-function applyDynamicProfile(settings, projects) {
-  if (!settings && !projects) {
+let currentLanguage = localStorage.getItem('portfolio-lang') === 'en' ? 'en' : 'vi';
+
+const KAGE_I18N = {
+  vi: {
+    brandName: 'TRƯƠNG NGUYỄN SƠN THẢO',
+    brandTitle: 'PRODUCT DESIGNER & UX/UI DESIGNER',
+    preloader: 'Khởi tạo không gian',
+    nav: {
+      profile: 'HỒ SƠ',
+      profileAlt: 'PROFILE',
+      projects: 'DỰ ÁN',
+      projectsAlt: 'PROJECTS',
+      experience: 'KINH NGHIỆM',
+      experienceAlt: 'EXPERIENCE',
+      contact: 'LIÊN HỆ',
+      contactAlt: 'CONTACT'
+    },
+    hero: {
+      eyebrow: '<span class="dot"></span> INTERACTIVE 3D PORTFOLIO',
+      h1_1: 'KIẾN TẠO TRẢI NGHIỆM',
+      h1_2: 'FINTECH, AI & HỆ THỐNG',
+      h1_3: 'DESIGN SYSTEM.',
+      sub: 'Product Designer & UX/UI Designer với hơn 3 năm kinh nghiệm kiến tạo sản phẩm số: Từ luồng Fintech, tạo mẫu AI MVP siêu tốc đến kiến trúc hệ thống Design Tokens đồng bộ 100%.',
+      cue: 'Cuộn để khám phá',
+      chip0_title: 'HỒ SƠ NĂNG LỰC',
+      chip0_desc: 'Hơn 3 năm kinh nghiệm thiết kế sản phẩm MVP & hệ thống.',
+      chip1_title: 'DỰ ÁN TIÊU BIỂU',
+      chip1_desc: 'Cryptomap 360, NailHub POS, NEXORA, Agent Rules, VLinkPay.',
+      chip2_title: 'KINH NGHIỆM & KỸ NĂNG',
+      chip2_desc: 'StartechAI, 5S Group, Design Tokens & AI Multi-Agent.',
+      chip3_title: 'KẾT NỐI HỢP TÁC',
+      chip3_desc: 'Sẵn sàng đồng hành cùng các startup và sản phẩm đột phá.',
+      peek_title: 'DỰ ÁN',
+      peek_sub: '9 Case Studies Tiêu Biểu'
+    },
+    gate: {
+      k1: 'HỒ SƠ NĂNG LỰC',
+      h2: 'HƠN 3 NĂM KIẾN TẠO SẢN PHẨM SỐ & DESIGN SYSTEM.',
+      lead: 'Tôi là một Product-oriented UX/UI Designer với hơn 3 năm kinh nghiệm xây dựng và ra mắt các sản phẩm Minimum Viable Products (MVPs) từ nghiên cứu đến phát hành.',
+      body: 'Có kinh nghiệm phối hợp liên phòng ban (PM, Dev, Sales), mục tiêu của tôi là chuyển đổi các yêu cầu kinh doanh phức tạp thành các giải pháp sản phẩm khả thi. Tôi tập trung mạnh vào tối ưu hóa trải nghiệm người dùng trong khi vẫn đảm bảo tính khả thi về mặt kỹ thuật.',
+      link: 'Khám phá 9 Case Studies Tiêu Biểu',
+      stat0_label: 'Năm Kinh Nghiệm',
+      stat1_label: 'Dự Án Triển Khai',
+      stat2_label: 'Design Tokens Parity',
+      stat3_label: 'Product Designer'
+    },
+    pathways: {
+      k1: 'DỰ ÁN & WORKFLOW AI',
+      h2: 'DỰ ÁN TIÊU BIỂU & WORKFLOW AI',
+      chip_all: '#Tất cả',
+      chip_project: '#Project',
+      chip_workflow: '#Workflow AI',
+      read_more: 'Xem Case Study'
+    },
+    lessons: {
+      k1: 'KINH NGHIỆM & TRIẾT LÝ',
+      h2: 'HÀNH TRÌNH NGHỀ NGHIỆP & NĂNG LỰC CỐT LÕI',
+      p: 'Hơn 3 năm kinh nghiệm phối hợp liên phòng ban xây dựng sản phẩm từ con số 0. Kết hợp nghiên cứu người dùng thực địa, kiến trúc hệ thống Design Tokens đến bàn giao code chính xác.'
+    },
+    eternity: {
+      k1: 'KẾT NỐI HỢP TÁC',
+      h2: 'SẴN SÀNG KIẾN TẠO SẢN PHẨM ĐỘT PHÁ CÙNG BẠN',
+      p: 'Dù là một bài toán Fintech phức tạp, xây dựng hệ thống Design System từ con số 0 hay tạo mẫu sản phẩm AI MVP với tốc độ cao, tôi luôn sẵn sàng lắng nghe và hiện thực hóa cùng bạn.',
+      btn_view_cv: 'Xem CV Online',
+      btn_download_cv: 'Tải CV PDF',
+      btn_linkedin: 'Kết Nối LinkedIn',
+      btn_email: 'Gửi Email Hợp Tác'
+    },
+    footer: {
+      desc: 'chuyên sâu về Fintech, B2B SaaS, AI MVP và Design Systems.'
+    }
+  },
+  en: {
+    brandName: 'SOTA TRUONG',
+    brandTitle: 'PRODUCT DESIGNER & UX/UI DESIGNER',
+    preloader: 'Initializing 3D Space',
+    nav: {
+      profile: 'PROFILE',
+      profileAlt: 'HỒ SƠ',
+      projects: 'PROJECTS',
+      projectsAlt: 'DỰ ÁN',
+      experience: 'EXPERIENCE',
+      experienceAlt: 'KINH NGHIỆM',
+      contact: 'CONTACT',
+      contactAlt: 'LIÊN HỆ'
+    },
+    hero: {
+      eyebrow: '<span class="dot"></span> INTERACTIVE 3D PORTFOLIO',
+      h1_1: 'CRAFTING DIGITAL EXPERIENCES',
+      h1_2: 'FINTECH, AI & SYSTEMS',
+      h1_3: 'DESIGN SYSTEM.',
+      sub: 'Product Designer & UX/UI Designer with 3+ years of experience crafting digital products: From complex Fintech flows, rapid AI MVP prototyping to 100% synced Design Tokens architecture.',
+      cue: 'Scroll to explore',
+      chip0_title: 'CAPABILITY PROFILE',
+      chip0_desc: '3+ years designing scalable product MVPs & systems.',
+      chip1_title: 'FEATURED PROJECTS',
+      chip1_desc: 'Cryptomap 360, NailHub POS, NEXORA, Agent Rules, VLinkPay.',
+      chip2_title: 'EXPERIENCE & SKILLS',
+      chip2_desc: 'StartechAI, 5S Group, Design Tokens & AI Multi-Agent.',
+      chip3_title: "LET'S COLLABORATE",
+      chip3_desc: 'Ready to partner with high-growth startups & breakthrough products.',
+      peek_title: 'PROJECTS',
+      peek_sub: '9 Featured Case Studies'
+    },
+    gate: {
+      k1: 'CAPABILITY PROFILE',
+      h2: '3+ YEARS OF CRAFTING DIGITAL PRODUCTS & DESIGN SYSTEMS.',
+      lead: 'I am a Product-oriented UX/UI Designer with over 3 years of experience building and launching Minimum Viable Products (MVPs) from research to production release.',
+      body: 'Experienced in cross-functional collaboration (PM, Dev, Sales), my goal is to translate complex business requirements into viable, intuitive product solutions. I focus heavily on optimizing user experience while ensuring strict technical feasibility.',
+      link: 'Explore 9 Featured Case Studies',
+      stat0_label: 'Years Experience',
+      stat1_label: 'Shipped Projects',
+      stat2_label: 'Design Tokens Parity',
+      stat3_label: 'Product Designer'
+    },
+    pathways: {
+      k1: 'PROJECTS & WORKFLOW AI',
+      h2: 'FEATURED PROJECTS & AI WORKFLOWS',
+      chip_all: '#All',
+      chip_project: '#Project',
+      chip_workflow: '#Workflow AI',
+      read_more: 'View Case Study'
+    },
+    lessons: {
+      k1: 'EXPERIENCE & PHILOSOPHY',
+      h2: 'CAREER JOURNEY & CORE COMPETENCIES',
+      p: '3+ years of cross-functional experience building products from ground zero. Combining hands-on user research, Design Tokens architecture, and pixel-perfect developer handoff.'
+    },
+    eternity: {
+      k1: "LET'S COLLABORATE",
+      h2: 'READY TO BUILD BREAKTHROUGH PRODUCTS TOGETHER',
+      p: 'Whether tackling a complex Fintech challenge, architecting a zero-to-one Design System, or prototyping rapid AI MVPs, I am always ready to listen and co-create with you.',
+      btn_view_cv: 'View Online CV',
+      btn_download_cv: 'Download CV PDF',
+      btn_linkedin: 'Connect on LinkedIn',
+      btn_email: 'Send Partnership Email'
+    },
+    footer: {
+      desc: 'specializing in Fintech, B2B SaaS, AI MVP and Design Systems.'
+    }
+  }
+};
+
+let cachedSettings = null;
+let cachedProjects = null;
+
+function applyKageTranslations(lang) {
+  const d = KAGE_I18N[lang] || KAGE_I18N.vi;
+  currentLanguage = lang;
+
+  const brandB = document.querySelector('#nav .brand-tx b');
+  if (brandB && d.brandName) {
+    brandB.textContent = d.brandName;
+  }
+  const brandI = document.querySelector('#nav .brand-tx i');
+  if (brandI && d.brandTitle) {
+    brandI.textContent = d.brandTitle;
+  }
+
+  const preStatus = document.getElementById('pre-status');
+  if (preStatus && d.preloader) {
+    preStatus.textContent = d.preloader;
+  }
+
+  const langBtns = document.querySelectorAll('#kage-lang-toggle .lang-btn');
+  langBtns.forEach(btn => {
+    btn.classList.toggle('is-active', btn.getAttribute('data-lang') === lang);
+  });
+
+  const navLinks = document.querySelectorAll('#navlinks .nav-link');
+  if (navLinks.length >= 4) {
+    navLinks[0].innerHTML = `<span>${d.nav.profile}</span><span class="alt">${d.nav.profileAlt}</span>`;
+    navLinks[1].innerHTML = `<span>${d.nav.projects}</span><span class="alt">${d.nav.projectsAlt}</span>`;
+    navLinks[2].innerHTML = `<span>${d.nav.experience}</span><span class="alt">${d.nav.experienceAlt}</span>`;
+    navLinks[3].innerHTML = `<span>${d.nav.contact}</span><span class="alt">${d.nav.contactAlt}</span>`;
+  }
+
+  const heroH1Spans = document.querySelectorAll('#hero .display.h-hero .mask-line > span');
+  if (heroH1Spans.length >= 3) {
+    heroH1Spans[0].textContent = d.hero.h1_1;
+    heroH1Spans[1].textContent = d.hero.h1_2;
+    heroH1Spans[2].textContent = d.hero.h1_3;
+  }
+  const heroSub = document.querySelector('#hero .hero-sub');
+  if (heroSub && (!cachedSettings || !cachedSettings.profile || !cachedSettings.profile.bio)) {
+    heroSub.textContent = d.hero.sub;
+  }
+  const heroCue = document.querySelector('#hero .hero-cue span:first-child');
+  if (heroCue) heroCue.textContent = d.hero.cue;
+
+  const chips = document.querySelectorAll('#chips .chip');
+  if (chips.length >= 4) {
+    chips[0].querySelector('.tx').innerHTML = `<b>${d.hero.chip0_title}</b><p>${d.hero.chip0_desc}</p>`;
+    chips[1].querySelector('.tx').innerHTML = `<b>${d.hero.chip1_title}</b><p>${d.hero.chip1_desc}</p>`;
+    chips[2].querySelector('.tx').innerHTML = `<b>${d.hero.chip2_title}</b><p>${d.hero.chip2_desc}</p>`;
+    chips[3].querySelector('.tx').innerHTML = `<b>${d.hero.chip3_title}</b><p>${d.hero.chip3_desc}</p>`;
+  }
+  const peekCap = document.querySelector('.peek-cap');
+  if (peekCap) {
+    peekCap.innerHTML = `<b>${d.hero.peek_title}</b><i>${d.hero.peek_sub}</i>`;
+  }
+
+  const gateK = document.querySelector('#gate .sec-head .k:first-child');
+  if (gateK) gateK.innerHTML = `<b>01</b> — ${d.gate.k1}`;
+  const gateH2 = document.querySelector('#gate .h-sec');
+  if (gateH2) gateH2.textContent = d.gate.h2;
+  const gateLead = document.querySelector('#gate .lead');
+  if (gateLead) gateLead.textContent = d.gate.lead;
+  const gateBody = document.querySelector('#gate .gate-copy .body');
+  if (gateBody) gateBody.textContent = d.gate.body;
+  const gateLink = document.querySelector('#gate .arrowlink span:first-child');
+  if (gateLink) gateLink.textContent = d.gate.link;
+
+  const statsLabels = document.querySelectorAll('#gate .gate-stats div span');
+  if (statsLabels.length >= 4) {
+    statsLabels[0].textContent = d.gate.stat0_label;
+    statsLabels[1].textContent = d.gate.stat1_label;
+    statsLabels[2].textContent = d.gate.stat2_label;
+    statsLabels[3].textContent = d.gate.stat3_label;
+  }
+
+  const pathK = document.querySelector('#pathways .sec-head .k:first-child');
+  if (pathK) pathK.innerHTML = `<b>02</b> — ${d.pathways.k1}`;
+  const pathH2 = document.querySelector('#pathways .h-sec');
+  if (pathH2) pathH2.textContent = d.pathways.h2;
+
+  const chipAll = document.querySelector('.filter-chip[data-filter="all"]');
+  if (chipAll) chipAll.textContent = d.pathways.chip_all;
+  const chipProj = document.querySelector('.filter-chip[data-filter="project"]');
+  if (chipProj) chipProj.textContent = d.pathways.chip_project;
+  const chipWf = document.querySelector('.filter-chip[data-filter="workflow"]');
+  if (chipWf) chipWf.textContent = d.pathways.chip_workflow;
+
+  document.querySelectorAll('#cards .card .card-meta span:first-child').forEach(s => {
+    s.textContent = d.pathways.read_more;
+  });
+
+  const lessK = document.querySelector('#lessons .sec-head .k:first-child');
+  if (lessK) lessK.innerHTML = `<b>03</b> — ${d.lessons.k1}`;
+  const lessH2 = document.querySelector('#lessons .h-sec');
+  if (lessH2) lessH2.textContent = d.lessons.h2;
+  const lessP = document.querySelector('.cur-head p');
+  if (lessP) lessP.textContent = d.lessons.p;
+
+  const etK = document.querySelector('#eternity .sec-head .k:first-child');
+  if (etK) etK.innerHTML = `<b>04</b> — ${d.eternity.k1}`;
+  const etH2 = document.querySelector('#eternity .h-sec');
+  if (etH2) etH2.textContent = d.eternity.h2;
+  const etP = document.querySelector('#eternity p');
+  if (etP) etP.textContent = d.eternity.p;
+
+  const btnViewCv = document.getElementById('btn-view-cv');
+  if (btnViewCv) btnViewCv.textContent = d.eternity.btn_view_cv;
+  const btnDownloadCv = document.getElementById('btn-download-cv');
+  if (btnDownloadCv) btnDownloadCv.textContent = d.eternity.btn_download_cv;
+  const btnLinkedin = document.getElementById('btn-linkedin');
+  if (btnLinkedin) btnLinkedin.textContent = d.eternity.btn_linkedin;
+  const btnEmail = document.getElementById('btn-email');
+  if (btnEmail) btnEmail.textContent = d.eternity.btn_email;
+
+  const footBrand = document.querySelector('.foot-brand p');
+  if (footBrand) {
+    const authorName = (lang === 'en')
+      ? 'Sota Truong'
+      : ((cachedSettings && cachedSettings.profile && cachedSettings.profile.name)
+          ? cachedSettings.profile.name.replace(/\s*\([^)]*\)/g, '').trim()
+          : 'Trương Nguyễn Sơn Thảo');
+    const authorTitle = (cachedSettings && cachedSettings.profile && cachedSettings.profile.title)
+      ? cachedSettings.profile.title
+      : 'Product Designer';
+    footBrand.innerHTML = `<b>${authorName}</b> — ${authorTitle} ${d.footer.desc}`;
+  }
+}
+
+function applyDynamicProfile(settings, projects, lang) {
+  if (settings) cachedSettings = settings;
+  if (projects) cachedProjects = projects;
+
+  if (!cachedSettings && !cachedProjects) {
     try {
       const cachedSet = localStorage.getItem('portfolio_site_settings_cache');
-      if (cachedSet) settings = JSON.parse(cachedSet);
+      if (cachedSet) cachedSettings = JSON.parse(cachedSet);
       const cachedProj = localStorage.getItem('portfolio_projects_cache');
-      if (cachedProj) projects = JSON.parse(cachedProj);
+      if (cachedProj) cachedProjects = JSON.parse(cachedProj);
     } catch (e) {
       console.warn('Failed to parse cached portfolio data:', e);
     }
   }
-  if (!settings && !projects) return;
 
-  if (settings && settings.profile) {
-    const p = settings.profile;
-    // Brand Nav
+  if (lang) {
+    currentLanguage = lang;
+  }
+  applyKageTranslations(currentLanguage);
+
+  if (cachedSettings && cachedSettings.profile) {
+    const p = cachedSettings.profile;
     const brandB = document.querySelector('#nav .brand-tx b');
-    if (brandB && p.name) {
-      const formattedName = p.name.replace(/\(Son Thao\)/i, '(Sota Trương)').toUpperCase();
-      brandB.textContent = formattedName;
+    if (brandB) {
+      if (currentLanguage === 'en') {
+        brandB.textContent = 'SOTA TRUONG';
+      } else {
+        const formattedName = p.name ? p.name.replace(/\s*\([^)]*\)/g, '').trim().toUpperCase() : 'TRƯƠNG NGUYỄN SƠN THẢO';
+        brandB.textContent = formattedName;
+      }
     }
     const brandI = document.querySelector('#nav .brand-tx i');
     if (brandI && p.title) brandI.textContent = p.title.toUpperCase();
 
-    // Hero Eyebrow (Non-redundant thematic tag)
-    const heroEyebrow = document.querySelector('#hero .eyebrow');
-    if (heroEyebrow) {
-      heroEyebrow.innerHTML = `<span class="dot"></span> INTERACTIVE 3D PORTFOLIO`;
-    }
-
-    // Hero Subtitle / Bio
     const heroSub = document.querySelector('#hero .hero-sub');
     if (heroSub && p.bio) {
-      heroSub.textContent = p.bio.vi || p.bio.en || p.headline;
+      const bioVal = typeof p.bio === 'object' ? (p.bio[currentLanguage] || p.bio.vi || p.bio.en) : p.bio;
+      if (bioVal) heroSub.textContent = bioVal;
     }
 
-    // Hero Side
-    const heroSide = document.querySelector('#hero .hero-side .v');
-    if (heroSide) {
-      heroSide.textContent = 'PROFILE';
-    }
-
-    // Chapter 01 Gate Profile
     const gateLead = document.querySelector('#gate .lead');
-    if (gateLead) {
-      gateLead.textContent = p.bio?.vi || p.bio?.en || 'Tôi là một Product-oriented UX/UI Designer với hơn 3 năm kinh nghiệm xây dựng và ra mắt các sản phẩm Minimum Viable Products (MVPs) từ nghiên cứu đến phát hành.';
-    }
-    const gateTitle = document.querySelector('#gate .h-sec');
-    if (gateTitle && p.headline) {
-      gateTitle.textContent = p.headline.toUpperCase();
-    }
-    const gateBody = document.querySelector('#gate .gate-copy .body');
-    if (gateBody) {
-      gateBody.textContent = 'Có kinh nghiệm phối hợp liên phòng ban (PM, Dev, Sales), mục tiêu của tôi là chuyển đổi các yêu cầu kinh doanh phức tạp thành các giải pháp sản phẩm khả thi. Tôi tập trung mạnh vào tối ưu hóa trải nghiệm người dùng trong khi vẫn đảm bảo tính khả thi về mặt kỹ thuật.';
+    if (gateLead && p.bio) {
+      const bioVal = typeof p.bio === 'object' ? (p.bio[currentLanguage] || p.bio.vi || p.bio.en) : p.bio;
+      if (bioVal) gateLead.textContent = bioVal;
     }
 
-    // Gate Stats from Backend
     const statsEls = document.querySelectorAll('#gate .gate-stats div');
     if (statsEls && statsEls.length >= 4) {
-      const projCount = (projects && projects.length) ? `${projects.length}+` : '10+';
-      statsEls[0].innerHTML = '<b>3+</b><span>Năm Kinh Nghiệm</span>';
-      statsEls[1].innerHTML = `<b>${projCount}</b><span>Dự Án Triển Khai</span>`;
-      statsEls[2].innerHTML = '<b>100%</b><span>Design Tokens Parity</span>';
-      statsEls[3].innerHTML = '<b>1994</b><span>Product Designer</span>';
-    }
-
-    // Chapter 03 Header Bio
-    const curHeadP = document.querySelector('.cur-head p');
-    if (curHeadP && p.bio) {
-      const bioText = p.bio.vi || p.bio.en || p.headline;
-      curHeadP.textContent = `${bioText} Kết hợp nghiên cứu người dùng thực địa, kiến trúc hệ thống Design Tokens đến bàn giao code chính xác.`;
-    }
-
-    // Chapter 04 CTA buttons & content
-    const finP = document.querySelector('#eternity p');
-    if (finP && p.headline) {
-      finP.textContent = `Dù là một bài toán Fintech phức tạp, xây dựng hệ thống Design System từ con số 0 hay tạo mẫu sản phẩm AI MVP với tốc độ cao, tôi luôn sẵn sàng lắng nghe và hiện thực hóa cùng bạn.`;
+      const projCount = (cachedProjects && cachedProjects.length) ? `${cachedProjects.length}+` : '10+';
+      statsEls[0].querySelector('b').textContent = '3+';
+      statsEls[1].querySelector('b').textContent = projCount;
+      statsEls[2].querySelector('b').textContent = '100%';
+      statsEls[3].querySelector('b').textContent = '1994';
     }
 
     const btnViewCv = document.getElementById('btn-view-cv');
@@ -5279,42 +5746,9 @@ function applyDynamicProfile(settings, projects) {
 
     const btnEmail = document.getElementById('btn-email');
     if (btnEmail && p.email) btnEmail.href = `mailto:${p.email}`;
-
-    // Footer
-    const footBrand = document.querySelector('.foot-brand p');
-    if (footBrand) {
-      const cleanName = (p.name || 'Trương Nguyễn Sơn Thảo (Sota Trương)').replace(/\(Son Thao\)/i, '(Sota Trương)');
-      footBrand.innerHTML = `<b>${cleanName}</b> — ${p.title || 'Product Designer'} chuyên sâu về Fintech, B2B SaaS, AI MVP và Design Systems.`;
-    }
-    const footBase = document.querySelector('.foot-base span:first-child');
-    if (footBase) {
-      const cleanName = (p.name || 'Trương Nguyễn Sơn Thảo (Sota Trương)').replace(/\(Son Thao\)/i, '(Sota Trương)');
-      footBase.textContent = `© ${new Date().getFullYear()} ${cleanName} · Sota Trương Portfolio`;
-    }
-    const footCity = document.querySelector('.foot-base span:last-child');
-    if (footCity && p.location) {
-      footCity.textContent = p.location;
-    }
-
-    // Footer Social Links
-    const footLinks = document.querySelectorAll('.foot ul li a');
-    footLinks.forEach(link => {
-      const text = link.textContent.toLowerCase();
-      if (text.includes('linkedin') && p.linkedin) link.href = p.linkedin;
-      if (text.includes('github') && p.github) link.href = p.github;
-      if (text.includes('email') && p.email) {
-        link.href = `mailto:${p.email}`;
-        link.textContent = `Email: ${p.email}`;
-      }
-      if (text.includes('telegram') && p.telegram) {
-        link.href = p.telegram;
-        link.textContent = `Telegram: ${p.telegram.replace('https://t.me/', '@')}`;
-      }
-    });
   }
 
-  // Dynamic Case Studies mapping from Backend API Projects
-  if (Array.isArray(projects) && projects.length > 0) {
+  if (Array.isArray(cachedProjects) && cachedProjects.length > 0) {
     const extractString = (val) => {
       if (!val) return '';
       if (typeof val === 'string') {
@@ -5322,14 +5756,14 @@ function applyDynamicProfile(settings, projects) {
         return val;
       }
       if (typeof val === 'object') {
-        const s = val.vi || val.en || Object.values(val)[0] || '';
+        const s = val[currentLanguage] || val.vi || val.en || Object.values(val)[0] || '';
         if (typeof s === 'string' && !s.startsWith('cv.')) return s;
       }
       return '';
     };
 
     const cardNodes = document.querySelectorAll('#cards .card');
-    projects.slice(0, cardNodes.length).forEach((proj, idx) => {
+    cachedProjects.slice(0, cardNodes.length).forEach((proj, idx) => {
       const card = cardNodes[idx];
       if (!card) return;
       const bTitle = card.querySelector('.card-lab b');
@@ -5360,17 +5794,17 @@ function applyDynamicProfile(settings, projects) {
   }
 
   // Dynamic Experience mapping in Chapter 03
-  if (settings && Array.isArray(settings.experience) && settings.experience.length > 0) {
+  if (cachedSettings && Array.isArray(cachedSettings.experience) && cachedSettings.experience.length > 0) {
     const curEl = document.getElementById('cur');
     if (curEl) {
       curEl.innerHTML = '';
-      settings.experience.slice(0, 5).forEach((exp, idx) => {
+      cachedSettings.experience.slice(0, 5).forEach((exp, idx) => {
         const item = document.createElement('div');
         item.className = 'les';
         item.setAttribute('data-les', String(idx));
         item.setAttribute('data-cursor', '');
         const num = String(idx + 1).padStart(2, '0');
-        const descText = typeof exp.description === 'object' ? (exp.description.vi || exp.description.en) : exp.description;
+        const descText = typeof exp.description === 'object' ? (exp.description[currentLanguage] || exp.description.vi || exp.description.en) : exp.description;
         item.innerHTML = `
           <span class="k">${num}</span>
           <h3>${exp.company} — ${exp.role}</h3>
@@ -5384,23 +5818,23 @@ function applyDynamicProfile(settings, projects) {
   }
 
   // Dynamic Skills mapping in Chapter 03 from Database
-  if (settings && settings.skills) {
-    if (Array.isArray(settings.skills.design) && settings.skills.design.length > 0) {
+  if (cachedSettings && cachedSettings.skills) {
+    if (Array.isArray(cachedSettings.skills.design) && cachedSettings.skills.design.length > 0) {
       const designWrap = document.getElementById('pills-design');
       if (designWrap) {
-        designWrap.innerHTML = settings.skills.design.map(s => `<span class="skill-pill">${s}</span>`).join('');
+        designWrap.innerHTML = cachedSettings.skills.design.map(s => `<span class="skill-pill">${s}</span>`).join('');
       }
     }
-    if (Array.isArray(settings.skills.engineering) && settings.skills.engineering.length > 0) {
+    if (Array.isArray(cachedSettings.skills.engineering) && cachedSettings.skills.engineering.length > 0) {
       const engWrap = document.getElementById('pills-engineering');
       if (engWrap) {
-        engWrap.innerHTML = settings.skills.engineering.map(s => `<span class="skill-pill">${s}</span>`).join('');
+        engWrap.innerHTML = cachedSettings.skills.engineering.map(s => `<span class="skill-pill">${s}</span>`).join('');
       }
     }
-    if (Array.isArray(settings.skills.ai_automation) && settings.skills.ai_automation.length > 0) {
+    if (Array.isArray(cachedSettings.skills.ai_automation) && cachedSettings.skills.ai_automation.length > 0) {
       const aiWrap = document.getElementById('pills-ai');
       if (aiWrap) {
-        aiWrap.innerHTML = settings.skills.ai_automation.map(s => `<span class="skill-pill">${s}</span>`).join('');
+        aiWrap.innerHTML = cachedSettings.skills.ai_automation.map(s => `<span class="skill-pill">${s}</span>`).join('');
       }
     }
   }
@@ -5417,15 +5851,44 @@ function start() {
 
   // Hydrate Dynamic Profile Data from Cache / Parent React Store
   applyDynamicProfile();
+  
+  // Language button event listeners
+  const langBtns = document.querySelectorAll('#kage-lang-toggle .lang-btn');
+  langBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const lang = btn.getAttribute('data-lang') || 'vi';
+      currentLanguage = lang;
+      localStorage.setItem('portfolio-lang', lang);
+      applyKageTranslations(lang);
+      window.parent.postMessage({ type: 'SET_LANGUAGE', language: lang }, '*');
+    });
+  });
+
   window.addEventListener('message', (e) => {
-    if (e.data && e.data.type === 'APPLY_PROFILE_DATA') {
-      applyDynamicProfile(e.data.settings, e.data.projects);
+    if (e.data) {
+      if (e.data.type === 'APPLY_PROFILE_DATA') {
+        applyDynamicProfile(e.data.settings, e.data.projects, e.data.language);
+      } else if (e.data.type === 'SET_LANGUAGE' && (e.data.language === 'vi' || e.data.language === 'en')) {
+        applyKageTranslations(e.data.language);
+      }
     }
   });
   window.parent.postMessage({ type: 'REQUEST_PROFILE_DATA' }, '*');
 
+  const savedScrollY = parseInt(sessionStorage.getItem('kage_scroll_y') || '0', 10);
+  const savedCardsX = parseInt(sessionStorage.getItem('kage_cards_scroll_x') || '0', 10);
+  const savedFilter = sessionStorage.getItem('kage_active_filter') || 'all';
+
   const shot = Q.get('shot');
-  if (shot !== null) {                       /* deterministic states for review */
+  if (savedScrollY > 80) {
+    RIG.intro = 1; WORD.reveal = 1.2; fadeIn = 1; INTRO.t0 = 0;
+    scrollTo(0, savedScrollY);
+    RIG.smooth = RIG.prog = progressFor(savedScrollY);
+    $$('[data-rv], .mask-line').forEach(e => e.classList.add('rv-in'));
+    document.body.classList.remove('is-locked');
+    preEl.classList.add('done');
+  } else if (shot !== null) {                       /* deterministic states for review */
     RIG.intro = 1; WORD.reveal = 1.2; fadeIn = 1; INTRO.t0 = 0;
     const n = clamp(parseInt(shot, 10) || 0, 0, SECS.length - 1);
     scrollTo(0, anchors[n]);
@@ -5442,13 +5905,18 @@ function start() {
     }, REDUCE ? 0 : 340);
   }
   running = true; tPrev = performance.now();
-  INTRO.t0 = shot !== null ? 0 : (REDUCE ? performance.now() - 4000 : performance.now());
+  INTRO.t0 = (shot !== null || savedScrollY > 80) ? 0 : (REDUCE ? performance.now() - 4000 : performance.now());
   queue();
+
+  window.addEventListener('scroll', () => {
+    sessionStorage.setItem('kage_scroll_y', String(window.scrollY));
+  }, { passive: true });
 
   const cardsEl = document.getElementById('cards');
   if (cardsEl) {
     let isPointerDown = false;
     let isDragging = false;
+    let pointerDownTime = 0;
     let startX = 0;
     let startY = 0;
     let scrollStart = 0;
@@ -5456,6 +5924,8 @@ function start() {
     let lastTime = 0;
     let velocity = 0;
     let momentumRaf = null;
+    let holdTimer = null;
+    let preventClickUntil = 0;
 
     // Wheel horizontal scroll with boundary pass-through to vertical page scroll
     let targetScrollLeft = cardsEl.scrollLeft;
@@ -5477,6 +5947,10 @@ function start() {
       };
       wheelRaf = requestAnimationFrame(step);
     }
+
+    cardsEl.addEventListener('scroll', () => {
+      sessionStorage.setItem('kage_cards_scroll_x', String(cardsEl.scrollLeft));
+    }, { passive: true });
 
     cardsEl.addEventListener('wheel', (e) => {
       const deltaY = e.deltaY;
@@ -5513,6 +5987,7 @@ function start() {
 
       isPointerDown = true;
       isDragging = false;
+      pointerDownTime = performance.now();
       startX = e.clientX;
       startY = e.clientY;
       lastX = e.clientX;
@@ -5523,7 +5998,15 @@ function start() {
 
       cancelAnimationFrame(wheelRaf);
       cancelAnimationFrame(momentumRaf);
-      cardsEl.classList.add('is-dragging');
+      clearTimeout(holdTimer);
+
+      // Start drag intent timer: after 260ms of holding, activate drag mode
+      holdTimer = setTimeout(() => {
+        if (isPointerDown) {
+          isDragging = true;
+          cardsEl.classList.add('is-dragging');
+        }
+      }, 260);
     });
 
     // Pointer Move
@@ -5534,11 +6017,12 @@ function start() {
       const currentY = e.clientY;
       const deltaX = currentX - startX;
       const deltaY = currentY - startY;
+      const dist = Math.hypot(deltaX, deltaY);
 
-      if (!isDragging) {
-        if (Math.hypot(deltaX, deltaY) > 6) {
-          isDragging = true;
-        }
+      if (!isDragging && dist > 8) {
+        isDragging = true;
+        clearTimeout(holdTimer);
+        cardsEl.classList.add('is-dragging');
       }
 
       if (isDragging) {
@@ -5559,35 +6043,60 @@ function start() {
     }, { passive: true });
 
     // Pointer Up / Cancel
-    const handlePointerEnd = () => {
+    const handlePointerEnd = (e) => {
       if (!isPointerDown) return;
+      clearTimeout(holdTimer);
+
+      const elapsed = performance.now() - pointerDownTime;
+      const currentX = (e && typeof e.clientX === 'number') ? e.clientX : lastX;
+      const currentY = (e && typeof e.clientY === 'number') ? e.clientY : startY;
+      const dist = Math.hypot(currentX - startX, currentY - startY);
+      const wasDrag = isDragging || elapsed >= 260 || dist > 8;
+
       isPointerDown = false;
 
-      // Small cooldown to prevent accidental card navigation on drag release
-      setTimeout(() => {
-        isDragging = false;
-        cardsEl.classList.remove('is-dragging');
-      }, 60);
+      if (wasDrag) {
+        // Prevent any click triggers for 300ms following drag release
+        preventClickUntil = performance.now() + 300;
+        isDragging = true;
 
-      // Inertia Momentum Physics Glide
-      if (Math.abs(velocity) > 0.12) {
-        cancelAnimationFrame(momentumRaf);
-        let frameVel = velocity * 16;
-        const friction = 0.935;
-        let pos = cardsEl.scrollLeft;
+        if (dist > 15) {
+          window.parent.postMessage({
+            type: 'TRACK_EVENT',
+            eventName: 'project_drag',
+            params: { distance_px: Math.round(dist), duration_ms: Math.round(elapsed) }
+          }, '*');
+        }
 
-        const glide = () => {
-          if (Math.abs(frameVel) > 0.25) {
-            pos -= frameVel;
-            cardsEl.scrollLeft = Math.round(pos);
-            frameVel *= friction;
-            momentumRaf = requestAnimationFrame(glide);
-          } else {
+        // Inertia Momentum Physics Glide
+        if (Math.abs(velocity) > 0.12) {
+          cancelAnimationFrame(momentumRaf);
+          let frameVel = velocity * 16;
+          const friction = 0.935;
+          let pos = cardsEl.scrollLeft;
+
+          const glide = () => {
+            if (Math.abs(frameVel) > 0.25) {
+              pos -= frameVel;
+              cardsEl.scrollLeft = Math.round(pos);
+              frameVel *= friction;
+              momentumRaf = requestAnimationFrame(glide);
+            } else {
+              isDragging = false;
+              cardsEl.classList.remove('is-dragging');
+            }
+          };
+          momentumRaf = requestAnimationFrame(glide);
+        } else {
+          setTimeout(() => {
+            isDragging = false;
             cardsEl.classList.remove('is-dragging');
-          }
-        };
-        momentumRaf = requestAnimationFrame(glide);
+          }, 80);
+        }
       } else {
+        // Fast click / tap (< 260ms, dist <= 8px): immediately allow click without delay
+        isDragging = false;
+        preventClickUntil = 0;
         cardsEl.classList.remove('is-dragging');
       }
     };
@@ -5595,11 +6104,13 @@ function start() {
     window.addEventListener('pointerup', handlePointerEnd);
     window.addEventListener('pointercancel', handlePointerEnd);
 
-    // Suppress click navigation when user is actively dragging
+    // Suppress click navigation ONLY when user was actively dragging or holding
     cardsEl.addEventListener('click', (e) => {
-      if (isDragging) {
+      if (isDragging || performance.now() < preventClickUntil) {
         e.preventDefault();
         e.stopPropagation();
+        e.stopImmediatePropagation();
+        return false;
       }
     }, true);
 
@@ -5632,20 +6143,62 @@ function start() {
         mosaicTrack.appendChild(groupEl);
       }
 
-      // Always reset scroll to the very left
+      // Reset or restore scroll
       cardsEl.scrollLeft = 0;
       targetScrollLeft = 0;
       cancelAnimationFrame(wheelRaf);
+    }
+
+    if (savedFilter && savedFilter !== 'all') {
+      const chipToActive = document.querySelector(`.filter-chip[data-filter="${savedFilter}"]`);
+      if (chipToActive) {
+        filterChips.forEach(c => c.classList.toggle('is-active', c === chipToActive));
+        renderFilteredCards(savedFilter);
+      }
+    }
+
+    if (savedCardsX > 0) {
+      cardsEl.scrollLeft = savedCardsX;
+      targetScrollLeft = savedCardsX;
     }
 
     filterChips.forEach(chip => {
       chip.addEventListener('click', (e) => {
         e.stopPropagation();
         const filter = chip.getAttribute('data-filter') || 'all';
+        sessionStorage.setItem('kage_active_filter', filter);
+        sessionStorage.removeItem('kage_cards_scroll_x');
         filterChips.forEach(c => c.classList.toggle('is-active', c === chip));
         renderFilteredCards(filter);
+        window.parent.postMessage({ type: 'TRACK_EVENT', eventName: 'filter_click', params: { filter: filter } }, '*');
       });
     });
+
+    // Telemetry tracking on Chapter 04 Conversion CTAs
+    const btnViewCv = document.getElementById('btn-view-cv');
+    if (btnViewCv) {
+      btnViewCv.addEventListener('click', () => {
+        window.parent.postMessage({ type: 'TRACK_EVENT', eventName: 'cv_action', params: { action_type: 'view', button_id: 'btn-view-cv' } }, '*');
+      });
+    }
+    const btnDownloadCv = document.getElementById('btn-download-cv');
+    if (btnDownloadCv) {
+      btnDownloadCv.addEventListener('click', () => {
+        window.parent.postMessage({ type: 'TRACK_EVENT', eventName: 'cv_action', params: { action_type: 'download', button_id: 'btn-download-cv' } }, '*');
+      });
+    }
+    const btnLinkedin = document.getElementById('btn-linkedin');
+    if (btnLinkedin) {
+      btnLinkedin.addEventListener('click', () => {
+        window.parent.postMessage({ type: 'TRACK_EVENT', eventName: 'contact_click', params: { contact_method: 'linkedin', contact_location: 'chapter_04' } }, '*');
+      });
+    }
+    const btnEmail = document.getElementById('btn-email');
+    if (btnEmail) {
+      btnEmail.addEventListener('click', () => {
+        window.parent.postMessage({ type: 'TRACK_EVENT', eventName: 'contact_click', params: { contact_method: 'email', contact_location: 'chapter_04' } }, '*');
+      });
+    }
   }
 
   window.__kage = window.__secret = { RIG: RIG, WORLD: WORLD, WORD: WORD, CAM: CAM, POST: POST, renderer: renderer, scene: scene, camera: camera, anchors: () => anchors };

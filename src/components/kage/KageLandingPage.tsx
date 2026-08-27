@@ -2,6 +2,7 @@ import React, { useState, useRef, useCallback, useEffect } from 'react';
 import { useStore } from '../../store/useStore';
 import { useSiteSettings } from '../../cms/hooks/useSiteSettings';
 import { useProjects } from '../../cms/hooks/useProjects';
+import { trackEvent } from '../../utils/analytics';
 
 const FRAME_SANDBOX = 'allow-downloads allow-forms allow-modals allow-popups allow-same-origin allow-scripts';
 
@@ -18,7 +19,7 @@ export const KageLandingPage: React.FC<KageLandingPageProps> = ({
 }) => {
   const [ready, setReady] = useState(false);
   const frameRef = useRef<HTMLIFrameElement>(null);
-  const { setGameState, setSelectedQuest, setActiveLandingVariant } = useStore();
+  const { setGameState, setSelectedQuest, setActiveLandingVariant, language, setLanguage } = useStore();
   const { settings } = useSiteSettings();
   const { projects } = useProjects();
 
@@ -29,11 +30,12 @@ export const KageLandingPage: React.FC<KageLandingPageProps> = ({
           type: 'APPLY_PROFILE_DATA',
           settings: settings || null,
           projects: projects || null,
+          language: language,
         },
         '*'
       );
     }
-  }, [settings, projects]);
+  }, [settings, projects, language]);
 
   useEffect(() => {
     setActiveLandingVariant('B');
@@ -52,14 +54,31 @@ export const KageLandingPage: React.FC<KageLandingPageProps> = ({
           setActiveLandingVariant('B');
           setSelectedQuest(event.data.questId);
           setGameState(`CASE_STUDY_${event.data.questId.toUpperCase().replace(/-/g, '')}` as any);
+          trackEvent('project_view', {
+            project_id: event.data.questId,
+            source_variant: 'B',
+            interaction_type: 'kage_card_click',
+          });
+        } else if (event.data.type === 'TRACK_EVENT' && event.data.eventName) {
+          trackEvent(event.data.eventName, {
+            ...event.data.params,
+            landing_variant: 'B',
+          });
         } else if (event.data.type === 'REQUEST_PROFILE_DATA') {
           sendProfileData();
+        } else if (event.data.type === 'SET_LANGUAGE' && (event.data.language === 'vi' || event.data.language === 'en')) {
+          setLanguage(event.data.language);
+          trackEvent('language_toggle', {
+            language: event.data.language,
+            source: 'kage_header',
+            landing_variant: 'B',
+          });
         }
       }
     };
     window.addEventListener('message', handleMessage);
     return () => window.removeEventListener('message', handleMessage);
-  }, [setGameState, setSelectedQuest, setActiveLandingVariant, sendProfileData]);
+  }, [setGameState, setSelectedQuest, setActiveLandingVariant, sendProfileData, setLanguage]);
 
   return (
     <div

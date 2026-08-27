@@ -1,10 +1,11 @@
 import { create } from 'zustand';
 import { trackEvent } from '../utils/analytics';
 import { CV_PROJECTS } from '../data/cvData';
+import { getOrAssignVariant, initABExperiment, type LandingVariant } from '../utils/abTesting';
 
 export type GameState = 'HERO_LANDING' | 'SELECT_PROFILE' | 'SKILL_MATRIX' | 'PROJECT_JOURNEY' | 'CASE_BRIEF' | 'CASE_STUDY_CRYPTOMAP' | 'CASE_STUDY_NAILHUB' | 'CASE_STUDY_NEXORA' | 'CASE_STUDY_VLINKPAY' | 'CASE_STUDY_AIPROCESS' | 'CASE_STUDY_HANDOFF' | 'CASE_STUDY_SYNCTASKBADGE' | 'CASE_STUDY_DISPATCH' | 'CASE_STUDY_AGENTRULES' | 'CASE_STUDY_KAGE' | 'EXPERIENCE' | 'PROCESS';
 
-export type LandingVariant = 'A' | 'B';
+export type { LandingVariant };
 
 // --- URL ↔ State mapping ---
 
@@ -56,14 +57,18 @@ function resolveStateFromURL(): { gameState: GameState; selectedQuest: string | 
     return { gameState: 'HERO_LANDING', selectedQuest: null, variant: 'A' };
   }
   const path = window.location.pathname.replace(/\/+$/, '') || '/';
-  const storedVariant = (localStorage.getItem('portfolio_active_variant') === 'B' ? 'B' : 'A') as LandingVariant;
-  const initialVariant = path === '/kage' || path === '/project/kage' ? 'B' : path === '/' ? 'A' : storedVariant;
+  const assignedVariant = getOrAssignVariant();
+  initABExperiment(assignedVariant);
+
+  if (path === '/' && assignedVariant === 'B') {
+    return { gameState: 'CASE_STUDY_KAGE', selectedQuest: null, variant: 'B' };
+  }
 
   const match = URL_TO_STATE[path];
   if (match) {
-    return { gameState: match.gameState, selectedQuest: match.selectedQuest ?? null, variant: initialVariant };
+    return { gameState: match.gameState, selectedQuest: match.selectedQuest ?? null, variant: assignedVariant };
   }
-  return { gameState: 'HERO_LANDING', selectedQuest: null, variant: initialVariant };
+  return { gameState: 'HERO_LANDING', selectedQuest: null, variant: assignedVariant };
 }
 
 /** Push URL to browser history without triggering popstate */
