@@ -2,7 +2,9 @@ import { create } from 'zustand';
 import { trackEvent } from '../utils/analytics';
 import { CV_PROJECTS } from '../data/cvData';
 
-export type GameState = 'HERO_LANDING' | 'SELECT_PROFILE' | 'SKILL_MATRIX' | 'PROJECT_JOURNEY' | 'CASE_BRIEF' | 'CASE_STUDY_CRYPTOMAP' | 'CASE_STUDY_NAILHUB' | 'CASE_STUDY_NEXORA' | 'CASE_STUDY_VLINKPAY' | 'CASE_STUDY_AIPROCESS' | 'CASE_STUDY_HANDOFF' | 'CASE_STUDY_SYNCTASKBADGE' | 'CASE_STUDY_DISPATCH' | 'CASE_STUDY_AGENTRULES' | 'EXPERIENCE' | 'PROCESS';
+export type GameState = 'HERO_LANDING' | 'SELECT_PROFILE' | 'SKILL_MATRIX' | 'PROJECT_JOURNEY' | 'CASE_BRIEF' | 'CASE_STUDY_CRYPTOMAP' | 'CASE_STUDY_NAILHUB' | 'CASE_STUDY_NEXORA' | 'CASE_STUDY_VLINKPAY' | 'CASE_STUDY_AIPROCESS' | 'CASE_STUDY_HANDOFF' | 'CASE_STUDY_SYNCTASKBADGE' | 'CASE_STUDY_DISPATCH' | 'CASE_STUDY_AGENTRULES' | 'CASE_STUDY_KAGE' | 'EXPERIENCE' | 'PROCESS';
+
+export type LandingVariant = 'A' | 'B';
 
 // --- URL ↔ State mapping ---
 
@@ -21,6 +23,7 @@ const STATE_TO_URL: Record<GameState, string> = {
   CASE_STUDY_SYNCTASKBADGE: '/project/sync-task-badge',
   CASE_STUDY_DISPATCH: '/project/dispatch',
   CASE_STUDY_AGENTRULES: '/project/agent-rules',
+  CASE_STUDY_KAGE: '/kage',
   EXPERIENCE: '/experience',
   PROCESS: '/process',
 };
@@ -41,21 +44,26 @@ const URL_TO_STATE: Record<string, { gameState: GameState; selectedQuest?: strin
   '/project/sync-task-badge': { gameState: 'CASE_STUDY_SYNCTASKBADGE', selectedQuest: 'sync-task-badge' },
   '/project/dispatch': { gameState: 'CASE_STUDY_DISPATCH', selectedQuest: 'dispatch' },
   '/project/agent-rules': { gameState: 'CASE_STUDY_AGENTRULES', selectedQuest: 'agent-rules' },
+  '/project/kage': { gameState: 'CASE_STUDY_KAGE', selectedQuest: undefined },
+  '/kage': { gameState: 'CASE_STUDY_KAGE', selectedQuest: undefined },
   '/experience': { gameState: 'EXPERIENCE' },
   '/process': { gameState: 'PROCESS' },
 };
 
 /** Resolve initial state from current URL pathname */
-function resolveStateFromURL(): { gameState: GameState; selectedQuest: string | null } {
+function resolveStateFromURL(): { gameState: GameState; selectedQuest: string | null; variant: LandingVariant } {
   if (typeof window === 'undefined') {
-    return { gameState: 'HERO_LANDING', selectedQuest: null };
+    return { gameState: 'HERO_LANDING', selectedQuest: null, variant: 'A' };
   }
   const path = window.location.pathname.replace(/\/+$/, '') || '/';
+  const storedVariant = (localStorage.getItem('portfolio_active_variant') === 'B' ? 'B' : 'A') as LandingVariant;
+  const initialVariant = path === '/kage' || path === '/project/kage' ? 'B' : path === '/' ? 'A' : storedVariant;
+
   const match = URL_TO_STATE[path];
   if (match) {
-    return { gameState: match.gameState, selectedQuest: match.selectedQuest ?? null };
+    return { gameState: match.gameState, selectedQuest: match.selectedQuest ?? null, variant: initialVariant };
   }
-  return { gameState: 'HERO_LANDING', selectedQuest: null };
+  return { gameState: 'HERO_LANDING', selectedQuest: null, variant: initialVariant };
 }
 
 /** Push URL to browser history without triggering popstate */
@@ -101,6 +109,7 @@ export const QUEST_STATE_MAP: Record<string, GameState> = {
 interface AppState {
   gameState: GameState;
   selectedQuest: string | null;
+  activeLandingVariant: LandingVariant;
   isLightMode: boolean;
   isManualTheme: boolean;
   language: 'vi' | 'en';
@@ -108,6 +117,8 @@ interface AppState {
   // Actions
   setGameState: (state: GameState) => void;
   setSelectedQuest: (questId: string | null) => void;
+  setActiveLandingVariant: (variant: LandingVariant) => void;
+  handleBackFromProject: () => void;
   setIsLightMode: (isLight: boolean) => void;
   setIsManualTheme: (isManual: boolean) => void;
   toggleTheme: () => void;
@@ -122,16 +133,41 @@ const initialState = resolveStateFromURL();
 export const useStore = create<AppState>((set) => ({
   gameState: initialState.gameState,
   selectedQuest: initialState.selectedQuest,
+  activeLandingVariant: initialState.variant,
   isLightMode: false,
   isManualTheme: false,
   language: (typeof window !== 'undefined' && localStorage.getItem('portfolio-lang') === 'vi' ? 'vi' : 'en') as 'vi' | 'en',
 
   setGameState: (state) => {
     pushURL(state);
-    set({ gameState: state });
+    if (state === 'CASE_STUDY_KAGE') {
+      if (typeof window !== 'undefined') localStorage.setItem('portfolio_active_variant', 'B');
+      set({ gameState: state, activeLandingVariant: 'B' });
+    } else if (state === 'HERO_LANDING' || state === 'PROJECT_JOURNEY' || state === 'SELECT_PROFILE') {
+      if (typeof window !== 'undefined') localStorage.setItem('portfolio_active_variant', 'A');
+      set({ gameState: state, activeLandingVariant: 'A' });
+    } else {
+      set({ gameState: state });
+    }
   },
   
   setSelectedQuest: (questId) => set({ selectedQuest: questId }),
+  
+  setActiveLandingVariant: (variant) => {
+    if (typeof window !== 'undefined') localStorage.setItem('portfolio_active_variant', variant);
+    set({ activeLandingVariant: variant });
+  },
+
+  handleBackFromProject: () => {
+    set((state) => {
+      if (state.activeLandingVariant === 'B') {
+        pushURL('CASE_STUDY_KAGE');
+        return { gameState: 'CASE_STUDY_KAGE', selectedQuest: null };
+      }
+      pushURL('PROJECT_JOURNEY');
+      return { gameState: 'PROJECT_JOURNEY', selectedQuest: null };
+    });
+  },
   
   setIsLightMode: (isLight) => set({ isLightMode: isLight }),
   
@@ -161,7 +197,11 @@ export const useStore = create<AppState>((set) => ({
 
   syncFromURL: () => {
     const resolved = resolveStateFromURL();
-    set({ gameState: resolved.gameState, selectedQuest: resolved.selectedQuest });
+    set({
+      gameState: resolved.gameState,
+      selectedQuest: resolved.selectedQuest,
+      activeLandingVariant: resolved.variant,
+    });
   },
 
   setLanguage: (lang) => {

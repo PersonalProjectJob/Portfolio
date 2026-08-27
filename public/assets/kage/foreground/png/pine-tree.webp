@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" width="600" height="800">
+  <defs>
+    <linearGradient id="palmLeaf" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1b4d2b"/>
+      <stop offset="60%" stop-color="#0e2e18"/>
+      <stop offset="100%" stop-color="#05140a"/>
+    </linearGradient>
+  </defs>
+  <!-- Water Coconut Palm Fronds (Dừa nước miền Tây) -->
+  <g transform="translate(300, 750)">
+    <!-- Palm Frond 1 (Left) -->
+    <path d="M0 0 C-60 -250 -220 -480 -280 -620 C-220 -520 -150 -320 0 0 Z" fill="url(#palmLeaf)"/>
+    <!-- Frond Leaflets -->
+    <path d="M-150 -350 L-260 -420 L-170 -380 L-280 -450 L-190 -410 L-290 -500" stroke="#1b4d2b" stroke-width="6" fill="none"/>
+    <!-- Palm Frond 2 (Center High) -->
+    <path d="M0 0 C-30 -300 -60 -560 -40 -720 C20 -580 40 -340 0 0 Z" fill="url(#palmLeaf)"/>
+    <!-- Palm Frond 3 (Right) -->
+    <path d="M0 0 C80 -260 220 -460 290 -590 C220 -480 140 -290 0 0 Z" fill="url(#palmLeaf)"/>
+    <path d="M150 -340 L250 -400 L170 -370 L270 -440 L190 -400 L280 -480" stroke="#1b4d2b" stroke-width="6" fill="none"/>
+  </g>
+</svg>

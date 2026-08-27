@@ -1,4 +1,4 @@
-import { CV_PROJECTS } from '../../data/cvData';
+import { CV_PROJECTS } from '../../data/cvData.ts';
 import type { ContentEntry } from '../../cms/types/cms.types';
 
 /**

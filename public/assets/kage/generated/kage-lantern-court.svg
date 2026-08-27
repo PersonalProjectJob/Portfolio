@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800">
+  <defs>
+    <radialGradient id="courtSky" cx="50%" cy="20%" r="80%">
+      <stop offset="0%" stop-color="#140b24"/>
+      <stop offset="50%" stop-color="#090514"/>
+      <stop offset="100%" stop-color="#020106"/>
+    </radialGradient>
+    <radialGradient id="lotusGlowMain" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ff4488" stop-opacity="0.9"/>
+      <stop offset="35%" stop-color="#ff7733" stop-opacity="0.5"/>
+      <stop offset="70%" stop-color="#ffaa00" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#ff4488" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="warmAmber" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffea77" stop-opacity="1"/>
+      <stop offset="40%" stop-color="#ff9911" stop-opacity="0.6"/>
+      <stop offset="80%" stop-color="#ff4400" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#ff2200" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="blur2" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="15"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="800" fill="url(#courtSky)"/>
+
+  <!-- Riverside Wooden Pier / Stilt Veranda -->
+  <g fill="#180e08" stroke="#331c10" stroke-width="2">
+    <!-- Veranda Pillars -->
+    <rect x="80" y="240" width="28" height="400" rx="4"/>
+    <rect x="320" y="220" width="28" height="420" rx="4"/>
+    <rect x="560" y="250" width="24" height="390" rx="4"/>
+    <rect x="800" y="230" width="28" height="410" rx="4"/>
+    <rect x="1040" y="260" width="28" height="380" rx="4"/>
+    <!-- Cross Beams & Wooden Railings with Vietnamese Balusters -->
+    <rect x="40" y="380" width="1120" height="22" rx="3"/>
+    <rect x="40" y="440" width="1120" height="18" rx="3"/>
+    <!-- Balusters -->
+    <g fill="#24140c">
+      <rect x="150" y="402" width="12" height="38" rx="2"/>
+      <rect x="190" y="402" width="12" height="38" rx="2"/>
+      <rect x="230" y="402" width="12" height="38" rx="2"/>
+      <rect x="270" y="402" width="12" height="38" rx="2"/>
+      <rect x="390" y="402" width="12" height="38" rx="2"/>
+      <rect x="430" y="402" width="12" height="38" rx="2"/>
+      <rect x="470" y="402" width="12" height="38" rx="2"/>
+      <rect x="510" y="402" width="12" height="38" rx="2"/>
+      <rect x="630" y="402" width="12" height="38" rx="2"/>
+      <rect x="670" y="402" width="12" height="38" rx="2"/>
+      <rect x="710" y="402" width="12" height="38" rx="2"/>
+      <rect x="750" y="402" width="12" height="38" rx="2"/>
+    </g>
+  </g>
+
+  <!-- Hanging Silk Lanterns (Đèn Lồng Lụa Hội An / Nam Bộ) -->
+  <g transform="translate(200, 180)">
+    <line x1="0" y1="-80" x2="0" y2="0" stroke="#442211" stroke-width="2"/>
+    <circle cx="0" cy="35" r="70" fill="url(#warmAmber)"/>
+    <!-- Silk Lantern Oval -->
+    <ellipse cx="0" cy="35" rx="32" ry="48" fill="#e03020" stroke="#ffcc44" stroke-width="1.5"/>
+    <ellipse cx="0" cy="35" rx="18" ry="48" fill="#ff5522" opacity="0.6"/>
+    <!-- Tassel (Tua rua lụa vàng) -->
+    <line x1="0" y1="83" x2="0" y2="130" stroke="#ffbb33" stroke-width="4"/>
+  </g>
+
+  <g transform="translate(680, 150)">
+    <line x1="0" y1="-80" x2="0" y2="0" stroke="#442211" stroke-width="2"/>
+    <circle cx="0" cy="35" r="75" fill="url(#warmAmber)"/>
+    <ellipse cx="0" cy="35" rx="36" ry="54" fill="#ffaa00" stroke="#ffee66" stroke-width="1.5"/>
+    <line x1="0" y1="89" x2="0" y2="140" stroke="#ffdd55" stroke-width="4"/>
+  </g>
+
+  <!-- River with Massive Field of Floating Lotus Lanterns -->
+  <rect y="480" width="1200" height="320" fill="#040b12"/>
+
+  <!-- Master Giant Lotus Lantern in Foreground Center -->
+  <g transform="translate(600, 620)">
+    <circle cx="0" cy="0" r="160" fill="url(#lotusGlowMain)" filter="url(#blur2)"/>
+    <!-- Outer Lotus Petals -->
+    <path d="M-90 10 C-80 -60 0 -90 0 -90 C0 -90 80 -60 90 10 C50 35 -50 35 -90 10 Z" fill="#b81b4c"/>
+    <path d="M-65 10 C-55 -45 0 -75 0 -75 C0 -75 55 -45 65 10 Z" fill="#e83672"/>
+    <path d="M-40 10 C-30 -30 0 -55 0 -55 C0 -55 30 -30 40 10 Z" fill="#ff6ea3"/>
+    <!-- Inner Candle / Flame -->
+    <ellipse cx="0" cy="-10" rx="14" ry="24" fill="#ffea55"/>
+    <ellipse cx="0" cy="-10" rx="7" ry="14" fill="#ffffff"/>
+    <!-- Water Ripple Reflection -->
+    <ellipse cx="0" cy="40" rx="140" ry="18" fill="#ff3377" opacity="0.3" filter="url(#blur2)"/>
+  </g>
+
+  <!-- Field of Smaller Lotus Lanterns -->
+  <g transform="translate(240, 580) scale(0.6)">
+    <circle cx="0" cy="0" r="100" fill="url(#lotusGlowMain)"/>
+    <path d="M-60 10 C-50 -45 0 -70 0 -70 C0 -70 50 -45 60 10 Z" fill="#e83672"/>
+    <circle cx="0" cy="-10" r="12" fill="#ffea55"/>
+  </g>
+  <g transform="translate(920, 590) scale(0.55)">
+    <circle cx="0" cy="0" r="100" fill="url(#lotusGlowMain)"/>
+    <path d="M-60 10 C-50 -45 0 -70 0 -70 C0 -70 50 -45 60 10 Z" fill="#e83672"/>
+    <circle cx="0" cy="-10" r="12" fill="#ffea55"/>
+  </g>
+  <g transform="translate(420, 680) scale(0.8)">
+    <circle cx="0" cy="0" r="120" fill="url(#lotusGlowMain)"/>
+    <path d="M-70 10 C-60 -50 0 -80 0 -80 C0 -80 60 -50 70 10 Z" fill="#e83672"/>
+    <circle cx="0" cy="-10" r="14" fill="#ffea55"/>
+  </g>
+  <g transform="translate(820, 710) scale(0.75)">
+    <circle cx="0" cy="0" r="120" fill="url(#lotusGlowMain)"/>
+    <path d="M-70 10 C-60 -50 0 -80 0 -80 C0 -80 60 -50 70 10 Z" fill="#e83672"/>
+    <circle cx="0" cy="-10" r="14" fill="#ffea55"/>
+  </g>
+</svg>

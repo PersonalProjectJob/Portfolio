@@ -1,0 +1,182 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800">
+  <defs>
+    <radialGradient id="skyGrad" cx="50%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#0d1b2a"/>
+      <stop offset="45%" stop-color="#071018"/>
+      <stop offset="85%" stop-color="#03080d"/>
+      <stop offset="100%" stop-color="#010406"/>
+    </radialGradient>
+    <radialGradient id="moonGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ff4422" stop-opacity="0.85"/>
+      <stop offset="35%" stop-color="#ff7733" stop-opacity="0.4"/>
+      <stop offset="70%" stop-color="#ffaa44" stop-opacity="0.1"/>
+      <stop offset="100%" stop-color="#ff4422" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="antaresGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ff2200" stop-opacity="1"/>
+      <stop offset="40%" stop-color="#ff5522" stop-opacity="0.8"/>
+      <stop offset="80%" stop-color="#ff8844" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#ff2200" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="waterGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#051019"/>
+      <stop offset="30%" stop-color="#081824"/>
+      <stop offset="70%" stop-color="#040c14"/>
+      <stop offset="100%" stop-color="#02060a"/>
+    </linearGradient>
+    <linearGradient id="sampanGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#3d2314"/>
+      <stop offset="50%" stop-color="#24140a"/>
+      <stop offset="100%" stop-color="#120a05"/>
+    </linearGradient>
+    <radialGradient id="lanternGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffcc44" stop-opacity="0.9"/>
+      <stop offset="40%" stop-color="#ff8811" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#ff5500" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="blurFilter" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="12"/>
+    </filter>
+    <filter id="starGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Sky -->
+  <rect width="1200" height="800" fill="url(#skyGrad)"/>
+
+  <!-- Stars Background -->
+  <g fill="#ffffff" opacity="0.75">
+    <circle cx="120" cy="80" r="1.2" opacity="0.6"/>
+    <circle cx="280" cy="140" r="1.5" opacity="0.8"/>
+    <circle cx="450" cy="60" r="1" opacity="0.5"/>
+    <circle cx="720" cy="110" r="1.8" opacity="0.9"/>
+    <circle cx="890" cy="75" r="1.3" opacity="0.7"/>
+    <circle cx="1050" cy="130" r="1.6" opacity="0.8"/>
+    <circle cx="180" cy="220" r="1" opacity="0.4"/>
+    <circle cx="340" cy="280" r="1.4" opacity="0.6"/>
+    <circle cx="610" cy="210" r="1.2" opacity="0.7"/>
+    <circle cx="980" cy="240" r="1.5" opacity="0.6"/>
+  </g>
+
+  <!-- Scorpio Constellation (Chòm sao Thiên Yết) -->
+  <g id="scorpioConstellation" stroke="#66d9ff" stroke-width="1.8" stroke-opacity="0.65" filter="url(#starGlow)">
+    <!-- Claws & Head -->
+    <line x1="680" y1="120" x2="720" y2="150"/>
+    <line x1="720" y1="150" x2="750" y2="190"/>
+    <line x1="720" y1="150" x2="680" y2="210"/>
+    <line x1="680" y1="210" x2="640" y2="260"/>
+    <!-- Heart (Antares) to Body -->
+    <line x1="640" y1="260" x2="655" y2="320"/>
+    <line x1="655" y1="320" x2="680" y2="370"/>
+    <line x1="680" y1="370" x2="720" y2="420"/>
+    <line x1="720" y1="420" x2="770" y2="455"/>
+    <line x1="770" y1="455" x2="830" y2="470"/>
+    <!-- Stinger & Tail -->
+    <line x1="830" y1="470" x2="890" y2="455"/>
+    <line x1="890" y1="455" x2="930" y2="415"/>
+    <line x1="930" y1="415" x2="945" y2="365"/>
+    <line x1="945" y1="365" x2="930" y2="340"/>
+
+    <!-- Stars Nodes -->
+    <g fill="#aae5ff" stroke="none">
+      <circle cx="680" cy="120" r="3.5"/>
+      <circle cx="720" cy="150" r="4.5"/>
+      <circle cx="750" cy="190" r="3.5"/>
+      <circle cx="680" cy="210" r="4"/>
+      <circle cx="655" cy="320" r="3.5"/>
+      <circle cx="680" cy="370" r="4"/>
+      <circle cx="720" cy="420" r="4"/>
+      <circle cx="770" cy="455" r="4.5"/>
+      <circle cx="830" cy="470" r="4"/>
+      <circle cx="890" cy="455" r="4.5"/>
+      <circle cx="930" cy="415" r="5"/>
+      <circle cx="945" cy="365" r="5.5"/>
+      <circle cx="930" cy="340" r="4"/>
+    </g>
+  </g>
+
+  <!-- Antares Ruby Star (Tâm Bọ Cạp) -->
+  <circle cx="640" cy="260" r="50" fill="url(#antaresGlow)"/>
+  <circle cx="640" cy="260" r="8" fill="#ff4422"/>
+  <circle cx="640" cy="260" r="3.5" fill="#ffffff"/>
+
+  <!-- Distant Mangrove / Water Coconut Horizon -->
+  <path d="M0 480 Q150 460 350 475 T750 465 T1200 480 L1200 520 L0 520 Z" fill="#030c12" opacity="0.9"/>
+  <!-- Distant Palms Silhouettes -->
+  <g fill="#02080c" opacity="0.95">
+    <path d="M120 480 C110 440 100 400 80 380 C110 390 140 385 170 380 C140 410 130 445 125 480 Z"/>
+    <path d="M160 480 C165 435 180 395 210 370 C200 400 220 405 245 400 C215 425 190 450 170 480 Z"/>
+    <path d="M480 475 C475 430 465 390 440 365 C470 380 500 375 525 365 C500 400 490 435 485 475 Z"/>
+    <path d="M980 480 C970 425 955 385 925 360 C960 375 995 370 1030 360 C995 400 985 440 980 480 Z"/>
+  </g>
+
+  <!-- Mekong River Water Surface -->
+  <rect y="480" width="1200" height="320" fill="url(#waterGrad)"/>
+
+  <!-- River Water Ripples & Reflections -->
+  <g stroke="#1a4258" stroke-width="1.5" opacity="0.4" fill="none">
+    <ellipse cx="600" cy="530" rx="400" ry="12"/>
+    <ellipse cx="700" cy="570" rx="350" ry="15"/>
+    <ellipse cx="500" cy="620" rx="480" ry="20"/>
+    <ellipse cx="650" cy="680" rx="550" ry="25"/>
+    <ellipse cx="580" cy="740" rx="580" ry="30"/>
+  </g>
+
+  <!-- Antares & Sky Reflection on River -->
+  <ellipse cx="640" cy="540" rx="80" ry="8" fill="#ff4422" opacity="0.18" filter="url(#blurFilter)"/>
+  <ellipse cx="640" cy="600" rx="120" ry="14" fill="#ff4422" opacity="0.12" filter="url(#blurFilter)"/>
+
+  <!-- Traditional Wooden Sampan Boat (Xuồng Ba Lá) in Foreground -->
+  <g id="sampanGroup" transform="translate(180, 520)">
+    <!-- Boat Shadow -->
+    <ellipse cx="220" cy="130" rx="240" ry="35" fill="#000000" opacity="0.6" filter="url(#blurFilter)"/>
+    <!-- Hull Base -->
+    <path d="M20 90 Q220 150 440 85 Q460 75 480 50 Q430 115 220 125 Q30 115 0 50 Q10 75 20 90 Z" fill="url(#sampanGrad)" stroke="#52311c" stroke-width="2"/>
+    <!-- Hull Interior / Ribs -->
+    <path d="M40 70 Q220 105 420 68 Q400 95 220 102 Q60 95 40 70 Z" fill="#1b0e07"/>
+    <line x1="120" y1="80" x2="125" y2="98" stroke="#3d2314" stroke-width="3"/>
+    <line x1="220" y1="87" x2="220" y2="102" stroke="#3d2314" stroke-width="4"/>
+    <line x1="330" y1="78" x2="325" y2="96" stroke="#3d2314" stroke-width="3"/>
+    <!-- Wooden Oar (Mái chèo gỗ) -->
+    <path d="M80 30 L260 130 L280 145 L255 140 L100 45 Z" fill="#5c3820"/>
+    <!-- Lantern on Bow of Sampan -->
+    <circle cx="450" cy="40" r="35" fill="url(#lanternGlow)"/>
+    <path d="M445 25 L455 25 L458 45 L442 45 Z" fill="#ffeedd" opacity="0.9"/>
+    <rect x="444" y="20" width="12" height="5" rx="2" fill="#2b1a0e"/>
+    <rect x="442" y="45" width="16" height="6" rx="2" fill="#2b1a0e"/>
+    <circle cx="450" cy="35" r="4" fill="#ffffff"/>
+  </g>
+
+  <!-- Floating Lotus Lanterns (Hoa Đăng Sen) on River -->
+  <g transform="translate(780, 610)">
+    <circle cx="0" cy="0" r="45" fill="url(#lanternGlow)"/>
+    <!-- Lotus Petals -->
+    <path d="M-25 5 C-20 -15 0 -25 0 -25 C0 -25 20 -15 25 5 C15 12 -15 12 -25 5 Z" fill="#e03a6a" opacity="0.85"/>
+    <path d="M-18 5 C-12 -10 0 -20 0 -20 C0 -20 12 -10 18 5 Z" fill="#ff77a8" opacity="0.95"/>
+    <!-- Golden Flame Center -->
+    <circle cx="0" cy="-5" r="6" fill="#ffea77"/>
+    <circle cx="0" cy="-5" r="3" fill="#ffffff"/>
+  </g>
+
+  <g transform="translate(960, 680) scale(0.75)">
+    <circle cx="0" cy="0" r="45" fill="url(#lanternGlow)"/>
+    <path d="M-25 5 C-20 -15 0 -25 0 -25 C0 -25 20 -15 25 5 C15 12 -15 12 -25 5 Z" fill="#e03a6a" opacity="0.85"/>
+    <path d="M-18 5 C-12 -10 0 -20 0 -20 C0 -20 12 -10 18 5 Z" fill="#ff77a8" opacity="0.95"/>
+    <circle cx="0" cy="-5" r="6" fill="#ffea77"/>
+  </g>
+
+  <!-- Floating Water Hyacinth (Lục bình tím) -->
+  <g transform="translate(100, 680)">
+    <!-- Hyacinth Leaves -->
+    <path d="M20 30 C-10 10 -20 40 10 50 C30 55 50 40 20 30 Z" fill="#143d22"/>
+    <path d="M60 25 C40 5 20 35 50 48 C70 52 85 35 60 25 Z" fill="#1b4d2b"/>
+    <!-- Hyacinth Purple Flower -->
+    <circle cx="45" cy="15" r="10" fill="#9d5bd2" opacity="0.9"/>
+    <circle cx="45" cy="15" r="4" fill="#ffd700"/>
+  </g>
+</svg>
