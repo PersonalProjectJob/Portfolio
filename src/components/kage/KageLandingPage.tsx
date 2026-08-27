@@ -66,6 +66,13 @@ export const KageLandingPage: React.FC<KageLandingPageProps> = ({
           });
         } else if (event.data.type === 'REQUEST_PROFILE_DATA') {
           sendProfileData();
+        } else if (event.data.type === 'SWITCH_VARIANT' && (event.data.variant === 'A' || event.data.variant === 'B')) {
+          setActiveLandingVariant(event.data.variant);
+          setGameState(event.data.variant === 'B' ? 'CASE_STUDY_KAGE' : 'HERO_LANDING');
+          trackEvent('ab_variant_toggle', {
+            target_variant: event.data.variant,
+            source: 'kage_header',
+          });
         } else if (event.data.type === 'SET_LANGUAGE' && (event.data.language === 'vi' || event.data.language === 'en')) {
           setLanguage(event.data.language);
           trackEvent('language_toggle', {

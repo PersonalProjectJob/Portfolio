@@ -1226,6 +1226,10 @@ body[data-layout-footer="b"] .foot-base{ display:flex; justify-content:center; a
     <button type="button" class="lang-btn is-active" data-lang="vi">VN</button>
     <button type="button" class="lang-btn" data-lang="en">EN</button>
   </div>
+  <button type="button" id="kage-switch-2d" class="kage-switch-2d" title="Chuyển sang Giao diện 2D Workspace" data-cursor style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.15); color:rgba(255,255,255,0.85); border-radius:8px; padding:5px 10px; font-size:10px; font-weight:700; letter-spacing:0.08em; cursor:pointer; display:flex; align-items:center; gap:5px; text-transform:uppercase; transition:all 0.25s ease;">
+    <span style="width:6px; height:6px; border-radius:50%; background:#fdba74; box-shadow:0 0 8px rgba(251,146,60,0.8);"></span>
+    <span>2D View</span>
+  </button>
   <button class="nav-burger" aria-label="Menu" data-cursor><i></i><i></i></button>
 </header>
 
@@ -5864,6 +5868,21 @@ function start() {
       window.parent.postMessage({ type: 'SET_LANGUAGE', language: lang }, '*');
     });
   });
+
+  const switch2dBtn = document.getElementById('kage-switch-2d');
+  if (switch2dBtn) {
+    switch2dBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      try {
+        localStorage.setItem('portfolio_ab_variant', 'A');
+      } catch (err) {}
+      if (window.parent && window.parent !== window) {
+        window.parent.postMessage({ type: 'SWITCH_VARIANT', variant: 'A' }, '*');
+      } else {
+        window.location.href = '/?v=a';
+      }
+    });
+  }
 
   window.addEventListener('message', (e) => {
     if (e.data) {

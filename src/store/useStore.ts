@@ -89,6 +89,9 @@ export function replaceURL(state: GameState) {
   if (window.location.pathname.startsWith('/admin')) {
     return;
   }
+  if (window.location.pathname === '/' && state === 'CASE_STUDY_KAGE') {
+    return;
+  }
   const url = STATE_TO_URL[state] || '/';
   if (window.location.pathname !== url) {
     window.history.replaceState({ gameState: state }, '', url);
@@ -146,11 +149,8 @@ export const useStore = create<AppState>((set) => ({
   setGameState: (state) => {
     pushURL(state);
     if (state === 'CASE_STUDY_KAGE') {
-      if (typeof window !== 'undefined') localStorage.setItem('portfolio_active_variant', 'B');
+      if (typeof window !== 'undefined') localStorage.setItem('portfolio_ab_variant', 'B');
       set({ gameState: state, activeLandingVariant: 'B' });
-    } else if (state === 'HERO_LANDING' || state === 'PROJECT_JOURNEY' || state === 'SELECT_PROFILE') {
-      if (typeof window !== 'undefined') localStorage.setItem('portfolio_active_variant', 'A');
-      set({ gameState: state, activeLandingVariant: 'A' });
     } else {
       set({ gameState: state });
     }
@@ -159,8 +159,13 @@ export const useStore = create<AppState>((set) => ({
   setSelectedQuest: (questId) => set({ selectedQuest: questId }),
   
   setActiveLandingVariant: (variant) => {
-    if (typeof window !== 'undefined') localStorage.setItem('portfolio_active_variant', variant);
-    set({ activeLandingVariant: variant });
+    if (typeof window !== 'undefined') localStorage.setItem('portfolio_ab_variant', variant);
+    set((state) => {
+      const newGameState = variant === 'B' 
+        ? (state.gameState === 'HERO_LANDING' ? 'CASE_STUDY_KAGE' : state.gameState)
+        : (state.gameState === 'CASE_STUDY_KAGE' ? 'HERO_LANDING' : state.gameState);
+      return { activeLandingVariant: variant, gameState: newGameState };
+    });
   },
 
   handleBackFromProject: () => {
