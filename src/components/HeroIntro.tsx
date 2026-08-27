@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useT } from '../i18n/useT';
+import { useStore } from '../store/useStore';
 
 interface HeroIntroProps {
   onComplete: () => void;
@@ -63,11 +64,25 @@ export const HeroIntro: React.FC<HeroIntroProps> = ({ onComplete, onNavigate }) 
               <span className="text-slate-400 font-normal text-[11px] md:text-xs uppercase tracking-[0.15em]">{t('hero.role')}</span>
             </div>
           </div>
-          <div className="hidden md:flex gap-8 text-xs font-medium tracking-widest text-slate-300 items-center">
-            <button type="button" onClick={() => onNavigate('projects')} className="hover:text-white transition-colors tracking-widest uppercase py-2">{t('ui.projects')}</button>
-            <button type="button" onClick={() => onNavigate('about')} className="hover:text-white transition-colors tracking-widest uppercase py-2">{t('ui.about')}</button>
-            <button type="button" onClick={() => onNavigate('services')} className="hover:text-white transition-colors tracking-widest uppercase py-2">{t('ui.services')}</button>
-            <button type="button" onClick={() => onNavigate('contact')} className="hover:text-white transition-colors tracking-widest uppercase py-2">{t('ui.contact')}</button>
+          <div className="flex items-center gap-4">
+            <button
+              type="button"
+              onClick={() => {
+                useStore.getState().setActiveLandingVariant('B');
+                useStore.getState().setGameState('CASE_STUDY_KAGE');
+              }}
+              className="px-2.5 md:px-3 py-1.5 rounded-lg border border-orange-400/40 bg-orange-500/10 hover:bg-orange-500/20 text-orange-300 text-[10px] md:text-[11px] font-bold tracking-wider uppercase flex items-center gap-1.5 transition-all shadow-[0_0_12px_rgba(249,115,22,0.25)]"
+              title="Khám phá Không gian 3D WebGL (Variant B)"
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-orange-400 animate-pulse" />
+              <span>3D Kage</span>
+            </button>
+            <div className="hidden md:flex gap-8 text-xs font-medium tracking-widest text-slate-300 items-center">
+              <button type="button" onClick={() => onNavigate('projects')} className="hover:text-white transition-colors tracking-widest uppercase py-2">{t('ui.projects')}</button>
+              <button type="button" onClick={() => onNavigate('about')} className="hover:text-white transition-colors tracking-widest uppercase py-2">{t('ui.about')}</button>
+              <button type="button" onClick={() => onNavigate('services')} className="hover:text-white transition-colors tracking-widest uppercase py-2">{t('ui.services')}</button>
+              <button type="button" onClick={() => onNavigate('contact')} className="hover:text-white transition-colors tracking-widest uppercase py-2">{t('ui.contact')}</button>
+            </div>
           </div>
         </div>
 

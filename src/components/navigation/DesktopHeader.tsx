@@ -9,7 +9,7 @@ interface DesktopHeaderProps {
 }
 
 export const DesktopHeader: React.FC<DesktopHeaderProps> = ({ className = '', onLogoClick }) => {
-  const { isLightMode, toggleTheme } = useStore();
+  const { isLightMode, toggleTheme, activeLandingVariant, setActiveLandingVariant, setGameState } = useStore();
 
   return (
     <div className={`absolute top-[calc(8px+env(safe-area-inset-top,0px))] left-0 w-full px-3 md:top-8 md:px-8 z-50 flex items-center justify-between pointer-events-none transform-style-preserve-3d translate-z-10 h-12 md:h-auto ${className}`}>
@@ -36,8 +36,29 @@ export const DesktopHeader: React.FC<DesktopHeaderProps> = ({ className = '', on
         </div>
       </div>
 
-      {/* Language + Clock & Theme */}
+      {/* Language + Variant Toggle + Clock & Theme */}
       <div className="flex items-center gap-2 pointer-events-auto touch-none">
+        {/* 3D / 2D Experience Switcher */}
+        <button
+          type="button"
+          onClick={() => {
+            const nextVariant = activeLandingVariant === 'B' ? 'A' : 'B';
+            setActiveLandingVariant(nextVariant);
+            setGameState(nextVariant === 'B' ? 'CASE_STUDY_KAGE' : 'HERO_LANDING');
+          }}
+          className={`h-11 md:h-[44px] px-2.5 md:px-3 flex items-center gap-1.5 rounded-lg border text-[11px] md:text-xs font-bold tracking-wider uppercase transition-all duration-300 ${
+            activeLandingVariant === 'B'
+              ? 'bg-orange-500/20 hover:bg-orange-500/30 border-orange-400/50 text-orange-300 shadow-[0_0_15px_rgba(249,115,22,0.3)]'
+              : isLightMode
+                ? 'bg-slate-100 hover:bg-slate-200 border-slate-200 text-slate-700'
+                : 'bg-slate-800/80 hover:bg-slate-700 border-slate-700 text-slate-300 hover:text-white'
+          }`}
+          title={activeLandingVariant === 'B' ? 'Switch to 2D Workspace' : 'Switch to 3D WebGL Landing Page'}
+        >
+          <span className="w-2 h-2 rounded-full bg-orange-400 animate-pulse" />
+          <span>{activeLandingVariant === 'B' ? '2D View' : '3D Kage'}</span>
+        </button>
+
         <LanguageToggle />
         <div className={`flex items-center h-11 md:h-[44px] overflow-hidden rounded-lg p-0.5 border shadow-[0_5px_15px_rgba(0,0,0,0.5)] transition-all ${isLightMode ? 'bg-slate-100 border-slate-200 backdrop-blur-md' : 'bg-slate-800/80 border-slate-700 backdrop-blur-md'}`}>
           {/* Digital Clock — hidden on mobile */}
