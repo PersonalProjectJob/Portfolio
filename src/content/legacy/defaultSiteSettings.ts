@@ -8,7 +8,7 @@ import type { SiteSettings } from '../../cms/types/cms.types';
 export const DEFAULT_SITE_SETTINGS: SiteSettings = {
   id: '00000000-0000-0000-0000-000000000001',
   profile: {
-    name: 'Trương Nguyễn Sơn Thảo (Son Thao)',
+    name: 'Trương Nguyễn Sơn Thảo (Sota Trương)',
     title: 'Product Designer & UX/UI Designer',
     headline: 'Chuyên sâu về luồng Fintech, tạo mẫu AI MVP & kiến tạo Design System',
     location: 'TP. Hồ Chí Minh, Việt Nam',
@@ -182,10 +182,12 @@ export const DEFAULT_SITE_SETTINGS: SiteSettings = {
     },
   ],
   seo_defaults: {
-    title: 'Son Thao — Product Designer & UX/UI Designer',
-    description: 'Portfolio of Son Thao, a Product Designer and UX/UI Designer specializing in fintech, AI products, SaaS platforms, mobile apps, and complex product workflows.',
+    title: 'Sota Trương — Product Designer & UX/UI Designer',
+    description: 'Portfolio of Sota Trương (Trương Nguyễn Sơn Thảo), a Product Designer and UX/UI Designer specializing in fintech, AI products, SaaS platforms, mobile apps, and complex product workflows.',
     og_image: 'https://tnsthao94.online/images/og-product-figma.jpg',
     keywords: [
+      'Sota Trương',
+      'Sota Truong',
       'Son Thao',
       'Trương Nguyễn Sơn Thảo',
       'Product Designer',

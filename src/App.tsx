@@ -13,6 +13,7 @@ import { ErrorBoundary } from './components/ErrorBoundary';
 import { LoadingSkeleton } from './components/LoadingSkeleton';
 import { MobileNavigation } from './components/navigation/MobileNavigation';
 import { DesktopHeader } from './components/navigation/DesktopHeader';
+import { trackPageView } from './utils/analytics';
 import React from 'react';
 
 // Lazy-loaded pages and heavy components
@@ -31,6 +32,7 @@ const ProjectHandoff = lazy(() => import('./pages/ProjectHandoff').then(m => ({ 
 const ProjectSyncTaskBadge = lazy(() => import('./pages/ProjectSyncTaskBadge'));
 const ProjectDispatch = lazy(() => import('./pages/ProjectDispatch').then(m => ({ default: m.ProjectDispatch })));
 const ProjectAgentRules = lazy(() => import('./pages/ProjectAgentRules').then(m => ({ default: m.ProjectAgentRules })));
+const KageLandingPage = lazy(() => import('./components/kage/KageLandingPage'));
 const AdminApp = lazy(() => import('./admin/AdminApp'));
 
 // Route map: GameState → lazy component (HERO_LANDING handled separately)
@@ -48,18 +50,24 @@ const ROUTES: Partial<Record<GameState, React.LazyExoticComponent<React.FC>>> = 
   CASE_STUDY_SYNCTASKBADGE: ProjectSyncTaskBadge,
   CASE_STUDY_DISPATCH: ProjectDispatch,
   CASE_STUDY_AGENTRULES: ProjectAgentRules,
+  CASE_STUDY_KAGE: KageLandingPage,
   EXPERIENCE: GameExperienceTimeline,
   PROCESS: GameDesignProcess,
 };
 
 function App() {
-  const { gameState, setGameState, isLightMode, syncFromURL } = useStore();
+  const { gameState, setGameState, isLightMode, syncFromURL, activeLandingVariant } = useStore();
   const [isAdminRoute, setIsAdminRoute] = useState(() => 
     typeof window !== 'undefined' && window.location.pathname.startsWith('/admin')
   );
   const isHero = gameState === 'HERO_LANDING';
   const [landingTarget, setLandingTarget] = useState<'about' | 'contact' | null>(null);
   const mainScrollRef = useRef<HTMLDivElement>(null);
+
+  const isKageVariant = activeLandingVariant === 'B' || gameState === 'CASE_STUDY_KAGE';
+  const isKageLanding = gameState === 'CASE_STUDY_KAGE';
+  const isCaseStudy = gameState.startsWith('CASE_STUDY_');
+  const isProjectCaseStudy = isCaseStudy && !isKageLanding;
 
   useEffect(() => {
     if (isLightMode) {
@@ -95,6 +103,13 @@ function App() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  // GA4 Custom Page View telemetry
+  useEffect(() => {
+    if (typeof window !== 'undefined' && !window.location.pathname.startsWith('/admin')) {
+      trackPageView(window.location.pathname, activeLandingVariant, useStore.getState().language);
+    }
+  }, [gameState, activeLandingVariant]);
 
   useEffect(() => {
     if (isHero || !landingTarget || gameState !== 'SELECT_PROFILE') return;
@@ -147,7 +162,6 @@ function App() {
   };
 
   const CurrentPage = ROUTES[gameState];
-  const isCaseStudy = gameState.startsWith('CASE_STUDY_');
   const currentPageContent = CurrentPage ? (
     <ErrorBoundary>
       <Suspense fallback={<LoadingSkeleton />}>
@@ -165,15 +179,35 @@ function App() {
       {isHero && <HeroIntro onComplete={() => setGameState('SELECT_PROFILE')} onNavigate={handleLandingNavigation} />}
     </AnimatePresence>
 
-    {isCaseStudy ? (
+    {/* Persistent Kage 3D Landing Page when in Variant B to keep WebGL state, scroll, and cards alive */}
+    {isKageVariant && (
+      <div 
+        className={`fixed inset-0 z-[90] transition-opacity duration-300 ${isProjectCaseStudy ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
+        aria-hidden={isProjectCaseStudy}
+      >
+        <Suspense fallback={<LoadingSkeleton />}>
+          <KageLandingPage />
+        </Suspense>
+      </div>
+    )}
+
+    {isProjectCaseStudy ? (
       <main
         aria-label="Case study"
         className={`fixed inset-0 z-[100] flex min-h-[100dvh] w-full items-center justify-center overflow-hidden ${isLightMode ? 'bg-slate-50 text-slate-800' : 'bg-[#050510] text-slate-100'}`}
       >
         {currentPageContent}
       </main>
-    ) : (
-    <DesktopWorkspace disableParallax={true}>
+    ) : !isKageVariant ? (
+      isCaseStudy ? (
+        <main
+          aria-label="Case study"
+          className={`fixed inset-0 z-[100] flex min-h-[100dvh] w-full items-center justify-center overflow-hidden ${isLightMode ? 'bg-slate-50 text-slate-800' : 'bg-[#050510] text-slate-100'}`}
+        >
+          {currentPageContent}
+        </main>
+      ) : (
+        <DesktopWorkspace disableParallax={true}>
 
       {/* Các vật thể nằm rải rác trên bàn — Desktop only */}
       <AnimatePresence>
@@ -256,7 +290,8 @@ function App() {
       </div>
 
     </DesktopWorkspace>
-    )}
+      )
+    ) : null}
     </>
   );
 }

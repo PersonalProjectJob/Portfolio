@@ -99,7 +99,7 @@ const trackingCode = "A83Kp2";
   console.log('\n▶ [TEST 4] Legacy Project Registry & Fallback Manifest');
   const legacyKeys = [
     'cryptomap', 'nailhub', 'nexora', 'vlinkpay', 'ai-process',
-    'handoff', 'sync-task-badge', 'dispatch', 'agent-rules'
+    'handoff', 'sync-task-badge', 'dispatch', 'agent-rules', 'kage'
   ];
   legacyKeys.forEach(key => {
     console.assert(key in legacyProjectRegistry, `Failed: legacy key missing ${key}`);
@@ -107,13 +107,13 @@ const trackingCode = "A83Kp2";
     console.assert(comp !== null && typeof comp === 'object', `Failed: getLegacyComponent for ${key}`);
   });
   console.assert(getLegacyComponent('non-existent-key') === null, 'Failed: non-existent key handling');
-  console.assert(DEFAULT_PROJECT_ENTRIES.length === 9, 'Failed: manifest project count');
+  console.assert(DEFAULT_PROJECT_ENTRIES.length === 10, 'Failed: manifest project count');
   legacyKeys.forEach(slug => {
     const p = getLegacyProjectBySlug(slug);
     console.assert(p !== undefined, `Failed: lookup by slug ${slug}`);
     console.assert(p?.render_mode === 'legacy', `Failed: render_mode for ${slug}`);
   });
-  console.log(`  ✅ PASS: All 9 Legacy Case Studies mapped with zero regression`);
+  console.log(`  ✅ PASS: All 10 Legacy Case Studies mapped with zero regression`);
 
   // --- TEST 5: Site Settings Default Fallback ---
   console.log('\n▶ [TEST 5] Site Settings Defaults & Profile Persistence');
