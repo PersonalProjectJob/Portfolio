@@ -27,7 +27,7 @@
       "destination": "/api/redirect?slug=$1"
     },
     {
-      "source": "/((?!api/|r/).*)",
+      "source": "/(.*)",
       "destination": "/index.html"
     }
   ]
