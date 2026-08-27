@@ -50,15 +50,18 @@ export default async function handler(req: Request) {
 
       if (!error && data) {
         // Fire-and-forget / non-blocking click count increment
-        const incrementPromise = supabase
-          .from('tracking_links')
-          .update({ clicks_count: (data.clicks_count || 0) + 1 })
-          .eq('id', data.id);
+        const incrementPromise = Promise.resolve(
+          supabase
+            .from('tracking_links')
+            .update({ clicks_count: (data.clicks_count || 0) + 1 })
+            .eq('id', data.id)
+        );
 
-        if (typeof (req as { waitUntil?: (p: Promise<unknown>) => void }).waitUntil === 'function') {
-          (req as { waitUntil: (p: Promise<unknown>) => void }).waitUntil(incrementPromise);
+        const ctx = req as unknown as { waitUntil?: (p: Promise<unknown>) => void };
+        if (typeof ctx.waitUntil === 'function') {
+          ctx.waitUntil(incrementPromise);
         } else {
-          incrementPromise.then(() => {}).catch(() => {});
+          incrementPromise.catch(() => {});
         }
 
         // Build target destination with UTMs
