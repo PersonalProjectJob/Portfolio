@@ -523,6 +523,65 @@ h1,h2,h3{ font-weight:400; margin:0; letter-spacing:-.005em; }
 .cta-primary:hover{ color:#fff; border-color:var(--vermilion); box-shadow:0 0 32px rgba(224,35,28,.5); }
 .cta-primary:hover svg path{ stroke:#fff; }
 
+/* — email popover & toast */
+.cta-email-wrapper{ position:relative; width:100%; }
+.kage-email-popover{
+  position:absolute; bottom:calc(100% + 14px); left:50%; transform:translateX(-50%) translateY(8px);
+  width:280px; max-width:calc(100vw - 32px); padding:10px;
+  background:rgba(12, 16, 15, 0.95);
+  backdrop-filter:blur(24px) saturate(180%);
+  -webkit-backdrop-filter:blur(24px) saturate(180%);
+  border:1px solid rgba(223, 231, 224, 0.22);
+  border-radius:16px;
+  box-shadow:0 20px 50px rgba(0,0,0,0.65), 0 0 25px rgba(224,35,28,0.12);
+  z-index:90; opacity:0; visibility:hidden; pointer-events:none;
+  transition:opacity .25s cubic-bezier(0.16,1,0.3,1), transform .25s cubic-bezier(0.16,1,0.3,1), visibility .25s;
+}
+.kage-email-popover.is-open{
+  opacity:1; visibility:visible; pointer-events:auto; transform:translateX(-50%) translateY(0);
+}
+@media (max-width:600px){
+  .kage-email-popover{
+    left:auto; right:0; transform:translateY(8px);
+    width:min(280px, calc(100vw - 28px));
+  }
+  .kage-email-popover.is-open{
+    transform:translateY(0);
+  }
+}
+.kage-popover-head{
+  font-size:11px; letter-spacing:.06em; color:#8f9a93; padding:4px 8px 8px;
+  border-bottom:1px solid rgba(223,231,224,0.1); margin-bottom:6px;
+  display:flex; align-items:center; justify-content:space-between;
+}
+.kage-popover-head span{ overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.kage-popover-item{
+  display:flex; align-items:center; gap:10px; width:100%; padding:9px 12px;
+  border-radius:10px; border:none; background:transparent;
+  color:var(--bone, #dfe7e0); font-size:12px; font-weight:500; text-align:left;
+  text-decoration:none; cursor:pointer; box-sizing:border-box;
+  transition:background .2s, color .2s;
+}
+.kage-popover-item:hover{
+  background:rgba(223, 231, 224, 0.12); color:#fff;
+}
+.kage-popover-item svg{ flex-shrink:0; }
+.kage-toast{
+  position:fixed; bottom:32px; left:50%; transform:translateX(-50%) translateY(20px);
+  z-index:100; pointer-events:none; opacity:0; visibility:hidden;
+  transition:opacity .3s var(--ease), transform .3s var(--ease), visibility .3s;
+  background:rgba(14, 20, 18, 0.95);
+  backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px);
+  border:1px solid rgba(74, 222, 128, 0.45); border-radius:100px;
+  padding:10px 20px; color:#fff; font-size:12px; font-weight:500;
+  display:flex; align-items:center; gap:8px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.5), 0 0 20px rgba(74,222,128,0.25);
+  white-space:nowrap; max-width:calc(100vw - 40px);
+}
+.kage-toast.is-active{
+  opacity:1; visibility:visible; transform:translateX(-50%) translateY(0);
+}
+
 /* — footer */
 .foot{ position:relative; padding:clamp(50px,8vh,96px) var(--pad) clamp(26px,4vh,40px);
   border-top:1px solid var(--line-soft); }
@@ -1635,10 +1694,35 @@ body[data-layout-footer="b"] .foot-base{ display:flex; justify-content:center; a
       <i></i><span>Mở LinkedIn</span>
       <svg viewBox="0 0 14 14" fill="none" width="13" height="13"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg>
     </a>
-    <a class="cta" id="btn-email" href="mailto:tnsthao94@gmail.com" data-rv="fade" data-cursor style="background:rgba(223,231,224,.08); border:1px solid rgba(223,231,224,.2);">
-      <i></i><span>Gửi Email</span>
-      <svg viewBox="0 0 14 14" fill="none" width="13" height="13"><path d="M2 4h10v8H2zM2 4l5 4 5-4" stroke="#dfe7e0" stroke-width="1.3"/></svg>
-    </a>
+    <div class="cta-email-wrapper">
+      <button type="button" class="cta" id="btn-email" data-rv="fade" data-cursor style="background:rgba(223,231,224,.08); border:1px solid rgba(223,231,224,.2); width:100%; cursor:pointer;">
+        <i></i><span>Gửi Email</span>
+        <svg viewBox="0 0 14 14" fill="none" width="13" height="13"><path d="M2 4h10v8H2zM2 4l5 4 5-4" stroke="#dfe7e0" stroke-width="1.3"/></svg>
+      </button>
+      <div id="kage-email-popover" class="kage-email-popover" role="dialog" aria-label="Email Options" aria-hidden="true">
+        <div class="kage-popover-head">
+          <span id="pop-email-address">tnsthao94@gmail.com</span>
+        </div>
+        <button type="button" class="kage-popover-item" id="pop-copy-email" data-cursor>
+          <svg class="pop-copy-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+          <span class="pop-copy-text">Sao chép Email</span>
+        </button>
+        <a class="kage-popover-item" id="pop-gmail" href="https://mail.google.com/mail/?view=cm&fs=1&to=tnsthao94@gmail.com" target="_blank" rel="noopener noreferrer" data-cursor>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#f87171" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 4L12 14.01l-3-3"/><path d="M22 4L11 20 7 14 2 11l20-7z"/>
+          </svg>
+          <span>Mở trong Gmail</span>
+        </a>
+        <a class="kage-popover-item" id="pop-mailto" href="mailto:tnsthao94@gmail.com" data-cursor>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
+          </svg>
+          <span>Ứng dụng mặc định</span>
+        </a>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1687,9 +1771,12 @@ body[data-layout-footer="b"] .foot-base{ display:flex; justify-content:center; a
 
 </div><!-- /.page -->
 
-<!-- The near plane of the active chapter is parked here rather than inside its
-     section: .page is a stacking context at z-index 10, so nothing living in it
-     can rise past the nav. #fg-sky sits above the whole layout instead. -->
+<!-- Floating Toast Notification for Feedback (e.g. Email Copied) -->
+<div id="kage-toast" class="kage-toast" aria-live="polite">
+  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+  <span class="kage-toast-text">Đã sao chép email vào bộ nhớ tạm!</span>
+</div>
+
 <div id="fg-sky" aria-hidden="true"></div>
 
 <div class="rail" id="rail"></div>
@@ -5498,7 +5585,12 @@ const KAGE_I18N = {
       btn_view_cv: 'Xem CV Online',
       btn_download_cv: 'Tải CV PDF',
       btn_linkedin: 'Kết Nối LinkedIn',
-      btn_email: 'Gửi Email Hợp Tác'
+      btn_email: 'Gửi Email Hợp Tác',
+      pop_copy: 'Sao chép Email',
+      pop_copied: 'Đã sao chép!',
+      pop_gmail: 'Mở trong Gmail',
+      pop_default: 'Ứng dụng mặc định',
+      toast_copied: 'Đã sao chép email vào bộ nhớ tạm!'
     },
     footer: {
       desc: 'chuyên sâu về Fintech, B2B SaaS, AI MVP và Design Systems.'
@@ -5567,7 +5659,12 @@ const KAGE_I18N = {
       btn_view_cv: 'View Online CV',
       btn_download_cv: 'Download CV PDF',
       btn_linkedin: 'Connect on LinkedIn',
-      btn_email: 'Send Partnership Email'
+      btn_email: 'Send Partnership Email',
+      pop_copy: 'Copy Email Address',
+      pop_copied: 'Copied!',
+      pop_gmail: 'Open in Gmail',
+      pop_default: 'Default Mail App',
+      toast_copied: 'Email copied to clipboard!'
     },
     footer: {
       desc: 'specializing in Fintech, B2B SaaS, AI MVP and Design Systems.'
@@ -5684,13 +5781,32 @@ function applyKageTranslations(lang) {
   if (etP) etP.textContent = d.eternity.p;
 
   const btnViewCv = document.getElementById('btn-view-cv');
-  if (btnViewCv) btnViewCv.textContent = d.eternity.btn_view_cv;
+  if (btnViewCv) {
+    const s = btnViewCv.querySelector('span');
+    if (s) s.textContent = d.eternity.btn_view_cv;
+  }
   const btnDownloadCv = document.getElementById('btn-download-cv');
-  if (btnDownloadCv) btnDownloadCv.textContent = d.eternity.btn_download_cv;
+  if (btnDownloadCv) {
+    const s = btnDownloadCv.querySelector('span');
+    if (s) s.textContent = d.eternity.btn_download_cv;
+  }
   const btnLinkedin = document.getElementById('btn-linkedin');
-  if (btnLinkedin) btnLinkedin.textContent = d.eternity.btn_linkedin;
+  if (btnLinkedin) {
+    const s = btnLinkedin.querySelector('span');
+    if (s) s.textContent = d.eternity.btn_linkedin;
+  }
   const btnEmail = document.getElementById('btn-email');
-  if (btnEmail) btnEmail.textContent = d.eternity.btn_email;
+  if (btnEmail) {
+    const s = btnEmail.querySelector('span');
+    if (s) s.textContent = d.eternity.btn_email;
+  }
+
+  const popCopySpan = document.querySelector('#pop-copy-email .pop-copy-text');
+  if (popCopySpan) popCopySpan.textContent = d.eternity.pop_copy;
+  const popGmailSpan = document.querySelector('#pop-gmail span');
+  if (popGmailSpan) popGmailSpan.textContent = d.eternity.pop_gmail;
+  const popDefaultSpan = document.querySelector('#pop-mailto span');
+  if (popDefaultSpan) popDefaultSpan.textContent = d.eternity.pop_default;
 
   const footBrand = document.querySelector('.foot-brand p');
   if (footBrand) {
@@ -5770,8 +5886,13 @@ function applyDynamicProfile(settings, projects, lang) {
     const btnLinkedin = document.getElementById('btn-linkedin');
     if (btnLinkedin && p.linkedin) btnLinkedin.href = p.linkedin;
 
-    const btnEmail = document.getElementById('btn-email');
-    if (btnEmail && p.email) btnEmail.href = `mailto:${p.email}`;
+    const targetEmail = p.email || 'tnsthao94@gmail.com';
+    const popEmailAddr = document.getElementById('pop-email-address');
+    if (popEmailAddr) popEmailAddr.textContent = targetEmail;
+    const popGmail = document.getElementById('pop-gmail');
+    if (popGmail) popGmail.href = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(targetEmail)}`;
+    const popMailto = document.getElementById('pop-mailto');
+    if (popMailto) popMailto.href = `mailto:${targetEmail}`;
   }
 
   if (Array.isArray(cachedProjects) && cachedProjects.length > 0) {
@@ -6215,7 +6336,69 @@ function start() {
       });
     });
 
-    // Telemetry tracking on Chapter 04 Conversion CTAs
+    // ==========================================================
+    // Email Contact Popover, Copy to Clipboard & Toast System
+    // ==========================================================
+    let toastTimer = null;
+    function showKageToast(message) {
+      const toast = document.getElementById('kage-toast');
+      if (!toast) return;
+      const toastText = toast.querySelector('.kage-toast-text');
+      if (toastText) toastText.textContent = message;
+      toast.classList.add('is-active');
+      if (toastTimer) clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        toast.classList.remove('is-active');
+      }, 2500);
+    }
+
+    async function copyEmailToClipboard(email) {
+      const targetEmail = email || (cachedSettings && cachedSettings.profile && cachedSettings.profile.email) || 'tnsthao94@gmail.com';
+      let success = false;
+      try {
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(targetEmail);
+          success = true;
+        }
+      } catch (_err) {
+        // Fallback to execCommand below
+      }
+
+      if (!success) {
+        try {
+          const textarea = document.createElement('textarea');
+          textarea.value = targetEmail;
+          textarea.style.position = 'fixed';
+          textarea.style.top = '0';
+          textarea.style.left = '0';
+          textarea.style.opacity = '0';
+          textarea.style.pointerEvents = 'none';
+          document.body.appendChild(textarea);
+          textarea.focus();
+          textarea.select();
+          success = document.execCommand('copy');
+          document.body.removeChild(textarea);
+        } catch (_fallbackErr) {
+          // Both clipboard methods failed
+        }
+      }
+      return { success, email: targetEmail };
+    }
+
+    function toggleEmailPopover(forceState) {
+      const popover = document.getElementById('kage-email-popover');
+      if (!popover) return;
+      const isOpen = typeof forceState === 'boolean' ? forceState : !popover.classList.contains('is-open');
+      if (isOpen) {
+        popover.classList.add('is-open');
+        popover.setAttribute('aria-hidden', 'false');
+      } else {
+        popover.classList.remove('is-open');
+        popover.setAttribute('aria-hidden', 'true');
+      }
+    }
+
+    // Telemetry tracking & interaction on Chapter 04 Conversion CTAs
     const btnViewCv = document.getElementById('btn-view-cv');
     if (btnViewCv) {
       btnViewCv.addEventListener('click', () => {
@@ -6236,8 +6419,83 @@ function start() {
     }
     const btnEmail = document.getElementById('btn-email');
     if (btnEmail) {
-      btnEmail.addEventListener('click', () => {
-        window.parent.postMessage({ type: 'TRACK_EVENT', eventName: 'contact_click', params: { contact_method: 'email', contact_location: 'chapter_04' } }, '*');
+      btnEmail.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        toggleEmailPopover();
+        window.parent.postMessage({ type: 'TRACK_EVENT', eventName: 'contact_click', params: { contact_method: 'email_trigger', contact_location: 'chapter_04' } }, '*');
+      });
+    }
+
+    const popCopyBtn = document.getElementById('pop-copy-email');
+    if (popCopyBtn) {
+      popCopyBtn.addEventListener('click', async (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const activeEmail = (cachedSettings && cachedSettings.profile && cachedSettings.profile.email) || 'tnsthao94@gmail.com';
+        const res = await copyEmailToClipboard(activeEmail);
+        const d = KAGE_I18N[currentLanguage] || KAGE_I18N.vi;
+        const copySpan = popCopyBtn.querySelector('.pop-copy-text');
+        const copyIcon = popCopyBtn.querySelector('.pop-copy-icon');
+        if (copySpan) copySpan.textContent = d.eternity.pop_copied || 'Đã sao chép!';
+        if (copyIcon) {
+          copyIcon.innerHTML = '<path d="M20 6L9 17l-5-5" stroke="#4ade80" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>';
+        }
+        showKageToast(`${d.eternity.toast_copied || 'Đã sao chép email!'} (${res.email})`);
+        window.parent.postMessage({ type: 'TRACK_EVENT', eventName: 'contact_click', params: { contact_method: 'copy_email', contact_location: 'chapter_04_popover' } }, '*');
+        setTimeout(() => {
+          if (copySpan) copySpan.textContent = d.eternity.pop_copy || 'Sao chép Email';
+          if (copyIcon) {
+            copyIcon.innerHTML = '<rect x="9" y="9" width="13" height="13" rx="2" ry="2" stroke="currentColor" stroke-width="1.8"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" stroke="currentColor" stroke-width="1.8"/>';
+          }
+          toggleEmailPopover(false);
+        }, 1600);
+      });
+    }
+
+    const popGmail = document.getElementById('pop-gmail');
+    if (popGmail) {
+      popGmail.addEventListener('click', () => {
+        toggleEmailPopover(false);
+        window.parent.postMessage({ type: 'TRACK_EVENT', eventName: 'contact_click', params: { contact_method: 'gmail_web', contact_location: 'chapter_04_popover' } }, '*');
+      });
+    }
+
+    const popMailto = document.getElementById('pop-mailto');
+    if (popMailto) {
+      popMailto.addEventListener('click', () => {
+        toggleEmailPopover(false);
+        window.parent.postMessage({ type: 'TRACK_EVENT', eventName: 'contact_click', params: { contact_method: 'email_app', contact_location: 'chapter_04_popover' } }, '*');
+      });
+    }
+
+    // Close popover on outside click or Escape key
+    document.addEventListener('click', (e) => {
+      const popover = document.getElementById('kage-email-popover');
+      const btnEmailEl = document.getElementById('btn-email');
+      if (popover && popover.classList.contains('is-open')) {
+        if (!popover.contains(e.target) && btnEmailEl && !btnEmailEl.contains(e.target)) {
+          toggleEmailPopover(false);
+        }
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        toggleEmailPopover(false);
+      }
+    });
+
+    // Footer email direct copy with toast
+    const footEmail = document.querySelector('.foot li a[href^="mailto:"]');
+    if (footEmail) {
+      footEmail.addEventListener('click', async (e) => {
+        e.preventDefault();
+        const activeEmail = (cachedSettings && cachedSettings.profile && cachedSettings.profile.email) || 'tnsthao94@gmail.com';
+        await copyEmailToClipboard(activeEmail);
+        const d = KAGE_I18N[currentLanguage] || KAGE_I18N.vi;
+        showKageToast(`${d.eternity.toast_copied || 'Đã sao chép email!'} (${activeEmail})`);
+        window.parent.postMessage({ type: 'TRACK_EVENT', eventName: 'contact_click', params: { contact_method: 'copy_email', contact_location: 'footer' } }, '*');
       });
     }
   }
