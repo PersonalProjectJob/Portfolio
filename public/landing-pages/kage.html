@@ -6017,12 +6017,13 @@ function start() {
     switch2dBtn.addEventListener('click', (e) => {
       e.stopPropagation();
       try {
-        localStorage.setItem('portfolio_ab_variant', 'A');
+        localStorage.setItem('portfolio_view_mode', '2d');
+        localStorage.removeItem('portfolio_ab_variant');
       } catch (err) {}
       if (window.parent && window.parent !== window) {
         window.parent.postMessage({ type: 'SWITCH_VARIANT', variant: 'A' }, '*');
       } else {
-        window.location.href = '/?v=a';
+        window.location.href = '/?view=2d';
       }
     });
   }

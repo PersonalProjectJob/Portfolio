@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { trackEvent } from '../utils/analytics';
 import { CV_PROJECTS } from '../data/cvData';
-import { getOrAssignVariant, initABExperiment, type LandingVariant } from '../utils/abTesting';
+import { getOrAssignVariant, initABExperiment, setViewModePreference, type LandingVariant } from '../utils/abTesting';
 
 export type GameState = 'HERO_LANDING' | 'SELECT_PROFILE' | 'SKILL_MATRIX' | 'PROJECT_JOURNEY' | 'CASE_BRIEF' | 'CASE_STUDY_CRYPTOMAP' | 'CASE_STUDY_NAILHUB' | 'CASE_STUDY_NEXORA' | 'CASE_STUDY_VLINKPAY' | 'CASE_STUDY_AIPROCESS' | 'CASE_STUDY_HANDOFF' | 'CASE_STUDY_SYNCTASKBADGE' | 'CASE_STUDY_DISPATCH' | 'CASE_STUDY_AGENTRULES' | 'CASE_STUDY_KAGE' | 'EXPERIENCE' | 'PROCESS';
 
@@ -10,7 +10,7 @@ export type { LandingVariant };
 // --- URL ↔ State mapping ---
 
 const STATE_TO_URL: Record<GameState, string> = {
-  HERO_LANDING: '/',
+  HERO_LANDING: '/2d',
   SELECT_PROFILE: '/profile',
   SKILL_MATRIX: '/skills',
   PROJECT_JOURNEY: '/projects',
@@ -24,14 +24,15 @@ const STATE_TO_URL: Record<GameState, string> = {
   CASE_STUDY_SYNCTASKBADGE: '/project/sync-task-badge',
   CASE_STUDY_DISPATCH: '/project/dispatch',
   CASE_STUDY_AGENTRULES: '/project/agent-rules',
-  CASE_STUDY_KAGE: '/kage',
+  CASE_STUDY_KAGE: '/',
   EXPERIENCE: '/experience',
   PROCESS: '/process',
 };
 
 // Reverse lookup: URL path → { gameState, selectedQuest? }
 const URL_TO_STATE: Record<string, { gameState: GameState; selectedQuest?: string }> = {
-  '/': { gameState: 'HERO_LANDING' },
+  '/': { gameState: 'CASE_STUDY_KAGE' },
+  '/2d': { gameState: 'HERO_LANDING' },
   '/profile': { gameState: 'SELECT_PROFILE' },
   '/skills': { gameState: 'SKILL_MATRIX' },
   '/projects': { gameState: 'PROJECT_JOURNEY' },
@@ -54,21 +55,26 @@ const URL_TO_STATE: Record<string, { gameState: GameState; selectedQuest?: strin
 /** Resolve initial state from current URL pathname */
 function resolveStateFromURL(): { gameState: GameState; selectedQuest: string | null; variant: LandingVariant } {
   if (typeof window === 'undefined') {
-    return { gameState: 'HERO_LANDING', selectedQuest: null, variant: 'A' };
+    return { gameState: 'CASE_STUDY_KAGE', selectedQuest: null, variant: 'B' };
   }
   const path = window.location.pathname.replace(/\/+$/, '') || '/';
   const assignedVariant = getOrAssignVariant();
   initABExperiment(assignedVariant);
 
-  if (path === '/' && assignedVariant === 'B') {
+  if (path === '/') {
+    if (assignedVariant === 'A') {
+      return { gameState: 'HERO_LANDING', selectedQuest: null, variant: 'A' };
+    }
     return { gameState: 'CASE_STUDY_KAGE', selectedQuest: null, variant: 'B' };
   }
 
   const match = URL_TO_STATE[path];
   if (match) {
-    return { gameState: match.gameState, selectedQuest: match.selectedQuest ?? null, variant: assignedVariant };
+    const is2DRoute = path === '/2d' || path === '/profile' || path === '/skills' || path === '/projects' || path === '/experience' || path === '/process';
+    const variant = is2DRoute ? 'A' : assignedVariant;
+    return { gameState: match.gameState, selectedQuest: match.selectedQuest ?? null, variant };
   }
-  return { gameState: 'HERO_LANDING', selectedQuest: null, variant: assignedVariant };
+  return { gameState: 'CASE_STUDY_KAGE', selectedQuest: null, variant: 'B' };
 }
 
 /** Push URL to browser history without triggering popstate */
@@ -149,7 +155,7 @@ export const useStore = create<AppState>((set) => ({
   setGameState: (state) => {
     pushURL(state);
     if (state === 'CASE_STUDY_KAGE') {
-      if (typeof window !== 'undefined') localStorage.setItem('portfolio_ab_variant', 'B');
+      setViewModePreference('B');
       set({ gameState: state, activeLandingVariant: 'B' });
     } else {
       set({ gameState: state });
@@ -159,11 +165,16 @@ export const useStore = create<AppState>((set) => ({
   setSelectedQuest: (questId) => set({ selectedQuest: questId }),
   
   setActiveLandingVariant: (variant) => {
-    if (typeof window !== 'undefined') localStorage.setItem('portfolio_ab_variant', variant);
+    setViewModePreference(variant);
     set((state) => {
       const newGameState = variant === 'B' 
         ? (state.gameState === 'HERO_LANDING' ? 'CASE_STUDY_KAGE' : state.gameState)
         : (state.gameState === 'CASE_STUDY_KAGE' ? 'HERO_LANDING' : state.gameState);
+      if (variant === 'B') {
+        pushURL('CASE_STUDY_KAGE');
+      } else if (state.gameState === 'CASE_STUDY_KAGE') {
+        pushURL('HERO_LANDING');
+      }
       return { activeLandingVariant: variant, gameState: newGameState };
     });
   },

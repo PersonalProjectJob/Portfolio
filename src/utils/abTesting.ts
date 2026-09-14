@@ -1,67 +1,87 @@
-import { trackEvent } from './analytics';
+export type LandingVariant = 'A' | 'B'; // 'B' = 3D (default), 'A' = 2D (opt-in)
 
-export type LandingVariant = 'A' | 'B';
-
-const STORAGE_KEY = 'portfolio_ab_variant';
-const EXPERIMENT_ID = 'landing_hero_ab_v1';
+const VIEW_MODE_KEY = 'portfolio_view_mode';
+const LEGACY_STORAGE_KEY = 'portfolio_ab_variant';
 
 /**
- * Resolves the active Landing Variant based on:
- * 1. Query parameter override: ?v=a|b or ?variant=a|b
- * 2. Direct route override: /kage -> B, /profile -> A
- * 3. Persisted visitor assignment in localStorage
- * 4. Deterministic 50/50 randomized split for new visitors
+ * Resolves the active View Mode:
+ * Default is ALWAYS 'B' (3D WebGL Kage View) for public visitors.
+ * 'A' (2D Workspace) is only enabled when explicitly toggled or routed.
+ *
+ * 1. Query parameter override: ?view=2d|3d, ?v=2d|3d|a|b, ?mode=2d|3d
+ * 2. Direct route override: /2d -> 'A', /kage or /project/kage -> 'B'
+ * 3. User opt-in saved preference in localStorage ('portfolio_view_mode')
+ * 4. Default: 'B' (3D View) — Zero randomized A/B split.
  */
 export function getOrAssignVariant(): LandingVariant {
-  if (typeof window === 'undefined') return 'A';
+  if (typeof window === 'undefined') return 'B';
 
   try {
-    const params = new URLSearchParams(window.location.search);
-    const paramVariant = (params.get('v') || params.get('variant') || '').toUpperCase();
-    if (paramVariant === 'A' || paramVariant === 'B') {
-      localStorage.setItem(STORAGE_KEY, paramVariant);
-      return paramVariant as LandingVariant;
+    // Clean up retired A/B testing storage key so returning visitors are not stuck in 2D
+    if (localStorage.getItem(LEGACY_STORAGE_KEY)) {
+      localStorage.removeItem(LEGACY_STORAGE_KEY);
     }
 
-    const path = window.location.pathname.replace(/\/+$/, '') || '/';
-    if (path === '/kage' || path === '/project/kage') {
-      localStorage.setItem(STORAGE_KEY, 'B');
+    const params = new URLSearchParams(window.location.search);
+    const rawParam = (params.get('view') || params.get('v') || params.get('mode') || params.get('variant') || '').toLowerCase();
+    
+    if (rawParam === '2d' || rawParam === 'a') {
+      localStorage.setItem(VIEW_MODE_KEY, '2d');
+      return 'A';
+    }
+    if (rawParam === '3d' || rawParam === 'b') {
+      localStorage.setItem(VIEW_MODE_KEY, '3d');
       return 'B';
     }
 
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved === 'A' || saved === 'B') {
-      return saved as LandingVariant;
+    const path = window.location.pathname.replace(/\/+$/, '') || '/';
+    if (path === '/2d') {
+      localStorage.setItem(VIEW_MODE_KEY, '2d');
+      return 'A';
+    }
+    if (path === '/kage' || path === '/project/kage') {
+      localStorage.setItem(VIEW_MODE_KEY, '3d');
+      return 'B';
     }
 
-    // 50/50 randomized split for new unique visitors
-    const assigned: LandingVariant = Math.random() < 0.5 ? 'A' : 'B';
-    localStorage.setItem(STORAGE_KEY, assigned);
-    return assigned;
+    const savedMode = localStorage.getItem(VIEW_MODE_KEY);
+    if (savedMode === '2d') {
+      return 'A';
+    }
+    if (savedMode === '3d') {
+      return 'B';
+    }
+
+    // Default for 100% of public visitors is 3D View
+    return 'B';
   } catch {
-    return 'A';
+    return 'B';
   }
 }
 
 /**
- * Initializes GA4 experiment attribution and user properties
+ * Persists user preference for 2D or 3D view mode
+ */
+export function setViewModePreference(variant: LandingVariant): void {
+  if (typeof window === 'undefined') return;
+  try {
+    localStorage.setItem(VIEW_MODE_KEY, variant === 'A' ? '2d' : '3d');
+    localStorage.removeItem(LEGACY_STORAGE_KEY);
+  } catch {
+    // Ignore storage errors
+  }
+}
+
+/**
+ * Sets GA4 user property for active view mode (A/B testing retired)
  */
 export function initABExperiment(variant: LandingVariant): void {
   if (typeof window === 'undefined') return;
 
-  // Set persistent GA4 user property
   if (typeof window.gtag === 'function') {
     window.gtag('set', 'user_properties', {
       landing_variant: variant,
-      experiment_id: EXPERIMENT_ID,
+      view_mode: variant === 'B' ? '3d' : '2d',
     });
   }
-
-  // Send experiment impression event
-  trackEvent('exp_variant_impression', {
-    experiment_id: EXPERIMENT_ID,
-    variant_id: variant,
-    page_path: window.location.pathname,
-    referrer: document.referrer || 'direct',
-  });
 }

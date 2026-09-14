@@ -69,8 +69,9 @@ export const KageLandingPage: React.FC<KageLandingPageProps> = ({
         } else if (event.data.type === 'SWITCH_VARIANT' && (event.data.variant === 'A' || event.data.variant === 'B')) {
           setActiveLandingVariant(event.data.variant);
           setGameState(event.data.variant === 'B' ? 'CASE_STUDY_KAGE' : 'HERO_LANDING');
-          trackEvent('ab_variant_toggle', {
+          trackEvent('view_mode_toggle', {
             target_variant: event.data.variant,
+            target_mode: event.data.variant === 'B' ? '3d' : '2d',
             source: 'kage_header',
           });
         } else if (event.data.type === 'SET_LANGUAGE' && (event.data.language === 'vi' || event.data.language === 'en')) {

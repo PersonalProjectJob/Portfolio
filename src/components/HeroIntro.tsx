@@ -72,10 +72,10 @@ export const HeroIntro: React.FC<HeroIntroProps> = ({ onComplete, onNavigate }) 
                 useStore.getState().setGameState('CASE_STUDY_KAGE');
               }}
               className="px-2.5 md:px-3 py-1.5 rounded-lg border border-orange-400/40 bg-orange-500/10 hover:bg-orange-500/20 text-orange-300 text-[10px] md:text-[11px] font-bold tracking-wider uppercase flex items-center gap-1.5 transition-all shadow-[0_0_12px_rgba(249,115,22,0.25)]"
-              title="Khám phá Không gian 3D WebGL (Variant B)"
+              title="Khám phá Không gian 3D WebGL (Trang chính)"
             >
               <span className="w-1.5 h-1.5 rounded-full bg-orange-400 animate-pulse" />
-              <span>3D Kage</span>
+              <span>3D View</span>
             </button>
             <div className="hidden md:flex gap-8 text-xs font-medium tracking-widest text-slate-300 items-center">
               <button type="button" onClick={() => onNavigate('projects')} className="hover:text-white transition-colors tracking-widest uppercase py-2">{t('ui.projects')}</button>

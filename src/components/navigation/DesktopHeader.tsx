@@ -53,10 +53,10 @@ export const DesktopHeader: React.FC<DesktopHeaderProps> = ({ className = '', on
                 ? 'bg-slate-100 hover:bg-slate-200 border-slate-200 text-slate-700'
                 : 'bg-slate-800/80 hover:bg-slate-700 border-slate-700 text-slate-300 hover:text-white'
           }`}
-          title={activeLandingVariant === 'B' ? 'Switch to 2D Workspace' : 'Switch to 3D WebGL Landing Page'}
+          title={activeLandingVariant === 'B' ? 'Chuyển sang 2D Workspace' : 'Khám phá Không gian 3D WebGL (Trang chính)'}
         >
           <span className="w-2 h-2 rounded-full bg-orange-400 animate-pulse" />
-          <span>{activeLandingVariant === 'B' ? '2D View' : '3D Kage'}</span>
+          <span>{activeLandingVariant === 'B' ? '2D View' : '3D View'}</span>
         </button>
 
         <LanguageToggle />
