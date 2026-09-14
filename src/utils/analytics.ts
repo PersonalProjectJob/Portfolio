@@ -5,6 +5,8 @@ export type AnalyticsParameters = Record<
 
 export type GA4EventName =
   | 'exp_variant_impression'
+  | 'view_mode_toggle'
+  | 'ab_variant_toggle'
   | 'page_view_custom'
   | 'project_view'
   | 'project_drag'
