@@ -6468,8 +6468,12 @@ function start() {
     // Telemetry tracking & interaction on Chapter 04 Conversion CTAs
     const btnViewCv = document.getElementById('btn-view-cv');
     if (btnViewCv) {
-      btnViewCv.addEventListener('click', () => {
+      btnViewCv.addEventListener('click', (e) => {
         window.parent.postMessage({ type: 'TRACK_EVENT', eventName: 'cv_action', params: { action_type: 'view', button_id: 'btn-view-cv' } }, '*');
+        if (window.parent && window.parent !== window) {
+          e.preventDefault();
+          window.parent.postMessage({ type: 'OPEN_WINDOW', url: btnViewCv.href, target: '_blank' }, '*');
+        }
       });
     }
     const btnDownloadCv = document.getElementById('btn-download-cv');
@@ -6480,8 +6484,12 @@ function start() {
     }
     const btnLinkedin = document.getElementById('btn-linkedin');
     if (btnLinkedin) {
-      btnLinkedin.addEventListener('click', () => {
+      btnLinkedin.addEventListener('click', (e) => {
         window.parent.postMessage({ type: 'TRACK_EVENT', eventName: 'contact_click', params: { contact_method: 'linkedin', contact_location: 'chapter_04' } }, '*');
+        if (window.parent && window.parent !== window && btnLinkedin.href) {
+          e.preventDefault();
+          window.parent.postMessage({ type: 'OPEN_WINDOW', url: btnLinkedin.href, target: '_blank' }, '*');
+        }
       });
     }
     const btnEmail = document.getElementById('btn-email');
