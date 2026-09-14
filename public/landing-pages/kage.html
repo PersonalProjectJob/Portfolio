@@ -1677,11 +1677,11 @@ body[data-layout-footer="b"] .foot-base{ display:flex; justify-content:center; a
     </div>
     <div class="cert-info">
       <span class="badge">🏆 GIẢI THƯỞNG XUẤT SẮC & CHỨNG NHẬN</span>
-      <h3>BEST TEAM — PRODUCT EXPERIENCE DESIGN (PXD K17)</h3>
-      <p>Vinh danh Đội ngũ có Đồ án Xuất sắc nhất khóa đào tạo Product Experience Design (PXD K17) tại UXFoundation.vn, dẫn dắt nghiên cứu thực địa và giải pháp UX toàn diện.</p>
+      <h3>BEST TEAM — PSYCHOLOGY IN UX DESIGN (PXD K17)</h3>
+      <p>Vinh danh Đội ngũ có Đồ án Xuất sắc nhất khóa đào tạo Psychology in UX Design (PXD K17) tại UXFoundation.vn, dẫn dắt nghiên cứu thực địa và giải pháp UX toàn diện.</p>
       <ul class="edu-list">
         <li class="edu-item">
-          <span>Product Experience Design (PXD)</span>
+          <span>Psychology in UX Design (PXD)</span>
           <span>UXFoundation.vn · JUN 2025</span>
         </li>
         <li class="edu-item">
@@ -1714,7 +1714,7 @@ body[data-layout-footer="b"] .foot-base{ display:flex; justify-content:center; a
       <img src="secret-pathways-assets/foreground/png/sakura-branch.webp" alt="" width="1536" height="1024" loading="lazy" decoding="async">
     </span>
   </div>
-  <div class="eyebrow" data-rv="fade"><span class="dot"></span> CHƯƠNG 04 — KẾT NỐI & HỢP TÁC</div>
+  <div class="eyebrow" id="eternity-eyebrow" data-rv="fade"><span class="dot"></span> CHƯƠNG 04 — KẾT NỐI & HỢP TÁC</div>
   <h2 class="display" data-rv="up">SẴN SÀNG ĐỒNG HÀNH CÙNG DỰ ÁN CỦA BẠN.</h2>
   <p class="body-lg" data-rv="up">Dù là một bài toán Fintech phức tạp, xây dựng hệ thống Design System từ con số 0 hay tạo mẫu sản phẩm AI MVP với tốc độ cao, tôi luôn sẵn sàng lắng nghe và hiện thực hóa cùng bạn.</p>
   <div class="cta-group" data-rv="up">
@@ -1781,19 +1781,19 @@ body[data-layout-footer="b"] .foot-base{ display:flex; justify-content:center; a
       <img src="../images/logo.png" alt="ST Logo" style="width:36px; height:36px; object-fit:contain; filter:drop-shadow(0 0 10px rgba(249,115,22,0.85)); margin-bottom:12px;" />
       <p><b>Trương Nguyễn Sơn Thảo (Son Thao / Sota)</b> — Senior Product Designer & Design Engineer chuyên sâu về Fintech, B2B SaaS, AI MVP và Design Systems.</p>
     </div>
-    <div><h4>Điều Hướng</h4><ul>
+    <div class="foot-col foot-col-nav"><h4>Điều Hướng</h4><ul>
       <li><a href="#gate" data-cursor>01. Hồ Sơ Năng Lực</a></li>
       <li><a href="#pathways" data-cursor>02. Dự Án Tiêu Biểu</a></li>
       <li><a href="#lessons" data-cursor>03. Kinh Nghiệm & Kỹ Năng</a></li>
       <li><a href="#eternity" data-cursor>04. Liên Hệ Hợp Tác</a></li>
     </ul></div>
-    <div><h4>Năng Lực Cốt Lõi</h4><ul>
+    <div class="foot-col foot-col-core"><h4>Năng Lực Cốt Lõi</h4><ul>
       <li><a href="#pathways" data-cursor>Fintech & Web3 UX</a></li>
       <li><a href="#pathways" data-cursor>B2B SaaS Platform</a></li>
       <li><a href="#pathways" data-cursor>Design Systems & Tokens</a></li>
       <li><a href="#pathways" data-cursor>AI Multi-Agent Workflows</a></li>
     </ul></div>
-    <div><h4>Kết Nối</h4><ul>
+    <div class="foot-col foot-col-connect"><h4>Kết Nối</h4><ul>
       <li><a href="https://t.me/tnsthao94" target="_blank" rel="noopener noreferrer" data-cursor>Telegram: @tnsthao94</a></li>
       <li><a href="mailto:tnsthao94@gmail.com" data-cursor>Email: tnsthao94@gmail.com</a></li>
       <li><a href="https://www.linkedin.com/in/tnsthao94" target="_blank" rel="noopener noreferrer" data-cursor>LinkedIn: tnsthao94</a></li>
@@ -1801,7 +1801,7 @@ body[data-layout-footer="b"] .foot-base{ display:flex; justify-content:center; a
     </ul></div>
   </div>
   <div class="foot-base">
-    <span>© 2026 Sota Trương Portfolio</span>
+    <span class="foot-copyright">© 2026 Sota Trương Portfolio</span>
   </div>
 </footer>
 
@@ -5612,16 +5612,29 @@ const KAGE_I18N = {
     lessons: {
       k1: 'KINH NGHIỆM & TRIẾT LÝ',
       h2: 'HÀNH TRÌNH NGHỀ NGHIỆP & NĂNG LỰC CỐT LÕI',
-      p: 'Hơn 3 năm kinh nghiệm phối hợp liên phòng ban xây dựng sản phẩm từ con số 0. Kết hợp nghiên cứu người dùng thực địa, kiến trúc hệ thống Design Tokens đến bàn giao code chính xác.'
+      p: 'Hơn 3 năm kinh nghiệm phối hợp liên phòng ban xây dựng sản phẩm từ con số 0. Kết hợp nghiên cứu người dùng thực địa, kiến trúc hệ thống Design Tokens đến bàn giao code chính xác.',
+      les0_desc: 'Tạo mẫu nhanh MVP (Cryptomap360, Bitcoin Nail Bar) kết hợp Figma, Supabase, Cursor, Deepseek. Tối ưu UX bản đồ thời gian thực.',
+      les1_desc: 'Thiết kế luồng Fintech và hệ thống POS VLINKPAY cho thị trường Mỹ, luồng Crypto an toàn, trải nghiệm Gamification và đồng hành cùng Dev.',
+      les2_desc: 'Thiết kế hệ thống quản lý kho vận (WMS) và điều phối logistics (TMS). Xây dựng ứng dụng Quick Order nội bộ cho tập đoàn Colgate.',
+      les3_desc: 'Kiến trúc Design Tokens đồng bộ 100% giữa Figma và Codebase, component modular, tương tác vi mô và tài liệu hóa chuẩn mực.',
+      les4_desc: 'Tích hợp quy trình Đa tác nhân AI (Claude Code, Gemini, Antigravity) cùng React 19, TypeScript, Tailwind CSS v4 và Framer Motion.',
+      skills_title: 'MA TRẬN KỸ NĂNG & CÔNG NGHỆ CHUYÊN SÂU',
+      skills_sub: 'SKILLS MATRIX & TECH STACK',
+      award_badge: '🏆 GIẢI THƯỞNG XUẤT SẮC & CHỨNG NHẬN',
+      award_zoom: '🔍 Xem Chứng Chỉ Gốc',
+      award_title: 'BEST TEAM — PSYCHOLOGY IN UX DESIGN (PXD K17)',
+      award_desc: 'Vinh danh Đội ngũ có Đồ án Xuất sắc nhất khóa đào tạo Psychology in UX Design (PXD K17) tại UXFoundation.vn, dẫn dắt nghiên cứu thực địa và giải pháp UX toàn diện.',
+      edu_pxd: 'Psychology in UX Design (PXD)'
     },
     eternity: {
+      eyebrow: '<span class="dot"></span> CHƯƠNG 04 — KẾT NỐI & HỢP TÁC',
       k1: 'KẾT NỐI HỢP TÁC',
       h2: 'SẴN SÀNG KIẾN TẠO SẢN PHẨM ĐỘT PHÁ CÙNG BẠN',
       p: 'Dù là một bài toán Fintech phức tạp, xây dựng hệ thống Design System từ con số 0 hay tạo mẫu sản phẩm AI MVP với tốc độ cao, tôi luôn sẵn sàng lắng nghe và hiện thực hóa cùng bạn.',
-      btn_view_cv: 'Xem CV Online',
-      btn_download_cv: 'Tải CV PDF',
-      btn_linkedin: 'Kết Nối LinkedIn',
-      btn_email: 'Gửi Email Hợp Tác',
+      btn_view_cv: 'Xem CV',
+      btn_download_cv: 'Tải CV',
+      btn_linkedin: 'Mở LinkedIn',
+      btn_email: 'Gửi Email',
       pop_copy: 'Sao chép Email',
       pop_copied: 'Đã sao chép!',
       pop_gmail: 'Mở trong Gmail',
@@ -5629,7 +5642,15 @@ const KAGE_I18N = {
       toast_copied: 'Đã sao chép email vào bộ nhớ tạm!'
     },
     footer: {
-      desc: 'chuyên sâu về Fintech, B2B SaaS, AI MVP và Design Systems.'
+      desc: 'chuyên sâu về Fintech, B2B SaaS, AI MVP và Design Systems.',
+      col_nav_title: 'Điều Hướng',
+      col_nav_1: '01. Hồ Sơ Năng Lực',
+      col_nav_2: '02. Dự Án Tiêu Biểu',
+      col_nav_3: '03. Kinh Nghiệm & Kỹ Năng',
+      col_nav_4: '04. Liên Hệ Hợp Tác',
+      col_core_title: 'Năng Lực Cốt Lõi',
+      col_connect_title: 'Kết Nối',
+      copyright: '© 2026 Sota Trương Portfolio'
     }
   },
   en: {
@@ -5686,16 +5707,29 @@ const KAGE_I18N = {
     lessons: {
       k1: 'EXPERIENCE & PHILOSOPHY',
       h2: 'CAREER JOURNEY & CORE COMPETENCIES',
-      p: '3+ years of cross-functional experience building products from ground zero. Combining hands-on user research, Design Tokens architecture, and pixel-perfect developer handoff.'
+      p: '3+ years of cross-functional experience building products from ground zero. Combining hands-on user research, Design Tokens architecture, and pixel-perfect developer handoff.',
+      les0_desc: 'Rapid MVP prototyping (Cryptomap360, Bitcoin Nail Bar) combining Figma, Supabase, Cursor, Deepseek. Real-time geospatial UX optimization.',
+      les1_desc: 'Fintech UX & POS architecture for VLINKPAY (US market), secure Crypto flows, Gamification mechanics, and cross-functional Dev handoff.',
+      les2_desc: 'Warehouse Management System (WMS) and Logistics Transportation (TMS) UX design. Built enterprise Quick Order app for Colgate Group.',
+      les3_desc: '100% synchronized Design Tokens architecture between Figma and Codebase, modular components, micro-interactions, and design governance.',
+      les4_desc: 'Multi-Agent AI workflows (Claude Code, Gemini, Antigravity) combined with React 19, TypeScript, Tailwind CSS v4, and Framer Motion.',
+      skills_title: 'SPECIALIZED SKILLS & TECH STACK MATRIX',
+      skills_sub: 'SKILLS MATRIX & TECH STACK',
+      award_badge: '🏆 OUTSTANDING AWARD & CERTIFICATION',
+      award_zoom: '🔍 View Original Certificate',
+      award_title: 'BEST TEAM — PSYCHOLOGY IN UX DESIGN (PXD K17)',
+      award_desc: 'Honoring the Team with the Best Capstone Project in the Psychology in UX Design (PXD K17) course at UXFoundation.vn, leading field research and holistic UX solutions.',
+      edu_pxd: 'Psychology in UX Design (PXD)'
     },
     eternity: {
+      eyebrow: '<span class="dot"></span> CHAPTER 04 — CONNECT & COLLABORATE',
       k1: "LET'S COLLABORATE",
       h2: 'READY TO BUILD BREAKTHROUGH PRODUCTS TOGETHER',
       p: 'Whether tackling a complex Fintech challenge, architecting a zero-to-one Design System, or prototyping rapid AI MVPs, I am always ready to listen and co-create with you.',
-      btn_view_cv: 'View Online CV',
-      btn_download_cv: 'Download CV PDF',
-      btn_linkedin: 'Connect on LinkedIn',
-      btn_email: 'Send Partnership Email',
+      btn_view_cv: 'View CV',
+      btn_download_cv: 'Download CV',
+      btn_linkedin: 'Open LinkedIn',
+      btn_email: 'Send Email',
       pop_copy: 'Copy Email Address',
       pop_copied: 'Copied!',
       pop_gmail: 'Open in Gmail',
@@ -5703,7 +5737,15 @@ const KAGE_I18N = {
       toast_copied: 'Email copied to clipboard!'
     },
     footer: {
-      desc: 'specializing in Fintech, B2B SaaS, AI MVP and Design Systems.'
+      desc: 'specializing in Fintech, B2B SaaS, AI MVP and Design Systems.',
+      col_nav_title: 'Navigation',
+      col_nav_1: '01. Capability Profile',
+      col_nav_2: '02. Featured Projects',
+      col_nav_3: '03. Experience & Skills',
+      col_nav_4: "04. Let's Collaborate",
+      col_core_title: 'Core Competencies',
+      col_connect_title: 'Connect',
+      copyright: '© 2026 Sota Truong Portfolio'
     }
   }
 };
@@ -5849,6 +5891,34 @@ function applyKageTranslations(lang) {
   const lessP = document.querySelector('.cur-head p');
   if (lessP) lessP.textContent = d.lessons.p;
 
+  const lesCards = document.querySelectorAll('#cur .les');
+  if (lesCards.length >= 5) {
+    if (d.lessons.les0_desc) lesCards[0].querySelector('.les-desc').textContent = d.lessons.les0_desc;
+    if (d.lessons.les1_desc) lesCards[1].querySelector('.les-desc').textContent = d.lessons.les1_desc;
+    if (d.lessons.les2_desc) lesCards[2].querySelector('.les-desc').textContent = d.lessons.les2_desc;
+    if (d.lessons.les3_desc) lesCards[3].querySelector('.les-desc').textContent = d.lessons.les3_desc;
+    if (d.lessons.les4_desc) lesCards[4].querySelector('.les-desc').textContent = d.lessons.les4_desc;
+  }
+
+  const skillsHeadH3 = document.querySelector('#skills-matrix .skills-sec-head h3');
+  if (skillsHeadH3 && d.lessons.skills_title) skillsHeadH3.textContent = d.lessons.skills_title;
+  const skillsHeadSub = document.querySelector('#skills-matrix .skills-sec-head span');
+  if (skillsHeadSub && d.lessons.skills_sub) skillsHeadSub.textContent = d.lessons.skills_sub;
+
+  const certBadge = document.querySelector('#cert-awards .badge');
+  if (certBadge && d.lessons.award_badge) certBadge.textContent = d.lessons.award_badge;
+  const certZoom = document.querySelector('#cert-awards .cert-zoom-pill');
+  if (certZoom && d.lessons.award_zoom) certZoom.textContent = d.lessons.award_zoom;
+  const certH3 = document.querySelector('#cert-awards h3');
+  if (certH3 && d.lessons.award_title) certH3.textContent = d.lessons.award_title;
+  const certP = document.querySelector('#cert-awards p');
+  if (certP && d.lessons.award_desc) certP.textContent = d.lessons.award_desc;
+  const certPxdItem = document.querySelector('#cert-awards .edu-item:nth-child(1) span:first-child');
+  if (certPxdItem && d.lessons.edu_pxd) certPxdItem.textContent = d.lessons.edu_pxd;
+
+  const etEyebrow = document.getElementById('eternity-eyebrow');
+  if (etEyebrow && d.eternity.eyebrow) etEyebrow.innerHTML = d.eternity.eyebrow;
+
   const etK = document.querySelector('#eternity .sec-head .k:first-child');
   if (etK) etK.innerHTML = `<b>04</b> — ${d.eternity.k1}`;
   const etH2 = document.querySelector('#eternity h2.display, #eternity .h-sec');
@@ -5896,7 +5966,27 @@ function applyKageTranslations(lang) {
       : 'Product Designer';
     footBrand.innerHTML = `<b>${authorName}</b> — ${authorTitle} ${d.footer.desc}`;
   }
+
+  const footNavH4 = document.querySelector('.foot-col-nav h4');
+  if (footNavH4 && d.footer.col_nav_title) footNavH4.textContent = d.footer.col_nav_title;
+  const footNavLinks = document.querySelectorAll('.foot-col-nav ul li a');
+  if (footNavLinks.length >= 4) {
+    if (d.footer.col_nav_1) footNavLinks[0].textContent = d.footer.col_nav_1;
+    if (d.footer.col_nav_2) footNavLinks[1].textContent = d.footer.col_nav_2;
+    if (d.footer.col_nav_3) footNavLinks[2].textContent = d.footer.col_nav_3;
+    if (d.footer.col_nav_4) footNavLinks[3].textContent = d.footer.col_nav_4;
+  }
+
+  const footCoreH4 = document.querySelector('.foot-col-core h4');
+  if (footCoreH4 && d.footer.col_core_title) footCoreH4.textContent = d.footer.col_core_title;
+
+  const footConnectH4 = document.querySelector('.foot-col-connect h4');
+  if (footConnectH4 && d.footer.col_connect_title) footConnectH4.textContent = d.footer.col_connect_title;
+
+  const footCopyright = document.querySelector('.foot-copyright');
+  if (footCopyright && d.footer.copyright) footCopyright.textContent = d.footer.copyright;
 }
+window.applyKageTranslations = applyKageTranslations;
 
 function applyDynamicProfile(settings, projects, lang) {
   if (settings) cachedSettings = settings;
@@ -6468,8 +6558,12 @@ function start() {
     // Telemetry tracking & interaction on Chapter 04 Conversion CTAs
     const btnViewCv = document.getElementById('btn-view-cv');
     if (btnViewCv) {
-      btnViewCv.addEventListener('click', () => {
+      btnViewCv.addEventListener('click', (e) => {
         window.parent.postMessage({ type: 'TRACK_EVENT', eventName: 'cv_action', params: { action_type: 'view', button_id: 'btn-view-cv' } }, '*');
+        if (window.parent && window.parent !== window) {
+          e.preventDefault();
+          window.parent.postMessage({ type: 'OPEN_WINDOW', url: btnViewCv.href, target: '_blank' }, '*');
+        }
       });
     }
     const btnDownloadCv = document.getElementById('btn-download-cv');
@@ -6480,8 +6574,12 @@ function start() {
     }
     const btnLinkedin = document.getElementById('btn-linkedin');
     if (btnLinkedin) {
-      btnLinkedin.addEventListener('click', () => {
+      btnLinkedin.addEventListener('click', (e) => {
         window.parent.postMessage({ type: 'TRACK_EVENT', eventName: 'contact_click', params: { contact_method: 'linkedin', contact_location: 'chapter_04' } }, '*');
+        if (window.parent && window.parent !== window && btnLinkedin.href) {
+          e.preventDefault();
+          window.parent.postMessage({ type: 'OPEN_WINDOW', url: btnLinkedin.href, target: '_blank' }, '*');
+        }
       });
     }
     const btnEmail = document.getElementById('btn-email');

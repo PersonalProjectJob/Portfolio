@@ -656,11 +656,11 @@ export const vi: Record<string, string> = {
   // --- Phase 2: GameCharacterStats (Skills) ---
   'skills.coreCompetencies': 'Năng lực cốt lõi',
   'skills.education': 'Học vấn & Giải thưởng',
-  'skills.award.title': 'Best Team PXD K17',
+  'skills.award.title': 'Best Team — Psychology in UX Design (PXD K17)',
   'skills.award.subtitle': 'Giải thưởng Dự án Xuất sắc',
   'skills.award.viewCertificate': 'Xem chứng chỉ',
   'skills.award.certificateAlt': 'Chứng chỉ Best Team PXD K17 - UX Foundation.vn',
-  'skills.edu.1.title': 'Tâm lý học trong UX Design',
+  'skills.edu.1.title': 'Psychology in UX Design (PXD)',
   'skills.edu.2.title': 'Nền tảng UX',
   'skills.edu.3.title': 'Thiết kế Quảng cáo',
   'skills.passiveSkills': 'Kỹ năng thụ động & Tư duy',

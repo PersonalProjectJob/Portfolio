@@ -4,8 +4,6 @@ import { useSiteSettings } from '../../cms/hooks/useSiteSettings';
 import { useProjects } from '../../cms/hooks/useProjects';
 import { trackEvent } from '../../utils/analytics';
 
-const FRAME_SANDBOX = 'allow-downloads allow-forms allow-modals allow-popups allow-same-origin allow-scripts';
-
 export interface KageLandingPageProps {
   className?: string;
   sourceUrl?: string;
@@ -81,6 +79,8 @@ export const KageLandingPage: React.FC<KageLandingPageProps> = ({
             source: 'kage_header',
             landing_variant: 'B',
           });
+        } else if (event.data.type === 'OPEN_WINDOW' && event.data.url) {
+          window.open(event.data.url, event.data.target || '_blank', 'noopener,noreferrer');
         }
       }
     };
@@ -102,12 +102,11 @@ export const KageLandingPage: React.FC<KageLandingPageProps> = ({
         zIndex: 9999,
       }}
     >
-      {/* Verified Authored Kage Full-Document Renderer */}
+      {/* Verified Authored Kage Full-Document Renderer (First-party trusted iframe) */}
       <iframe
         ref={frameRef}
         title={title}
         src={sourceUrl}
-        sandbox={FRAME_SANDBOX}
         loading="eager"
         onLoad={() => {
           setReady(true);

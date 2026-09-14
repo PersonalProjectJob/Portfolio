@@ -657,11 +657,11 @@ export const en: Record<string, string> = {
   // --- Phase 2: GameCharacterStats (Skills) ---
   'skills.coreCompetencies': 'Core Competencies',
   'skills.education': 'Education & Awards',
-  'skills.award.title': 'Best Team PXD K17',
+  'skills.award.title': 'Best Team — Psychology in UX Design (PXD K17)',
   'skills.award.subtitle': 'Outstanding Project Award',
   'skills.award.viewCertificate': 'View certificate',
   'skills.award.certificateAlt': 'Best Team PXD K17 certificate - UX Foundation.vn',
-  'skills.edu.1.title': 'Psychology of UX Design',
+  'skills.edu.1.title': 'Psychology in UX Design (PXD)',
   'skills.edu.2.title': 'UX Foundation',
   'skills.edu.3.title': 'Advertising Design',
   'skills.passiveSkills': 'Passive Skills & Mindset',
