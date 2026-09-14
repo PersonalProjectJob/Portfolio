@@ -32,6 +32,7 @@ const ProjectHandoff = lazy(() => import('./pages/ProjectHandoff').then(m => ({ 
 const ProjectSyncTaskBadge = lazy(() => import('./pages/ProjectSyncTaskBadge'));
 const ProjectDispatch = lazy(() => import('./pages/ProjectDispatch').then(m => ({ default: m.ProjectDispatch })));
 const ProjectAgentRules = lazy(() => import('./pages/ProjectAgentRules').then(m => ({ default: m.ProjectAgentRules })));
+const ProjectAgentHandoff = lazy(() => import('./pages/ProjectAgentHandoff'));
 const KageLandingPage = lazy(() => import('./components/kage/KageLandingPage'));
 const AdminApp = lazy(() => import('./admin/AdminApp'));
 
@@ -50,6 +51,7 @@ const ROUTES: Partial<Record<GameState, React.LazyExoticComponent<React.FC>>> = 
   CASE_STUDY_SYNCTASKBADGE: ProjectSyncTaskBadge,
   CASE_STUDY_DISPATCH: ProjectDispatch,
   CASE_STUDY_AGENTRULES: ProjectAgentRules,
+  CASE_STUDY_AGENTHANDOFF: ProjectAgentHandoff,
   CASE_STUDY_KAGE: KageLandingPage,
   EXPERIENCE: GameExperienceTimeline,
   PROCESS: GameDesignProcess,

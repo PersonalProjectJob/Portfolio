@@ -92,7 +92,7 @@ const REGISTERED_TSX_COMPONENTS = [
     category: 'Automation Engineering',
     role: 'Systems & Prompt Architect',
     summaryEn: 'Distributed orchestrator coordinating AI agents for automated delivery.',
-    summaryVi: 'Hệ thống điều phối phân tán các tác tử AI phục vụ bàn giao tự động.',
+    summaryVi: 'Hệ thống điều phối phân tán các AI agent phục vụ bàn giao tự động.',
   },
   {
     key: 'agent-rules',
@@ -101,6 +101,14 @@ const REGISTERED_TSX_COMPONENTS = [
     role: 'AI Governance Lead',
     summaryEn: 'Standardized agent operational procedures, invariants, and compliance.',
     summaryVi: 'Quy trình vận hành chuẩn cho Agent và kiểm tra tuân thủ tự động.',
+  },
+  {
+    key: 'agent-handoff',
+    name: 'ProjectAgentHandoff (Agent Handoff Problem)',
+    category: 'AI & Automation Engineering',
+    role: 'Multi-Agent Systems Architect',
+    summaryEn: 'Four AI coding agents shared one rule set and one work queue. When the orchestrator ran out of quota mid-task, everything froze. Here is what it took to fix that.',
+    summaryVi: 'Bốn AI agent chia sẻ chung một bộ quy tắc và hàng đợi nhiệm vụ. Khi agent điều phối cạn quota giữa chừng, toàn bộ bị đóng băng. Đây là giải pháp giải quyết triệt để.',
   },
 ];
 

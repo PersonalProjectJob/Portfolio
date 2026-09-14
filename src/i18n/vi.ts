@@ -866,6 +866,19 @@ export const vi: Record<string, string> = {
   'cv.sync-task-badge.result.1.label': 'Lịch trình',
   'cv.sync-task-badge.result.1.value': '2 lần/ngày',
 
+  'cv.agent-handoff.title': 'Bài toán Bàn giao Agent',
+  'cv.agent-handoff.category': 'AI & Automation Engineering',
+  'cv.agent-handoff.role': 'Multi-Agent Systems Architect',
+  'cv.agent-handoff.context': 'Bốn AI agent chia sẻ chung một bộ quy tắc và hàng đợi nhiệm vụ. Khi agent điều phối cạn quota giữa chừng, toàn bộ bị đóng băng. Đây là giải pháp kiến trúc giải quyết triệt để.',
+  'cv.agent-handoff.solution.0': 'Ứng dụng các nguyên mẫu hệ thống phân tán: file lock, lease có thời hạn, và Compare-And-Swap (CAS).',
+  'cv.agent-handoff.solution.1': 'Phân định nghiêm ngặt thẩm quyền xác minh: verifier chạy chỉ đọc, controller độc lập ghi artifact.',
+  'cv.agent-handoff.solution.2': 'Xây dựng Action Controller và Subagent Spawn Adapter với ranh giới thủ công trung thực.',
+  'cv.agent-handoff.solution.3': 'Áp dụng bài diễn tập ngắt-khôi phục (crash-resume drill) vượt qua 6 điểm ngắt cưỡng bức.',
+  'cv.agent-handoff.result.0.label': 'Tiếp quản an toàn',
+  'cv.agent-handoff.result.0.value': '100%',
+  'cv.agent-handoff.result.1.label': 'Tỷ lệ qua Drill',
+  'cv.agent-handoff.result.1.value': '100%',
+
   // Page-level keys for Sync Task Badge
   'sync-task-badge.eyebrow': 'Vận hành thiết kế cá nhân · Automation 03',
   'sync-task-badge.headline': 'Đóng vòng lặp tự động sau khi Agent bắt đầu làm việc.',

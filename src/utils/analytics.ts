@@ -15,7 +15,19 @@ export type GA4EventName =
   | 'contact_click'
   | 'language_toggle'
   | 'theme_toggle'
-  | 'chapter_view';
+  | 'chapter_view'
+  | 'shotgun_option_select'
+  | 'shotgun_image_zoom'
+  | 'shotgun_compare_toggle'
+  | 'shotgun_prompt_copy'
+  | 'shotgun_feedback_vote'
+  | 'shotgun_cta_click'
+  | 'handoff_pdf_view'
+  | 'handoff_pdf_download'
+  | 'handoff_share_click'
+  | 'handoff_image_zoom'
+  | 'handoff_drill_toggle'
+  | 'handoff_assumption_expand';
 
 declare global {
   interface Window {
@@ -83,4 +95,95 @@ export function trackContactClick(method: 'email' | 'linkedin' | 'telegram' | 'g
     landing_variant: variant,
   });
 }
+
+export function trackShotgunOptionSelect(optionId: string, optionTitle: string): void {
+  trackEvent('shotgun_option_select', {
+    option_id: optionId,
+    option_title: optionTitle,
+    timestamp: Date.now(),
+  });
+}
+
+export function trackShotgunImageZoom(imageName: string, section: string): void {
+  trackEvent('shotgun_image_zoom', {
+    image_name: imageName,
+    section_name: section,
+    timestamp: Date.now(),
+  });
+}
+
+export function trackShotgunCompareToggle(mode: 'before' | 'after' | 'split'): void {
+  trackEvent('shotgun_compare_toggle', {
+    compare_mode: mode,
+    timestamp: Date.now(),
+  });
+}
+
+export function trackShotgunPromptCopy(optionId: string): void {
+  trackEvent('shotgun_prompt_copy', {
+    option_id: optionId,
+    timestamp: Date.now(),
+  });
+}
+
+export function trackShotgunVote(optionId: string, voteType: 'like' | 'favorite' | 'feedback'): void {
+  trackEvent('shotgun_feedback_vote', {
+    option_id: optionId,
+    vote_type: voteType,
+    timestamp: Date.now(),
+  });
+}
+
+export function trackShotgunCtaClick(ctaName: string, destination: string): void {
+  trackEvent('shotgun_cta_click', {
+    cta_name: ctaName,
+    destination: destination,
+    timestamp: Date.now(),
+  });
+}
+
+export function trackHandoffPdfView(source: string): void {
+  trackEvent('handoff_pdf_view', {
+    source,
+    timestamp: Date.now(),
+  });
+}
+
+export function trackHandoffPdfDownload(): void {
+  trackEvent('handoff_pdf_download', {
+    file_name: 'agent-handoff.pdf',
+    timestamp: Date.now(),
+  });
+}
+
+export function trackHandoffShareClick(): void {
+  trackEvent('handoff_share_click', {
+    timestamp: Date.now(),
+  });
+}
+
+export function trackHandoffImageZoom(imageName: string, section: string): void {
+  trackEvent('handoff_image_zoom', {
+    image_name: imageName,
+    section_name: section,
+    timestamp: Date.now(),
+  });
+}
+
+export function trackHandoffDrillToggle(drillStep: number, drillTitle: string): void {
+  trackEvent('handoff_drill_toggle', {
+    drill_step: drillStep,
+    drill_title: drillTitle,
+    timestamp: Date.now(),
+  });
+}
+
+export function trackHandoffAssumptionExpand(assumptionIndex: number, title: string): void {
+  trackEvent('handoff_assumption_expand', {
+    assumption_index: assumptionIndex,
+    title,
+    timestamp: Date.now(),
+  });
+}
+
 

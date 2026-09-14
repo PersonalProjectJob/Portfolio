@@ -107,8 +107,8 @@ INSERT INTO content_entries (
   'legacy',
   'cryptomap',
   'standard',
-  true,
-  1,
+  false,
+  6,
   '{
     "shortName": "CryptoMap360",
     "zone": "product",
@@ -133,8 +133,8 @@ INSERT INTO content_entries (
   'legacy',
   'nailhub',
   'standard',
-  true,
-  2,
+  false,
+  10,
   '{
     "shortName": "NailHub",
     "zone": "product",
@@ -160,7 +160,7 @@ INSERT INTO content_entries (
   'nexora',
   'standard',
   true,
-  3,
+  2,
   '{
     "shortName": "NEXORA",
     "zone": "product",
@@ -185,8 +185,8 @@ INSERT INTO content_entries (
   'legacy',
   'vlinkpay',
   'standard',
-  true,
-  4,
+  false,
+  9,
   '{
     "shortName": "VLINKPAY",
     "zone": "product",
@@ -212,7 +212,7 @@ INSERT INTO content_entries (
   'ai-process',
   'standard',
   false,
-  5,
+  8,
   '{
     "shortName": "AI Process",
     "zone": "process",
@@ -236,7 +236,7 @@ INSERT INTO content_entries (
   'handoff',
   'standard',
   false,
-  6,
+  7,
   '{
     "shortName": "Handoff",
     "zone": "process",
@@ -252,15 +252,15 @@ INSERT INTO content_entries (
   'dispatch',
   '/case-study/dispatch',
   '{"en": "Multi-Agent Dispatch & Task Queue", "vi": "Hệ thống Điều phối Đa Agent & Hàng đợi Nhiệm vụ"}'::jsonb,
-  '{"en": "Distributed orchestrator coordinating AI agents for automated delivery.", "vi": "Hệ thống điều phối phân tán các tác tử AI phục vụ bàn giao tự động."}'::jsonb,
+  '{"en": "Distributed orchestrator coordinating AI agents for automated delivery.", "vi": "Hệ thống điều phối phân tán các AI agent phục vụ bàn giao tự động."}'::jsonb,
   'Automation Engineering',
   'Systems & Prompt Architect',
   'published',
   'legacy',
   'dispatch',
   'standard',
-  false,
-  7,
+  true,
+  3,
   '{
     "shortName": "Dispatch",
     "zone": "automation",
@@ -285,8 +285,8 @@ INSERT INTO content_entries (
   'legacy',
   'agent-rules',
   'standard',
-  false,
-  8,
+  true,
+  4,
   '{
     "shortName": "Agent Rules",
     "zone": "automation",
@@ -312,7 +312,7 @@ INSERT INTO content_entries (
   'sync-task-badge',
   'standard',
   false,
-  9,
+  5,
   '{
     "shortName": "Status Report",
     "zone": "automation",
@@ -321,6 +321,32 @@ INSERT INTO content_entries (
     "order": 3,
     "eyebrow": "Automation 03",
     "positionOverride": { "x": 0.18, "y": 0.49 },
+    "noteAnchor": "top"
+  }'::jsonb,
+  now()
+),
+-- 10. Agent Handoff
+(
+  'agent-handoff',
+  '/case-study/agent-handoff',
+  '{"en": "The Agent Handoff Problem", "vi": "Bài toán Bàn giao Agent (The Agent Handoff Problem)"}'::jsonb,
+  '{"en": "Four AI coding agents shared one rule set and one work queue. When the orchestrator ran out of quota mid-task, everything stopped. Here is what it took to fix that: leases, compare-and-swap, separate verifiers, and crash-resume drills.", "vi": "Bốn AI agent chia sẻ chung một bộ quy tắc và hàng đợi nhiệm vụ. Khi agent điều phối cạn quota giữa chừng, toàn bộ bị đóng băng. Đây là giải pháp giải quyết triệt để: lease, CAS, tách quyền verifier và diễn tập crash-resume."}'::jsonb,
+  'AI & Automation Engineering',
+  'Multi-Agent Systems Architect',
+  'published',
+  'builder',
+  'agent-handoff',
+  'standard',
+  true,
+  1,
+  '{
+    "shortName": "Agent Handoff",
+    "zone": "automation",
+    "parentId": "sync-task-badge",
+    "edgeType": "automation-sequence",
+    "order": 4,
+    "eyebrow": "Automation 04",
+    "positionOverride": { "x": 0.28, "y": 0.38 },
     "noteAnchor": "top"
   }'::jsonb,
   now()
