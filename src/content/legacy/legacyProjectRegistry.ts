@@ -15,6 +15,7 @@ export const legacyProjectRegistry: Record<string, LazyExoticComponent<Component
   'sync-task-badge': lazy(() => import('../../pages/ProjectSyncTaskBadge')),
   'dispatch': lazy(() => import('../../pages/ProjectDispatch').then(m => ({ default: m.ProjectDispatch }))),
   'agent-rules': lazy(() => import('../../pages/ProjectAgentRules').then(m => ({ default: m.ProjectAgentRules }))),
+  'agent-handoff': lazy(() => import('../../pages/ProjectAgentHandoff').then(m => ({ default: m.ProjectAgentHandoff }))),
 };
 
 /**

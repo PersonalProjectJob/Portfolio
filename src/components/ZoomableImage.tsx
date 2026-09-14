@@ -6,9 +6,10 @@ interface ZoomableImageProps {
   src: string;
   alt?: string;
   className?: string;
+  onZoom?: () => void;
 }
 
-export const ZoomableImage: React.FC<ZoomableImageProps> = ({ src, alt = '', className = '' }) => {
+export const ZoomableImage: React.FC<ZoomableImageProps> = ({ src, alt = '', className = '', onZoom }) => {
   const [isOpen, setIsOpen] = useState(false);
   const { isLightMode } = useStore();
 
@@ -43,7 +44,10 @@ export const ZoomableImage: React.FC<ZoomableImageProps> = ({ src, alt = '', cla
         loading="lazy"
         decoding="async"
         className={`${className} cursor-zoom-in transition-transform duration-300 hover:scale-[1.01] hover:shadow-lg`}
-        onClick={() => setIsOpen(true)}
+        onClick={() => {
+          setIsOpen(true);
+          onZoom?.();
+        }}
       />
       
       <AnimatePresence>

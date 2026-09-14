@@ -867,6 +867,19 @@ export const en: Record<string, string> = {
   'cv.sync-task-badge.result.1.label': 'Schedule',
   'cv.sync-task-badge.result.1.value': 'Twice Daily',
 
+  'cv.agent-handoff.title': 'The Agent Handoff Problem',
+  'cv.agent-handoff.category': 'AI & Automation Engineering',
+  'cv.agent-handoff.role': 'Multi-Agent Systems Architect',
+  'cv.agent-handoff.context': 'Four AI coding agents shared one rule set and one work queue. When the orchestrator ran out of quota mid-task, everything froze. Here is what it took to fix that: leases, compare-and-swap, separate verifiers, and crash-resume drills.',
+  'cv.agent-handoff.solution.0': 'Adopted distributed systems primitives: filesystem locks, expiring leases, and Compare-And-Swap (CAS) state concurrency.',
+  'cv.agent-handoff.solution.1': 'Separated verification duties: verifier runs read-only, independent controller writes signed artifacts.',
+  'cv.agent-handoff.solution.2': 'Built automated Action Controller and Agent Spawn Adapters with honest manual seams.',
+  'cv.agent-handoff.solution.3': 'Enforced crash-resume closing drills with 6 interruption points and live multi-agent verification.',
+  'cv.agent-handoff.result.0.label': 'Safe Takeovers',
+  'cv.agent-handoff.result.0.value': '100%',
+  'cv.agent-handoff.result.1.label': 'Drill Pass Rate',
+  'cv.agent-handoff.result.1.value': '100%',
+
   // Page-level keys for Sync Task Badge
   'sync-task-badge.eyebrow': 'Personal design operations · Automation 03',
   'sync-task-badge.headline': 'Closing the automation loop after an Agent starts working.',

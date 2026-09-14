@@ -1,5 +1,5 @@
-import { CV_PROJECTS } from '../../data/cvData';
-import type { ContentEntry } from '../../cms/types/cms.types';
+import { CV_PROJECTS } from '../../data/cvData.ts';
+import type { ContentEntry } from '../../cms/types/cms.types.ts';
 
 /**
  * Detailed metadata mapping for legacy projects to enrich localized titles and summaries.
@@ -10,38 +10,28 @@ const PROJECT_METADATA_MAP: Record<
     title: { en: string; vi: string };
     summary: { en: string; vi: string };
     category: string;
+    tags: string[];
     role: string;
     featured: boolean;
     sort_order: number;
+    published_at?: string;
   }
 > = {
-  cryptomap: {
+  'agent-handoff': {
     title: {
-      en: 'CryptoMap 360 - Web3 Analytics Platform',
-      vi: 'CryptoMap 360 - Nền tảng Phân tích Web3',
+      en: 'The Agent Handoff Problem',
+      vi: 'Bài toán Bàn giao Agent (The Agent Handoff Problem)',
     },
     summary: {
-      en: 'Multi-chain asset tracking & crypto market intelligence platform.',
-      vi: 'Nền tảng theo dõi tài sản đa chuỗi & thông tin thị trường crypto.',
+      en: 'Four AI coding agents shared one rule set and one work queue. When the orchestrator ran out of quota mid-task, everything stopped. Here is what it took to fix that: leases, compare-and-swap, separate verifiers, and crash-resume drills.',
+      vi: 'Bốn AI agent chia sẻ chung một bộ quy tắc và hàng đợi nhiệm vụ. Khi agent điều phối cạn quota giữa chừng, toàn bộ bị đóng băng. Đây là giải pháp giải quyết triệt để: lease, CAS, tách quyền verifier và diễn tập crash-resume.',
     },
-    category: 'Web3 & Fintech',
-    role: 'Lead Product Designer',
+    category: 'AI & Automation Engineering',
+    tags: ['#Multi-Agent', '#Harness', '#Distributed Systems'],
+    role: 'Multi-Agent Systems Architect',
     featured: true,
     sort_order: 1,
-  },
-  nailhub: {
-    title: {
-      en: 'NailHub - Salon Operations & POS SaaS',
-      vi: 'NailHub - Nền tảng Quản lý Salon & POS',
-    },
-    summary: {
-      en: 'End-to-end booking, POS & customer retention platform for US nail salons.',
-      vi: 'Hệ thống đặt lịch, POS và chăm sóc khách hàng cho tiệm nail tại Mỹ.',
-    },
-    category: 'B2B SaaS',
-    role: 'Product Architect & Lead Designer',
-    featured: true,
-    sort_order: 2,
+    published_at: '2026-09-14T00:00:00Z',
   },
   nexora: {
     title: {
@@ -53,51 +43,11 @@ const PROJECT_METADATA_MAP: Record<
       vi: 'Giao diện điều khiển IoT công nghiệp và hệ thống hiển thị nhúng.',
     },
     category: 'Hardware & Interface',
+    tags: ['#Hardware UI', '#Industrial IoT', '#Telemetry'],
     role: 'Principal UX/UI Designer',
     featured: true,
-    sort_order: 3,
-  },
-  vlinkpay: {
-    title: {
-      en: 'VLINKPAY - Cross-border Payment Gateway',
-      vi: 'VLINKPAY - Cổng thanh toán xuyên biên giới',
-    },
-    summary: {
-      en: 'High-throughput merchant acquiring and multi-currency settlement gateway.',
-      vi: 'Cổng thanh toán thương mại và quyết toán đa tiền tệ tốc độ cao.',
-    },
-    category: 'Fintech Platform',
-    role: 'Lead Product Designer',
-    featured: true,
-    sort_order: 4,
-  },
-  'ai-process': {
-    title: {
-      en: 'AI-Augmented Product Workflows',
-      vi: 'Quy trình Phát triển Tích hợp AI',
-    },
-    summary: {
-      en: 'Deep agentic workflow integration into product lifecycle & prototyping.',
-      vi: 'Tích hợp AI Agent sâu vào vòng đời phát triển sản phẩm & tạo mẫu.',
-    },
-    category: 'AI & Methodologies',
-    role: 'Design Technologist',
-    featured: false,
-    sort_order: 5,
-  },
-  handoff: {
-    title: {
-      en: 'Zero-Friction Design-to-Code Handoff',
-      vi: 'Quy trình Bàn giao Design-to-Code Tự động',
-    },
-    summary: {
-      en: 'Production-grade design token pipelines and sync automation tools.',
-      vi: 'Hệ thống đồng bộ Token thiết kế và pipeline tự động hóa mã nguồn.',
-    },
-    category: 'Process & Tooling',
-    role: 'Design System Engineer',
-    featured: false,
-    sort_order: 6,
+    sort_order: 2,
+    published_at: '2026-08-30T00:00:00Z',
   },
   dispatch: {
     title: {
@@ -106,12 +56,14 @@ const PROJECT_METADATA_MAP: Record<
     },
     summary: {
       en: 'Distributed orchestrator coordinating AI agents for automated delivery.',
-      vi: 'Hệ thống điều phối phân tán các tác tử AI phục vụ bàn giao tự động.',
+      vi: 'Hệ thống điều phối phân tán các AI agent phục vụ bàn giao tự động.',
     },
     category: 'Automation Engineering',
+    tags: ['#AI Dispatch', '#Task Queue', '#Automation'],
     role: 'Systems & Prompt Architect',
-    featured: false,
-    sort_order: 7,
+    featured: true,
+    sort_order: 3,
+    published_at: '2026-07-20T00:00:00Z',
   },
   'agent-rules': {
     title: {
@@ -123,9 +75,11 @@ const PROJECT_METADATA_MAP: Record<
       vi: 'Quy trình vận hành chuẩn cho Agent và kiểm tra tuân thủ tự động.',
     },
     category: 'Governance & AI Systems',
+    tags: ['#AI Governance', '#Policy Engine', '#Quality Gates'],
     role: 'AI Governance Lead',
-    featured: false,
-    sort_order: 8,
+    featured: true,
+    sort_order: 4,
+    published_at: '2026-06-15T00:00:00Z',
   },
   'sync-task-badge': {
     title: {
@@ -137,9 +91,91 @@ const PROJECT_METADATA_MAP: Record<
       vi: 'Phát sóng trạng thái hai chiều và xử lý sự cố tự động qua Telegram.',
     },
     category: 'Telemetry & Devops',
+    tags: ['#Telemetry', '#Telegram Bot', '#Real-time Sync'],
     role: 'DevOps & Integration Engineer',
     featured: false,
+    sort_order: 5,
+    published_at: '2026-05-28T00:00:00Z',
+  },
+  cryptomap: {
+    title: {
+      en: 'CryptoMap 360 - Web3 Analytics Platform',
+      vi: 'CryptoMap 360 - Nền tảng Phân tích Web3',
+    },
+    summary: {
+      en: 'Multi-chain asset tracking & crypto market intelligence platform.',
+      vi: 'Nền tảng theo dõi tài sản đa chuỗi & thông tin thị trường crypto.',
+    },
+    category: 'Web3 & Fintech',
+    tags: ['#Web3 Analytics', '#Interactive Map', '#Fintech'],
+    role: 'Lead Product Designer',
+    featured: false,
+    sort_order: 6,
+    published_at: '2025-11-20T00:00:00Z',
+  },
+  handoff: {
+    title: {
+      en: 'Zero-Friction Design-to-Code Handoff',
+      vi: 'Quy trình Bàn giao Design-to-Code Tự động',
+    },
+    summary: {
+      en: 'Production-grade design token pipelines and sync automation tools.',
+      vi: 'Hệ thống đồng bộ Token thiết kế và pipeline tự động hóa mã nguồn.',
+    },
+    category: 'Process & Tooling',
+    tags: ['#Process & Tooling', '#Design Tokens', '#Figma to Code'],
+    role: 'Design System Engineer',
+    featured: false,
+    sort_order: 7,
+    published_at: '2025-08-10T00:00:00Z',
+  },
+  'ai-process': {
+    title: {
+      en: 'AI-Augmented Product Workflows',
+      vi: 'Quy trình Phát triển Tích hợp AI',
+    },
+    summary: {
+      en: 'Deep agentic workflow integration into product lifecycle & prototyping.',
+      vi: 'Tích hợp AI Agent sâu vào vòng đời phát triển sản phẩm & tạo mẫu.',
+    },
+    category: 'AI & Methodologies',
+    tags: ['#AI & Methodologies', '#MVP Prototyping', '#AI Workflow'],
+    role: 'Design Technologist',
+    featured: false,
+    sort_order: 8,
+    published_at: '2025-05-18T00:00:00Z',
+  },
+  vlinkpay: {
+    title: {
+      en: 'VLINKPAY - Cross-border Payment Gateway',
+      vi: 'VLINKPAY - Cổng thanh toán xuyên biên giới',
+    },
+    summary: {
+      en: 'High-throughput merchant acquiring and multi-currency settlement gateway.',
+      vi: 'Cổng thanh toán thương mại và quyết toán đa tiền tệ tốc độ cao.',
+    },
+    category: 'Fintech Platform',
+    tags: ['#Fintech', '#Payment Gateway', '#Mobile App'],
+    role: 'Lead Product Designer',
+    featured: false,
     sort_order: 9,
+    published_at: '2024-12-15T00:00:00Z',
+  },
+  nailhub: {
+    title: {
+      en: 'NailHub - Salon Operations & POS SaaS',
+      vi: 'NailHub - Nền tảng Quản lý Salon & POS',
+    },
+    summary: {
+      en: 'End-to-end booking, POS & customer retention platform for US nail salons.',
+      vi: 'Hệ thống đặt lịch, POS và chăm sóc khách hàng cho tiệm nail tại Mỹ.',
+    },
+    category: 'B2B SaaS',
+    tags: ['#B2B SaaS', '#POS Platform', '#Salon Operations'],
+    role: 'Product Architect & Lead Designer',
+    featured: false,
+    sort_order: 10,
+    published_at: '2024-06-10T00:00:00Z',
   },
 };
 
@@ -151,6 +187,7 @@ export const DEFAULT_PROJECT_ENTRIES: ContentEntry[] = CV_PROJECTS.map((project,
     title: { en: project.title, vi: project.title },
     summary: { en: project.context, vi: project.context },
     category: project.category,
+    tags: ['#Case Study'],
     role: project.role,
     featured: index < 4,
     sort_order: index + 1,
@@ -163,6 +200,7 @@ export const DEFAULT_PROJECT_ENTRIES: ContentEntry[] = CV_PROJECTS.map((project,
     title: meta.title,
     summary: meta.summary,
     category: meta.category,
+    tags: meta.tags,
     role: meta.role,
     status: 'published',
     render_mode: 'legacy',
@@ -197,9 +235,9 @@ export const DEFAULT_PROJECT_ENTRIES: ContentEntry[] = CV_PROJECTS.map((project,
       schemaVersion: 1,
       blocks: [],
     },
-    published_at: '2026-08-14T00:00:00Z',
-    created_at: '2026-08-14T00:00:00Z',
-    updated_at: '2026-08-14T00:00:00Z',
+    published_at: meta.published_at || '2026-08-14T00:00:00Z',
+    created_at: meta.published_at || '2026-08-14T00:00:00Z',
+    updated_at: meta.published_at || '2026-08-14T00:00:00Z',
   };
 });
 

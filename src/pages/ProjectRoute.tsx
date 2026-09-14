@@ -82,7 +82,7 @@ export const ProjectRoute: React.FC<{ slug?: string }> = ({ slug: propSlug }) =>
         },
         summary: {
           en: 'Distributed AI agent swarm coordination, dynamic policy enforcement, and live visual builder.',
-          vi: 'Điều phối đa tác tử AI phân tán, kiểm soát chính sách động và bộ dựng trực quan.',
+          vi: 'Điều phối multi-agent AI phân tán, kiểm soát chính sách động và bộ dựng trực quan.',
         },
         category: 'AI & Automation Engineering',
         role: 'Principal Systems Architect',

@@ -20,7 +20,7 @@ sort_order: 10
 
 Trong quá trình phát triển các sản phẩm fintech và SaaS phức tạp, việc đồng bộ giữa **Design Tokens** trong Figma và mã nguồn frontend thường gặp phải tình trạng lệch chuẩn (drift), dẫn đến việc phải can thiệp thủ công liên tục.
 
-> Dự án này thiết lập một **pipeline tự động hóa khép kín** sử dụng Figma Console MCP và các tác tử AI để tự động trích xuất biến số thiết kế, kiểm thử độ tương phản theo chuẩn WCAG AAA, và xuất bản các package token sẵn sàng cho production.
+> Dự án này thiết lập một **pipeline tự động hóa khép kín** sử dụng Figma Console MCP và các AI agent để tự động trích xuất biến số thiết kế, kiểm thử độ tương phản theo chuẩn WCAG AAA, và xuất bản các package token sẵn sàng cho production.
 
 ---
 

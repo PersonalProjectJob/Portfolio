@@ -18,7 +18,27 @@ export function getLocalCachedProjects(): ContentEntry[] {
     }
     const parsed = JSON.parse(raw);
     if (Array.isArray(parsed) && parsed.length > 0) {
-      return parsed;
+      const defaultOrderMap = new Map(
+        DEFAULT_PROJECT_ENTRIES.map((def, idx) => [def.id, def.sort_order ?? idx + 1])
+      );
+      const cachedIds = new Set(parsed.map((p) => p.id || p.slug));
+      const missingProjects = DEFAULT_PROJECT_ENTRIES.filter(
+        (def) => !cachedIds.has(def.id) && !cachedIds.has(def.slug)
+      );
+      const merged = [...parsed, ...missingProjects]
+        .map((p) => {
+          const canonicalDef = DEFAULT_PROJECT_ENTRIES.find((def) => def.id === p.id || def.slug === p.slug);
+          const canonicalOrder = defaultOrderMap.get(p.id) ?? defaultOrderMap.get(p.slug);
+          return {
+            ...p,
+            tags: p.tags && p.tags.length > 0 ? p.tags : canonicalDef?.tags,
+            sort_order: canonicalOrder !== undefined ? canonicalOrder : p.sort_order,
+          };
+        })
+        .sort((a, b) => (a.sort_order ?? 99) - (b.sort_order ?? 99));
+
+      saveLocalCachedProjects(merged);
+      return merged;
     }
     return [...DEFAULT_PROJECT_ENTRIES];
   } catch (err) {

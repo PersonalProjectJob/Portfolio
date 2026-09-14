@@ -108,6 +108,7 @@ export interface ContentEntry {
   title: LocalizedString;
   summary: LocalizedString;
   category: string;
+  tags?: string[];
   role?: string | null;
   status: ContentEntryStatus;
   render_mode: RenderMode;

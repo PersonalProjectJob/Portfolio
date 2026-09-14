@@ -66,11 +66,11 @@ export const ProjectGraphCanvas: React.FC<ProjectGraphCanvasProps> = ({
 
     const mainSequenceIds = [
       'ai-process', 'profile', 'nexora', 'cryptomap', 'nailhub', 
-      'vlinkpay', 'dispatch', 'agent-rules', 'sync-task-badge'
+      'vlinkpay', 'dispatch', 'agent-rules', 'sync-task-badge', 'agent-handoff'
     ];
     const secondarySequenceIds = [
       'handoff', 'profile', 'nexora', 'cryptomap', 'nailhub', 
-      'vlinkpay', 'dispatch', 'agent-rules', 'sync-task-badge'
+      'vlinkpay', 'dispatch', 'agent-rules', 'sync-task-badge', 'agent-handoff'
     ];
 
     return {

@@ -412,7 +412,7 @@ h1,h2,h3{ font-weight:400; margin:0; letter-spacing:-.005em; }
 .card-lab{ position:absolute; left:16px; right:16px; bottom:38px; z-index:2;
   display:flex; align-items:flex-end; justify-content:space-between; gap:10px; pointer-events:none; }
 .card-lab b{ font-size:clamp(13px,1.15vw,17px); font-weight:400; letter-spacing:.02em; text-transform:uppercase; }
-.card-lab .jp{ font-size:11px; letter-spacing:.3em; color:rgba(223,231,224,.62); }
+.card-lab .jp{ display:none !important; }
 .card-ar{ position:absolute; top:14px; right:14px; z-index:2; width:26px; height:26px;
   opacity:0; transform:translate3d(-4px,4px,0); transition:.5s var(--ease-out); }
 .card:hover .card-ar{ opacity:1; transform:none; }
@@ -834,9 +834,13 @@ body[data-layout-story="b"] .gate-stats div:last-child{ border-right:1px solid v
     display:flex !important; flex-direction:column !important; align-items:flex-start !important;
     gap:2px !important; padding:0 !important; min-width:0 !important; width:100% !important;
   }
-  body[data-layout-gallery="b"] .mosaic-group .card .card-tag{
-    display:inline-block !important; font-size:8.5px !important; font-weight:700 !important;
-    padding:1px 6px !important; border-radius:4px !important; margin-bottom:2px !important;
+  body[data-layout-gallery="b"] .mosaic-group .card .card-fr .card-tag,
+  .card .card-fr .card-tag{
+    position:absolute !important; top:5px !important; left:5px !important;
+    font-size:7px !important; font-weight:700 !important;
+    padding:1.5px 5px !important; border-radius:3px !important;
+    letter-spacing:.04em !important; margin:0 !important;
+    display:inline-flex !important;
   }
   body[data-layout-gallery="b"] .mosaic-group .card .card-lab b{
     font-size:14.5px !important; font-weight:600 !important; color:#FFFFFF !important;
@@ -844,8 +848,7 @@ body[data-layout-story="b"] .gate-stats div:last-child{ border-right:1px solid v
     white-space:nowrap !important; overflow:hidden !important; text-overflow:ellipsis !important; width:100% !important;
   }
   body[data-layout-gallery="b"] .mosaic-group .card .card-lab .jp{
-    font-size:10px !important; letter-spacing:.06em !important; color:rgba(223,231,224,.6) !important;
-    white-space:nowrap !important; overflow:hidden !important; text-overflow:ellipsis !important; width:100% !important;
+    display:none !important;
   }
   
   /* 4. Right Bottom (Summary Description + Index) */
@@ -893,16 +896,24 @@ body[data-layout-gallery="b"] .mosaic-group .card:nth-child(2):last-child .card-
   background:var(--vermilion,#E0533C); border-color:var(--vermilion,#E0533C);
   color:#FFFFFF; box-shadow:0 0 16px rgba(224,83,60,.45);
 }
+.card-fr .card-tag,
 .card-tag{
-  display:inline-block; font-size:9px; font-weight:700; letter-spacing:.1em;
-  padding:2px 7px; border-radius:4px; text-transform:uppercase; margin-bottom:6px;
-  width:fit-content;
+  position:absolute; top:14px; left:14px; z-index:4;
+  display:inline-flex; align-items:center;
+  font-family:var(--f-display,"Space Grotesk",sans-serif);
+  font-size:9px; font-weight:700; letter-spacing:.08em;
+  padding:3px 9px; border-radius:6px; text-transform:uppercase;
+  backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+  pointer-events:none; box-shadow:0 4px 14px rgba(0,0,0,.45);
+  line-height:1.2; width:fit-content;
 }
+.card[data-category="project"] .card-fr .card-tag,
 .card[data-category="project"] .card-tag{
-  background:rgba(85,221,255,.14); color:#55DDFF; border:1px solid rgba(85,221,255,.3);
+  background:rgba(8,24,38,.85); color:#55DDFF; border:1px solid rgba(85,221,255,.45);
 }
+.card[data-category="workflow"] .card-fr .card-tag,
 .card[data-category="workflow"] .card-tag{
-  background:rgba(255,140,80,.15); color:#FF9B71; border:1px solid rgba(255,140,80,.35);
+  background:rgba(40,16,10,.85); color:#FF9B71; border:1px solid rgba(255,140,80,.45);
 }
 .card{
   transition:opacity .35s cubic-bezier(.16,1,.3,1), transform .35s cubic-bezier(.16,1,.3,1), box-shadow .35s cubic-bezier(.16,1,.3,1), filter .35s cubic-bezier(.16,1,.3,1);
@@ -1338,7 +1349,7 @@ body[data-layout-footer="b"] .foot-base{ display:flex; justify-content:center; a
     <!-- Hero banner peek using Variant A Landingpage image -->
     <span class="peek-fr" data-frame></span>
     <span class="peek-play"><svg viewBox="0 0 22 22" fill="none"><path d="M8 5.6 16.4 11 8 16.4z" fill="#dfe7e0"/></svg></span>
-    <span class="peek-cap"><b>DỰ ÁN</b><i>9 Case Studies Tiêu Biểu</i></span>
+    <span class="peek-cap"><b>DỰ ÁN</b><i>10 Case Studies Tiêu Biểu</i></span>
   </a>
 
   <div class="word-fb" aria-hidden="true">SOTA</div>
@@ -1371,7 +1382,7 @@ body[data-layout-footer="b"] .foot-base{ display:flex; justify-content:center; a
       <p class="lead" data-rv="up">Tôi là một Product-oriented UX/UI Designer với hơn 3 năm kinh nghiệm xây dựng và ra mắt các sản phẩm Minimum Viable Products (MVPs) từ nghiên cứu đến phát hành.</p>
       <p class="body" data-rv="up">Có kinh nghiệm phối hợp liên phòng ban (PM, Dev, Sales), mục tiêu của tôi là chuyển đổi các yêu cầu kinh doanh phức tạp thành các giải pháp sản phẩm khả thi. Tôi tập trung mạnh vào tối ưu hóa trải nghiệm người dùng trong khi vẫn đảm bảo tính khả thi về mặt kỹ thuật.</p>
       <a class="arrowlink" href="#pathways" data-rv="fade" data-cursor>
-        <span>Khám phá 5 Case Studies Tiêu Biểu</span>
+        <span>Khám phá 10 Case Studies Tiêu Biểu</span>
         <span class="ar"><svg viewBox="0 0 14 14" fill="none"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg></span>
       </a>
     </div>
@@ -1411,119 +1422,144 @@ body[data-layout-footer="b"] .foot-base{ display:flex; justify-content:center; a
   </div>
   <div class="mosaic-slider-wrap" id="cards">
     <div class="mosaic-track">
-      <!-- Mosaic Group 1 (3 Top Impactful Projects - Newest) -->
+      <!-- Mosaic Group 1 (Newest Autonomous AI & Hardware IoT Innovations) -->
       <div class="cards mosaic-group">
-        <!-- Card 1 (Master Left): CryptoMap 360 Web-App -->
-        <article class="card" data-category="project" data-rv="up" data-view="0" data-cursor onclick="window.parent.postMessage({type:'NAVIGATE_QUEST', questId:'cryptomap'}, '*')">
-          <div class="card-fr" data-frame style="background: linear-gradient(180deg,rgba(3,6,9,.04) 36%,rgba(3,6,9,.82) 100%), url('../images/projects/ui_cryptomap_webapp.jpg') center / cover no-repeat;">
+        <!-- Card 1 (Master Left): The Agent Handoff Problem -->
+        <article class="card" data-project-id="agent-handoff" data-category="workflow" data-rv="up" data-view="0" data-cursor onclick="window.parent.postMessage({type:'NAVIGATE_QUEST', questId:'agent-handoff'}, '*')">
+          <div class="card-fr" data-frame style="background: linear-gradient(180deg,rgba(3,6,9,.04) 36%,rgba(3,6,9,.82) 100%), url('../images/projects/ui_agent_handoff.jpg') center / cover no-repeat;">
+            <span class="card-tag">AI Workflow</span>
             <span class="card-ar"><svg viewBox="0 0 14 14" fill="none"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg></span>
-            <i class="glow" style="--gx:32.0%; --gy:42.0%; --gr:24%; --gt:6.1s; --gt2:9.7s; --gc1:rgba(85,221,255,.70); --gc2:rgba(30,120,220,.35)"></i>
+            <i class="glow glow--flame" style="--gx:50.0%; --gy:48.0%; --gr:24%; --gt:6.2s; --gt2:9.4s; --gc1:rgba(255,110,50,.70); --gc2:rgba(0,210,255,.35)"></i>
           </div>
           <div class="card-body">
-            <div class="card-lab"><span class="card-tag">#Project</span><b>CryptoMap 360</b><span class="jp">WEB3 & FINTECH WEB-APP</span></div>
-            <div class="card-meta"><span>Bản đồ trực quan hóa dữ liệu on-chain thời gian thực</span><span>01 / 09</span></div>
+            <div class="card-lab"><b>The Agent Handoff Problem</b></div>
+            <div class="card-meta"><span>Bàn giao đa Agent tự trị: Lease, CAS, Verifier độc lập và Crash-Resume</span><span>01 / 10</span></div>
           </div>
         </article>
 
-        <!-- Card 2 (Top Right): NailHub POS SaaS App -->
-        <article class="card" data-category="project" data-rv="up" data-view="1" data-cursor onclick="window.parent.postMessage({type:'NAVIGATE_QUEST', questId:'nailhub'}, '*')">
-          <div class="card-fr" data-frame style="background: linear-gradient(180deg,rgba(3,6,9,.04) 36%,rgba(3,6,9,.82) 100%), url('../images/projects/ui_nailhub_pos_app.jpg') center / cover no-repeat;">
-            <span class="card-ar"><svg viewBox="0 0 14 14" fill="none"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg></span>
-            <i class="glow glow--flame" style="--gx:50.0%; --gy:50.0%; --gr:22%; --gt:4.2s; --gt2:6.3s; --gc1:rgba(255,180,120,.70); --gc2:rgba(0,220,180,.35)"></i>
-          </div>
-          <div class="card-body">
-            <div class="card-lab"><span class="card-tag">#Project</span><b>NailHub POS SaaS</b><span class="jp">B2B POS & SALON APP</span></div>
-            <div class="card-meta"><span>Hệ điều hành quản lý lịch hẹn, POS & thanh toán US</span><span>02 / 09</span></div>
-          </div>
-        </article>
-
-        <!-- Card 3 (Bottom Right): VLINKPAY Fintech Mobile App -->
-        <article class="card" data-category="project" data-rv="up" data-view="2" data-cursor onclick="window.parent.postMessage({type:'NAVIGATE_QUEST', questId:'vlinkpay'}, '*')">
-          <div class="card-fr" data-frame style="background: linear-gradient(180deg,rgba(3,6,9,.04) 36%,rgba(3,6,9,.82) 100%), url('../images/projects/ui_vlinkpay_fintech_app.jpg') center / cover no-repeat;">
-            <span class="card-ar"><svg viewBox="0 0 14 14" fill="none"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg></span>
-            <i class="glow" style="--gx:50.0%; --gy:50.0%; --gr:22%; --gt:5.3s; --gt2:8.2s; --gc1:rgba(0,220,130,.65); --gc2:rgba(30,140,255,.35)"></i>
-          </div>
-          <div class="card-body">
-            <div class="card-lab"><span class="card-tag">#Project</span><b>VLINKPAY Fintech</b><span class="jp">FINTECH & CRYPTO MOBILE APP</span></div>
-            <div class="card-meta"><span>Cổng thanh toán đa tiền tệ, thẻ ghi nợ & ví Crypto</span><span>03 / 09</span></div>
-          </div>
-        </article>
-      </div>
-
-      <!-- Mosaic Group 2 (Deep-Tech, AI Architecture & Design Systems) -->
-      <div class="cards mosaic-group">
-        <!-- Card 4 (Master Left): NEXORA Hardware Dashboard -->
-        <article class="card" data-category="project" data-rv="up" data-view="3" data-cursor onclick="window.parent.postMessage({type:'NAVIGATE_QUEST', questId:'nexora'}, '*')">
+        <!-- Card 2 (Top Right): NEXORA Hardware UI -->
+        <article class="card" data-project-id="nexora" data-category="project" data-rv="up" data-view="1" data-cursor onclick="window.parent.postMessage({type:'NAVIGATE_QUEST', questId:'nexora'}, '*')">
           <div class="card-fr" data-frame style="background: linear-gradient(180deg,rgba(3,6,9,.04) 36%,rgba(3,6,9,.82) 100%), url('../images/projects/ui_nexora_hardware_dashboard.jpg') center / cover no-repeat;">
+            <span class="card-tag">Project</span>
             <span class="card-ar"><svg viewBox="0 0 14 14" fill="none"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg></span>
             <i class="glow" style="--gx:50.0%; --gy:36.0%; --gr:24%; --gt:6.8s; --gt2:10.5s; --gc1:rgba(180,60,255,.65); --gc2:rgba(0,200,255,.35)"></i>
           </div>
           <div class="card-body">
-            <div class="card-lab"><span class="card-tag">#Project</span><b>NEXORA Hardware UI</b><span class="jp">TELEMETRY & IOT DASHBOARD</span></div>
-            <div class="card-meta"><span>Bảng điều khiển vi mạch & radar đo lường telemetry</span><span>04 / 09</span></div>
+            <div class="card-lab"><b>NEXORA Hardware UI</b></div>
+            <div class="card-meta"><span>Bảng điều khiển vi mạch & radar đo lường telemetry</span><span>02 / 10</span></div>
           </div>
         </article>
 
-        <!-- Card 5 (Top Right): AI Process & Prototyping -->
-        <article class="card" data-category="workflow" data-rv="up" data-view="4" data-cursor onclick="window.parent.postMessage({type:'NAVIGATE_QUEST', questId:'ai-process'}, '*')">
-          <div class="card-fr" data-frame style="background: linear-gradient(180deg,rgba(3,6,9,.04) 36%,rgba(3,6,9,.82) 100%), url('../images/projects/ui_ai_workflow_orchestrator.jpg') center / cover no-repeat;">
-            <span class="card-ar"><svg viewBox="0 0 14 14" fill="none"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg></span>
-            <i class="glow glow--flame" style="--gx:48.0%; --gy:50.0%; --gr:22%; --gt:5.0s; --gt2:7.5s; --gc1:rgba(255,100,50,.70); --gc2:rgba(80,180,255,.35)"></i>
-          </div>
-          <div class="card-body">
-            <div class="card-lab"><span class="card-tag">#Workflow AI</span><b>AI Process & Builder</b><span class="jp">AI MULTI-AGENT WORKFLOW</span></div>
-            <div class="card-meta"><span>Tạo mẫu nhanh MVP & tăng tốc vòng đời thiết kế</span><span>05 / 09</span></div>
-          </div>
-        </article>
-
-        <!-- Card 6 (Bottom Right): Design Handoff & Tokens Parity -->
-        <article class="card" data-category="workflow" data-rv="up" data-view="5" data-cursor onclick="window.parent.postMessage({type:'NAVIGATE_QUEST', questId:'handoff'}, '*')">
-          <div class="card-fr" data-frame style="background: linear-gradient(180deg,rgba(3,6,9,.04) 36%,rgba(3,6,9,.82) 100%), url('../images/projects/ui_design_tokens_handoff.jpg') center / cover no-repeat;">
-            <span class="card-ar"><svg viewBox="0 0 14 14" fill="none"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg></span>
-            <i class="glow glow--flame" style="--gx:48.0%; --gy:68.0%; --gr:25%; --gt:5.0s; --gt2:7.5s; --gc1:rgba(0,180,255,.65); --gc2:rgba(30,100,255,.35)"></i>
-          </div>
-          <div class="card-body">
-            <div class="card-lab"><span class="card-tag">#Workflow AI</span><b>Design Handoff & Tokens</b><span class="jp">FIGMA TO CODE PARITY</span></div>
-            <div class="card-meta"><span>Hệ thống Token đồng bộ 100% Figma & React Codebase</span><span>06 / 09</span></div>
-          </div>
-        </article>
-      </div>
-
-      <!-- Mosaic Group 3 (AI Automation Architecture & Telemetry Loop) -->
-      <div class="cards mosaic-group">
-        <!-- Card 7 (Master Left): Dispatch Workflow -->
-        <article class="card" data-category="workflow" data-rv="up" data-view="6" data-cursor onclick="window.parent.postMessage({type:'NAVIGATE_QUEST', questId:'dispatch'}, '*')">
+        <!-- Card 3 (Bottom Right): Dispatch Workflow -->
+        <article class="card" data-project-id="dispatch" data-category="workflow" data-rv="up" data-view="2" data-cursor onclick="window.parent.postMessage({type:'NAVIGATE_QUEST', questId:'dispatch'}, '*')">
           <div class="card-fr" data-frame style="background: linear-gradient(180deg,rgba(3,6,9,.04) 36%,rgba(3,6,9,.82) 100%), url('../images/projects/ui_dispatch_workflow.jpg') center / cover no-repeat;">
+            <span class="card-tag">AI Workflow</span>
             <span class="card-ar"><svg viewBox="0 0 14 14" fill="none"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg></span>
             <i class="glow" style="--gx:35.0%; --gy:40.0%; --gr:24%; --gt:6.0s; --gt2:9.0s; --gc1:rgba(255,160,50,.65); --gc2:rgba(220,50,50,.35)"></i>
           </div>
           <div class="card-body">
-            <div class="card-lab"><span class="card-tag">#Workflow AI</span><b>Dispatch Workflow</b><span class="jp">AI ARCHITECTURE</span></div>
-            <div class="card-meta"><span>Phân luồng Route A/B/C & Handoff Contract kiểm soát scope</span><span>07 / 09</span></div>
+            <div class="card-lab"><b>Dispatch Workflow</b></div>
+            <div class="card-meta"><span>Phân luồng Route A/B/C & Handoff Contract kiểm soát scope</span><span>03 / 10</span></div>
           </div>
         </article>
+      </div>
 
-        <!-- Card 8 (Top Right): Agent Rules Harness -->
-        <article class="card" data-category="workflow" data-rv="up" data-view="7" data-cursor onclick="window.parent.postMessage({type:'NAVIGATE_QUEST', questId:'agent-rules'}, '*')">
+      <!-- Mosaic Group 2 (AI Governance, Telemetry & Web3 Intelligence) -->
+      <div class="cards mosaic-group">
+        <!-- Card 4 (Master Left): Agent Rules Harness -->
+        <article class="card" data-project-id="agent-rules" data-category="workflow" data-rv="up" data-view="3" data-cursor onclick="window.parent.postMessage({type:'NAVIGATE_QUEST', questId:'agent-rules'}, '*')">
           <div class="card-fr" data-frame style="background: linear-gradient(180deg,rgba(3,6,9,.04) 36%,rgba(3,6,9,.82) 100%), url('../images/projects/ui_agent_rules_governance.jpg') center / cover no-repeat;">
+            <span class="card-tag">AI Workflow</span>
             <span class="card-ar"><svg viewBox="0 0 14 14" fill="none"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg></span>
             <i class="glow glow--flame" style="--gx:50.0%; --gy:50.0%; --gr:22%; --gt:4.5s; --gt2:6.8s; --gc1:rgba(0,200,255,.65); --gc2:rgba(30,100,255,.35)"></i>
           </div>
           <div class="card-body">
-            <div class="card-lab"><span class="card-tag">#Workflow AI</span><b>Agent Rules Harness</b><span class="jp">AI GOVERNANCE</span></div>
-            <div class="card-meta"><span>Kiến trúc tri thức (.agent-rules) & kiểm soát Quality Gates</span><span>08 / 09</span></div>
+            <div class="card-lab"><b>Agent Rules Harness</b></div>
+            <div class="card-meta"><span>Kiến trúc tri thức (.agent-rules) & kiểm soát Quality Gates</span><span>04 / 10</span></div>
           </div>
         </article>
 
-        <!-- Card 9 (Bottom Right): Sync Task Status & Telemetry Loop -->
-        <article class="card" data-category="workflow" data-rv="up" data-view="8" data-cursor onclick="window.parent.postMessage({type:'NAVIGATE_QUEST', questId:'sync-task-badge'}, '*')">
+        <!-- Card 5 (Top Right): Sync Task Status & Telemetry Loop -->
+        <article class="card" data-project-id="sync-task-badge" data-category="workflow" data-rv="up" data-view="4" data-cursor onclick="window.parent.postMessage({type:'NAVIGATE_QUEST', questId:'sync-task-badge'}, '*')">
           <div class="card-fr" data-frame style="background: linear-gradient(180deg,rgba(3,6,9,.04) 36%,rgba(3,6,9,.82) 100%), url('../images/projects/ui_sync_task_telemetry.jpg') center / cover no-repeat;">
+            <span class="card-tag">AI Workflow</span>
             <span class="card-ar"><svg viewBox="0 0 14 14" fill="none"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg></span>
             <i class="glow" style="--gx:50.0%; --gy:50.0%; --gr:22%; --gt:5.5s; --gt2:8.5s; --gc1:rgba(120,255,100,.65); --gc2:rgba(0,180,120,.35)"></i>
           </div>
           <div class="card-body">
-            <div class="card-lab"><span class="card-tag">#Workflow AI</span><b>Sync Task Status</b><span class="jp">TELEMETRY SYSTEM</span></div>
-            <div class="card-meta"><span>Giám sát trạng thái task, evidence logs & đóng vòng lặp</span><span>09 / 09</span></div>
+            <div class="card-lab"><b>Sync Task Status</b></div>
+            <div class="card-meta"><span>Giám sát trạng thái task, evidence logs & đóng vòng lặp</span><span>05 / 10</span></div>
+          </div>
+        </article>
+
+        <!-- Card 6 (Bottom Right): CryptoMap 360 Web-App -->
+        <article class="card" data-project-id="cryptomap" data-category="project" data-rv="up" data-view="5" data-cursor onclick="window.parent.postMessage({type:'NAVIGATE_QUEST', questId:'cryptomap'}, '*')">
+          <div class="card-fr" data-frame style="background: linear-gradient(180deg,rgba(3,6,9,.04) 36%,rgba(3,6,9,.82) 100%), url('../images/projects/ui_cryptomap_webapp.jpg') center / cover no-repeat;">
+            <span class="card-tag">Project</span>
+            <span class="card-ar"><svg viewBox="0 0 14 14" fill="none"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg></span>
+            <i class="glow" style="--gx:32.0%; --gy:42.0%; --gr:24%; --gt:6.1s; --gt2:9.7s; --gc1:rgba(85,221,255,.70); --gc2:rgba(30,120,220,.35)"></i>
+          </div>
+          <div class="card-body">
+            <div class="card-lab"><b>CryptoMap 360</b></div>
+            <div class="card-meta"><span>Bản đồ trực quan hóa dữ liệu on-chain thời gian thực</span><span>06 / 10</span></div>
+          </div>
+        </article>
+      </div>
+
+      <!-- Mosaic Group 3 (Design Tokens, AI Methodologies & Cross-Border Fintech) -->
+      <div class="cards mosaic-group">
+        <!-- Card 7 (Master Left): Design Handoff & Tokens Parity -->
+        <article class="card" data-project-id="handoff" data-category="workflow" data-rv="up" data-view="6" data-cursor onclick="window.parent.postMessage({type:'NAVIGATE_QUEST', questId:'handoff'}, '*')">
+          <div class="card-fr" data-frame style="background: linear-gradient(180deg,rgba(3,6,9,.04) 36%,rgba(3,6,9,.82) 100%), url('../images/projects/ui_design_tokens_handoff.jpg') center / cover no-repeat;">
+            <span class="card-tag">AI Workflow</span>
+            <span class="card-ar"><svg viewBox="0 0 14 14" fill="none"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg></span>
+            <i class="glow glow--flame" style="--gx:48.0%; --gy:68.0%; --gr:25%; --gt:5.0s; --gt2:7.5s; --gc1:rgba(0,180,255,.65); --gc2:rgba(30,100,255,.35)"></i>
+          </div>
+          <div class="card-body">
+            <div class="card-lab"><b>Design Handoff & Tokens</b></div>
+            <div class="card-meta"><span>Hệ thống Token đồng bộ 100% Figma & React Codebase</span><span>07 / 10</span></div>
+          </div>
+        </article>
+
+        <!-- Card 8 (Top Right): AI Process & Prototyping -->
+        <article class="card" data-project-id="ai-process" data-category="workflow" data-rv="up" data-view="7" data-cursor onclick="window.parent.postMessage({type:'NAVIGATE_QUEST', questId:'ai-process'}, '*')">
+          <div class="card-fr" data-frame style="background: linear-gradient(180deg,rgba(3,6,9,.04) 36%,rgba(3,6,9,.82) 100%), url('../images/projects/ui_ai_workflow_orchestrator.jpg') center / cover no-repeat;">
+            <span class="card-tag">AI Workflow</span>
+            <span class="card-ar"><svg viewBox="0 0 14 14" fill="none"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg></span>
+            <i class="glow glow--flame" style="--gx:48.0%; --gy:50.0%; --gr:22%; --gt:5.0s; --gt2:7.5s; --gc1:rgba(255,100,50,.70); --gc2:rgba(80,180,255,.35)"></i>
+          </div>
+          <div class="card-body">
+            <div class="card-lab"><b>AI Process & Builder</b></div>
+            <div class="card-meta"><span>Tạo mẫu nhanh MVP & tăng tốc vòng đời thiết kế</span><span>08 / 10</span></div>
+          </div>
+        </article>
+
+        <!-- Card 9 (Bottom Right): VLINKPAY Fintech Mobile App -->
+        <article class="card" data-project-id="vlinkpay" data-category="project" data-rv="up" data-view="8" data-cursor onclick="window.parent.postMessage({type:'NAVIGATE_QUEST', questId:'vlinkpay'}, '*')">
+          <div class="card-fr" data-frame style="background: linear-gradient(180deg,rgba(3,6,9,.04) 36%,rgba(3,6,9,.82) 100%), url('../images/projects/ui_vlinkpay_fintech_app.jpg') center / cover no-repeat;">
+            <span class="card-tag">Project</span>
+            <span class="card-ar"><svg viewBox="0 0 14 14" fill="none"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg></span>
+            <i class="glow" style="--gx:50.0%; --gy:50.0%; --gr:22%; --gt:5.3s; --gt2:8.2s; --gc1:rgba(0,220,130,.65); --gc2:rgba(30,140,255,.35)"></i>
+          </div>
+          <div class="card-body">
+            <div class="card-lab"><b>VLINKPAY Fintech</b></div>
+            <div class="card-meta"><span>Cổng thanh toán đa tiền tệ, thẻ ghi nợ & ví Crypto</span><span>09 / 10</span></div>
+          </div>
+        </article>
+      </div>
+
+      <!-- Mosaic Group 4 (B2B Salon SaaS & POS Infrastructure) -->
+      <div class="cards mosaic-group">
+        <!-- Card 10 (Master Feature): NailHub POS SaaS App -->
+        <article class="card" data-project-id="nailhub" data-category="project" data-rv="up" data-view="9" data-cursor onclick="window.parent.postMessage({type:'NAVIGATE_QUEST', questId:'nailhub'}, '*')">
+          <div class="card-fr" data-frame style="background: linear-gradient(180deg,rgba(3,6,9,.04) 36%,rgba(3,6,9,.82) 100%), url('../images/projects/ui_nailhub_pos_app.jpg') center / cover no-repeat;">
+            <span class="card-tag">Project</span>
+            <span class="card-ar"><svg viewBox="0 0 14 14" fill="none"><path d="M3 11 11 3M5 3h6v6" stroke="#dfe7e0" stroke-width="1.3"/></svg></span>
+            <i class="glow glow--flame" style="--gx:50.0%; --gy:50.0%; --gr:22%; --gt:4.2s; --gt2:6.3s; --gc1:rgba(255,180,120,.70); --gc2:rgba(0,220,180,.35)"></i>
+          </div>
+          <div class="card-body">
+            <div class="card-lab"><b>NailHub POS SaaS</b></div>
+            <div class="card-meta"><span>Hệ điều hành quản lý lịch hẹn, POS & thanh toán US</span><span>10 / 10</span></div>
           </div>
         </article>
       </div>
@@ -5552,14 +5588,14 @@ const KAGE_I18N = {
       chip3_title: 'KẾT NỐI HỢP TÁC',
       chip3_desc: 'Sẵn sàng đồng hành cùng các startup và sản phẩm đột phá.',
       peek_title: 'DỰ ÁN',
-      peek_sub: '9 Case Studies Tiêu Biểu'
+      peek_sub: '10 Case Studies Tiêu Biểu'
     },
     gate: {
       k1: 'HỒ SƠ NĂNG LỰC',
       h2: 'HƠN 3 NĂM KIẾN TẠO SẢN PHẨM SỐ & DESIGN SYSTEM.',
       lead: 'Tôi là một Product-oriented UX/UI Designer với hơn 3 năm kinh nghiệm xây dựng và ra mắt các sản phẩm Minimum Viable Products (MVPs) từ nghiên cứu đến phát hành.',
       body: 'Có kinh nghiệm phối hợp liên phòng ban (PM, Dev, Sales), mục tiêu của tôi là chuyển đổi các yêu cầu kinh doanh phức tạp thành các giải pháp sản phẩm khả thi. Tôi tập trung mạnh vào tối ưu hóa trải nghiệm người dùng trong khi vẫn đảm bảo tính khả thi về mặt kỹ thuật.',
-      link: 'Khám phá 9 Case Studies Tiêu Biểu',
+      link: 'Khám phá 10 Case Studies Tiêu Biểu',
       stat0_label: 'Năm Kinh Nghiệm',
       stat1_label: 'Dự Án Triển Khai',
       stat2_label: 'Design Tokens Parity',
@@ -5626,14 +5662,14 @@ const KAGE_I18N = {
       chip3_title: "LET'S COLLABORATE",
       chip3_desc: 'Ready to partner with high-growth startups & breakthrough products.',
       peek_title: 'PROJECTS',
-      peek_sub: '9 Featured Case Studies'
+      peek_sub: '10 Featured Case Studies'
     },
     gate: {
       k1: 'CAPABILITY PROFILE',
       h2: '3+ YEARS OF CRAFTING DIGITAL PRODUCTS & DESIGN SYSTEMS.',
       lead: 'I am a Product-oriented UX/UI Designer with over 3 years of experience building and launching Minimum Viable Products (MVPs) from research to production release.',
       body: 'Experienced in cross-functional collaboration (PM, Dev, Sales), my goal is to translate complex business requirements into viable, intuitive product solutions. I focus heavily on optimizing user experience while ensuring strict technical feasibility.',
-      link: 'Explore 9 Featured Case Studies',
+      link: 'Explore 10 Featured Case Studies',
       stat0_label: 'Years Experience',
       stat1_label: 'Shipped Projects',
       stat2_label: 'Design Tokens Parity',
@@ -5674,6 +5710,50 @@ const KAGE_I18N = {
 
 let cachedSettings = null;
 let cachedProjects = null;
+let allOriginalCards = [];
+let activeCategoryFilter = 'all';
+
+function renderFilteredCards(filter) {
+  const cardsEl = document.getElementById('cards');
+  if (!cardsEl) return;
+  const mosaicTrack = cardsEl.querySelector('.mosaic-track');
+  if (!mosaicTrack) return;
+
+  if (!allOriginalCards || allOriginalCards.length === 0) {
+    allOriginalCards = Array.from(cardsEl.querySelectorAll('.card'));
+  }
+
+  if (filter) {
+    activeCategoryFilter = filter;
+  }
+  const currentFilter = activeCategoryFilter || 'all';
+
+  const matchingCards = allOriginalCards.filter(card => {
+    if (currentFilter === 'all') return true;
+    return card.getAttribute('data-category') === currentFilter;
+  });
+
+  // Clear existing track
+  mosaicTrack.innerHTML = '';
+
+  // Partition matching cards into mosaic groups of max 3 items
+  for (let i = 0; i < matchingCards.length; i += 3) {
+    const chunk = matchingCards.slice(i, i + 3);
+    const groupEl = document.createElement('div');
+    groupEl.className = 'cards mosaic-group';
+    chunk.forEach(card => {
+      card.classList.remove('is-dimmed', 'is-highlighted');
+      card.classList.add('rv-in');
+      groupEl.appendChild(card);
+    });
+    mosaicTrack.appendChild(groupEl);
+  }
+
+  // Reset or restore scroll
+  cardsEl.scrollLeft = 0;
+  if (typeof targetScrollLeft !== 'undefined') targetScrollLeft = 0;
+  if (typeof wheelRaf !== 'undefined') cancelAnimationFrame(wheelRaf);
+}
 
 function applyKageTranslations(lang) {
   const d = KAGE_I18N[lang] || KAGE_I18N.vi;
@@ -5761,10 +5841,6 @@ function applyKageTranslations(lang) {
   if (chipProj) chipProj.textContent = d.pathways.chip_project;
   const chipWf = document.querySelector('.filter-chip[data-filter="workflow"]');
   if (chipWf) chipWf.textContent = d.pathways.chip_workflow;
-
-  document.querySelectorAll('#cards .card .card-meta span:first-child').forEach(s => {
-    s.textContent = d.pathways.read_more;
-  });
 
   const lessK = document.querySelector('#lessons .sec-head .k:first-child');
   if (lessK) lessK.innerHTML = `<b>03</b> — ${d.lessons.k1}`;
@@ -5895,7 +5971,14 @@ function applyDynamicProfile(settings, projects, lang) {
     if (popMailto) popMailto.href = `mailto:${targetEmail}`;
   }
 
-  if (Array.isArray(cachedProjects) && cachedProjects.length > 0) {
+  if (!allOriginalCards || allOriginalCards.length === 0) {
+    const cardsContainer = document.getElementById('cards');
+    if (cardsContainer) {
+      allOriginalCards = Array.from(cardsContainer.querySelectorAll('.card'));
+    }
+  }
+
+  if (allOriginalCards && allOriginalCards.length > 0) {
     const extractString = (val) => {
       if (!val) return '';
       if (typeof val === 'string') {
@@ -5909,35 +5992,48 @@ function applyDynamicProfile(settings, projects, lang) {
       return '';
     };
 
-    const cardNodes = document.querySelectorAll('#cards .card');
-    cachedProjects.slice(0, cardNodes.length).forEach((proj, idx) => {
-      const card = cardNodes[idx];
-      if (!card) return;
+    const totalCount = allOriginalCards.length;
+    allOriginalCards.forEach((card, idx) => {
+      const questId = card.getAttribute('data-project-id') || (card.getAttribute('onclick') || '').match(/questId:\s*['"]([^'"]+)['"]/)?.[1];
+      const proj = Array.isArray(cachedProjects) ? cachedProjects.find(p => p.id === questId || p.slug === questId) : null;
+
+      const isProject = ['nexora', 'cryptomap', 'nailhub', 'vlinkpay'].includes(questId);
+      card.dataset.category = isProject ? 'project' : 'workflow';
+
+      const cardFr = card.querySelector('.card-fr');
+      let tagEl = card.querySelector('.card-tag');
+      const tagText = isProject ? 'Project' : 'AI Workflow';
+
+      if (!tagEl && cardFr) {
+        tagEl = document.createElement('span');
+        tagEl.className = 'card-tag';
+        cardFr.insertBefore(tagEl, cardFr.firstChild);
+      } else if (tagEl && cardFr && tagEl.parentElement !== cardFr) {
+        cardFr.insertBefore(tagEl, cardFr.firstChild);
+      }
+      if (tagEl) {
+        tagEl.textContent = tagText;
+      }
+
       const bTitle = card.querySelector('.card-lab b');
       const jpCat = card.querySelector('.card-lab .jp');
+      if (jpCat) jpCat.remove();
       const metaSpan = card.querySelector('.card-meta span:first-child');
       const metaNum = card.querySelector('.card-meta span:last-child');
 
-      const titleStr = extractString(proj.title);
-      const catStr = extractString(proj.category);
-      const summaryText = extractString(proj.summary);
-      
-      const isProject = ['nexora', 'cryptomap', 'nailhub', 'vlinkpay'].includes(proj.id);
-      card.dataset.category = isProject ? 'project' : 'workflow';
-      let tagEl = card.querySelector('.card-tag');
-      if (!tagEl) {
-        tagEl = document.createElement('span');
-        tagEl.className = 'card-tag';
-        const cardLab = card.querySelector('.card-lab');
-        if (cardLab) cardLab.prepend(tagEl);
+      if (proj) {
+        const titleStr = extractString(proj.title);
+        const summaryText = extractString(proj.summary);
+        if (bTitle && titleStr) bTitle.textContent = titleStr;
+        if (metaSpan && summaryText) metaSpan.textContent = summaryText;
       }
-      tagEl.textContent = isProject ? '#Project' : '#Workflow AI';
 
-      if (bTitle && titleStr) bTitle.textContent = titleStr;
-      if (jpCat && catStr) jpCat.textContent = catStr.toUpperCase();
-      if (metaSpan && summaryText) metaSpan.textContent = summaryText;
-      if (metaNum) metaNum.textContent = `${String(idx + 1).padStart(2, '0')} / ${String(cardNodes.length).padStart(2, '0')}`;
+      if (metaNum) {
+        metaNum.textContent = `${String(idx + 1).padStart(2, '0')} / ${String(totalCount).padStart(2, '0')}`;
+      }
     });
+
+    renderFilteredCards(activeCategoryFilter);
   }
 
   // Dynamic Experience mapping in Chapter 03
@@ -6008,6 +6104,7 @@ function start() {
       currentLanguage = lang;
       localStorage.setItem('portfolio-lang', lang);
       applyKageTranslations(lang);
+      applyDynamicProfile(cachedSettings, cachedProjects, lang);
       window.parent.postMessage({ type: 'SET_LANGUAGE', language: lang }, '*');
     });
   });
@@ -6034,6 +6131,7 @@ function start() {
         applyDynamicProfile(e.data.settings, e.data.projects, e.data.language);
       } else if (e.data.type === 'SET_LANGUAGE' && (e.data.language === 'vi' || e.data.language === 'en')) {
         applyKageTranslations(e.data.language);
+        applyDynamicProfile(cachedSettings, cachedProjects, e.data.language);
       }
     }
   });
@@ -6279,46 +6377,14 @@ function start() {
 
     // Category Filter Chips interaction in Chapter 02 (Always display results from left to right)
     const filterChips = document.querySelectorAll('.filter-chip');
-    const mosaicTrack = cardsEl.querySelector('.mosaic-track');
-    const allOriginalCards = Array.from(cardsEl.querySelectorAll('.card'));
-
-    function renderFilteredCards(filter) {
-      if (!mosaicTrack) return;
-      
-      const matchingCards = allOriginalCards.filter(card => {
-        if (filter === 'all') return true;
-        return card.getAttribute('data-category') === filter;
-      });
-
-      // Clear existing track
-      mosaicTrack.innerHTML = '';
-
-      // Partition matching cards into mosaic groups of max 3 items
-      for (let i = 0; i < matchingCards.length; i += 3) {
-        const chunk = matchingCards.slice(i, i + 3);
-        const groupEl = document.createElement('div');
-        groupEl.className = 'cards mosaic-group';
-        chunk.forEach(card => {
-          card.classList.remove('is-dimmed', 'is-highlighted');
-          card.classList.add('rv-in');
-          groupEl.appendChild(card);
-        });
-        mosaicTrack.appendChild(groupEl);
-      }
-
-      // Reset or restore scroll
-      cardsEl.scrollLeft = 0;
-      targetScrollLeft = 0;
-      cancelAnimationFrame(wheelRaf);
+    if (!allOriginalCards || allOriginalCards.length === 0) {
+      allOriginalCards = Array.from(cardsEl.querySelectorAll('.card'));
     }
 
-    if (savedFilter && savedFilter !== 'all') {
-      const chipToActive = document.querySelector(`.filter-chip[data-filter="${savedFilter}"]`);
-      if (chipToActive) {
-        filterChips.forEach(c => c.classList.toggle('is-active', c === chipToActive));
-        renderFilteredCards(savedFilter);
-      }
-    }
+    activeCategoryFilter = 'all';
+    sessionStorage.removeItem('kage_active_filter');
+    filterChips.forEach(c => c.classList.toggle('is-active', c.getAttribute('data-filter') === 'all'));
+    renderFilteredCards('all');
 
     if (savedCardsX > 0) {
       cardsEl.scrollLeft = savedCardsX;
