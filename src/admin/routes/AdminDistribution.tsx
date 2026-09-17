@@ -22,6 +22,7 @@ import {
   Download,
   Globe,
   AtSign,
+  Hash,
 } from 'lucide-react';
 import { useTrackingLinks } from '../../cms/hooks/useTrackingLinks';
 import { useProjects } from '../../cms/hooks/useProjects';
@@ -93,6 +94,16 @@ const CHANNEL_PRESETS: Record<
     description: 'Shared in Threads discussions & feed posts',
     icon: Sparkles,
     color: 'from-violet-600/20 to-violet-900/30 text-violet-400 border-violet-500/30',
+  },
+  discord_community: {
+    name: 'Discord Server',
+    source: 'discord',
+    medium: 'community',
+    defaultCampaign: 'portfolio',
+    defaultContent: 'dev_channel',
+    description: 'Shared in Discord developer servers & tech community channels',
+    icon: Hash,
+    color: 'from-indigo-600/20 to-purple-900/30 text-indigo-300 border-indigo-500/30',
   },
   zalo_message: {
     name: 'Zalo Message',
@@ -338,7 +349,7 @@ export const AdminDistribution: React.FC = () => {
           <span className="text-xs text-slate-400">Select preset to configure quick link</span>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
           {Object.entries(CHANNEL_PRESETS).map(([key, preset]) => {
             const Icon = preset.icon;
             const isSelected = selectedPresetKey === key;
