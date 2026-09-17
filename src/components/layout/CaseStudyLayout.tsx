@@ -5,7 +5,7 @@ import { CV_PROJECTS } from '../../data/cvData';
 import { Clock } from '../Clock';
 import { LanguageToggle } from '../LanguageToggle';
 import { useT } from '../../i18n/useT';
-import { trackEvent } from '../../utils/analytics';
+import { trackEvent, trackProjectView, PROJECT_NAME_MAP } from '../../utils/analytics';
 
 interface CaseStudyLayoutProps {
   children: React.ReactNode;
@@ -13,10 +13,23 @@ interface CaseStudyLayoutProps {
 
 export const CaseStudyLayout: React.FC<CaseStudyLayoutProps> = ({ children }) => {
   const t = useT();
-  const { isLightMode, setGameState, handleQuestSelect, selectedQuest, toggleTheme, handleBackFromProject } = useStore();
+  const { isLightMode, setGameState, handleQuestSelect, selectedQuest, toggleTheme, handleBackFromProject, activeLandingVariant } = useStore();
   const [isEmailMenuOpen, setIsEmailMenuOpen] = useState(false);
   const [isEmailCopied, setIsEmailCopied] = useState(false);
   const emailMenuRef = useRef<HTMLDivElement>(null);
+
+  // Resolve current project id from selectedQuest or window location path
+  const currentProjectId = selectedQuest || (typeof window !== 'undefined' ? window.location.pathname.replace(/^\/project\//, '').replace(/\/$/, '') : '');
+
+  // Automatically track project view on mount (supports direct URL, LinkedIn links, and page refreshes)
+  useEffect(() => {
+    if (currentProjectId && currentProjectId !== 'kage') {
+      const projectName = PROJECT_NAME_MAP[currentProjectId];
+      if (projectName) {
+        trackProjectView(currentProjectId, projectName, activeLandingVariant, 'page_view');
+      }
+    }
+  }, [currentProjectId, activeLandingVariant]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
