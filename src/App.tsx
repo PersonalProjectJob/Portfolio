@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, lazy, Suspense } from 'react';
+import { useEffect, useRef, useState, Suspense } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useStore } from './store/useStore';
 import { replaceURL } from './store/useStore';
@@ -18,28 +18,30 @@ import { incrementTrackingClick, getLocalCachedTrackingLinks } from './cms/repos
 import { buildUtmUrl } from './lib/utm';
 import React from 'react';
 
-// Lazy-loaded pages and heavy components
-const GameCharacterSelect = lazy(() => import('./components/GameCharacterSelect').then(m => ({ default: m.GameCharacterSelect })));
-const GameCharacterStats = lazy(() => import('./components/GameCharacterStats').then(m => ({ default: m.GameCharacterStats })));
-const GameWorldMap = lazy(() => import('./components/GameWorldMap').then(m => ({ default: m.GameWorldMap })));
-const GameQuestLog = lazy(() => import('./components/GameQuestLog').then(m => ({ default: m.GameQuestLog })));
-const GameExperienceTimeline = lazy(() => import('./components/GameExperienceTimeline').then(m => ({ default: m.GameExperienceTimeline })));
-const GameDesignProcess = lazy(() => import('./components/GameDesignProcess').then(m => ({ default: m.GameDesignProcess })));
-const ProjectCryptomap = lazy(() => import('./pages/ProjectCryptomap').then(m => ({ default: m.ProjectCryptomap })));
-const ProjectNailhub = lazy(() => import('./pages/ProjectNailhub').then(m => ({ default: m.ProjectNailhub })));
-const ProjectNexora = lazy(() => import('./pages/ProjectNexora').then(m => ({ default: m.ProjectNexora })));
-const ProjectVlinkpay = lazy(() => import('./pages/ProjectVlinkpay').then(m => ({ default: m.ProjectVlinkpay })));
-const ProjectAIProcess = lazy(() => import('./pages/ProjectAIProcess').then(m => ({ default: m.ProjectAIProcess })));
-const ProjectHandoff = lazy(() => import('./pages/ProjectHandoff').then(m => ({ default: m.ProjectHandoff })));
-const ProjectSyncTaskBadge = lazy(() => import('./pages/ProjectSyncTaskBadge'));
-const ProjectDispatch = lazy(() => import('./pages/ProjectDispatch').then(m => ({ default: m.ProjectDispatch })));
-const ProjectAgentRules = lazy(() => import('./pages/ProjectAgentRules').then(m => ({ default: m.ProjectAgentRules })));
-const ProjectAgentHandoff = lazy(() => import('./pages/ProjectAgentHandoff').then(m => ({ default: m.ProjectAgentHandoff })));
-const KageLandingPage = lazy(() => import('./components/kage/KageLandingPage'));
-const AdminApp = lazy(() => import('./admin/AdminApp'));
+import { lazyWithRetry } from './utils/lazyWithRetry';
+
+// Lazy-loaded pages and heavy components with resilient stale-chunk auto-refresh
+const GameCharacterSelect = lazyWithRetry(() => import('./components/GameCharacterSelect').then(m => ({ default: m.GameCharacterSelect })));
+const GameCharacterStats = lazyWithRetry(() => import('./components/GameCharacterStats').then(m => ({ default: m.GameCharacterStats })));
+const GameWorldMap = lazyWithRetry(() => import('./components/GameWorldMap').then(m => ({ default: m.GameWorldMap })));
+const GameQuestLog = lazyWithRetry(() => import('./components/GameQuestLog').then(m => ({ default: m.GameQuestLog })));
+const GameExperienceTimeline = lazyWithRetry(() => import('./components/GameExperienceTimeline').then(m => ({ default: m.GameExperienceTimeline })));
+const GameDesignProcess = lazyWithRetry(() => import('./components/GameDesignProcess').then(m => ({ default: m.GameDesignProcess })));
+const ProjectCryptomap = lazyWithRetry(() => import('./pages/ProjectCryptomap').then(m => ({ default: m.ProjectCryptomap })));
+const ProjectNailhub = lazyWithRetry(() => import('./pages/ProjectNailhub').then(m => ({ default: m.ProjectNailhub })));
+const ProjectNexora = lazyWithRetry(() => import('./pages/ProjectNexora').then(m => ({ default: m.ProjectNexora })));
+const ProjectVlinkpay = lazyWithRetry(() => import('./pages/ProjectVlinkpay').then(m => ({ default: m.ProjectVlinkpay })));
+const ProjectAIProcess = lazyWithRetry(() => import('./pages/ProjectAIProcess').then(m => ({ default: m.ProjectAIProcess })));
+const ProjectHandoff = lazyWithRetry(() => import('./pages/ProjectHandoff').then(m => ({ default: m.ProjectHandoff })));
+const ProjectSyncTaskBadge = lazyWithRetry(() => import('./pages/ProjectSyncTaskBadge'));
+const ProjectDispatch = lazyWithRetry(() => import('./pages/ProjectDispatch').then(m => ({ default: m.ProjectDispatch })));
+const ProjectAgentRules = lazyWithRetry(() => import('./pages/ProjectAgentRules').then(m => ({ default: m.ProjectAgentRules })));
+const ProjectAgentHandoff = lazyWithRetry(() => import('./pages/ProjectAgentHandoff').then(m => ({ default: m.ProjectAgentHandoff })));
+const KageLandingPage = lazyWithRetry(() => import('./components/kage/KageLandingPage'));
+const AdminApp = lazyWithRetry(() => import('./admin/AdminApp'));
 
 // Route map: GameState → lazy component (HERO_LANDING handled separately)
-const ROUTES: Partial<Record<GameState, React.LazyExoticComponent<React.FC>>> = {
+const ROUTES: Partial<Record<GameState, React.LazyExoticComponent<React.ComponentType<any>>>> = {
   SELECT_PROFILE: GameCharacterSelect,
   SKILL_MATRIX: GameCharacterStats,
   PROJECT_JOURNEY: GameWorldMap,
