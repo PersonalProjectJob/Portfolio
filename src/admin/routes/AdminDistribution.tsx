@@ -461,15 +461,38 @@ export const AdminDistribution: React.FC = () => {
           <div className="rounded-2xl bg-slate-950/70 border border-slate-800/80 p-4 space-y-2">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs">
               <span className="font-semibold text-slate-400">Shortened Inbound Link:</span>
-              <span className="font-mono text-teal-300 bg-teal-500/10 px-2.5 py-1 rounded-lg border border-teal-500/20 truncate">
-                {shortLinkUrl}
-              </span>
+              <div className="flex items-center gap-1.5 max-w-full">
+                <span className="font-mono text-teal-300 bg-teal-500/10 px-2.5 py-1 rounded-lg border border-teal-500/20 truncate">
+                  {shortLinkUrl}
+                </span>
+                <button
+                  type="button"
+                  onClick={() => handleCopy(shortSlug, shortLinkUrl)}
+                  className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-teal-300 transition-colors cursor-pointer shrink-0"
+                  title="Copy Shortlink"
+                >
+                  <Copy className="w-3.5 h-3.5" />
+                </button>
+              </div>
             </div>
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs pt-1 border-t border-slate-850">
               <span className="font-semibold text-slate-400">Final Resolved Destination:</span>
-              <span className="font-mono text-slate-400 truncate max-w-xl">
-                {calculatedFullUrl}
-              </span>
+              <div className="flex items-center gap-1.5 max-w-xl">
+                <span className="font-mono text-slate-400 truncate">
+                  {calculatedFullUrl}
+                </span>
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (navigator.clipboard) navigator.clipboard.writeText(calculatedFullUrl);
+                    showToast('Copied full destination URL with UTM to clipboard!');
+                  }}
+                  className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-teal-300 transition-colors cursor-pointer shrink-0"
+                  title="Copy Full UTM URL"
+                >
+                  <Copy className="w-3.5 h-3.5" />
+                </button>
+              </div>
             </div>
           </div>
 
