@@ -78,7 +78,7 @@ export const ProjectAgentHandoff: React.FC = () => {
       <div className="relative z-10 max-w-4xl mx-auto space-y-16 md:space-y-24">
 
         {/* ─── Hero Header ─── */}
-        <motion.section initial="hidden" animate="visible" variants={fadeInUp} className="pt-4">
+        <motion.section data-ux-section="hero" initial="hidden" animate="visible" variants={fadeInUp} className="pt-4">
           <div className="space-y-6">
             <div className="flex flex-wrap items-center gap-2">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-semibold uppercase tracking-wider bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
@@ -183,7 +183,7 @@ export const ProjectAgentHandoff: React.FC = () => {
         </motion.section>
 
         {/* ─── Section 1: The Setup ─── */}
-        <motion.section initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeInUp} className="space-y-6">
+        <motion.section data-ux-section="problem_statement" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeInUp} className="space-y-6">
           <div className="text-xs font-mono font-bold tracking-widest uppercase text-emerald-600 dark:text-emerald-400">
             {isVi ? 'Bối Cảnh Khởi Điểm' : 'The Setup'}
           </div>
@@ -303,7 +303,7 @@ export const ProjectAgentHandoff: React.FC = () => {
         </motion.section>
 
         {/* ─── Section 4: The Fix: Distributed Systems Primitives ─── */}
-        <motion.section initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeInUp} className="space-y-8">
+        <motion.section data-ux-section="system_architecture" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeInUp} className="space-y-8">
           <div>
             <div className="text-xs font-mono font-bold tracking-widest uppercase text-emerald-600 dark:text-emerald-400">
               {isVi ? 'Giải Pháp Kiến Trúc' : 'The Fix'}
@@ -386,7 +386,7 @@ export const ProjectAgentHandoff: React.FC = () => {
         </motion.section>
 
         {/* ─── Section 5: Separation of Duties ─── */}
-        <motion.section initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeInUp} className="space-y-6">
+        <motion.section data-ux-section="interaction_protocol" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeInUp} className="space-y-6">
           <div className="text-xs font-mono font-bold tracking-widest uppercase text-emerald-600 dark:text-emerald-400">
             {isVi ? 'Phân Định Thẩm Quyền' : 'Separation of Duties'}
           </div>
@@ -668,7 +668,7 @@ export const ProjectAgentHandoff: React.FC = () => {
         </motion.section>
 
         {/* ─── Section 8: Summary & Deliberate Limits ─── */}
-        <motion.section initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeInUp} className="space-y-6">
+        <motion.section data-ux-section="impact_metrics" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={fadeInUp} className="space-y-6">
           <div className="text-xs font-mono font-bold tracking-widest uppercase text-emerald-600 dark:text-emerald-400">
             {isVi ? 'Tổng Kết Thực Chiến' : 'If You Build One'}
           </div>

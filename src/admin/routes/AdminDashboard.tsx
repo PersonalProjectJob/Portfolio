@@ -16,6 +16,7 @@ import {
   ExternalLink,
   ChevronRight,
   BarChart3,
+  Activity,
 } from 'lucide-react';
 import { supabase, isSupabaseConfigured } from '../../lib/supabase';
 import { CV_PROJECTS } from '../../data/cvData';
@@ -211,6 +212,15 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigate }) =>
           >
             <BarChart3 className="w-4 h-4" />
             <span>AI Analytics</span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => handleAction('/admin/ux-lab')}
+            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-rose-600 to-amber-600 hover:from-rose-500 hover:to-amber-500 text-white font-semibold text-xs shadow-lg shadow-rose-900/30 transition-all cursor-pointer hover:-translate-y-0.5"
+          >
+            <Activity className="w-4 h-4" />
+            <span>UX Lab</span>
           </button>
 
           <button
