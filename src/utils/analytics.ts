@@ -62,21 +62,65 @@ export function trackEvent(
   }
 }
 
-export function trackPageView(pagePath: string, variant: 'A' | 'B', language: 'vi' | 'en'): void {
+/**
+ * Canonical Project Name mapping for Google Analytics 4
+ * Maps project slug / id to the custom dimension 'Project name' value.
+ */
+export const PROJECT_NAME_MAP: Record<string, string> = {
+  'agent-handoff': 'Agent Handoff',
+  'nexora': 'NEXORA',
+  'dispatch': 'Dispatch',
+  'agent-rules': 'Agent Rules',
+  'sync-task-badge': 'Status Report',
+  'cryptomap': 'CryptoMap360',
+  'handoff': 'Handoff',
+  'ai-process': 'AI Process',
+  'vlinkpay': 'VLINKPAY',
+  'nailhub': 'NailHub',
+};
+
+export function getProjectName(projectId: string): string | undefined {
+  return PROJECT_NAME_MAP[projectId];
+}
+
+export function trackPageView(
+  pagePath: string,
+  variant: 'A' | 'B',
+  language: 'vi' | 'en',
+  projectName?: string
+): void {
   trackEvent('page_view_custom', {
     page_path: pagePath,
     page_location: typeof window !== 'undefined' ? window.location.href : pagePath,
     landing_variant: variant,
     language: language,
+    ...(projectName ? { project_name: projectName } : {}),
   });
 }
 
-export function trackProjectView(projectId: string, title: string, variant: 'A' | 'B', interactionType = 'click'): void {
+export function trackProjectView(
+  projectId: string,
+  title?: string,
+  variant: 'A' | 'B' = 'B',
+  interactionType = 'click'
+): void {
+  const projectName = title || PROJECT_NAME_MAP[projectId] || projectId;
+
+  // Custom event project_view with project_name parameter
   trackEvent('project_view', {
     project_id: projectId,
-    project_title: title,
+    project_name: projectName,
+    project_title: projectName,
     source_variant: variant,
     interaction_type: interactionType,
+  });
+
+  // Recommended GA4 event select_content with project_name parameter
+  trackEvent('select_content', {
+    content_type: 'portfolio_project',
+    content_id: projectId,
+    project_name: projectName,
+    source_variant: variant,
   });
 }
 
@@ -145,6 +189,8 @@ export function trackShotgunCtaClick(ctaName: string, destination: string): void
 export function trackHandoffPdfView(source: string): void {
   trackEvent('handoff_pdf_view', {
     source,
+    project_id: 'agent-handoff',
+    project_name: 'Agent Handoff',
     timestamp: Date.now(),
   });
 }
@@ -152,12 +198,16 @@ export function trackHandoffPdfView(source: string): void {
 export function trackHandoffPdfDownload(): void {
   trackEvent('handoff_pdf_download', {
     file_name: 'agent-handoff.pdf',
+    project_id: 'agent-handoff',
+    project_name: 'Agent Handoff',
     timestamp: Date.now(),
   });
 }
 
 export function trackHandoffShareClick(): void {
   trackEvent('handoff_share_click', {
+    project_id: 'agent-handoff',
+    project_name: 'Agent Handoff',
     timestamp: Date.now(),
   });
 }
@@ -166,6 +216,8 @@ export function trackHandoffImageZoom(imageName: string, section: string): void 
   trackEvent('handoff_image_zoom', {
     image_name: imageName,
     section_name: section,
+    project_id: 'agent-handoff',
+    project_name: 'Agent Handoff',
     timestamp: Date.now(),
   });
 }
@@ -174,6 +226,8 @@ export function trackHandoffDrillToggle(drillStep: number, drillTitle: string): 
   trackEvent('handoff_drill_toggle', {
     drill_step: drillStep,
     drill_title: drillTitle,
+    project_id: 'agent-handoff',
+    project_name: 'Agent Handoff',
     timestamp: Date.now(),
   });
 }
@@ -182,6 +236,8 @@ export function trackHandoffAssumptionExpand(assumptionIndex: number, title: str
   trackEvent('handoff_assumption_expand', {
     assumption_index: assumptionIndex,
     title,
+    project_id: 'agent-handoff',
+    project_name: 'Agent Handoff',
     timestamp: Date.now(),
   });
 }

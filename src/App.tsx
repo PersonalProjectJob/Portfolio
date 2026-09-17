@@ -13,7 +13,7 @@ import { ErrorBoundary } from './components/ErrorBoundary';
 import { LoadingSkeleton } from './components/LoadingSkeleton';
 import { MobileNavigation } from './components/navigation/MobileNavigation';
 import { DesktopHeader } from './components/navigation/DesktopHeader';
-import { trackPageView } from './utils/analytics';
+import { trackPageView, PROJECT_NAME_MAP } from './utils/analytics';
 import React from 'react';
 
 // Lazy-loaded pages and heavy components
@@ -32,7 +32,7 @@ const ProjectHandoff = lazy(() => import('./pages/ProjectHandoff').then(m => ({ 
 const ProjectSyncTaskBadge = lazy(() => import('./pages/ProjectSyncTaskBadge'));
 const ProjectDispatch = lazy(() => import('./pages/ProjectDispatch').then(m => ({ default: m.ProjectDispatch })));
 const ProjectAgentRules = lazy(() => import('./pages/ProjectAgentRules').then(m => ({ default: m.ProjectAgentRules })));
-const ProjectAgentHandoff = lazy(() => import('./pages/ProjectAgentHandoff'));
+const ProjectAgentHandoff = lazy(() => import('./pages/ProjectAgentHandoff').then(m => ({ default: m.ProjectAgentHandoff })));
 const KageLandingPage = lazy(() => import('./components/kage/KageLandingPage'));
 const AdminApp = lazy(() => import('./admin/AdminApp'));
 
@@ -58,7 +58,7 @@ const ROUTES: Partial<Record<GameState, React.LazyExoticComponent<React.FC>>> = 
 };
 
 function App() {
-  const { gameState, setGameState, isLightMode, syncFromURL, activeLandingVariant } = useStore();
+  const { gameState, setGameState, isLightMode, syncFromURL, activeLandingVariant, selectedQuest } = useStore();
   const [isAdminRoute, setIsAdminRoute] = useState(() => 
     typeof window !== 'undefined' && window.location.pathname.startsWith('/admin')
   );
@@ -109,9 +109,16 @@ function App() {
   // GA4 Custom Page View telemetry
   useEffect(() => {
     if (typeof window !== 'undefined' && !window.location.pathname.startsWith('/admin')) {
-      trackPageView(window.location.pathname, activeLandingVariant, useStore.getState().language);
+      let currentProjectName: string | undefined;
+      if (gameState.startsWith('CASE_STUDY_') && gameState !== 'CASE_STUDY_KAGE') {
+        const questId = selectedQuest || window.location.pathname.replace(/^\/project\//, '').replace(/\/$/, '');
+        if (questId && PROJECT_NAME_MAP[questId]) {
+          currentProjectName = PROJECT_NAME_MAP[questId];
+        }
+      }
+      trackPageView(window.location.pathname, activeLandingVariant, useStore.getState().language, currentProjectName);
     }
-  }, [gameState, activeLandingVariant]);
+  }, [gameState, activeLandingVariant, selectedQuest]);
 
   useEffect(() => {
     if (isHero || !landingTarget || gameState !== 'SELECT_PROFILE') return;

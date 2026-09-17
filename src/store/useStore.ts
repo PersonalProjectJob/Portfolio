@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { trackEvent } from '../utils/analytics';
+import { trackEvent, PROJECT_NAME_MAP } from '../utils/analytics';
 import { CV_PROJECTS } from '../data/cvData';
 import { getOrAssignVariant, initABExperiment, setViewModePreference, type LandingVariant } from '../utils/abTesting';
 
@@ -206,14 +206,23 @@ export const useStore = create<AppState>((set) => ({
     const gameState = QUEST_STATE_MAP[questId] || 'CASE_BRIEF';
     
     const project = CV_PROJECTS.find(p => p.id === questId);
-    if (project) {
-      trackEvent("select_content", {
-        content_type: "portfolio_project",
-        content_id: project.id,
-        project_name: project.graphMetadata?.shortName ?? project.id,
-        project_category: project.graphMetadata?.zone ?? "unknown"
-      });
-    }
+    const projectName = project?.graphMetadata?.shortName ?? PROJECT_NAME_MAP[questId] ?? questId;
+    const projectCategory = project?.graphMetadata?.zone ?? "unknown";
+
+    trackEvent("select_content", {
+      content_type: "portfolio_project",
+      content_id: questId,
+      project_name: projectName,
+      project_category: projectCategory
+    });
+
+    trackEvent("project_view", {
+      project_id: questId,
+      project_name: projectName,
+      project_title: projectName,
+      source_variant: 'A',
+      interaction_type: 'graph_select',
+    });
 
     pushURL(gameState);
     set({ selectedQuest: questId, gameState });

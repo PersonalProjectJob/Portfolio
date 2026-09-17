@@ -2,7 +2,7 @@ import React, { useState, useRef, useCallback, useEffect } from 'react';
 import { useStore } from '../../store/useStore';
 import { useSiteSettings } from '../../cms/hooks/useSiteSettings';
 import { useProjects } from '../../cms/hooks/useProjects';
-import { trackEvent } from '../../utils/analytics';
+import { trackEvent, trackProjectView, PROJECT_NAME_MAP } from '../../utils/analytics';
 
 export interface KageLandingPageProps {
   className?: string;
@@ -49,14 +49,12 @@ export const KageLandingPage: React.FC<KageLandingPageProps> = ({
     const handleMessage = (event: MessageEvent) => {
       if (event.data) {
         if (event.data.type === 'NAVIGATE_QUEST' && event.data.questId) {
+          const questId = event.data.questId;
+          const projectName = PROJECT_NAME_MAP[questId] || questId;
           setActiveLandingVariant('B');
-          setSelectedQuest(event.data.questId);
-          setGameState(`CASE_STUDY_${event.data.questId.toUpperCase().replace(/-/g, '')}` as any);
-          trackEvent('project_view', {
-            project_id: event.data.questId,
-            source_variant: 'B',
-            interaction_type: 'kage_card_click',
-          });
+          setSelectedQuest(questId);
+          setGameState(`CASE_STUDY_${questId.toUpperCase().replace(/-/g, '')}` as any);
+          trackProjectView(questId, projectName, 'B', 'kage_card_click');
         } else if (event.data.type === 'TRACK_EVENT' && event.data.eventName) {
           trackEvent(event.data.eventName, {
             ...event.data.params,

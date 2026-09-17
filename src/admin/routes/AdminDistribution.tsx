@@ -20,6 +20,9 @@ import {
   ArrowRight,
   TrendingUp,
   Download,
+  Globe,
+  AtSign,
+  Hash,
 } from 'lucide-react';
 import { useTrackingLinks } from '../../cms/hooks/useTrackingLinks';
 import { useProjects } from '../../cms/hooks/useProjects';
@@ -51,6 +54,56 @@ const CHANNEL_PRESETS: Record<
     description: 'Pinned link in LinkedIn profile Featured section',
     icon: Sparkles,
     color: 'from-cyan-600/20 to-cyan-900/30 text-cyan-400 border-cyan-500/30',
+  },
+  facebook_post: {
+    name: 'Facebook Post',
+    source: 'facebook',
+    medium: 'social',
+    defaultCampaign: 'portfolio',
+    defaultContent: 'feed_share',
+    description: 'Shared in Facebook feed posts, groups, or tech communities',
+    icon: Globe,
+    color: 'from-indigo-600/20 to-indigo-900/30 text-indigo-400 border-indigo-500/30',
+  },
+  telegram_post: {
+    name: 'Telegram Post',
+    source: 'telegram',
+    medium: 'channel',
+    defaultCampaign: 'portfolio',
+    defaultContent: 'community_broadcast',
+    description: 'Broadcasted to Telegram channel or community group',
+    icon: Send,
+    color: 'from-sky-500/20 to-sky-900/30 text-sky-400 border-sky-500/30',
+  },
+  twitter_x: {
+    name: 'X (Twitter)',
+    source: 'twitter',
+    medium: 'social',
+    defaultCampaign: 'portfolio',
+    defaultContent: 'tweet_thread',
+    description: 'Shared in tweets or threads on X (Twitter)',
+    icon: AtSign,
+    color: 'from-slate-600/20 to-slate-900/30 text-slate-300 border-slate-500/30',
+  },
+  threads_post: {
+    name: 'Threads Post',
+    source: 'threads',
+    medium: 'social',
+    defaultCampaign: 'portfolio',
+    defaultContent: 'thread_post',
+    description: 'Shared in Threads discussions & feed posts',
+    icon: Sparkles,
+    color: 'from-violet-600/20 to-violet-900/30 text-violet-400 border-violet-500/30',
+  },
+  discord_community: {
+    name: 'Discord Server',
+    source: 'discord',
+    medium: 'community',
+    defaultCampaign: 'portfolio',
+    defaultContent: 'dev_channel',
+    description: 'Shared in Discord developer servers & tech community channels',
+    icon: Hash,
+    color: 'from-indigo-600/20 to-purple-900/30 text-indigo-300 border-indigo-500/30',
   },
   zalo_message: {
     name: 'Zalo Message',
@@ -296,7 +349,7 @@ export const AdminDistribution: React.FC = () => {
           <span className="text-xs text-slate-400">Select preset to configure quick link</span>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
           {Object.entries(CHANNEL_PRESETS).map(([key, preset]) => {
             const Icon = preset.icon;
             const isSelected = selectedPresetKey === key;
@@ -461,15 +514,38 @@ export const AdminDistribution: React.FC = () => {
           <div className="rounded-2xl bg-slate-950/70 border border-slate-800/80 p-4 space-y-2">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs">
               <span className="font-semibold text-slate-400">Shortened Inbound Link:</span>
-              <span className="font-mono text-teal-300 bg-teal-500/10 px-2.5 py-1 rounded-lg border border-teal-500/20 truncate">
-                {shortLinkUrl}
-              </span>
+              <div className="flex items-center gap-1.5 max-w-full">
+                <span className="font-mono text-teal-300 bg-teal-500/10 px-2.5 py-1 rounded-lg border border-teal-500/20 truncate">
+                  {shortLinkUrl}
+                </span>
+                <button
+                  type="button"
+                  onClick={() => handleCopy(shortSlug, shortLinkUrl)}
+                  className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-teal-300 transition-colors cursor-pointer shrink-0"
+                  title="Copy Shortlink"
+                >
+                  <Copy className="w-3.5 h-3.5" />
+                </button>
+              </div>
             </div>
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs pt-1 border-t border-slate-850">
               <span className="font-semibold text-slate-400">Final Resolved Destination:</span>
-              <span className="font-mono text-slate-400 truncate max-w-xl">
-                {calculatedFullUrl}
-              </span>
+              <div className="flex items-center gap-1.5 max-w-xl">
+                <span className="font-mono text-slate-400 truncate">
+                  {calculatedFullUrl}
+                </span>
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (navigator.clipboard) navigator.clipboard.writeText(calculatedFullUrl);
+                    showToast('Copied full destination URL with UTM to clipboard!');
+                  }}
+                  className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-teal-300 transition-colors cursor-pointer shrink-0"
+                  title="Copy Full UTM URL"
+                >
+                  <Copy className="w-3.5 h-3.5" />
+                </button>
+              </div>
             </div>
           </div>
 
