@@ -14,12 +14,14 @@ import {
   Sparkles,
   RefreshCw,
   ExternalLink,
-  ChevronRight
+  ChevronRight,
+  BarChart3,
 } from 'lucide-react';
 import { supabase, isSupabaseConfigured } from '../../lib/supabase';
 import { CV_PROJECTS } from '../../data/cvData';
 import { UTM_PRESETS } from '../../lib/utm';
 import { useStore } from '../../store/useStore';
+import { getLocalCachedTrackingLinks } from '../../cms/repositories/trackingRepository';
 
 interface DashboardStats {
   totalProjects: number;
@@ -46,13 +48,17 @@ interface AdminDashboardProps {
 
 export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigate }) => {
   const { isLightMode } = useStore();
-  const [stats, setStats] = useState<DashboardStats>({
-    totalProjects: CV_PROJECTS.length,
-    publishedProjects: CV_PROJECTS.length - 1,
-    draftProjects: 1,
-    totalTrackingLinks: Object.keys(UTM_PRESETS).length,
-    totalClicks: 142,
-    totalMediaAssets: 24,
+  const [stats, setStats] = useState<DashboardStats>(() => {
+    const localLinks = getLocalCachedTrackingLinks();
+    const realTotalClicks = localLinks.reduce((sum, l) => sum + (l.clicks_count || 0), 0);
+    return {
+      totalProjects: CV_PROJECTS.length,
+      publishedProjects: CV_PROJECTS.length - 1,
+      draftProjects: 1,
+      totalTrackingLinks: localLinks.length || Object.keys(UTM_PRESETS).length,
+      totalClicks: realTotalClicks,
+      totalMediaAssets: 24,
+    };
   });
 
   const [activities] = useState<ActivityItem[]>([
@@ -198,6 +204,15 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigate }) =>
 
         {/* Quick Action Button Group */}
         <div className="flex flex-wrap items-center gap-2.5">
+          <button
+            type="button"
+            onClick={() => handleAction('/admin/analytics')}
+            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-500 hover:to-violet-500 text-white font-semibold text-xs shadow-lg shadow-indigo-900/30 transition-all cursor-pointer hover:-translate-y-0.5"
+          >
+            <BarChart3 className="w-4 h-4" />
+            <span>AI Analytics</span>
+          </button>
+
           <button
             type="button"
             onClick={() => handleAction('/admin/content')}
