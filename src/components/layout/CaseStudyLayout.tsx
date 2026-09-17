@@ -6,6 +6,7 @@ import { Clock } from '../Clock';
 import { LanguageToggle } from '../LanguageToggle';
 import { useT } from '../../i18n/useT';
 import { trackEvent, trackProjectView, PROJECT_NAME_MAP } from '../../utils/analytics';
+import { initUxTelemetry, observeSection, destroyUxTelemetry } from '../../lib/uxTelemetry';
 
 interface CaseStudyLayoutProps {
   children: React.ReactNode;
@@ -30,6 +31,26 @@ export const CaseStudyLayout: React.FC<CaseStudyLayoutProps> = ({ children }) =>
       }
     }
   }, [currentProjectId, activeLandingVariant]);
+
+  // First-party UX Telemetry: Observe section dwell time and friction
+  useEffect(() => {
+    if (currentProjectId && currentProjectId !== 'kage') {
+      initUxTelemetry({ pageSlug: currentProjectId });
+
+      const timer = setTimeout(() => {
+        const sections = document.querySelectorAll('[data-ux-section], main > section, article > section');
+        sections.forEach((el, idx) => {
+          const sectionId = el.getAttribute('data-ux-section') || el.id || `section_${idx}`;
+          observeSection(el, sectionId, idx);
+        });
+      }, 350);
+
+      return () => {
+        clearTimeout(timer);
+        destroyUxTelemetry();
+      };
+    }
+  }, [currentProjectId]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {

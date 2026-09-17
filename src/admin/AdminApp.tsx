@@ -6,6 +6,7 @@ import {
   Sliders,
   Image as ImageIcon,
   Share2,
+  BarChart3,
   LogOut,
   ExternalLink,
   Menu,
@@ -13,7 +14,8 @@ import {
   Sun,
   Moon,
   Loader2,
-  ChevronRight
+  ChevronRight,
+  Activity,
 } from 'lucide-react';
 import { useAdminAuth } from './hooks/useAdminAuth';
 import { AdminLogin } from './routes/AdminLogin';
@@ -22,6 +24,8 @@ import { AdminContent } from './routes/AdminContent';
 import { AdminSettings } from './routes/AdminSettings';
 import { AdminMedia } from './routes/AdminMedia';
 import { AdminDistribution } from './routes/AdminDistribution';
+import { AdminAnalytics } from './routes/AdminAnalytics';
+import { AdminUxLab } from './routes/AdminUxLab';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useStore } from '../store/useStore';
 
@@ -37,6 +41,8 @@ const adminQueryClient = new QueryClient({
 
 export type AdminRoute = 
   | '/admin' 
+  | '/admin/analytics'
+  | '/admin/ux-lab'
   | '/admin/content' 
   | '/admin/settings' 
   | '/admin/media' 
@@ -55,6 +61,18 @@ const NAV_ITEMS: NavItem[] = [
     name: 'Dashboard',
     route: '/admin',
     icon: LayoutDashboard,
+  },
+  {
+    name: 'AI Analytics',
+    route: '/admin/analytics',
+    icon: BarChart3,
+    badge: 'Live',
+  },
+  {
+    name: 'UX Intelligence Lab',
+    route: '/admin/ux-lab',
+    icon: Activity,
+    badge: 'Heatmap',
   },
   {
     name: 'Content & Case Studies',
@@ -87,6 +105,8 @@ export const AdminApp: React.FC = () => {
   const resolveInitialRoute = (): AdminRoute => {
     const path = window.location.pathname.replace(/\/+$/, '') || '/admin';
     if (path === '/admin/login') return '/admin/login';
+    if (path === '/admin/analytics') return '/admin/analytics';
+    if (path === '/admin/ux-lab') return '/admin/ux-lab';
     if (path === '/admin/content') return '/admin/content';
     if (path === '/admin/settings') return '/admin/settings';
     if (path === '/admin/media') return '/admin/media';
@@ -112,6 +132,8 @@ export const AdminApp: React.FC = () => {
       const path = window.location.pathname.replace(/\/+$/, '') || '/admin';
       if (
         path === '/admin' ||
+        path === '/admin/analytics' ||
+        path === '/admin/ux-lab' ||
         path === '/admin/content' ||
         path === '/admin/settings' ||
         path === '/admin/media' ||
@@ -445,6 +467,12 @@ export const AdminApp: React.FC = () => {
             <AnimatePresence mode="wait">
               {currentRoute === '/admin' && (
                 <AdminDashboard key="dashboard" onNavigate={(route) => navigate(route as AdminRoute)} />
+              )}
+              {currentRoute === '/admin/analytics' && (
+                <AdminAnalytics key="analytics" />
+              )}
+              {currentRoute === '/admin/ux-lab' && (
+                <AdminUxLab key="ux-lab" />
               )}
               {currentRoute === '/admin/content' && (
                 <AdminContent key="content" />

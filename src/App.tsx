@@ -14,6 +14,8 @@ import { LoadingSkeleton } from './components/LoadingSkeleton';
 import { MobileNavigation } from './components/navigation/MobileNavigation';
 import { DesktopHeader } from './components/navigation/DesktopHeader';
 import { trackPageView, PROJECT_NAME_MAP } from './utils/analytics';
+import { incrementTrackingClick, getLocalCachedTrackingLinks } from './cms/repositories/trackingRepository';
+import { buildUtmUrl } from './lib/utm';
 import React from 'react';
 
 // Lazy-loaded pages and heavy components
@@ -98,9 +100,35 @@ function App() {
     return () => window.removeEventListener('popstate', handlePopState);
   }, [syncFromURL]);
 
+  // Client-side shortlink redirect resolver (/r/:slug) for local dev & static SPA fallback
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const path = window.location.pathname;
+    if (path.startsWith('/r/')) {
+      const slug = path.replace(/^\/r\/?/, '').split('/')[0]?.toLowerCase().trim();
+      if (slug) {
+        const links = getLocalCachedTrackingLinks();
+        const found = links.find((l) => l.slug.toLowerCase() === slug && l.is_active);
+        incrementTrackingClick(slug);
+        if (found) {
+          const targetUrl = buildUtmUrl(found.destination_path, {
+            source: found.utm_source,
+            medium: found.utm_medium,
+            campaign: found.utm_campaign || undefined,
+            content: found.utm_content || undefined,
+          });
+          window.location.replace(targetUrl);
+          return;
+        }
+        // Fallback to home
+        window.location.replace('/');
+      }
+    }
+  }, []);
+
   // Replace URL on initial mount (so history entry has correct state)
   useEffect(() => {
-    if (!window.location.pathname.startsWith('/admin')) {
+    if (!window.location.pathname.startsWith('/admin') && !window.location.pathname.startsWith('/r/')) {
       replaceURL(gameState);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
