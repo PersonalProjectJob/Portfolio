@@ -11,7 +11,6 @@ import {
   CheckCircle2,
   FileText,
   Trash2,
-  ChevronDown,
   ArrowDownRight,
   MousePointer,
   Eye,
@@ -19,6 +18,7 @@ import {
   Target,
   BookOpen,
 } from 'lucide-react';
+import { CustomSelect } from '../components/CustomSelect';
 import {
   getAllTrackedProjects,
   getUxProjectSummary,
@@ -168,27 +168,30 @@ export const AdminUxLab: React.FC = () => {
 
       {/* ─── Case Study Selector & Filter Bar ─── */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 rounded-2xl bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800">
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 flex-wrap sm:flex-nowrap">
           <BookOpen className="w-4 h-4 text-emerald-500 flex-shrink-0" />
-          <span className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+          <span className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider shrink-0">
             Case Study:
           </span>
-          <div className="relative">
-            <select
+          <div className="w-full sm:w-80">
+            <CustomSelect
               value={selectedSlug}
-              onChange={(e) => {
-                setSelectedSlug(e.target.value);
+              onChange={(val) => {
+                setSelectedSlug(val);
                 setSelectedSection(null);
               }}
-              className="appearance-none pl-3 pr-8 py-1.5 text-xs sm:text-sm font-semibold rounded-lg bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 cursor-pointer"
-            >
-              {allProjects.map((p) => (
-                <option key={p.slug} value={p.slug}>
-                  {p.name} ({p.slug})
-                </option>
-              ))}
-            </select>
-            <ChevronDown className="w-3.5 h-3.5 text-slate-400 absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+              size="sm"
+              accentColor="emerald"
+              align="left"
+              searchable={allProjects.length > 5}
+              searchPlaceholder="Tìm kiếm Case Study..."
+              options={allProjects.map((p) => ({
+                value: p.slug,
+                label: p.name,
+                badge: p.slug,
+                description: `/project/${p.slug}`,
+              }))}
+            />
           </div>
         </div>
 
