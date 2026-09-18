@@ -17,12 +17,13 @@ import {
   ChevronRight,
   BarChart3,
   Activity,
+  Eye,
 } from 'lucide-react';
 import { supabase, isSupabaseConfigured } from '../../lib/supabase';
 import { CV_PROJECTS } from '../../data/cvData';
 import { UTM_PRESETS } from '../../lib/utm';
 import { useStore } from '../../store/useStore';
-import { getLocalCachedTrackingLinks } from '../../cms/repositories/trackingRepository';
+import { getLocalCachedTrackingLinks, getLocalPostViewEvents } from '../../cms/repositories/trackingRepository';
 
 interface DashboardStats {
   totalProjects: number;
@@ -30,6 +31,7 @@ interface DashboardStats {
   draftProjects: number;
   totalTrackingLinks: number;
   totalClicks: number;
+  totalPostViews: number;
   totalMediaAssets: number;
 }
 
@@ -52,54 +54,72 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigate }) =>
   const [stats, setStats] = useState<DashboardStats>(() => {
     const localLinks = getLocalCachedTrackingLinks();
     const realTotalClicks = localLinks.reduce((sum, l) => sum + (l.clicks_count || 0), 0);
+    const realTotalPostViews = getLocalPostViewEvents().length;
     return {
       totalProjects: CV_PROJECTS.length,
       publishedProjects: CV_PROJECTS.length - 1,
       draftProjects: 1,
       totalTrackingLinks: localLinks.length || Object.keys(UTM_PRESETS).length,
       totalClicks: realTotalClicks,
+      totalPostViews: realTotalPostViews,
       totalMediaAssets: 24,
     };
   });
 
-  const [activities] = useState<ActivityItem[]>([
-    {
-      id: 'act-1',
-      type: 'warning',
-      title: 'Missing OG Meta Image',
-      description: 'Project "CryptoMap360" is missing a designated social share image.',
-      time: '15 mins ago',
-      actionText: 'Add Image',
-      actionRoute: '/admin/content',
-    },
-    {
-      id: 'act-2',
-      type: 'warning',
-      title: 'Vietnamese Translation Incomplete',
-      description: 'Project "Sync Task Badge" has 2 untranslated paragraphs in VI locale.',
-      time: '1 hour ago',
-      actionText: 'Translate',
-      actionRoute: '/admin/content',
-    },
-    {
-      id: 'act-3',
-      type: 'info',
-      title: 'New Recruiter Inbound Traffic',
-      description: 'UTM link "recruiter_email" received 12 clicks in the last 24 hours.',
-      time: '3 hours ago',
-      actionText: 'View Links',
-      actionRoute: '/admin/distribution',
-    },
-    {
-      id: 'act-4',
-      type: 'success',
-      title: 'Schema & Storage Synced',
-      description: 'Supabase RLS tables and Edge caching configured for sub-second latency.',
-      time: 'Just now',
-      actionText: 'Check DB',
-      actionRoute: '/admin/settings',
-    },
-  ]);
+
+  const [activities] = useState<ActivityItem[]>(() => {
+    const postViews = getLocalPostViewEvents();
+    const liveViewActivities: ActivityItem[] = postViews.slice(0, 3).map((pv, idx) => ({
+      id: `pve-act-${pv.id || idx}`,
+      type: 'info' as const,
+      title: `Case Study Viewed: ${pv.projectName}`,
+      description: `Reader viewed "${pv.projectName}" on ${pv.device_type || 'desktop'}${pv.referrer ? ` via ${pv.referrer}` : ''}.`,
+      time: new Date(pv.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+      actionText: 'Analytics',
+      actionRoute: '/admin/analytics',
+    }));
+
+    return [
+      ...liveViewActivities,
+      {
+        id: 'act-1',
+        type: 'warning',
+        title: 'Missing OG Meta Image',
+        description: 'Project "CryptoMap360" is missing a designated social share image.',
+        time: '15 mins ago',
+        actionText: 'Add Image',
+        actionRoute: '/admin/content',
+      },
+      {
+        id: 'act-2',
+        type: 'warning',
+        title: 'Vietnamese Translation Incomplete',
+        description: 'Project "Sync Task Badge" has 2 untranslated paragraphs in VI locale.',
+        time: '1 hour ago',
+        actionText: 'Translate',
+        actionRoute: '/admin/content',
+      },
+      {
+        id: 'act-3',
+        type: 'info',
+        title: 'New Recruiter Inbound Traffic',
+        description: 'UTM link "recruiter_email" received inbound clicks.',
+        time: '3 hours ago',
+        actionText: 'View Links',
+        actionRoute: '/admin/distribution',
+      },
+      {
+        id: 'act-4',
+        type: 'success',
+        title: 'Schema & Storage Synced',
+        description: 'Supabase RLS tables and Edge caching configured for sub-second latency.',
+        time: 'Just now',
+        actionText: 'Check DB',
+        actionRoute: '/admin/settings',
+      },
+    ];
+  });
+
 
   // Load real data from Supabase if configured
   useEffect(() => {
@@ -262,7 +282,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigate }) =>
       </motion.div>
 
       {/* Primary KPI Stats Grid */}
-      <motion.div variants={itemVariants} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <motion.div variants={itemVariants} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
         {/* Total Case Studies */}
         <div className={`relative group rounded-2xl border backdrop-blur-xl p-5 transition-all duration-300 ${
           isLightMode
@@ -290,6 +310,42 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigate }) =>
             <span>100% Case Studies Ready</span>
           </div>
         </div>
+
+        {/* Total Case Study Views */}
+        <div className={`relative group rounded-2xl border backdrop-blur-xl p-5 transition-all duration-300 ${
+          isLightMode
+            ? 'bg-white/90 border-slate-200 hover:border-indigo-500/60 shadow-lg shadow-slate-200/50'
+            : 'bg-slate-900/70 border-slate-800/80 hover:border-indigo-500/40'
+        }`}>
+          <div className="flex items-center justify-between mb-3">
+            <span className={`text-xs font-semibold ${isLightMode ? 'text-slate-600' : 'text-slate-400'}`}>Post Views</span>
+            <div className={`w-9 h-9 rounded-xl flex items-center justify-center border ${
+              isLightMode ? 'bg-indigo-50 border-indigo-200 text-indigo-700' : 'bg-indigo-500/10 border-indigo-500/20 text-indigo-300'
+            }`}>
+              <Eye className="w-4 h-4" />
+            </div>
+          </div>
+          <div className="flex items-baseline gap-2">
+            <span className={`text-3xl font-bold font-display ${isLightMode ? 'text-slate-900' : 'text-white'}`}>
+              {stats.totalPostViews}
+            </span>
+            <span className={`text-xs font-medium ${isLightMode ? 'text-indigo-700' : 'text-indigo-300/80'}`}>Total Reads</span>
+          </div>
+          <div className="mt-3 flex items-center justify-between text-xs text-indigo-600 dark:text-indigo-400 font-medium">
+            <span className="flex items-center gap-1.5">
+              <Activity className="w-3.5 h-3.5" />
+              <span>Real-time</span>
+            </span>
+            <button
+              type="button"
+              onClick={() => handleAction('/admin/analytics')}
+              className="text-[11px] underline hover:text-indigo-300 cursor-pointer"
+            >
+              Details &rarr;
+            </button>
+          </div>
+        </div>
+
 
         {/* Total UTM Tracking Links */}
         <div className={`relative group rounded-2xl border backdrop-blur-xl p-5 transition-all duration-300 ${

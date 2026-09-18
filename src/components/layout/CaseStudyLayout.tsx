@@ -7,6 +7,7 @@ import { LanguageToggle } from '../LanguageToggle';
 import { useT } from '../../i18n/useT';
 import { trackEvent, trackProjectView, PROJECT_NAME_MAP } from '../../utils/analytics';
 import { initUxTelemetry, observeSection, destroyUxTelemetry } from '../../lib/uxTelemetry';
+import { recordPostView } from '../../cms/repositories/trackingRepository';
 
 interface CaseStudyLayoutProps {
   children: React.ReactNode;
@@ -25,12 +26,12 @@ export const CaseStudyLayout: React.FC<CaseStudyLayoutProps> = ({ children }) =>
   // Automatically track project view on mount (supports direct URL, LinkedIn links, and page refreshes)
   useEffect(() => {
     if (currentProjectId && currentProjectId !== 'kage') {
-      const projectName = PROJECT_NAME_MAP[currentProjectId];
-      if (projectName) {
-        trackProjectView(currentProjectId, projectName, activeLandingVariant, 'page_view');
-      }
+      const projectName = PROJECT_NAME_MAP[currentProjectId] || currentProjectId;
+      trackProjectView(currentProjectId, projectName, activeLandingVariant, 'page_view');
+      recordPostView(currentProjectId, projectName, activeLandingVariant);
     }
   }, [currentProjectId, activeLandingVariant]);
+
 
   // First-party UX Telemetry: Observe section dwell time and friction
   useEffect(() => {

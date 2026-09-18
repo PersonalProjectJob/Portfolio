@@ -1,5 +1,6 @@
-import React, { Suspense, useMemo } from 'react';
+import React, { Suspense, useMemo, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { recordPostView } from '../cms/repositories/trackingRepository';
 import {
   ArrowLeft,
   Compass,
@@ -110,12 +111,24 @@ export const ProjectRoute: React.FC<{ slug?: string }> = ({ slug: propSlug }) =>
     }
   };
 
+  // Determine render mode
+  const renderMode = projectEntry?.render_mode || (projectEntry ? 'legacy' : null);
+
+  // Track non-legacy case study views (legacy modes are tracked in CaseStudyLayout)
+  useEffect(() => {
+    if (projectEntry && renderMode && renderMode !== 'legacy' && normalizedSlug) {
+      const title =
+        typeof projectEntry.title === 'string'
+          ? projectEntry.title
+          : projectEntry.title?.vi || projectEntry.title?.en || normalizedSlug;
+      recordPostView(normalizedSlug, title);
+    }
+  }, [projectEntry, renderMode, normalizedSlug]);
+
   if (isLoading && !projectEntry) {
     return <LoadingSkeleton />;
   }
 
-  // Determine render mode
-  const renderMode = projectEntry?.render_mode || (projectEntry ? 'legacy' : null);
 
   // ─── Mode 1: Dynamic Atomic Visual Canvas Builder Mode ───
   if (renderMode === 'builder' && projectEntry) {

@@ -128,16 +128,23 @@ class UxCollector {
       );
     }
 
+    const inView =
+      typeof window !== 'undefined' &&
+      element.getBoundingClientRect &&
+      element.getBoundingClientRect().top < (window.innerHeight || 800) &&
+      element.getBoundingClientRect().bottom > 0;
+
     this.sectionMap.set(element, {
       sectionId,
       sectionOrder,
-      enterTime: null,
+      enterTime: inView ? Date.now() : null,
       totalDwellMs: 0,
       interacted: false,
     });
 
     this.observer.observe(element);
   }
+
 
   public recordSectionDwell(state: SectionTrackingState): void {
     if (!this.currentSession) return;
@@ -287,6 +294,27 @@ class UxCollector {
   }
 
   public destroy(): void {
+    const now = Date.now();
+    for (const state of this.sectionMap.values()) {
+      if (state.enterTime) {
+        const dwell = now - state.enterTime;
+        state.totalDwellMs += dwell;
+        state.enterTime = null;
+        if (state.totalDwellMs >= 300) {
+          this.recordSectionDwell(state);
+        }
+      }
+    }
+
+    if (this.currentSession) {
+      this.currentSession.totalDurationMs = Math.max(
+        this.currentSession.totalDurationMs,
+        now - this.currentSession.createdAt
+      );
+      this.currentSession.updatedAt = now;
+      uxDispatcher.persistSession(this.currentSession);
+    }
+
     if (this.observer) {
       this.observer.disconnect();
       this.observer = null;
@@ -301,6 +329,7 @@ class UxCollector {
     uxDispatcher.flush();
     this.isInitialized = false;
   }
+
 }
 
 export const uxCollector = new UxCollector();

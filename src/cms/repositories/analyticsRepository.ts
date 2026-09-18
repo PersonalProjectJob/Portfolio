@@ -1,9 +1,12 @@
 import {
   getLocalCachedTrackingLinks,
   getLocalClickEvents,
+  getLocalPostViewEvents,
   resetAllTrackingStats,
   type ClickEvent,
+  type PostViewEvent,
 } from './trackingRepository';
+import { PROJECT_NAME_MAP } from '../../utils/analytics';
 
 export type AnalyticsTimeRange = '24h' | '7d' | '30d' | 'all';
 
@@ -21,6 +24,7 @@ export interface TimelinePoint {
   label: string;
   dateKey: string;
   clicks: number;
+  postViews: number;
   desktopClicks: number;
   mobileClicks: number;
 }
@@ -46,8 +50,22 @@ export interface TopLinkStat {
   last_clicked_at: string | null;
 }
 
+export interface TopCaseStudyStat {
+  projectId: string;
+  projectName: string;
+  viewsCount: number;
+  percentage: number;
+  lastViewedAt: string | null;
+}
+
+export type UnifiedActivityEvent =
+  | ({ eventType: 'shortlink_click' } & ClickEvent)
+  | ({ eventType: 'post_view' } & PostViewEvent);
+
 export interface AnalyticsOverview {
   totalClicks: number;
+  totalPostViews: number;
+  totalEngagements: number;
   activeLinksCount: number;
   totalLinksCount: number;
   topChannel: {
@@ -55,6 +73,11 @@ export interface AnalyticsOverview {
     source: string;
     clicks: number;
     percentage: number;
+  } | null;
+  topPost: {
+    projectId: string;
+    projectName: string;
+    views: number;
   } | null;
   deviceSplit: DeviceSplit;
   recruiterIntentScore: number;
@@ -94,6 +117,25 @@ function filterEventsByRange(events: ClickEvent[], range: AnalyticsTimeRange): C
 }
 
 /**
+ * Filter post view events within the specified time range
+ */
+export function filterPostViewsByRange(events: PostViewEvent[], range: AnalyticsTimeRange): PostViewEvent[] {
+  if (range === 'all') return events;
+  const now = Date.now();
+  const rangeMs =
+    range === '24h'
+      ? 24 * 60 * 60 * 1000
+      : range === '7d'
+        ? 7 * 24 * 60 * 60 * 1000
+        : 30 * 24 * 60 * 60 * 1000;
+
+  return events.filter((e) => {
+    const time = new Date(e.timestamp).getTime();
+    return !isNaN(time) && now - time <= rangeMs;
+  });
+}
+
+/**
  * Calculates high-level KPI overview
  */
 export function getAnalyticsOverview(range: AnalyticsTimeRange = 'all'): AnalyticsOverview {
@@ -101,11 +143,17 @@ export function getAnalyticsOverview(range: AnalyticsTimeRange = 'all'): Analyti
   const allEvents = getLocalClickEvents();
   const filteredEvents = filterEventsByRange(allEvents, range);
 
+  const allPostViews = getLocalPostViewEvents();
+  const filteredPostViews = filterPostViewsByRange(allPostViews, range);
+
   // If there are recorded events, use event count; otherwise sum link clicks
   const totalClicks =
     filteredEvents.length > 0
       ? filteredEvents.length
       : allLinks.reduce((sum, l) => sum + (l.clicks_count || 0), 0);
+
+  const totalPostViews = filteredPostViews.length;
+  const totalEngagements = totalClicks + totalPostViews;
 
   const activeLinks = allLinks.filter((l) => l.is_active);
 
@@ -115,6 +163,12 @@ export function getAnalyticsOverview(range: AnalyticsTimeRange = 'all'): Analyti
   let tablet = 0;
 
   filteredEvents.forEach((e) => {
+    if (e.device_type === 'mobile') mobile += 1;
+    else if (e.device_type === 'tablet') tablet += 1;
+    else desktop += 1;
+  });
+
+  filteredPostViews.forEach((e) => {
     if (e.device_type === 'mobile') mobile += 1;
     else if (e.device_type === 'tablet') tablet += 1;
     else desktop += 1;
@@ -157,20 +211,44 @@ export function getAnalyticsOverview(range: AnalyticsTimeRange = 'all'): Analyti
         }
       : null;
 
-  // Recruiter Intent Score: weighted scoring favoring direct recruiter channels
-  // Weights: recruiter_email (35), cv (25), linkedin (15), others (5)
+  // Top Post calculation
+  const postCounts: Record<string, { count: number; name: string }> = {};
+  filteredPostViews.forEach((pv) => {
+    const id = pv.projectId;
+    if (!postCounts[id]) {
+      postCounts[id] = { count: 0, name: pv.projectName || PROJECT_NAME_MAP[id] || id };
+    }
+    postCounts[id].count += 1;
+  });
+
+  let topPost: { projectId: string; projectName: string; views: number } | null = null;
+  let maxViews = 0;
+  Object.entries(postCounts).forEach(([pid, data]) => {
+    if (data.count > maxViews) {
+      maxViews = data.count;
+      topPost = {
+        projectId: pid,
+        projectName: data.name,
+        views: data.count,
+      };
+    }
+  });
+
+  // Recruiter Intent Score: weighted scoring favoring direct recruiter channels + case study deep reads
+  // Weights: recruiter_email (35), cv (25), linkedin (15), post views (20), others (5)
   let weightedScore = 0;
-  if (totalClicks > 0) {
+  if (totalClicks > 0 || totalPostViews > 0) {
     const recruiterClicks = channelCounts['recruiter_email'] || 0;
     const cvClicks = channelCounts['cv'] || 0;
     const linkedinClicks = channelCounts['linkedin'] || 0;
     const otherClicks = totalClicks - (recruiterClicks + cvClicks + linkedinClicks);
+    const postViewsScore = totalPostViews * 20;
 
     weightedScore = Math.min(
       100,
       Math.round(
-        (recruiterClicks * 35 + cvClicks * 25 + linkedinClicks * 15 + Math.max(0, otherClicks) * 5) /
-          Math.max(1, totalClicks * 0.4)
+        (recruiterClicks * 35 + cvClicks * 25 + linkedinClicks * 15 + Math.max(0, otherClicks) * 5 + postViewsScore) /
+          Math.max(1, (totalClicks + totalPostViews) * 0.4)
       )
     );
   }
@@ -182,9 +260,12 @@ export function getAnalyticsOverview(range: AnalyticsTimeRange = 'all'): Analyti
 
   return {
     totalClicks,
+    totalPostViews,
+    totalEngagements,
     activeLinksCount: activeLinks.length,
     totalLinksCount: allLinks.length,
     topChannel,
+    topPost,
     deviceSplit: {
       desktop,
       mobile,
@@ -198,10 +279,11 @@ export function getAnalyticsOverview(range: AnalyticsTimeRange = 'all'): Analyti
 }
 
 /**
- * Groups click events into timeline buckets for SVG charting
+ * Groups click events and post view events into timeline buckets for SVG charting
  */
 export function getTimelineStats(range: AnalyticsTimeRange = '7d'): TimelinePoint[] {
   const allEvents = getLocalClickEvents();
+  const allPostViews = getLocalPostViewEvents();
   const now = new Date();
 
   // For 24h: 6 buckets of 4 hours
@@ -217,6 +299,7 @@ export function getTimelineStats(range: AnalyticsTimeRange = '7d'): TimelinePoin
       const bucketEnd = bucketDate.getTime() + 2 * 60 * 60 * 1000;
 
       let clicks = 0;
+      let postViews = 0;
       let mobileClicks = 0;
       let desktopClicks = 0;
 
@@ -229,7 +312,16 @@ export function getTimelineStats(range: AnalyticsTimeRange = '7d'): TimelinePoin
         }
       });
 
-      points.push({ label, dateKey, clicks, mobileClicks, desktopClicks });
+      allPostViews.forEach((pv) => {
+        const t = new Date(pv.timestamp).getTime();
+        if (t >= bucketStart && t <= bucketEnd) {
+          postViews += 1;
+          if (pv.device_type === 'mobile' || pv.device_type === 'tablet') mobileClicks += 1;
+          else desktopClicks += 1;
+        }
+      });
+
+      points.push({ label, dateKey, clicks, postViews, mobileClicks, desktopClicks });
     }
     return points;
   }
@@ -244,6 +336,7 @@ export function getTimelineStats(range: AnalyticsTimeRange = '7d'): TimelinePoin
     const isoDayStr = targetDate.toISOString().slice(0, 10);
 
     let clicks = 0;
+    let postViews = 0;
     let mobileClicks = 0;
     let desktopClicks = 0;
 
@@ -255,10 +348,19 @@ export function getTimelineStats(range: AnalyticsTimeRange = '7d'): TimelinePoin
       }
     });
 
+    allPostViews.forEach((pv) => {
+      if (pv.timestamp && pv.timestamp.startsWith(isoDayStr)) {
+        postViews += 1;
+        if (pv.device_type === 'mobile' || pv.device_type === 'tablet') mobileClicks += 1;
+        else desktopClicks += 1;
+      }
+    });
+
     points.push({
       label: dayStr,
       dateKey: isoDayStr,
       clicks,
+      postViews,
       mobileClicks,
       desktopClicks,
     });
@@ -266,6 +368,7 @@ export function getTimelineStats(range: AnalyticsTimeRange = '7d'): TimelinePoin
 
   return points;
 }
+
 
 /**
  * Returns breakdown across distinct UTM channels
@@ -369,8 +472,77 @@ export function getRecentClickEvents(limit = 20): ClickEvent[] {
 }
 
 /**
+ * Returns ranked case studies by view count
+ */
+export function getTopViewedCaseStudies(range: AnalyticsTimeRange = 'all'): TopCaseStudyStat[] {
+  const allPostViews = filterPostViewsByRange(getLocalPostViewEvents(), range);
+  const total = allPostViews.length;
+
+  const countMap: Record<string, { count: number; name: string; lastViewedAt: string | null }> = {};
+
+  // Seed with all known projects from PROJECT_NAME_MAP
+  Object.entries(PROJECT_NAME_MAP).forEach(([id, name]) => {
+    countMap[id] = {
+      count: 0,
+      name,
+      lastViewedAt: null,
+    };
+  });
+
+  allPostViews.forEach((pv) => {
+    const id = pv.projectId?.toLowerCase();
+    if (!id) return;
+    if (!countMap[id]) {
+      countMap[id] = {
+        count: 0,
+        name: pv.projectName || PROJECT_NAME_MAP[id] || id,
+        lastViewedAt: null,
+      };
+    }
+    countMap[id].count += 1;
+    if (!countMap[id].lastViewedAt || pv.timestamp > countMap[id].lastViewedAt!) {
+      countMap[id].lastViewedAt = pv.timestamp;
+    }
+  });
+
+  return Object.entries(countMap)
+    .map(([projectId, data]) => ({
+      projectId,
+      projectName: data.name,
+      viewsCount: data.count,
+      percentage: total > 0 ? Math.round((data.count / total) * 100) : 0,
+      lastViewedAt: data.lastViewedAt,
+    }))
+    .sort((a, b) => b.viewsCount - a.viewsCount);
+}
+
+/**
+ * Returns unified stream of recent activity (both link clicks and post views)
+ */
+export function getUnifiedRecentEvents(limit = 20): UnifiedActivityEvent[] {
+  const clicks = getLocalClickEvents().map((c) => ({
+    eventType: 'shortlink_click' as const,
+    ...c,
+  }));
+  const postViews = getLocalPostViewEvents().map((pv) => ({
+    eventType: 'post_view' as const,
+    ...pv,
+  }));
+
+  const combined: UnifiedActivityEvent[] = [...clicks, ...postViews];
+  combined.sort((a, b) => {
+    const timeA = new Date(a.timestamp).getTime();
+    const timeB = new Date(b.timestamp).getTime();
+    return timeB - timeA;
+  });
+
+  return combined.slice(0, limit);
+}
+
+/**
  * Clears all analytics data and resets click counters
  */
 export async function resetAllAnalyticsData(): Promise<boolean> {
   return resetAllTrackingStats();
 }
+
