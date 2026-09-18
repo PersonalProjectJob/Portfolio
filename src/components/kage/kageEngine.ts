@@ -455,7 +455,9 @@ export function initKageEngine(
   const lookCurve = new THREE.CatmullRomCurve3(lookPoints, false, 'catmullrom', 0.25);
 
   // 10. Post-Processing Setup
-  const rtScene = new THREE.WebGLRenderTarget(canvas.clientWidth * dpr, canvas.clientHeight * dpr, {
+  const initialW = Math.max(2, Math.round((canvas.clientWidth || 320) * dpr));
+  const initialH = Math.max(2, Math.round((canvas.clientHeight || 480) * dpr));
+  const rtScene = new THREE.WebGLRenderTarget(initialW, initialH, {
     minFilter: THREE.LinearFilter,
     magFilter: THREE.LinearFilter,
     type: THREE.HalfFloatType,
@@ -549,6 +551,10 @@ export function initKageEngine(
 
   function render(time: number) {
     if (isDead) return;
+    if (canvas.clientWidth <= 0 || canvas.clientHeight <= 0) {
+      rafId = requestAnimationFrame(render);
+      return;
+    }
     const dt = Math.min((time - lastTime) / 1000, 0.1);
     lastTime = time;
     const tSec = time * 0.001;
@@ -661,11 +667,11 @@ export function initKageEngine(
   function onResize() {
     const w = canvas.clientWidth;
     const h = canvas.clientHeight;
-    if (w === 0 || h === 0) return;
+    if (w <= 0 || h <= 0) return;
     const curDpr = Math.min(window.devicePixelRatio || 1, 1.75);
     renderer.setPixelRatio(curDpr);
     renderer.setSize(w, h, false);
-    rtScene.setSize(w * curDpr, h * curDpr);
+    rtScene.setSize(Math.max(2, Math.round(w * curDpr)), Math.max(2, Math.round(h * curDpr)));
     camera.aspect = w / h;
     camera.updateProjectionMatrix();
   }

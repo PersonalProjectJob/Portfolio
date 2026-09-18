@@ -95,6 +95,8 @@ export const KageLandingPage: React.FC<KageLandingPageProps> = ({
         inset: 0,
         width: '100vw',
         height: '100vh',
+        minWidth: '320px',
+        minHeight: '480px',
         overflow: 'hidden',
         background: '#080808',
         zIndex: 9999,
@@ -115,6 +117,8 @@ export const KageLandingPage: React.FC<KageLandingPageProps> = ({
           display: 'block',
           width: '100%',
           height: '100%',
+          minWidth: '100%',
+          minHeight: '100%',
           border: 0,
           background: '#080808',
         }}
