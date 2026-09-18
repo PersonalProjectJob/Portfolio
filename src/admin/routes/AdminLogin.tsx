@@ -21,7 +21,7 @@ interface AdminLoginProps {
 }
 
 export const AdminLogin: React.FC<AdminLoginProps> = ({ onSuccess, onNavigatePublic }) => {
-  const { signInWithPassword, signInWithOtp, loginAsDemo, loading, error, clearError } = useAdminAuth();
+  const { signInWithPassword, signInWithOtp, loading, error, clearError } = useAdminAuth();
   
   const [authMode, setAuthMode] = useState<'password' | 'otp'>('password');
   const [email, setEmail] = useState('');
@@ -51,12 +51,6 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({ onSuccess, onNavigatePub
         setOtpSuccessMessage('Magic link sent! Check your inbox to sign in directly.');
       }
     }
-  };
-
-  const handleDemoLogin = () => {
-    clearError();
-    loginAsDemo();
-    onSuccess?.();
   };
 
   return (
@@ -159,7 +153,14 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({ onSuccess, onNavigatePub
                 className="mb-5 p-3.5 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs flex items-start gap-2.5"
               >
                 <AlertCircle className="w-4 h-4 text-rose-400 shrink-0 mt-0.5" />
-                <div className="flex-1">{error}</div>
+                <div className="flex-1 space-y-1">
+                  <div>{error}</div>
+                  {error.toLowerCase().includes('email not confirmed') && (
+                    <p className="text-[11px] text-amber-300/90 font-sans">
+                      Tip: Email chưa được xác nhận. Vui lòng kiểm tra hòm thư đến (hoặc thư rác) hoặc bấm Confirm user trên Supabase Dashboard.
+                    </p>
+                  )}
+                </div>
               </motion.div>
             )}
           </AnimatePresence>
@@ -246,24 +247,19 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({ onSuccess, onNavigatePub
             </button>
           </form>
 
-          {/* Quick Demo Access (for dev and reviewing) */}
+          {/* Security badge notice */}
           <div className="mt-6 pt-6 border-t border-slate-800/80 text-center">
-            <p className="text-xs text-slate-500 mb-3">Developer Preview Mode</p>
-            <button
-              type="button"
-              onClick={handleDemoLogin}
-              className="w-full py-2.5 px-4 rounded-xl text-xs font-medium text-amber-300/90 bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/25 transition-colors flex items-center justify-center gap-2"
-            >
-              <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-              <span>Instant Demo Access (Bypass Auth)</span>
-            </button>
+            <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] font-medium bg-slate-950/60 text-slate-400 border border-slate-800">
+              <Lock className="w-3 h-3 text-teal-400" />
+              <span>Production Secured &bull; Supabase Cloud Auth Protected</span>
+            </div>
           </div>
 
         </div>
 
         {/* Footer info */}
         <p className="text-center text-[11px] text-slate-500 mt-6">
-          Portfolio Admin Shell &bull; Supabase RLS Protected &bull; Sprint 1
+          Portfolio Admin Shell &bull; Supabase Cloud Auth Protected
         </p>
       </motion.div>
     </div>
