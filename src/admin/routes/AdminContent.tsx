@@ -20,6 +20,7 @@ import {
   FileCheck2,
   FileQuestion,
   RefreshCw,
+  Eye,
 } from 'lucide-react';
 import { useProjects } from '../../cms/hooks/useProjects';
 import type { ContentEntry, ContentEntryStatus, RenderMode } from '../../cms/types/cms.types';
@@ -28,6 +29,8 @@ import { ProjectEditor } from '../features/content/ProjectEditor';
 import { CloudinaryPdfUploader } from '../components/CloudinaryPdfUploader';
 import { CustomSelect } from '../components/CustomSelect';
 import { useStore } from '../../store/useStore';
+import { getProjectViewsMap } from '../../cms/repositories/trackingRepository';
+
 
 const REGISTERED_TSX_COMPONENTS = [
   {
@@ -134,7 +137,10 @@ export const AdminContent: React.FC = () => {
     refetch,
   } = useProjects();
 
+  const viewsMap = React.useMemo(() => getProjectViewsMap(), []);
+
   // Toast feedback
+
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const showToast = (msg: string) => {
     setToastMessage(msg);
@@ -701,16 +707,30 @@ export const AdminContent: React.FC = () => {
               <div className={`pt-4 border-t flex items-center justify-between gap-2 ${
                 isLightMode ? 'border-slate-100' : 'border-slate-800/80'
               }`}>
-                <div className={`flex items-center gap-1 text-[11px] ${
+                <div className={`flex items-center gap-2.5 text-[11px] ${
                   isLightMode ? 'text-slate-400' : 'text-slate-500'
                 }`}>
-                  <Calendar className="w-3.5 h-3.5" />
-                  <span>
-                    {project.updated_at
-                      ? new Date(project.updated_at).toLocaleDateString()
-                      : 'v1.0'}
+                  <div className="flex items-center gap-1">
+                    <Calendar className="w-3.5 h-3.5" />
+                    <span>
+                      {project.updated_at
+                        ? new Date(project.updated_at).toLocaleDateString()
+                        : 'v1.0'}
+                    </span>
+                  </div>
+                  <span
+                    className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full font-mono text-[10px] font-semibold border ${
+                      isLightMode
+                        ? 'bg-indigo-50 text-indigo-700 border-indigo-200'
+                        : 'bg-indigo-500/10 text-indigo-300 border-indigo-500/20'
+                    }`}
+                    title="Total Case Study Views"
+                  >
+                    <Eye className="w-3 h-3" />
+                    <span>{viewsMap[project.slug.toLowerCase()] || 0}</span>
                   </span>
                 </div>
+
 
                 <div className="flex items-center gap-1.5">
                   {/* Public Link */}

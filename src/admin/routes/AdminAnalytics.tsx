@@ -20,17 +20,21 @@ import {
   Radio,
   X,
   Layers,
+  Eye,
+  ExternalLink,
 } from 'lucide-react';
 import {
   getAnalyticsOverview,
   getTimelineStats,
   getChannelBreakdown,
   getTopTrackingLinks,
-  getRecentClickEvents,
+  getTopViewedCaseStudies,
+  getUnifiedRecentEvents,
   resetAllAnalyticsData,
   type AnalyticsTimeRange,
   type TimelinePoint,
 } from '../../cms/repositories/analyticsRepository';
+
 import {
   generateAiInsights,
   generateExecutiveMarkdownReport,
@@ -43,6 +47,7 @@ export const AdminAnalytics: React.FC = () => {
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [copiedSlug, setCopiedSlug] = useState<string | null>(null);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
+  const [leaderboardTab, setLeaderboardTab] = useState<'case_studies' | 'shortlinks'>('case_studies');
 
   // Modal states
   const [showReportModal, setShowReportModal] = useState(false);
@@ -73,10 +78,17 @@ export const AdminAnalytics: React.FC = () => {
     return getTopTrackingLinks();
   }, [refreshTick]);
 
-  const recentEvents = useMemo(() => {
+  const topCaseStudies = useMemo(() => {
     void refreshTick;
-    return getRecentClickEvents(15);
+    return getTopViewedCaseStudies(timeRange);
+  }, [timeRange, refreshTick]);
+
+  const recentUnifiedEvents = useMemo(() => {
+    void refreshTick;
+    return getUnifiedRecentEvents(20);
   }, [refreshTick]);
+
+
 
   const showToast = (msg: string) => {
     setToastMessage(msg);
@@ -135,7 +147,7 @@ export const AdminAnalytics: React.FC = () => {
   };
 
   // SVG Chart Dimensions & Computations
-  const maxClicks = Math.max(1, ...timeline.map((p) => p.clicks));
+  const maxActivity = Math.max(1, ...timeline.map((p) => (p.clicks || 0) + (p.postViews || 0)));
   const svgWidth = 600;
   const svgHeight = 180;
   const paddingX = 40;
@@ -143,11 +155,13 @@ export const AdminAnalytics: React.FC = () => {
 
   const pointsString = timeline
     .map((p, idx) => {
+      const total = (p.clicks || 0) + (p.postViews || 0);
       const x = paddingX + (idx / Math.max(1, timeline.length - 1)) * (svgWidth - paddingX * 2);
-      const y = svgHeight - paddingY - (p.clicks / maxClicks) * (svgHeight - paddingY * 2);
+      const y = svgHeight - paddingY - (total / maxActivity) * (svgHeight - paddingY * 2);
       return `${x},${y}`;
     })
     .join(' ');
+
 
   const areaString =
     timeline.length > 0
@@ -348,16 +362,40 @@ export const AdminAnalytics: React.FC = () => {
       </div>
 
       {/* ─── Metric Cards Grid ─── */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        {/* Card 1: Total Real Clicks */}
+      <div className="grid grid-cols-2 lg:grid-cols-5 gap-4">
+        {/* Card 1: Case Study Post Views */}
         <div className="rounded-2xl p-5 bg-slate-900/70 border border-slate-800/80 backdrop-blur-xl shadow-lg space-y-2">
           <div className="flex items-center justify-between">
             <span className="text-[11px] uppercase font-semibold text-slate-400 tracking-wider">
-              Total Real Clicks
+              Case Study Views
+            </span>
+            <div className="w-8 h-8 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 flex items-center justify-center">
+              <Eye className="w-4 h-4" />
+            </div>
+          </div>
+          <div className="flex items-baseline gap-2">
+            <p className="text-3xl font-bold text-white font-display">{overview.totalPostViews}</p>
+            <span className="text-xs text-indigo-300 font-mono">reads</span>
+          </div>
+          <p className="text-[11px] text-slate-400 truncate">
+            {overview.topPost ? (
+              <span>Top: <strong className="text-indigo-300 font-semibold">{overview.topPost.projectName}</strong></span>
+            ) : (
+              <span>Chưa có lượt xem</span>
+            )}
+          </p>
+        </div>
+
+        {/* Card 2: Total Real Clicks */}
+        <div className="rounded-2xl p-5 bg-slate-900/70 border border-slate-800/80 backdrop-blur-xl shadow-lg space-y-2">
+          <div className="flex items-center justify-between">
+            <span className="text-[11px] uppercase font-semibold text-slate-400 tracking-wider">
+              Total Link Clicks
             </span>
             <div className="w-8 h-8 rounded-xl bg-teal-500/10 border border-teal-500/20 text-teal-400 flex items-center justify-center">
               <MousePointerClick className="w-4 h-4" />
             </div>
+
           </div>
           <div className="flex items-baseline gap-2">
             <p className="text-3xl font-bold text-white font-display">{overview.totalClicks}</p>
@@ -461,17 +499,17 @@ export const AdminAnalytics: React.FC = () => {
             </div>
             {activePoint && (
               <span className="text-xs font-mono text-teal-300 bg-teal-500/10 px-2.5 py-1 rounded-lg border border-teal-500/20">
-                {activePoint.dateKey}: {activePoint.clicks} clicks ({activePoint.desktopClicks} desktop, {activePoint.mobileClicks} mobile)
+                {activePoint.dateKey}: {activePoint.clicks} clicks • {activePoint.postViews || 0} views ({activePoint.desktopClicks} desktop, {activePoint.mobileClicks} mobile)
               </span>
             )}
           </div>
 
           {/* SVG Canvas */}
           <div className="relative w-full h-[200px] flex items-center justify-center">
-            {overview.totalClicks === 0 ? (
+            {overview.totalClicks === 0 && overview.totalPostViews === 0 ? (
               <div className="text-center text-slate-500 text-xs space-y-1">
-                <p className="font-semibold text-slate-400">Chưa ghi nhận clicks trong khoảng thời gian này</p>
-                <p>Biểu đồ thời gian thực sẽ tự động vẽ ngay khi có lượt click đầu tiên.</p>
+                <p className="font-semibold text-slate-400">Chưa ghi nhận clicks hoặc views trong khoảng thời gian này</p>
+                <p>Biểu đồ thời gian thực sẽ tự động vẽ ngay khi có lượt truy cập đầu tiên.</p>
               </div>
             ) : (
               <svg viewBox={`0 0 ${svgWidth} ${svgHeight}`} className="w-full h-full overflow-visible">
@@ -506,9 +544,11 @@ export const AdminAnalytics: React.FC = () => {
 
                 {/* Interactive Points */}
                 {timeline.map((p, idx) => {
+                  const total = (p.clicks || 0) + (p.postViews || 0);
                   const x = paddingX + (idx / Math.max(1, timeline.length - 1)) * (svgWidth - paddingX * 2);
-                  const y = svgHeight - paddingY - (p.clicks / maxClicks) * (svgHeight - paddingY * 2);
+                  const y = svgHeight - paddingY - (total / maxActivity) * (svgHeight - paddingY * 2);
                   const isHovered = activePoint?.label === p.label;
+
 
                   return (
                     <g key={p.label} className="cursor-pointer">
@@ -584,22 +624,110 @@ export const AdminAnalytics: React.FC = () => {
         </div>
       </div>
 
-      {/* ─── Links Leaderboard & Live Stream Activity ─── */}
+      {/* ─── Links & Case Studies Leaderboard & Live Stream Activity ─── */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Leaderboard Table (2 cols) */}
         <div className="lg:col-span-2 rounded-3xl border border-slate-800/80 bg-slate-900/70 backdrop-blur-xl overflow-hidden shadow-xl">
-          <div className="p-5 sm:p-6 border-b border-slate-800/80 flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <Layers className="w-4 h-4 text-teal-400" />
-              <h2 className="text-sm font-bold text-white font-display">
-                Top Performing Shortlinks Leaderboard
-              </h2>
+          <div className="p-5 sm:p-6 border-b border-slate-800/80 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2">
+                <Layers className="w-4 h-4 text-teal-400" />
+                <div>
+                  <h2 className="text-sm font-bold text-white font-display">
+                    Performance Leaderboards
+                  </h2>
+                  <p className="text-[10px] text-slate-400 hidden sm:block">
+                    Case Studies & Top Performing Shortlinks Leaderboard
+                  </p>
+                </div>
+
+              </div>
+              <div className="flex items-center p-1 rounded-xl bg-slate-950/80 border border-slate-800 text-xs">
+                <button
+                  type="button"
+                  onClick={() => setLeaderboardTab('case_studies')}
+                  className={`px-3 py-1 rounded-lg font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
+                    leaderboardTab === 'case_studies'
+                      ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30'
+                      : 'text-slate-400 hover:text-white'
+                  }`}
+                >
+                  <Eye className="w-3.5 h-3.5" />
+                  <span>Case Studies ({topCaseStudies.reduce((sum, c) => sum + c.viewsCount, 0)} views)</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setLeaderboardTab('shortlinks')}
+                  className={`px-3 py-1 rounded-lg font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
+                    leaderboardTab === 'shortlinks'
+                      ? 'bg-teal-600 text-white shadow-md shadow-teal-600/30'
+                      : 'text-slate-400 hover:text-white'
+                  }`}
+                >
+                  <MousePointerClick className="w-3.5 h-3.5" />
+                  <span>Shortlinks ({topLinks.reduce((sum, l) => sum + l.clicks_count, 0)} clicks)</span>
+                </button>
+              </div>
             </div>
-            <span className="text-xs text-slate-400 font-mono">{topLinks.length} total links</span>
+            <span className="text-xs text-slate-400 font-mono">
+              {leaderboardTab === 'case_studies' ? `${topCaseStudies.length} projects` : `${topLinks.length} links`}
+            </span>
           </div>
 
-          <div className="divide-y divide-slate-800/60 overflow-x-auto">
-            {topLinks.length === 0 ? (
+          <div className="divide-y divide-slate-800/60 overflow-x-auto max-h-[480px]">
+            {leaderboardTab === 'case_studies' ? (
+              topCaseStudies.length === 0 ? (
+                <div className="p-8 text-center text-xs text-slate-400">No case studies found.</div>
+              ) : (
+                topCaseStudies.map((c, idx) => (
+                  <div
+                    key={c.projectId}
+                    className="p-4 sm:p-5 flex items-center justify-between gap-4 hover:bg-slate-800/30 transition-colors"
+                  >
+                    <div className="flex items-center gap-3 min-w-0">
+                      <span className="w-6 h-6 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center font-mono text-xs font-bold text-slate-300 shrink-0">
+                        #{idx + 1}
+                      </span>
+                      <div className="space-y-1 min-w-0">
+                        <div className="flex items-center gap-2 flex-wrap">
+                          <h4 className="text-sm font-bold text-white truncate max-w-sm">
+                            {c.projectName}
+                          </h4>
+                          <span className="text-[11px] font-mono px-2 py-0.5 rounded bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">
+                            /project/{c.projectId}
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-2 text-xs text-slate-400">
+                          <span>Last viewed:</span>
+                          <span className="font-mono text-slate-300">
+                            {c.lastViewedAt ? new Date(c.lastViewedAt).toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit', day: '2-digit', month: '2-digit' }) : 'Never'}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center gap-3 shrink-0">
+                      <div className="text-right px-3 py-1.5 rounded-xl bg-indigo-950/40 border border-indigo-500/30 min-w-[85px]">
+                        <p className="text-[10px] uppercase text-indigo-300 font-semibold flex items-center justify-end gap-1">
+                          <Eye className="w-3 h-3" /> Views
+                        </p>
+                        <p className="text-base font-bold text-white font-mono">{c.viewsCount}</p>
+                      </div>
+
+                      <a
+                        href={`/project/${c.projectId}`}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-indigo-300 transition-colors"
+                        title="View public case study"
+                      >
+                        <ExternalLink className="w-4 h-4" />
+                      </a>
+                    </div>
+                  </div>
+                ))
+              )
+            ) : topLinks.length === 0 ? (
               <div className="p-8 text-center text-xs text-slate-400">No links registered.</div>
             ) : (
               topLinks.map((l) => (
@@ -663,28 +791,62 @@ export const AdminAnalytics: React.FC = () => {
               <Radio className="w-4 h-4 text-emerald-400 animate-pulse" />
               <h2 className="text-sm font-bold text-white font-display">Live Inbound Activity Feed</h2>
             </div>
-            <p className="text-xs text-slate-400">Real-time incoming click stream</p>
+            <p className="text-xs text-slate-400">Real-time incoming post views & click stream</p>
           </div>
 
           <div className="space-y-2.5 overflow-y-auto max-h-[380px] pr-1 divide-y divide-slate-800/40">
-            {recentEvents.length === 0 ? (
+            {recentUnifiedEvents.length === 0 ? (
               <div className="py-12 text-center text-xs text-slate-500 space-y-1">
                 <Clock className="w-5 h-5 mx-auto text-slate-600 mb-2" />
-                <p className="font-semibold text-slate-400">Chưa có sự kiện click thời gian thực</p>
-                <p>Các lượt click mới sẽ hiển thị tại đây với đầy đủ nguồn và thiết bị.</p>
+                <p className="font-semibold text-slate-400">Chưa có sự kiện click hoặc view post thời gian thực</p>
+                <p>Các lượt view post và click mới sẽ hiển thị tại đây với đầy đủ nguồn và thiết bị.</p>
               </div>
             ) : (
-              recentEvents.map((evt) => {
+              recentUnifiedEvents.map((evt) => {
                 const timeAgo = new Date(evt.timestamp).toLocaleTimeString('vi-VN', {
                   hour: '2-digit',
                   minute: '2-digit',
                   second: '2-digit',
                 });
 
+                if (evt.eventType === 'post_view') {
+                  return (
+                    <div key={evt.id} className="pt-2.5 space-y-1 text-xs">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-1.5 min-w-0">
+                          <span className="px-1.5 py-0.5 rounded bg-indigo-500/20 text-indigo-300 font-mono font-bold text-[10px] shrink-0">
+                            POST VIEW
+                          </span>
+                          <span className="font-semibold text-slate-200 truncate">{evt.projectName}</span>
+                        </div>
+                        <span className="text-[10px] text-slate-500 font-mono shrink-0">{timeAgo}</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-[11px] text-slate-400">
+                        <span className="px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 font-mono truncate max-w-[120px]">
+                          /project/{evt.projectId}
+                        </span>
+                        <span className="flex items-center gap-1 shrink-0">
+                          {evt.device_type === 'mobile' ? (
+                            <Smartphone className="w-3 h-3 text-purple-400" />
+                          ) : (
+                            <Laptop className="w-3 h-3 text-sky-400" />
+                          )}
+                          <span className="capitalize">{evt.device_type}</span>
+                        </span>
+                      </div>
+                    </div>
+                  );
+                }
+
                 return (
                   <div key={evt.id} className="pt-2.5 space-y-1 text-xs">
                     <div className="flex items-center justify-between">
-                      <span className="font-mono font-bold text-teal-300">/r/{evt.slug}</span>
+                      <div className="flex items-center gap-1.5">
+                        <span className="px-1.5 py-0.5 rounded bg-teal-500/20 text-teal-300 font-mono font-bold text-[10px]">
+                          CLICK
+                        </span>
+                        <span className="font-mono font-bold text-teal-300">/r/{evt.slug}</span>
+                      </div>
                       <span className="text-[10px] text-slate-500 font-mono">{timeAgo}</span>
                     </div>
                     <div className="flex items-center gap-2 text-[11px] text-slate-400">
@@ -712,6 +874,7 @@ export const AdminAnalytics: React.FC = () => {
           </div>
         </div>
       </div>
+
 
       {/* ─── Executive Report Modal ─── */}
       <AnimatePresence>

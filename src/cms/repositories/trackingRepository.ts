@@ -1,9 +1,21 @@
 import { supabase, isSupabaseConfigured } from '../../lib/supabase';
 import type { TrackingLink } from '../types/cms.types';
 import { UTM_PRESETS } from '../../lib/utm';
+import { PROJECT_NAME_MAP } from '../../utils/analytics';
 
 const STORAGE_KEY = 'portfolio_tracking_links_cache';
 export const EVENTS_STORAGE_KEY = 'portfolio_tracking_events_cache';
+export const POST_VIEWS_STORAGE_KEY = 'portfolio_post_views_cache';
+
+export interface PostViewEvent {
+  id: string;
+  projectId: string;
+  projectName: string;
+  timestamp: string;
+  device_type: 'desktop' | 'mobile' | 'tablet';
+  referrer?: string;
+  landingVariant?: 'A' | 'B';
+}
 
 export interface ClickEvent {
   id: string;
@@ -91,6 +103,91 @@ export function clearLocalClickEvents(): void {
     console.warn('[trackingRepository] Failed to clear click events:', err);
   }
 }
+
+/**
+ * Reads locally cached post view events.
+ */
+export function getLocalPostViewEvents(): PostViewEvent[] {
+  if (typeof window === 'undefined') return [];
+  try {
+    const raw = localStorage.getItem(POST_VIEWS_STORAGE_KEY);
+    if (!raw) return [];
+    const parsed = JSON.parse(raw);
+    return Array.isArray(parsed) ? parsed : [];
+  } catch (err) {
+    console.warn('[trackingRepository] Failed to read local post view events:', err);
+    return [];
+  }
+}
+
+/**
+ * Saves a new post view event to local cache (capped at 500 recent events).
+ */
+export function recordPostViewEvent(event: PostViewEvent): void {
+  if (typeof window === 'undefined') return;
+  try {
+    const current = getLocalPostViewEvents();
+    const updated = [event, ...current].slice(0, 500);
+    localStorage.setItem(POST_VIEWS_STORAGE_KEY, JSON.stringify(updated));
+  } catch (err) {
+    console.warn('[trackingRepository] Failed to record post view event:', err);
+  }
+}
+
+/**
+ * Clears all post view events from local cache.
+ */
+export function clearLocalPostViewEvents(): void {
+  if (typeof window === 'undefined') return;
+  try {
+    localStorage.removeItem(POST_VIEWS_STORAGE_KEY);
+  } catch (err) {
+    console.warn('[trackingRepository] Failed to clear post view events:', err);
+  }
+}
+
+/**
+ * Records a first-party view for a case study project.
+ */
+export function recordPostView(
+  projectId: string,
+  projectName?: string,
+  landingVariant?: 'A' | 'B'
+): PostViewEvent {
+  const normalizedId = projectId.trim().toLowerCase();
+  const resolvedName = projectName || PROJECT_NAME_MAP[normalizedId] || projectId;
+  const timestamp = new Date().toISOString();
+  const device = detectDeviceType();
+  const referrer = typeof document !== 'undefined' ? document.referrer || undefined : undefined;
+
+  const event: PostViewEvent = {
+    id: `pve-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
+    projectId: normalizedId,
+    projectName: resolvedName,
+    timestamp,
+    device_type: device,
+    referrer,
+    landingVariant,
+  };
+
+  recordPostViewEvent(event);
+  return event;
+}
+
+/**
+ * Computes a mapping of projectId -> total views count.
+ */
+export function getProjectViewsMap(): Record<string, number> {
+  const events = getLocalPostViewEvents();
+  const map: Record<string, number> = {};
+  for (const ev of events) {
+    if (ev.projectId) {
+      map[ev.projectId] = (map[ev.projectId] || 0) + 1;
+    }
+  }
+  return map;
+}
+
 
 /**
  * Reads locally cached tracking links or defaults with zero-mock migration.
@@ -397,6 +494,7 @@ export async function resetAllTrackingStats(): Promise<boolean> {
   }));
   saveLocalCachedTrackingLinks(resetList);
   clearLocalClickEvents();
+  clearLocalPostViewEvents();
 
   if (!isSupabaseConfigured) {
     return true;
