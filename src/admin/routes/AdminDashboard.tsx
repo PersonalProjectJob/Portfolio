@@ -28,6 +28,8 @@ import {
   getLocalPostViewEvents,
   syncPostViewsFromSupabase,
 } from '../../cms/repositories/trackingRepository';
+import { getLocalCachedProjects } from '../../cms/repositories/projectRepository';
+import { getLocalMediaAssets } from '../../cms/repositories/mediaRepository';
 
 interface DashboardStats {
   totalProjects: number;
@@ -56,17 +58,21 @@ interface AdminDashboardProps {
 export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigate }) => {
   const { isLightMode } = useStore();
   const [stats, setStats] = useState<DashboardStats>(() => {
+    const localProjects = getLocalCachedProjects();
+    const totalProjects = localProjects.length || CV_PROJECTS.length;
+    const publishedProjects = localProjects.filter((p) => p.status === 'published').length;
+    const draftProjects = localProjects.filter((p) => p.status === 'draft').length;
     const localLinks = getLocalCachedTrackingLinks();
     const realTotalClicks = localLinks.reduce((sum, l) => sum + (l.clicks_count || 0), 0);
     const realTotalPostViews = getLocalPostViewEvents().length;
     return {
-      totalProjects: CV_PROJECTS.length,
-      publishedProjects: CV_PROJECTS.length - 1,
-      draftProjects: 1,
+      totalProjects,
+      publishedProjects,
+      draftProjects,
       totalTrackingLinks: localLinks.length || Object.keys(UTM_PRESETS).length,
       totalClicks: realTotalClicks,
       totalPostViews: realTotalPostViews,
-      totalMediaAssets: 24,
+      totalMediaAssets: getLocalMediaAssets().length,
     };
   });
 
@@ -88,7 +94,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigate }) =>
 
   const [activities] = useState<ActivityItem[]>(() => {
     const postViews = getLocalPostViewEvents();
-    const liveViewActivities: ActivityItem[] = postViews.slice(0, 3).map((pv, idx) => ({
+    const liveViewActivities: ActivityItem[] = postViews.slice(0, 5).map((pv, idx) => ({
       id: `pve-act-${pv.id || idx}`,
       type: 'info' as const,
       title: `Case Study Viewed: ${pv.projectName}`,
@@ -98,45 +104,28 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigate }) =>
       actionRoute: '/admin/analytics',
     }));
 
-    return [
-      ...liveViewActivities,
+    const systemIndicators: ActivityItem[] = [
       {
-        id: 'act-1',
-        type: 'warning',
-        title: 'Missing OG Meta Image',
-        description: 'Project "CryptoMap360" is missing a designated social share image.',
-        time: '15 mins ago',
-        actionText: 'Add Image',
-        actionRoute: '/admin/content',
-      },
-      {
-        id: 'act-2',
-        type: 'warning',
-        title: 'Vietnamese Translation Incomplete',
-        description: 'Project "Sync Task Badge" has 2 untranslated paragraphs in VI locale.',
-        time: '1 hour ago',
-        actionText: 'Translate',
-        actionRoute: '/admin/content',
-      },
-      {
-        id: 'act-3',
-        type: 'info',
-        title: 'New Recruiter Inbound Traffic',
-        description: 'UTM link "recruiter_email" received inbound clicks.',
-        time: '3 hours ago',
-        actionText: 'View Links',
-        actionRoute: '/admin/distribution',
-      },
-      {
-        id: 'act-4',
+        id: 'sys-1',
         type: 'success',
-        title: 'Schema & Storage Synced',
-        description: 'Supabase RLS tables and Edge caching configured for sub-second latency.',
-        time: 'Just now',
-        actionText: 'Check DB',
+        title: 'Supabase Cloud Database Online',
+        description: 'Core tables (content, settings, media, tracking, analytics) active and verified.',
+        time: 'Live',
+        actionText: 'Settings',
         actionRoute: '/admin/settings',
       },
+      {
+        id: 'sys-2',
+        type: 'info',
+        title: 'Published Case Studies Ready',
+        description: 'Multi-format ingestion pipeline (TSX, Markdown, PDF, Builder) healthy.',
+        time: 'Current',
+        actionText: 'Content Hub',
+        actionRoute: '/admin/content',
+      },
     ];
+
+    return [...liveViewActivities, ...systemIndicators];
   });
 
 
@@ -172,12 +161,12 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigate }) =>
           const totalClicks = links.reduce((acc, curr) => acc + (curr.clicks_count || 0), 0);
           setStats((prev) => ({
             ...prev,
-            totalProjects: projectCount || prev.totalProjects,
-            publishedProjects: pubCount ?? prev.publishedProjects,
-            draftProjects: (projectCount ?? prev.totalProjects) - (pubCount ?? prev.publishedProjects),
-            totalTrackingLinks: links.length || prev.totalTrackingLinks,
+            totalProjects: projectCount > 0 ? projectCount : prev.totalProjects,
+            publishedProjects: projectCount > 0 && pubCount !== null ? pubCount : prev.publishedProjects,
+            draftProjects: projectCount > 0 ? Math.max(0, projectCount - (pubCount ?? 0)) : prev.draftProjects,
+            totalTrackingLinks: links.length > 0 ? links.length : prev.totalTrackingLinks,
             totalClicks: totalClicks > 0 ? totalClicks : prev.totalClicks,
-            totalMediaAssets: mediaCount ?? prev.totalMediaAssets,
+            totalMediaAssets: mediaCount !== null && mediaCount > 0 ? mediaCount : prev.totalMediaAssets,
           }));
         }
       } catch (err) {

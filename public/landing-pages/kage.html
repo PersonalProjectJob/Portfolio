@@ -5780,8 +5780,20 @@ function renderFilteredCards(filter) {
   const currentFilter = activeCategoryFilter || 'all';
 
   const matchingCards = allOriginalCards.filter(card => {
+    const questId = card.getAttribute('data-project-id') || (card.getAttribute('onclick') || '').match(/questId:\s*['"]([^'"]+)['"]/)?.[1];
+    const proj = Array.isArray(cachedProjects) ? cachedProjects.find(p => p.id === questId || p.slug === questId) : null;
+    if (proj && proj.status === 'draft') return false;
+
     if (currentFilter === 'all') return true;
     return card.getAttribute('data-category') === currentFilter;
+  });
+
+  // Dynamically update card numbering for visible cards
+  matchingCards.forEach((card, idx) => {
+    const metaNum = card.querySelector('.card-meta span:last-child');
+    if (metaNum) {
+      metaNum.textContent = `${String(idx + 1).padStart(2, '0')} / ${String(matchingCards.length).padStart(2, '0')}`;
+    }
   });
 
   // Clear existing track
@@ -6045,7 +6057,10 @@ function applyDynamicProfile(settings, projects, lang) {
 
     const statsEls = document.querySelectorAll('#gate .gate-stats div');
     if (statsEls && statsEls.length >= 4) {
-      const projCount = (cachedProjects && cachedProjects.length) ? `${cachedProjects.length}+` : '10+';
+      const publishedCount = (cachedProjects && Array.isArray(cachedProjects))
+        ? cachedProjects.filter(p => p.status !== 'draft').length
+        : 10;
+      const projCount = `${publishedCount}+`;
       statsEls[0].querySelector('b').textContent = '3+';
       statsEls[1].querySelector('b').textContent = projCount;
       statsEls[2].querySelector('b').textContent = '100%';

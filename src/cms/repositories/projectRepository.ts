@@ -122,7 +122,10 @@ export async function fetchProjects(filter?: ProjectFilter): Promise<ContentEntr
         title: typeof p.title === 'string' ? { en: p.title, vi: p.title } : p.title,
         summary: typeof p.summary === 'string' ? { en: p.summary, vi: p.summary } : p.summary,
       }));
-      saveLocalCachedProjects(formatted);
+      // Only cache locally if fetching unfiltered list, to avoid replacing full cache with a subset
+      if (!filter || ((!filter.status || filter.status === 'all') && (!filter.category || filter.category === 'all') && !filter.search)) {
+        saveLocalCachedProjects(formatted);
+      }
       return formatted;
     }
 
