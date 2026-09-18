@@ -22,9 +22,11 @@ import { parseMarkdownFile } from '../cms/parsers/markdownParser';
 import type { ContentEntry } from '../cms/types/cms.types';
 import { useStore } from '../store/useStore';
 import { useProjectBySlug } from '../cms/hooks/useProjects';
+import { useAdminAuth } from '../admin/hooks/useAdminAuth';
 
 export const ProjectRoute: React.FC<{ slug?: string }> = ({ slug: propSlug }) => {
   const { isLightMode, setGameState, selectedQuest } = useStore();
+  const { isAuthenticated } = useAdminAuth();
 
   const slug = useMemo(() => {
     if (propSlug) return propSlug;
@@ -129,16 +131,49 @@ export const ProjectRoute: React.FC<{ slug?: string }> = ({ slug: propSlug }) =>
     return <LoadingSkeleton />;
   }
 
+  // If project is in draft mode and visitor is not authenticated admin, show private draft notice
+  if (projectEntry && projectEntry.status === 'draft' && !isAuthenticated) {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-[75vh] p-8 text-center">
+        <div className="w-16 h-16 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center mb-6">
+          <AlertCircle className="w-8 h-8" />
+        </div>
+        <h2 className="text-2xl font-bold text-slate-100 mb-2">Dự án đang trong giai đoạn Bản nháp</h2>
+        <p className="text-slate-400 text-sm max-w-md mb-6">
+          Case study này hiện đang được biên tập và chưa được công khai chính thức. Vui lòng quay lại sau.
+        </p>
+        <button
+          onClick={handleBackToPortfolio}
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-slate-800 hover:bg-slate-700 text-white font-medium text-sm transition-all border border-slate-700"
+        >
+          <ArrowLeft className="w-4 h-4" />
+          Quay lại danh mục dự án
+        </button>
+      </div>
+    );
+  }
+
+  const draftBanner = projectEntry?.status === 'draft' && isAuthenticated ? (
+    <div className="sticky top-0 z-[110] bg-amber-500/20 border-b border-amber-500/30 text-amber-300 text-xs px-4 py-2 flex items-center justify-between backdrop-blur-md">
+      <span className="font-semibold flex items-center gap-1.5">
+        <AlertCircle className="w-3.5 h-3.5 text-amber-400" />
+        Chế độ xem trước Admin: Dự án đang ở trạng thái Bản nháp (Draft)
+      </span>
+      <span className="text-[11px] opacity-75 hidden sm:inline">Chỉ hiển thị với Admin đã đăng nhập</span>
+    </div>
+  ) : null;
 
   // ─── Mode 1: Dynamic Atomic Visual Canvas Builder Mode ───
   if (renderMode === 'builder' && projectEntry) {
     return (
-      <ErrorBoundary
-        fallback={
-          <div className="flex flex-col items-center justify-center min-h-[70vh] p-8 text-center">
-            <div className="w-16 h-16 rounded-2xl bg-rose-500/10 border border-rose-500/20 text-rose-400 flex items-center justify-center mb-6">
-              <AlertCircle className="w-8 h-8" />
-            </div>
+      <>
+        {draftBanner}
+        <ErrorBoundary
+          fallback={
+            <div className="flex flex-col items-center justify-center min-h-[70vh] p-8 text-center">
+              <div className="w-16 h-16 rounded-2xl bg-rose-500/10 border border-rose-500/20 text-rose-400 flex items-center justify-center mb-6">
+                <AlertCircle className="w-8 h-8" />
+              </div>
             <h2 className="text-2xl font-bold text-slate-100 mb-2">Error Loading Visual Case Study</h2>
             <p className="text-slate-400 text-sm max-w-md mb-6">
               We encountered an unexpected error while rendering this atomic visual case study.
@@ -158,6 +193,7 @@ export const ProjectRoute: React.FC<{ slug?: string }> = ({ slug: propSlug }) =>
           onBack={handleBackToPortfolio}
         />
       </ErrorBoundary>
+      </>
     );
   }
 
@@ -167,32 +203,35 @@ export const ProjectRoute: React.FC<{ slug?: string }> = ({ slug: propSlug }) =>
       (projectEntry as { rawMarkdown?: string })?.rawMarkdown || SAMPLE_MARKDOWN_CASE_STUDY;
 
     return (
-      <ErrorBoundary
-        fallback={
-          <div className="flex flex-col items-center justify-center min-h-[70vh] p-8 text-center">
-            <div className="w-16 h-16 rounded-2xl bg-rose-500/10 border border-rose-500/20 text-rose-400 flex items-center justify-center mb-6">
-              <AlertCircle className="w-8 h-8" />
+      <>
+        {draftBanner}
+        <ErrorBoundary
+          fallback={
+            <div className="flex flex-col items-center justify-center min-h-[70vh] p-8 text-center">
+              <div className="w-16 h-16 rounded-2xl bg-rose-500/10 border border-rose-500/20 text-rose-400 flex items-center justify-center mb-6">
+                <AlertCircle className="w-8 h-8" />
+              </div>
+              <h2 className="text-2xl font-bold text-slate-100 mb-2">Error Loading Markdown Case Study</h2>
+              <p className="text-slate-400 text-sm max-w-md mb-6">
+                Failed to parse or render markdown case study content.
+              </p>
+              <button
+                onClick={handleBackToPortfolio}
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-orange-600 hover:bg-orange-500 text-white font-medium text-sm transition-all"
+              >
+                <ArrowLeft className="w-4 h-4" />
+                Back to Projects
+              </button>
             </div>
-            <h2 className="text-2xl font-bold text-slate-100 mb-2">Error Loading Markdown Case Study</h2>
-            <p className="text-slate-400 text-sm max-w-md mb-6">
-              Failed to parse or render markdown case study content.
-            </p>
-            <button
-              onClick={handleBackToPortfolio}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-orange-600 hover:bg-orange-500 text-white font-medium text-sm transition-all"
-            >
-              <ArrowLeft className="w-4 h-4" />
-              Back to Projects
-            </button>
-          </div>
-        }
-      >
-        <MarkdownCaseStudyRenderer
-          content={rawMarkdownContent}
-          entry={projectEntry}
-          onBack={handleBackToPortfolio}
-        />
-      </ErrorBoundary>
+          }
+        >
+          <MarkdownCaseStudyRenderer
+            content={rawMarkdownContent}
+            entry={projectEntry}
+            onBack={handleBackToPortfolio}
+          />
+        </ErrorBoundary>
+      </>
     );
   }
 
@@ -205,34 +244,37 @@ export const ProjectRoute: React.FC<{ slug?: string }> = ({ slug: propSlug }) =>
     };
 
     return (
-      <ErrorBoundary
-        fallback={
-          <div className="flex flex-col items-center justify-center min-h-[70vh] p-8 text-center">
-            <div className="w-16 h-16 rounded-2xl bg-rose-500/10 border border-rose-500/20 text-rose-400 flex items-center justify-center mb-6">
-              <AlertCircle className="w-8 h-8" />
+      <>
+        {draftBanner}
+        <ErrorBoundary
+          fallback={
+            <div className="flex flex-col items-center justify-center min-h-[70vh] p-8 text-center">
+              <div className="w-16 h-16 rounded-2xl bg-rose-500/10 border border-rose-500/20 text-rose-400 flex items-center justify-center mb-6">
+                <AlertCircle className="w-8 h-8" />
+              </div>
+              <h2 className="text-2xl font-bold text-slate-100 mb-2">Error Loading Presentation Deck</h2>
+              <p className="text-slate-400 text-sm max-w-md mb-6">
+                We were unable to load the PDF presentation deck.
+              </p>
+              <button
+                onClick={handleBackToPortfolio}
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-orange-600 hover:bg-orange-500 text-white font-medium text-sm transition-all"
+              >
+                <ArrowLeft className="w-4 h-4" />
+                Back to Projects
+              </button>
             </div>
-            <h2 className="text-2xl font-bold text-slate-100 mb-2">Error Loading Presentation Deck</h2>
-            <p className="text-slate-400 text-sm max-w-md mb-6">
-              We were unable to load the PDF presentation deck.
-            </p>
-            <button
-              onClick={handleBackToPortfolio}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-orange-600 hover:bg-orange-500 text-white font-medium text-sm transition-all"
-            >
-              <ArrowLeft className="w-4 h-4" />
-              Back to Projects
-            </button>
-          </div>
-        }
-      >
-        <PdfDeckCaseStudyRenderer
-          entry={projectEntry}
-          pdfUrl={pdfData?.pdfUrl}
-          slides={pdfData?.slides}
-          totalSlides={pdfData?.totalSlides}
-          onBack={handleBackToPortfolio}
-        />
-      </ErrorBoundary>
+          }
+        >
+          <PdfDeckCaseStudyRenderer
+            entry={projectEntry}
+            pdfUrl={pdfData?.pdfUrl}
+            slides={pdfData?.slides}
+            totalSlides={pdfData?.totalSlides}
+            onBack={handleBackToPortfolio}
+          />
+        </ErrorBoundary>
+      </>
     );
   }
 
@@ -242,30 +284,33 @@ export const ProjectRoute: React.FC<{ slug?: string }> = ({ slug: propSlug }) =>
 
   if (LegacyComponent) {
     return (
-      <ErrorBoundary
-        fallback={
-          <div className="flex flex-col items-center justify-center min-h-[70vh] p-8 text-center">
-            <div className="w-16 h-16 rounded-2xl bg-rose-500/10 border border-rose-500/20 text-rose-400 flex items-center justify-center mb-6">
-              <AlertCircle className="w-8 h-8" />
+      <>
+        {draftBanner}
+        <ErrorBoundary
+          fallback={
+            <div className="flex flex-col items-center justify-center min-h-[70vh] p-8 text-center">
+              <div className="w-16 h-16 rounded-2xl bg-rose-500/10 border border-rose-500/20 text-rose-400 flex items-center justify-center mb-6">
+                <AlertCircle className="w-8 h-8" />
+              </div>
+              <h2 className="text-2xl font-bold text-slate-100 mb-2">Error Loading Case Study</h2>
+              <p className="text-slate-400 text-sm max-w-md mb-6">
+                We encountered an unexpected error while rendering this case study.
+              </p>
+              <button
+                onClick={handleBackToPortfolio}
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-orange-600 hover:bg-orange-500 text-white font-medium text-sm transition-all shadow-lg shadow-orange-600/20"
+              >
+                <ArrowLeft className="w-4 h-4" />
+                Back to Projects
+              </button>
             </div>
-            <h2 className="text-2xl font-bold text-slate-100 mb-2">Error Loading Case Study</h2>
-            <p className="text-slate-400 text-sm max-w-md mb-6">
-              We encountered an unexpected error while rendering this case study.
-            </p>
-            <button
-              onClick={handleBackToPortfolio}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-orange-600 hover:bg-orange-500 text-white font-medium text-sm transition-all shadow-lg shadow-orange-600/20"
-            >
-              <ArrowLeft className="w-4 h-4" />
-              Back to Projects
-            </button>
-          </div>
-        }
-      >
-        <Suspense fallback={<LoadingSkeleton />}>
-          <LegacyComponent />
-        </Suspense>
-      </ErrorBoundary>
+          }
+        >
+          <Suspense fallback={<LoadingSkeleton />}>
+            <LegacyComponent />
+          </Suspense>
+        </ErrorBoundary>
+      </>
     );
   }
 

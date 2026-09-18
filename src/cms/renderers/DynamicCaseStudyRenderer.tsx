@@ -150,8 +150,10 @@ export const DynamicCaseStudyRenderer: React.FC<DynamicCaseStudyRendererProps> =
     }
   }, []);
 
-  // Compute Next / Previous Project for bottom navigation
-  const projectList = allProjects.length > 0 ? allProjects : DEFAULT_PROJECT_ENTRIES;
+  // Compute Next / Previous Project for bottom navigation (excluding drafts)
+  const projectList = (allProjects.length > 0 ? allProjects : DEFAULT_PROJECT_ENTRIES).filter(
+    (p) => p.status !== 'draft'
+  );
   const currentIndex = projectList.findIndex((p) => p.slug === project.slug || p.id === project.id);
   const prevProject = currentIndex > 0 ? projectList[currentIndex - 1] : null;
   const nextProject = currentIndex >= 0 && currentIndex < projectList.length - 1 ? projectList[currentIndex + 1] : null;

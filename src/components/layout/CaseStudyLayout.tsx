@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useStore } from '../../store/useStore';
 import { CV_PROJECTS } from '../../data/cvData';
@@ -8,6 +8,7 @@ import { useT } from '../../i18n/useT';
 import { trackEvent, trackProjectView, PROJECT_NAME_MAP } from '../../utils/analytics';
 import { initUxTelemetry, observeSection, destroyUxTelemetry } from '../../lib/uxTelemetry';
 import { recordPostView } from '../../cms/repositories/trackingRepository';
+import { getLocalCachedProjects } from '../../cms/repositories/projectRepository';
 
 interface CaseStudyLayoutProps {
   children: React.ReactNode;
@@ -90,14 +91,24 @@ export const CaseStudyLayout: React.FC<CaseStudyLayoutProps> = ({ children }) =>
     text: isLightMode ? 'text-slate-800' : 'text-slate-100',
   };
 
-  // Determine prev/next projects (with looping)
-  const currentIndex = CV_PROJECTS.findIndex(p => p.id === selectedQuest);
-  const currentProject = CV_PROJECTS[currentIndex];
-  const prevProject = currentIndex >= 0 
-    ? CV_PROJECTS[(currentIndex - 1 + CV_PROJECTS.length) % CV_PROJECTS.length] 
+  // Determine prev/next projects (with looping, filtering out drafts)
+  const availableProjects = useMemo(() => {
+    try {
+      const local = getLocalCachedProjects();
+      const draftIds = new Set(local.filter(p => p.status === 'draft').map(p => p.id || p.slug));
+      return CV_PROJECTS.filter(p => !draftIds.has(p.id));
+    } catch {
+      return CV_PROJECTS;
+    }
+  }, []);
+
+  const currentIndex = availableProjects.findIndex(p => p.id === selectedQuest);
+  const currentProject = currentIndex >= 0 ? availableProjects[currentIndex] : CV_PROJECTS.find(p => p.id === selectedQuest);
+  const prevProject = currentIndex >= 0 && availableProjects.length > 1
+    ? availableProjects[(currentIndex - 1 + availableProjects.length) % availableProjects.length] 
     : null;
-  const nextProject = currentIndex >= 0 
-    ? CV_PROJECTS[(currentIndex + 1) % CV_PROJECTS.length] 
+  const nextProject = currentIndex >= 0 && availableProjects.length > 1
+    ? availableProjects[(currentIndex + 1) % availableProjects.length] 
     : null;
 
   return (
