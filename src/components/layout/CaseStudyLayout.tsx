@@ -38,13 +38,21 @@ export const CaseStudyLayout: React.FC<CaseStudyLayoutProps> = ({ children }) =>
     if (currentProjectId && currentProjectId !== 'kage') {
       initUxTelemetry({ pageSlug: currentProjectId });
 
-      const timer = setTimeout(() => {
-        const sections = document.querySelectorAll('[data-ux-section], main > section, article > section');
+      const attachSections = () => {
+        const sections = document.querySelectorAll(
+          '[data-ux-section], .custom-scrollbar section, section, main > section, article > section'
+        );
         sections.forEach((el, idx) => {
           const sectionId = el.getAttribute('data-ux-section') || el.id || `section_${idx}`;
           observeSection(el, sectionId, idx);
         });
-      }, 350);
+      };
+
+      // Initial immediate attach
+      attachSections();
+
+      // Fallback delay to catch Framer Motion / lazy DOM children
+      const timer = setTimeout(attachSections, 350);
 
       return () => {
         clearTimeout(timer);

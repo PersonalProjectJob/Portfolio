@@ -7,6 +7,7 @@ export type UxFrictionType = 'rage_click' | 'dead_click' | 'rapid_backtrack';
 export interface UxSession {
   id: string;
   sessionToken: string;
+  pageSlug?: string;
   deviceType: UxDeviceType;
   viewportWidth: number;
   viewportHeight: number;
@@ -18,6 +19,22 @@ export interface UxSession {
   readerType: UxReaderType;
   createdAt: number;
   updatedAt: number;
+}
+
+export interface DailyUxRollup {
+  id: string;
+  dateString: string; // YYYY-MM-DD
+  pageSlug: string;
+  projectName: string;
+  totalReaders: number;
+  avgDwellSeconds: number;
+  completionRate: number;
+  uxGrade: 'A+' | 'A' | 'B' | 'C' | 'D';
+  frictionAlertsCount: number;
+  skimmerPct: number;
+  scannerPct: number;
+  deepReaderPct: number;
+  rollupTimestamp: number; // 00:01 AM timestamp
 }
 
 export interface UxSectionDwell {

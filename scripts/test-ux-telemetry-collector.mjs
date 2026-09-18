@@ -28,6 +28,8 @@ runTest('1. Types module defines UxSession, UxSectionDwell, and UxFrictionEvent'
   const content = fs.readFileSync(typesFile, 'utf8');
 
   assert.ok(content.includes('export interface UxSession'), 'UxSession interface must be exported');
+  assert.ok(content.includes('pageSlug?: string'), 'UxSession must have pageSlug property');
+  assert.ok(content.includes('export interface DailyUxRollup'), 'DailyUxRollup interface must be exported');
   assert.ok(content.includes('export interface UxSectionDwell'), 'UxSectionDwell must be exported');
   assert.ok(content.includes('export interface UxFrictionEvent'), 'UxFrictionEvent must be exported');
   assert.ok(content.includes('export type UxReaderType'), 'UxReaderType must be exported');
@@ -35,27 +37,31 @@ runTest('1. Types module defines UxSession, UxSectionDwell, and UxFrictionEvent'
 });
 
 // ─── Test 2: Collector Module Logic & Dwell Calculation ───
-runTest('2. Collector implements IntersectionObserver and Rage Click algorithms', () => {
+runTest('2. Collector implements IntersectionObserver, Active 60s Pulse, and Rage Click algorithms', () => {
   const collectorFile = path.resolve('src/lib/uxTelemetry/collector.ts');
   assert.ok(fs.existsSync(collectorFile), 'collector.ts must exist');
   const content = fs.readFileSync(collectorFile, 'utf8');
 
   assert.ok(content.includes('detectUxDevice'), 'detectUxDevice helper must be defined');
   assert.ok(content.includes('IntersectionObserver'), 'IntersectionObserver must be utilized for section visibility');
+  assert.ok(content.includes('setupActiveHeartbeat'), 'setupActiveHeartbeat must be implemented for 60s pulse');
+  assert.ok(content.includes('setupVisibilityGuard'), 'setupVisibilityGuard must pause dwell when tab is hidden');
   assert.ok(content.includes('setupRageClickDetection'), 'setupRageClickDetection must track rapid consecutive clicks');
   assert.ok(content.includes('setupScrollDepthTracking'), 'setupScrollDepthTracking must track max scroll depth');
   assert.ok(content.includes('recordSectionDwell'), 'recordSectionDwell must record section enter/exit dwell time');
   assert.ok(content.includes('recordFrictionEvent'), 'recordFrictionEvent must capture rage clicks');
 });
 
-// ─── Test 3: Dispatcher Persistence & Reset ───
-runTest('3. Dispatcher handles event queuing, localStorage buffer, and flush', () => {
+// ─── Test 3: Dispatcher Persistence, 7-Day TTL Pruning & Emergency Eviction ───
+runTest('3. Dispatcher handles compact upsert, 7-day TTL pruning, and emergency eviction', () => {
   const dispatcherFile = path.resolve('src/lib/uxTelemetry/dispatcher.ts');
   assert.ok(fs.existsSync(dispatcherFile), 'dispatcher.ts must exist');
   const content = fs.readFileSync(dispatcherFile, 'utf8');
 
   assert.ok(content.includes('portfolio_ux_events_v1'), 'Must use portfolio_ux_events_v1 storage key');
   assert.ok(content.includes('portfolio_ux_sessions_v1'), 'Must use portfolio_ux_sessions_v1 storage key');
+  assert.ok(content.includes('SEVEN_DAYS_MS'), 'Must define 7-day TTL window');
+  assert.ok(content.includes('emergencyPrune'), 'Must implement emergency eviction guard for storage quotas');
   assert.ok(content.includes('enqueue(event'), 'enqueue method must exist');
   assert.ok(content.includes('flush()'), 'flush method must exist');
   assert.ok(content.includes('reset()'), 'reset method must exist to clear telemetry');
@@ -77,7 +83,6 @@ runTest('4. index.ts exports public API: initUxTelemetry, observeSection, resetU
 
 // ─── Test 5: Algorithmic Simulation of Rage Click and Dwell Time ───
 runTest('5. Rage click detection algorithm correctly clusters rapid consecutive clicks', () => {
-  // Simulate 3 clicks within 500ms in 15px radius
   const clicks = [
     { x: 100, y: 150, time: 1000 },
     { x: 105, y: 152, time: 1200 },
@@ -91,7 +96,6 @@ runTest('5. Rage click detection algorithm correctly clusters rapid consecutive 
 
   assert.ok(isCluster, 'Consecutive clicks within 35px radius and 700ms should trigger rage click cluster');
 
-  // Verify non-clustered clicks do not trigger
   const scatteredClicks = [
     { x: 100, y: 150, time: 1000 },
     { x: 300, y: 450, time: 1200 },
@@ -100,6 +104,25 @@ runTest('5. Rage click detection algorithm correctly clusters rapid consecutive 
     (c) => Math.hypot(c.x - first.x, c.y - first.y) <= 35
   );
   assert.strictEqual(isScattered, false, 'Scattered clicks must not be classified as rage click');
+});
+
+// ─── Test 6: 7-Day TTL Pruning Algorithm ───
+runTest('6. 7-Day TTL pruning correctly filters out events older than 7 days', () => {
+  const now = Date.now();
+  const SEVEN_DAYS_MS = 7 * 24 * 60 * 60 * 1000;
+  const cutoff = now - SEVEN_DAYS_MS;
+
+  const mockEvents = [
+    { id: '1', timestamp: now - 1000 }, // fresh
+    { id: '2', timestamp: now - 3 * 24 * 60 * 60 * 1000 }, // 3 days old (keep)
+    { id: '3', timestamp: now - 8 * 24 * 60 * 60 * 1000 }, // 8 days old (prune)
+    { id: '4', timestamp: now - 30 * 24 * 60 * 60 * 1000 }, // 30 days old (prune)
+  ];
+
+  const pruned = mockEvents.filter((e) => e.timestamp >= cutoff);
+  assert.strictEqual(pruned.length, 2, 'Only events within 7 days must be retained');
+  assert.strictEqual(pruned[0].id, '1');
+  assert.strictEqual(pruned[1].id, '2');
 });
 
 console.log('\n================================================================');
