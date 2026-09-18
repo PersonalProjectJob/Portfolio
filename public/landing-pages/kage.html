@@ -2942,8 +2942,8 @@ const canvas = document.getElementById('gl');
    renders a frame wider than the phone shows and drops the right edge of the
    scene off-screen, which is how the wordmark lost its last letter. Every
    size, aspect and pointer mapping below goes through these. */
-const vpW = () => document.documentElement.clientWidth  || innerWidth;
-const vpH = () => document.documentElement.clientHeight || innerHeight;
+const vpW = () => Math.max(2, document.documentElement.clientWidth  || innerWidth || 0);
+const vpH = () => Math.max(2, document.documentElement.clientHeight || innerHeight || 0);
 let renderer, scene, camera, maxAniso = 1;
 const HI = qs('q', COARSE ? 'low' : 'high');
 const LOW = HI === 'low';
@@ -2963,7 +2963,7 @@ function initGL() {
      initial containing block, which is the very box that runs wide on a
      phone. Writing the CSS size in pixels pins the element to the layout
      viewport the buffer was built for. */
-  renderer.setSize(vpW(), vpH(), true);
+  renderer.setSize(Math.max(2, vpW()), Math.max(2, vpH()), true);
   renderer.outputEncoding = WANT_POST ? THREE.LinearEncoding : THREE.sRGBEncoding;
   renderer.toneMapping = WANT_POST ? THREE.NoToneMapping : THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.0;
@@ -4680,7 +4680,7 @@ function initPost() {
     blending: THREE.AdditiveBlending, transparent: true, depthTest: false, depthWrite: false
   });
   if (!WANT_POST) return;
-  const w = renderer.domElement.width, h = renderer.domElement.height;
+  const w = Math.max(2, renderer.domElement.width || vpW()), h = Math.max(2, renderer.domElement.height || vpH());
   const O = { minFilter: THREE.LinearFilter, magFilter: THREE.LinearFilter, type: THREE.HalfFloatType, depthBuffer: false, stencilBuffer: false };
   POST.scene = new THREE.WebGLRenderTarget(w, h, Object.assign({}, O, { depthBuffer: true, samples: LOW ? 0 : 2 }));
   let lw = Math.max(2, w >> 1), lh = Math.max(2, h >> 1);
@@ -4753,13 +4753,16 @@ function initPost() {
   });
 }
 function pass(mat, target, additive) {
+  if (target && (target.width <= 0 || target.height <= 0)) return;
   POST.quad.material = mat;
   renderer.setRenderTarget(target || null);
   if (!additive) renderer.clear(true, false, false);
   renderer.render(POST.qScene, POST.cam);
 }
 function renderPost() {
+  if (!POST.scene || POST.scene.width <= 0 || POST.scene.height <= 0) return;
   const L = POST.levels;
+  if (!L || !L.length) return;
   POST.bright.uniforms.tS.value = POST.scene.texture;
   pass(POST.bright, L[0].a);
   for (let i = 0; i < L.length; i++) {
@@ -5239,28 +5242,31 @@ function buildCards() {
    whichever surface we are actually drawing into, and re-bound to take. */
 const _push = new THREE.Vector3();
 function setRegion(rt, x, y, w, h) {
+  if (w <= 0 || h <= 0) return;
   if (rt) {
+    if (rt.width <= 0 || rt.height <= 0) return;
     const pr = renderer.getPixelRatio();
-    rt.viewport.set(x * pr, y * pr, w * pr, h * pr);
-    rt.scissor.set(x * pr, y * pr, w * pr, h * pr);
+    rt.viewport.set(Math.max(0, x * pr), Math.max(0, y * pr), Math.max(1, w * pr), Math.max(1, h * pr));
+    rt.scissor.set(Math.max(0, x * pr), Math.max(0, y * pr), Math.max(1, w * pr), Math.max(1, h * pr));
     rt.scissorTest = true;
     renderer.setRenderTarget(rt);
   } else {
-    renderer.setViewport(x, y, w, h);
-    renderer.setScissor(x, y, w, h);
+    renderer.setViewport(Math.max(0, x), Math.max(0, y), Math.max(1, w), Math.max(1, h));
+    renderer.setScissor(Math.max(0, x), Math.max(0, y), Math.max(1, w), Math.max(1, h));
     renderer.setScissorTest(true);
   }
 }
 function clearRegion(rt) {
   if (rt) {
-    rt.viewport.set(0, 0, rt.width, rt.height);
-    rt.scissor.set(0, 0, rt.width, rt.height);
+    if (rt.width <= 0 || rt.height <= 0) return;
+    rt.viewport.set(0, 0, Math.max(1, rt.width), Math.max(1, rt.height));
+    rt.scissor.set(0, 0, Math.max(1, rt.width), Math.max(1, rt.height));
     rt.scissorTest = false;
     renderer.setRenderTarget(rt);
   } else {
     renderer.setScissorTest(false);
-    renderer.setViewport(0, 0, vpW(), vpH());
-    renderer.setScissor(0, 0, vpW(), vpH());
+    renderer.setViewport(0, 0, Math.max(1, vpW()), Math.max(1, vpH()));
+    renderer.setScissor(0, 0, Math.max(1, vpW()), Math.max(1, vpH()));
   }
 }
 function cardBuffer(C, w, h) {
@@ -5310,7 +5316,7 @@ function renderCards(rt) {
   let drew = false;
   for (let i = 0; i < CARDS.length; i++) {
     const C = CARDS[i], r = C.el.getBoundingClientRect();
-    if (r.bottom < -40 || r.top > vpH() + 40 || r.width < 4) continue;
+    if (r.bottom < -40 || r.top > vpH() + 40 || r.width < 4 || r.height < 4) continue;
     if (cardAlpha(C.el) < .995) continue;
     /* a card carrying cloth has no background left of its own, so the blit
        would show through the fabric's rounded corners and past its edges */
@@ -5323,6 +5329,7 @@ function renderCards(rt) {
       drew = true; continue;
     }
     const buf = cardBuffer(C, r.width, r.height);
+    if (!buf || buf.width <= 0 || buf.height <= 0) continue;
     const u = C.cam.userData;
     if (C.dirty || Math.abs(u.push - u.want) > .002 || (FRAME + i * 7) % 24 === 0) {
       aimCard(C, r.width / r.height);
@@ -5346,12 +5353,12 @@ let running = false, tPrev = 0, clock = 0, fadeIn = 0;
 const INTRO = { t0: 0 };
 
 function resize() {
-  const w = vpW(), h = vpH();
+  const w = Math.max(2, vpW()), h = Math.max(2, vpH());
   document.documentElement.style.setProperty('--vw', w + 'px');
   renderer.setPixelRatio(Math.min(devicePixelRatio || 1, DPR_CAP) * PERF.scale);
   renderer.setSize(w, h, true);
   camera.aspect = w / h; camera.updateProjectionMatrix();
-  const pw = renderer.domElement.width, ph = renderer.domElement.height;
+  const pw = Math.max(2, renderer.domElement.width), ph = Math.max(2, renderer.domElement.height);
   if (WANT_POST && POST.scene) {
     POST.scene.setSize(pw, ph);
     POST.comp.uniforms.uRes.value.set(pw, ph);
@@ -5431,6 +5438,8 @@ function updateWorld(dt) {
 
 let FRAME = 0;
 function render() {
+  if (!renderer || renderer.domElement.width <= 0 || renderer.domElement.height <= 0) return;
+  if (WANT_POST && POST.scene && (POST.scene.width <= 0 || POST.scene.height <= 0)) return;
   FRAME++;
   renderer.setRenderTarget(WANT_POST ? POST.scene : null);
   renderer.clear(true, true, false);
