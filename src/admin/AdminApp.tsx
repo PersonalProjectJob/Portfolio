@@ -98,8 +98,13 @@ const NAV_ITEMS: NavItem[] = [
 ];
 
 export const AdminApp: React.FC = () => {
-  const { user, isAuthenticated, loading, signOut } = useAdminAuth();
+  const { user, isAuthenticated, loading, signOut, initAuth } = useAdminAuth();
   const { isLightMode, toggleTheme, setGameState } = useStore();
+
+  // Verify and initialize Supabase Auth session on mount
+  useEffect(() => {
+    initAuth();
+  }, [initAuth]);
   
   // Resolve initial admin route from URL
   const resolveInitialRoute = (): AdminRoute => {
@@ -287,6 +292,15 @@ export const AdminApp: React.FC = () => {
                 <div className={`pt-4 border-t space-y-3 ${
                   isLightMode ? 'border-slate-200' : 'border-slate-800/80'
                 }`}>
+                  {user?.email && (
+                    <div className={`px-3 py-2 rounded-xl border text-[11px] font-mono flex items-center justify-between gap-2 ${
+                      isLightMode ? 'bg-slate-50 border-slate-200 text-slate-600' : 'bg-slate-900/60 border-slate-800/80 text-slate-400'
+                    }`}>
+                      <span className="truncate" title={user.email}>{user.email}</span>
+                      <span className="text-[10px] uppercase font-bold text-teal-500 shrink-0">Admin</span>
+                    </div>
+                  )}
+
                   <button
                     type="button"
                     onClick={signOut}
@@ -365,9 +379,18 @@ export const AdminApp: React.FC = () => {
           </div>
 
           {/* Sidebar Bottom Footer: Public Link & Logout */}
-          <div className={`pt-4 border-t space-y-2 ${
+          <div className={`pt-4 border-t space-y-2.5 ${
             isLightMode ? 'border-slate-200' : 'border-slate-800/60'
           }`}>
+            {user?.email && (
+              <div className={`px-3 py-2 rounded-xl border text-[11px] font-mono flex items-center justify-between gap-2 ${
+                isLightMode ? 'bg-slate-50 border-slate-200 text-slate-600' : 'bg-slate-900/60 border-slate-800/80 text-slate-400'
+              }`}>
+                <span className="truncate" title={user.email}>{user.email}</span>
+                <span className="text-[10px] uppercase font-bold text-teal-500 shrink-0">Admin</span>
+              </div>
+            )}
+
             <a
               href="/"
               target="_blank"
