@@ -23,7 +23,11 @@ import { supabase, isSupabaseConfigured } from '../../lib/supabase';
 import { CV_PROJECTS } from '../../data/cvData';
 import { UTM_PRESETS } from '../../lib/utm';
 import { useStore } from '../../store/useStore';
-import { getLocalCachedTrackingLinks, getLocalPostViewEvents } from '../../cms/repositories/trackingRepository';
+import {
+  getLocalCachedTrackingLinks,
+  getLocalPostViewEvents,
+  syncPostViewsFromSupabase,
+} from '../../cms/repositories/trackingRepository';
 
 interface DashboardStats {
   totalProjects: number;
@@ -66,6 +70,21 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigate }) =>
     };
   });
 
+  // Cloud Hydration: Reconcile live post views from Supabase on mount
+  useEffect(() => {
+    let isMounted = true;
+    void syncPostViewsFromSupabase().then((views) => {
+      if (isMounted && views) {
+        setStats((prev) => ({
+          ...prev,
+          totalPostViews: views.length,
+        }));
+      }
+    });
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   const [activities] = useState<ActivityItem[]>(() => {
     const postViews = getLocalPostViewEvents();

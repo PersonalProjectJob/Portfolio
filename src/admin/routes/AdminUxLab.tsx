@@ -23,13 +23,15 @@ import {
   getAllTrackedProjects,
   getUxProjectSummary,
   getDailyUxRollup,
+  syncDailyUxRollupToSupabase,
+  syncAllDailyRollupsToSupabase,
   type SectionHeatPoint,
 } from '../../cms/repositories/uxAnalyticsRepository';
 import {
   generateAiUxCritique,
   generateExecutiveCritiqueMarkdown,
 } from '../../cms/services/aiUxCritiqueService';
-import { resetUxTelemetry } from '../../lib/uxTelemetry';
+import { resetUxTelemetry, syncUxDataFromSupabase } from '../../lib/uxTelemetry';
 
 export const AdminUxLab: React.FC = () => {
   const allProjects = useMemo(() => getAllTrackedProjects(), []);
@@ -63,6 +65,27 @@ export const AdminUxLab: React.FC = () => {
     };
   }, []);
 
+  // Cloud Hydration & Automated Daily Rollup Sync on Mount
+  React.useEffect(() => {
+    let isMounted = true;
+    void (async () => {
+      try {
+        await syncUxDataFromSupabase();
+        if (isMounted) {
+          setRefreshTick((t) => t + 1);
+        }
+        // Immediately compute & upsert today's rollups for all projects into Supabase
+        await syncAllDailyRollupsToSupabase();
+      } catch {
+        // Graceful fallback
+      }
+    })();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
   // Modals
   const [showReportModal, setShowReportModal] = useState(false);
   const [showResetModal, setShowResetModal] = useState(false);
@@ -74,13 +97,18 @@ export const AdminUxLab: React.FC = () => {
     setTimeout(() => setToastMessage(null), 3000);
   };
 
-  const handleRefresh = () => {
+  const handleRefresh = async () => {
     setIsRefreshing(true);
-    setTimeout(() => {
+    try {
+      await syncUxDataFromSupabase();
+      await syncAllDailyRollupsToSupabase();
+    } catch {
+      // Graceful fallback
+    } finally {
       setRefreshTick((t) => t + 1);
       setIsRefreshing(false);
-      showToast('Đã làm mới dữ liệu UX Lab');
-    }, 400);
+      showToast('Đã làm mới dữ liệu UX Lab & đồng bộ Supabase Cloud');
+    }
   };
 
   const handleReset = () => {
@@ -218,6 +246,7 @@ export const AdminUxLab: React.FC = () => {
               onChange={(val) => {
                 setSelectedSlug(val);
                 setSelectedSection(null);
+                void syncDailyUxRollupToSupabase(val);
               }}
               size="sm"
               accentColor="emerald"

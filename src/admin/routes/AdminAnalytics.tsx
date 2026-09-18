@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Sparkles,
@@ -34,6 +34,7 @@ import {
   type AnalyticsTimeRange,
   type TimelinePoint,
 } from '../../cms/repositories/analyticsRepository';
+import { syncPostViewsFromSupabase } from '../../cms/repositories/trackingRepository';
 
 import {
   generateAiInsights,
@@ -88,20 +89,35 @@ export const AdminAnalytics: React.FC = () => {
     return getUnifiedRecentEvents(20);
   }, [refreshTick]);
 
-
+  // Cloud Hydration: Sync latest real post views from Supabase on mount
+  useEffect(() => {
+    let isMounted = true;
+    void syncPostViewsFromSupabase().then(() => {
+      if (isMounted) {
+        setRefreshTick((t) => t + 1);
+      }
+    });
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   const showToast = (msg: string) => {
     setToastMessage(msg);
     setTimeout(() => setToastMessage(null), 3000);
   };
 
-  const handleRefresh = () => {
+  const handleRefresh = async () => {
     setIsRefreshing(true);
-    setTimeout(() => {
+    try {
+      await syncPostViewsFromSupabase();
+    } catch {
+      // Graceful fallback
+    } finally {
       setRefreshTick((t) => t + 1);
       setIsRefreshing(false);
       showToast('Analytics and AI insights synchronized with live telemetry.');
-    }, 300);
+    }
   };
 
   const handleCopyLink = (slug: string) => {

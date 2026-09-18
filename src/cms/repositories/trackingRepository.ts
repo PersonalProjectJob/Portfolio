@@ -153,6 +153,68 @@ export function recordPostViewEvent(event: PostViewEvent): void {
 }
 
 /**
+ * Synchronizes post view events from Supabase Cloud to local cache (Cloud Hydration).
+ * Reconciles and deduplicates cloud records with local records so Admin sees the ground truth.
+ */
+export async function syncPostViewsFromSupabase(): Promise<PostViewEvent[]> {
+  if (typeof window === 'undefined') return [];
+  const localEvents = getLocalPostViewEvents();
+
+  if (!isSupabaseConfigured) {
+    return localEvents;
+  }
+
+  try {
+    const { data, error } = await supabase
+      .from('post_views')
+      .select('*')
+      .order('timestamp', { ascending: false })
+      .limit(500);
+
+    if (error || !data) {
+      return localEvents;
+    }
+
+    const cloudEvents: PostViewEvent[] = data.map((row: any) => ({
+      id: row.id,
+      projectId: row.project_id,
+      projectName: row.project_name,
+      landingVariant: row.landing_variant,
+      device_type: row.device_type,
+      referrer: row.referrer,
+      timestamp: row.timestamp,
+    }));
+
+    // Deduplicate by unique key: row.id OR `${projectId}_${timestamp}`
+    const map = new Map<string, PostViewEvent>();
+    
+    // Seed with cloud events first (canonical server truth)
+    cloudEvents.forEach((ev) => {
+      const key = ev.id || `${ev.projectId}_${ev.timestamp}`;
+      map.set(key, ev);
+    });
+
+    // Merge any local-only events that haven't synced yet
+    localEvents.forEach((ev) => {
+      const key = ev.id || `${ev.projectId}_${ev.timestamp}`;
+      if (!map.has(key)) {
+        map.set(key, ev);
+      }
+    });
+
+    const merged = Array.from(map.values())
+      .sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime())
+      .slice(0, 500);
+
+    localStorage.setItem(POST_VIEWS_STORAGE_KEY, JSON.stringify(merged));
+    return merged;
+  } catch (err) {
+    console.warn('[trackingRepository] Failed to sync post views from Supabase:', err);
+    return localEvents;
+  }
+}
+
+/**
  * Clears all post view events from local cache.
  */
 export function clearLocalPostViewEvents(): void {
