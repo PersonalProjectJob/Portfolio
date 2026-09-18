@@ -59,6 +59,10 @@ export function getStoredUxSessions() {
   return uxDispatcher.getStoredSessions();
 }
 
+export function syncUxDataFromSupabase(): Promise<void> {
+  return uxDispatcher.syncUxDataFromSupabase();
+}
+
 export function resetUxTelemetry(): void {
   uxDispatcher.reset();
 }

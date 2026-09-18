@@ -1,6 +1,7 @@
 import { getStoredUxEvents, getStoredUxSessions, type UxFrictionEvent, type UxSectionDwell, type DailyUxRollup } from '../../lib/uxTelemetry';
 import { PROJECT_NAME_MAP } from '../../utils/analytics';
 import { getLocalPostViewEvents } from './trackingRepository';
+import { supabase, isSupabaseConfigured } from '../../lib/supabase';
 
 export interface SectionHeatPoint {
   sectionId: string;
@@ -408,4 +409,80 @@ export function getDailyUxRollup(pageSlug: string, targetDate?: string): DailyUx
     deepReaderPct: summary.segmentation.deepReaderPct,
     rollupTimestamp: Date.now(),
   };
+}
+
+/**
+ * Computes and upserts today's (or targetDate's) daily rollup into Supabase table `ux_daily_rollups`.
+ */
+export async function syncDailyUxRollupToSupabase(pageSlug: string, targetDate?: string): Promise<void> {
+  if (typeof window === 'undefined' || !isSupabaseConfigured) return;
+  try {
+    const rollup = getDailyUxRollup(pageSlug, targetDate);
+    await supabase.from('ux_daily_rollups').upsert({
+      date_string: rollup.dateString,
+      page_slug: rollup.pageSlug,
+      project_name: rollup.projectName,
+      total_readers: rollup.totalReaders,
+      avg_dwell_seconds: rollup.avgDwellSeconds,
+      completion_rate: rollup.completionRate,
+      ux_grade: rollup.uxGrade,
+      friction_alerts_count: rollup.frictionAlertsCount,
+      skimmer_pct: rollup.skimmerPct,
+      scanner_pct: rollup.scannerPct,
+      deep_reader_pct: rollup.deepReaderPct,
+      rollup_timestamp: new Date(rollup.rollupTimestamp).toISOString(),
+    }, { onConflict: 'date_string,page_slug' });
+  } catch (err) {
+    console.warn('[uxAnalyticsRepository] Failed to sync daily rollup to Supabase:', err);
+  }
+}
+
+/**
+ * Computes and upserts daily rollups for ALL tracked projects into Supabase `ux_daily_rollups`.
+ * Ensures the table is fully populated and up-to-date with ground truth.
+ */
+export async function syncAllDailyRollupsToSupabase(targetDate?: string): Promise<void> {
+  if (typeof window === 'undefined' || !isSupabaseConfigured) return;
+  const projects = getAllTrackedProjects();
+  try {
+    await Promise.allSettled(
+      projects.map((p) => syncDailyUxRollupToSupabase(p.slug, targetDate))
+    );
+  } catch (err) {
+    console.warn('[uxAnalyticsRepository] Failed to sync all daily rollups:', err);
+  }
+}
+
+/**
+ * Reads daily rollups directly from Supabase table `ux_daily_rollups`.
+ */
+export async function getCloudDailyUxRollups(targetDate?: string): Promise<DailyUxRollup[]> {
+  if (!isSupabaseConfigured) return [];
+  try {
+    let query = supabase.from('ux_daily_rollups').select('*');
+    if (targetDate) {
+      query = query.eq('date_string', targetDate);
+    } else {
+      query = query.order('date_string', { ascending: false }).limit(50);
+    }
+    const { data, error } = await query;
+    if (error || !data) return [];
+    return data.map((row: any) => ({
+      id: row.id,
+      dateString: row.date_string,
+      pageSlug: row.page_slug,
+      projectName: row.project_name,
+      totalReaders: row.total_readers,
+      avgDwellSeconds: row.avg_dwell_seconds,
+      completionRate: row.completion_rate,
+      uxGrade: row.ux_grade,
+      frictionAlertsCount: row.friction_alerts_count,
+      skimmerPct: row.skimmer_pct,
+      scannerPct: row.scanner_pct,
+      deepReaderPct: row.deep_reader_pct,
+      rollupTimestamp: new Date(row.rollup_timestamp).getTime(),
+    }));
+  } catch {
+    return [];
+  }
 }
