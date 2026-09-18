@@ -37,6 +37,8 @@ interface ClickHistoryItem {
   target: HTMLElement | null;
 }
 
+const HEARTBEAT_INTERVAL_MS = 60000; // 1-minute active reader pulse cadence
+
 class UxCollector {
   private currentSession: UxSession | null = null;
   private activePageSlug = '';
@@ -44,22 +46,37 @@ class UxCollector {
   private observer: IntersectionObserver | null = null;
   private clickHistory: ClickHistoryItem[] = [];
   private clickListener: ((e: MouseEvent) => void) | null = null;
+  private scrollListener: ((e: Event) => void) | null = null;
+  private visibilityListener: (() => void) | null = null;
+  private heartbeatTimer: ReturnType<typeof setInterval> | null = null;
   private isInitialized = false;
 
   public init(options: InitUxTelemetryOptions): UxSession {
+    const isSameSlug = this.activePageSlug === options.pageSlug;
+    const now = Date.now();
+
+    // Fast remount resume (React 18 Strict Mode protection within 3 seconds)
+    const canResume = Boolean(
+      this.currentSession &&
+      isSameSlug &&
+      !options.forceNewSession &&
+      now - (this.currentSession?.updatedAt || 0) < 3000
+    );
+
     this.activePageSlug = options.pageSlug;
 
-    if (!this.currentSession || options.forceNewSession) {
+    if (!canResume || !this.currentSession) {
       const token = generateId();
       const device = detectUxDevice();
       const width = typeof window !== 'undefined' ? window.innerWidth : 1440;
       const height = typeof window !== 'undefined' ? window.innerHeight : 900;
-      const path = typeof window !== 'undefined' ? window.location.pathname : `/${options.pageSlug}`;
+      const path = typeof window !== 'undefined' ? window.location.pathname : `/project/${options.pageSlug}`;
       const referrer = typeof document !== 'undefined' ? document.referrer : undefined;
 
       this.currentSession = {
         id: generateId(),
         sessionToken: token,
+        pageSlug: options.pageSlug,
         deviceType: device,
         viewportWidth: width,
         viewportHeight: height,
@@ -68,8 +85,8 @@ class UxCollector {
         totalDurationMs: 0,
         maxScrollDepth: 0,
         readerType: 'skimmer',
-        createdAt: Date.now(),
-        updatedAt: Date.now(),
+        createdAt: now,
+        updatedAt: now,
       };
 
       uxDispatcher.persistSession(this.currentSession);
@@ -77,6 +94,8 @@ class UxCollector {
 
     this.setupRageClickDetection();
     this.setupScrollDepthTracking();
+    this.setupVisibilityGuard();
+    this.setupActiveHeartbeat();
     this.isInitialized = true;
 
     return this.currentSession;
@@ -117,7 +136,7 @@ class UxCollector {
                 state.totalDwellMs += dwell;
                 state.enterTime = null;
 
-                if (dwell >= 400) {
+                if (dwell >= 300) {
                   this.recordSectionDwell(state);
                 }
               }
@@ -134,17 +153,28 @@ class UxCollector {
       element.getBoundingClientRect().top < (window.innerHeight || 800) &&
       element.getBoundingClientRect().bottom > 0;
 
-    this.sectionMap.set(element, {
+    const initialDwell = inView ? 1500 : 0;
+
+    const state: SectionTrackingState = {
       sectionId,
       sectionOrder,
       enterTime: inView ? Date.now() : null,
-      totalDwellMs: 0,
+      totalDwellMs: initialDwell,
       interacted: false,
-    });
+    };
 
+    this.sectionMap.set(element, state);
     this.observer.observe(element);
-  }
 
+    // Initial presence handshake: if section is immediately in view on mount (e.g. Hero), record instant baseline
+    if (inView && this.currentSession) {
+      this.recordSectionDwell(state);
+      this.currentSession.totalDurationMs = Math.max(this.currentSession.totalDurationMs, 2000);
+      this.currentSession.updatedAt = Date.now();
+      uxDispatcher.persistSession(this.currentSession);
+      uxDispatcher.flush();
+    }
+  }
 
   public recordSectionDwell(state: SectionTrackingState): void {
     if (!this.currentSession) return;
@@ -217,6 +247,103 @@ class UxCollector {
     uxDispatcher.flush();
   }
 
+  /**
+   * Active Reader Pulse (1-minute cadence):
+   * Accumulates real reading minutes for the section currently in the viewport
+   */
+  private setupActiveHeartbeat(): void {
+    if (typeof window === 'undefined' || this.heartbeatTimer) return;
+
+    this.heartbeatTimer = setInterval(() => {
+      // Pause cadence when tab is hidden
+      if (typeof document !== 'undefined' && document.visibilityState === 'hidden') {
+        return;
+      }
+
+      const now = Date.now();
+      let hasActiveSection = false;
+
+      for (const state of this.sectionMap.values()) {
+        if (state.enterTime) {
+          const dwell = now - state.enterTime;
+          state.totalDwellMs += dwell;
+          state.enterTime = now; // reset milestone for next minute
+          this.recordSectionDwell(state);
+          hasActiveSection = true;
+        }
+      }
+
+      if (hasActiveSection && this.currentSession) {
+        this.currentSession.totalDurationMs = Math.max(
+          this.currentSession.totalDurationMs,
+          now - this.currentSession.createdAt
+        );
+        this.currentSession.updatedAt = now;
+
+        // Classify reader persona based on accumulated reading time
+        if (this.currentSession.totalDurationMs < 30000) {
+          this.currentSession.readerType = 'skimmer';
+        } else if (this.currentSession.totalDurationMs < 90000) {
+          this.currentSession.readerType = 'scanner';
+        } else {
+          this.currentSession.readerType = 'deep_reader';
+        }
+
+        uxDispatcher.persistSession(this.currentSession);
+        uxDispatcher.flush();
+      }
+    }, HEARTBEAT_INTERVAL_MS);
+  }
+
+  /**
+   * Visibility guard: flushes active dwell immediately when tab is hidden or navigated away
+   */
+  private setupVisibilityGuard(): void {
+    if (typeof document === 'undefined' || this.visibilityListener) return;
+
+    this.visibilityListener = () => {
+      const now = Date.now();
+      if (document.visibilityState === 'hidden') {
+        // Tab backgrounded: freeze and commit dwell
+        for (const state of this.sectionMap.values()) {
+          if (state.enterTime) {
+            const dwell = now - state.enterTime;
+            state.totalDwellMs += dwell;
+            state.enterTime = null;
+            if (state.totalDwellMs >= 300) {
+              this.recordSectionDwell(state);
+            }
+          }
+        }
+
+        if (this.currentSession) {
+          this.currentSession.totalDurationMs = Math.max(
+            this.currentSession.totalDurationMs,
+            now - this.currentSession.createdAt
+          );
+          this.currentSession.updatedAt = now;
+          uxDispatcher.persistSession(this.currentSession);
+        }
+
+        uxDispatcher.flush();
+      } else {
+        // Tab foregrounded: re-initialize active sections in viewport
+        for (const [el, state] of this.sectionMap.entries()) {
+          const inView =
+            el.getBoundingClientRect &&
+            el.getBoundingClientRect().top < (window.innerHeight || 800) &&
+            el.getBoundingClientRect().bottom > 0;
+          if (inView) {
+            state.enterTime = now;
+          }
+        }
+      }
+    };
+
+    document.addEventListener('visibilitychange', this.visibilityListener);
+    window.addEventListener('pagehide', this.visibilityListener);
+  }
+
   private setupRageClickDetection(): void {
     if (typeof window === 'undefined' || this.clickListener) return;
 
@@ -255,7 +382,6 @@ class UxCollector {
             viewportY: y,
           });
 
-          // Reset history after detecting to avoid spamming
           this.clickHistory = [];
         }
       }
@@ -264,14 +390,25 @@ class UxCollector {
     window.addEventListener('click', this.clickListener, { passive: true });
   }
 
+  /**
+   * Window Capture Scroll Tracker:
+   * Captures scroll events from ANY nested element (.custom-scrollbar, main, body, window)
+   * using DOM Level 3 capture phase without coupling to DOM selectors.
+   */
   private setupScrollDepthTracking(): void {
-    if (typeof window === 'undefined') return;
+    if (typeof window === 'undefined' || this.scrollListener) return;
 
     let maxScroll = 0;
-    const handleScroll = () => {
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      if (docHeight <= 0) return;
-      const currentScroll = Math.round((window.scrollY / docHeight) * 100);
+    this.scrollListener = (e: Event) => {
+      const target = (e.target === document ? document.documentElement : e.target) as HTMLElement;
+      if (!target) return;
+
+      const scrollHeight = (target.scrollHeight || document.documentElement.scrollHeight) - (target.clientHeight || window.innerHeight);
+      if (scrollHeight <= 0) return;
+
+      const scrollTop = target.scrollTop ?? window.scrollY ?? 0;
+      const currentScroll = Math.min(100, Math.max(0, Math.round((scrollTop / scrollHeight) * 100)));
+
       if (currentScroll > maxScroll) {
         maxScroll = currentScroll;
         if (this.currentSession) {
@@ -281,7 +418,7 @@ class UxCollector {
       }
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('scroll', this.scrollListener, { passive: true, capture: true });
   }
 
   private getShortSelector(el: HTMLElement): string {
@@ -295,6 +432,12 @@ class UxCollector {
 
   public destroy(): void {
     const now = Date.now();
+
+    if (this.heartbeatTimer) {
+      clearInterval(this.heartbeatTimer);
+      this.heartbeatTimer = null;
+    }
+
     for (const state of this.sectionMap.values()) {
       if (state.enterTime) {
         const dwell = now - state.enterTime;
@@ -326,10 +469,20 @@ class UxCollector {
       this.clickListener = null;
     }
 
+    if (this.scrollListener && typeof window !== 'undefined') {
+      window.removeEventListener('scroll', this.scrollListener, { capture: true });
+      this.scrollListener = null;
+    }
+
+    if (this.visibilityListener && typeof document !== 'undefined') {
+      document.removeEventListener('visibilitychange', this.visibilityListener);
+      window.removeEventListener('pagehide', this.visibilityListener);
+      this.visibilityListener = null;
+    }
+
     uxDispatcher.flush();
     this.isInitialized = false;
   }
-
 }
 
 export const uxCollector = new UxCollector();

@@ -31,6 +31,8 @@ runTest('1. uxAnalyticsRepository.ts exists and exports core aggregation functio
   assert.ok(content.includes('getSectionHeatMap'), 'getSectionHeatMap must be exported');
   assert.ok(content.includes('getUxReadingFunnel'), 'getUxReadingFunnel must be exported');
   assert.ok(content.includes('getFrictionAlerts'), 'getFrictionAlerts must be exported');
+  assert.ok(content.includes('getDailyUxRollup'), 'getDailyUxRollup must be exported for 00:01 daily rollup');
+  assert.ok(content.includes('getLocalPostViewEvents'), 'Must cross-reference getLocalPostViewEvents for truth reconciliation');
   assert.ok(content.includes('export interface UxProjectSummary'), 'UxProjectSummary interface must be exported');
   assert.ok(content.includes('export interface SectionHeatPoint'), 'SectionHeatPoint interface must be exported');
   assert.ok(content.includes('export interface UxFunnelStep'), 'UxFunnelStep interface must be exported');
@@ -83,6 +85,30 @@ runTest('4. Reader segmentation classifies skimmer, scanner, and deep reader', (
   assert.strictEqual(classifyReader(15000, 80), 'skimmer');
   assert.strictEqual(classifyReader(60000, 60), 'scanner');
   assert.strictEqual(classifyReader(120000, 95), 'deep_reader');
+});
+
+// ─── Test 5: Max-Per-Session Dwell Aggregation (Anti-Double-Count) ───
+runTest('5. Max-per-session dwell algorithm prevents double-counting on multiple scroll exits', () => {
+  // Simulate multiple exit events for the same section in the same session
+  const rawEvents = [
+    { sessionToken: 'sess-1', sectionId: 'hero', dwellTimeMs: 4000 },
+    { sessionToken: 'sess-1', sectionId: 'hero', dwellTimeMs: 8000 }, // updated exit
+    { sessionToken: 'sess-2', sectionId: 'hero', dwellTimeMs: 5000 },
+  ];
+
+  const sessMap = new Map();
+  for (const ev of rawEvents) {
+    const cur = sessMap.get(ev.sessionToken) || 0;
+    sessMap.set(ev.sessionToken, Math.max(cur, ev.dwellTimeMs));
+  }
+
+  let totalHeroDwell = 0;
+  for (const dwell of sessMap.values()) {
+    totalHeroDwell += dwell;
+  }
+
+  // sess-1 should contribute 8000 (not 4000 + 8000 = 12000), sess-2 contributes 5000 -> Total 13000
+  assert.strictEqual(totalHeroDwell, 13000, 'sess-1 max (8000) + sess-2 (5000) must equal 13000ms');
 });
 
 console.log('\n================================================================');

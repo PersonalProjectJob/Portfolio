@@ -22,6 +22,7 @@ import { CustomSelect } from '../components/CustomSelect';
 import {
   getAllTrackedProjects,
   getUxProjectSummary,
+  getDailyUxRollup,
   type SectionHeatPoint,
 } from '../../cms/repositories/uxAnalyticsRepository';
 import {
@@ -37,6 +38,30 @@ export const AdminUxLab: React.FC = () => {
   const [refreshTick, setRefreshTick] = useState(0);
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [selectedSection, setSelectedSection] = useState<SectionHeatPoint | null>(null);
+
+  // Auto-refresh when tabs change, storage updates, or window focuses
+  React.useEffect(() => {
+    const handleTrigger = () => {
+      setRefreshTick((t) => t + 1);
+    };
+
+    window.addEventListener('storage', handleTrigger);
+    window.addEventListener('focus', handleTrigger);
+    document.addEventListener('visibilitychange', handleTrigger);
+
+    const interval = setInterval(() => {
+      if (document.visibilityState === 'visible') {
+        setRefreshTick((t) => t + 1);
+      }
+    }, 2500);
+
+    return () => {
+      window.removeEventListener('storage', handleTrigger);
+      window.removeEventListener('focus', handleTrigger);
+      document.removeEventListener('visibilitychange', handleTrigger);
+      clearInterval(interval);
+    };
+  }, []);
 
   // Modals
   const [showReportModal, setShowReportModal] = useState(false);
@@ -71,6 +96,12 @@ export const AdminUxLab: React.FC = () => {
     void refreshTick;
     return getUxProjectSummary(selectedSlug, timeRange);
   }, [selectedSlug, timeRange, refreshTick]);
+
+  // Daily Executive Rollup (00:01 AM Cadence)
+  const dailyRollup = useMemo(() => {
+    void refreshTick;
+    return getDailyUxRollup(selectedSlug);
+  }, [selectedSlug, refreshTick]);
 
   // AI Critique generated dynamically
   const critique = useMemo(() => {
@@ -113,18 +144,26 @@ export const AdminUxLab: React.FC = () => {
       {/* ─── Top Header & Controls ─── */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-2 border-b border-slate-200/80 dark:border-slate-800">
         <div>
-          <div className="flex items-center gap-2.5 mb-1.5">
+          <div className="flex flex-wrap items-center gap-2 mb-1.5">
             <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-mono font-semibold uppercase tracking-wider bg-rose-500/10 text-rose-500 border border-rose-500/20">
               <span className="w-2 h-2 rounded-full bg-rose-500 animate-pulse" />
               <span>First-Party UX Telemetry</span>
             </div>
             <span className="text-xs text-slate-400 dark:text-slate-500">·</span>
-            <span className="text-xs text-slate-500 dark:text-slate-400 font-mono">Zero-PII · &lt; 3KB Script</span>
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-mono bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 font-medium">
+              <Clock className="w-3 h-3 text-emerald-500" />
+              <span>Live Pulse: 60s Cadence</span>
+            </div>
+            <span className="text-xs text-slate-400 dark:text-slate-500">·</span>
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-mono bg-sky-500/10 text-sky-600 dark:text-sky-400 border border-sky-500/20 font-medium">
+              <Target className="w-3 h-3 text-sky-500" />
+              <span>Daily Rollup: 00:01 AM</span>
+            </div>
           </div>
           <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900 dark:text-white flex items-center gap-3">
             <span>UX Intelligence Lab</span>
             <span className="text-xs font-mono px-2.5 py-1 rounded-md bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 font-medium">
-              Grade {critique.grade}
+              Grade {dailyRollup.uxGrade}
             </span>
           </h1>
         </div>

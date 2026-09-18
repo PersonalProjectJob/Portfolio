@@ -129,6 +129,24 @@ export function recordPostViewEvent(event: PostViewEvent): void {
     const current = getLocalPostViewEvents();
     const updated = [event, ...current].slice(0, 500);
     localStorage.setItem(POST_VIEWS_STORAGE_KEY, JSON.stringify(updated));
+
+    // Asynchronously persist to Supabase if configured
+    if (isSupabaseConfigured) {
+      void (async () => {
+        try {
+          await supabase.from('post_views').insert({
+            project_id: event.projectId,
+            project_name: event.projectName,
+            landing_variant: event.landingVariant || 'B',
+            device_type: event.device_type,
+            referrer: event.referrer,
+            timestamp: event.timestamp,
+          });
+        } catch {
+          // Ignore offline / network errors
+        }
+      })();
+    }
   } catch (err) {
     console.warn('[trackingRepository] Failed to record post view event:', err);
   }
