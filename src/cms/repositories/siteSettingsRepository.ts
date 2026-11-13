@@ -114,7 +114,8 @@ export async function updateSiteSettings(settings: Partial<SiteSettings>): Promi
   // Always update local cache for resilience
   saveLocalCachedSettings(updated);
 
-  if (!isSupabaseConfigured) {
+  const isDemo = typeof window !== 'undefined' && localStorage.getItem('portfolio_admin_demo_auth') === 'true';
+  if (!isSupabaseConfigured || isDemo) {
     return updated;
   }
 

@@ -1,5 +1,6 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import crypto from 'crypto';
+import { createClient } from '@supabase/supabase-js';
 
 /**
  * Parses CLOUDINARY_URL environment variable:
@@ -27,13 +28,53 @@ function parseCloudinaryUrl(urlStr?: string) {
  * so API_SECRET is NEVER exposed in client bundle.
  */
 export default async function handler(req: VercelRequest, res: VercelResponse) {
-  // CORS configuration
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  // CORS configuration with domain whitelist
+  const origin = req.headers.origin as string | undefined;
+  const isAllowedOrigin =
+    !origin ||
+    origin.includes('localhost') ||
+    origin.includes('127.0.0.1') ||
+    origin.endsWith('tnsthao94.online') ||
+    origin.endsWith('.vercel.app');
+
+  if (origin && isAllowedOrigin) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+  } else if (!origin) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+  } else {
+    res.setHeader('Access-Control-Allow-Origin', 'https://tnsthao94.online');
+  }
+
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
   if (req.method === 'OPTIONS') {
     return res.status(200).end();
+  }
+
+  // Auth verification when Supabase is configured in production
+  const supabaseUrl = process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL;
+  const supabaseKey =
+    process.env.SUPABASE_SERVICE_ROLE_KEY ||
+    process.env.SUPABASE_ANON_KEY ||
+    process.env.VITE_SUPABASE_ANON_KEY;
+
+  if (supabaseUrl && supabaseKey && process.env.NODE_ENV === 'production') {
+    const authHeader = req.headers.authorization;
+    if (authHeader?.startsWith('Bearer ')) {
+      const token = authHeader.replace('Bearer ', '').trim();
+      try {
+        const supabase = createClient(supabaseUrl, supabaseKey, {
+          auth: { persistSession: false },
+        });
+        const { data: { user }, error: userErr } = await supabase.auth.getUser(token);
+        if (userErr || !user) {
+          return res.status(401).json({ error: 'Unauthorized: Invalid admin token.' });
+        }
+      } catch {
+        return res.status(401).json({ error: 'Unauthorized: Verification failure.' });
+      }
+    }
   }
 
   // Extract credentials from CLOUDINARY_URL or individual env variables

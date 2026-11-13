@@ -56,18 +56,22 @@ export const isCloudinaryConfigured = (): boolean => {
   return getCloudinaryConfig().isConfigured;
 };
 
-/**
- * Fetch server-side signature from Vercel Serverless Function (/api/cloudinary-sign)
- * Ensures API_SECRET is NEVER exposed in the client frontend bundle.
- */
+import { supabase } from './supabase';
+
 async function fetchSignedUploadParams(
   folder: string,
   accessMode: 'public' | 'authenticated' = 'public'
 ): Promise<SignedUploadParams | null> {
   try {
+    const sessionRes = await supabase.auth.getSession();
+    const token = sessionRes.data?.session?.access_token;
+
     const res = await fetch('/api/cloudinary-sign', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        ...(token ? { Authorization: `Bearer ${token}` } : {}),
+      },
       body: JSON.stringify({ folder, access_mode: accessMode }),
     });
 

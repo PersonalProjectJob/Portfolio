@@ -14,7 +14,7 @@ export const DEFAULT_SITE_SETTINGS: SiteSettings = {
     location: 'TP. Hồ Chí Minh, Việt Nam',
     email: 'tnsthao94@gmail.com',
     telegram: 'https://t.me/tnsthao94',
-    linkedin: 'https://www.linkedin.com/in/tnsthao94',
+    linkedin: 'https://www.linkedin.com/in/thaotns',
     github: 'https://github.com/tnsthao94',
     avatar: '/avatar.jpg',
     cv_path: '/cv/Truong-Nguyen-Son-Thao-Product-Designer-CV.pdf',

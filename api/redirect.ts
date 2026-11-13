@@ -49,11 +49,18 @@ export default async function handler(req: Request) {
         .maybeSingle();
 
       if (!error && data) {
-        // Fire-and-forget / non-blocking click count increment
-        const incrementPromise = supabase
-          .from('tracking_links')
-          .update({ clicks_count: (data.clicks_count || 0) + 1 })
-          .eq('id', data.id);
+        // Fire-and-forget / non-blocking click count increment via RPC or fallback
+        const incrementPromise = (supabase.rpc as unknown as (name: string, args: Record<string, unknown>) => Promise<unknown>)(
+          'increment_tracking_click',
+          { p_slug: slug }
+        )
+          .then(() => {})
+          .catch(() => {
+            return supabase
+              .from('tracking_links')
+              .update({ clicks_count: (data.clicks_count || 0) + 1 })
+              .eq('id', data.id);
+          });
 
         if (typeof (req as { waitUntil?: (p: Promise<unknown>) => void }).waitUntil === 'function') {
           (req as { waitUntil: (p: Promise<unknown>) => void }).waitUntil(incrementPromise);

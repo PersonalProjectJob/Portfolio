@@ -5,7 +5,7 @@ import { UTM_PRESETS } from '../../lib/utm';
 const STORAGE_KEY = 'portfolio_tracking_links_cache';
 
 export const DEFAULT_TRACKING_LINKS: TrackingLink[] = Object.entries(UTM_PRESETS).map(
-  ([key, preset], idx) => ({
+  ([key, preset]) => ({
     id: `trk-preset-${key}`,
     slug: key,
     destination_path: '/',
@@ -13,7 +13,7 @@ export const DEFAULT_TRACKING_LINKS: TrackingLink[] = Object.entries(UTM_PRESETS
     utm_medium: preset.medium,
     utm_campaign: preset.defaultCampaign || 'portfolio',
     utm_content: preset.defaultContent || 'link',
-    clicks_count: [48, 35, 29, 21, 14][idx] || 10,
+    clicks_count: 0,
     is_active: true,
     created_at: '2026-08-14T00:00:00Z',
     updated_at: '2026-08-14T00:00:00Z',
@@ -122,7 +122,8 @@ export async function createTrackingLink(
   const updatedList = [newLink, ...localList.filter((l) => l.id !== newLink.id)];
   saveLocalCachedTrackingLinks(updatedList);
 
-  if (!isSupabaseConfigured) {
+  const isDemo = typeof window !== 'undefined' && localStorage.getItem('portfolio_admin_demo_auth') === 'true';
+  if (!isSupabaseConfigured || isDemo) {
     return newLink;
   }
 
@@ -187,7 +188,8 @@ export async function updateTrackingLink(
   const updatedList = localList.map((l) => (l.id === id ? updatedLink : l));
   saveLocalCachedTrackingLinks(updatedList);
 
-  if (!isSupabaseConfigured) {
+  const isDemo = typeof window !== 'undefined' && localStorage.getItem('portfolio_admin_demo_auth') === 'true';
+  if (!isSupabaseConfigured || isDemo) {
     return updatedLink;
   }
 
@@ -235,7 +237,8 @@ export async function deleteTrackingLink(id: string): Promise<boolean> {
   const updatedList = localList.filter((l) => l.id !== id);
   saveLocalCachedTrackingLinks(updatedList);
 
-  if (!isSupabaseConfigured) {
+  const isDemo = typeof window !== 'undefined' && localStorage.getItem('portfolio_admin_demo_auth') === 'true';
+  if (!isSupabaseConfigured || isDemo) {
     return true;
   }
 

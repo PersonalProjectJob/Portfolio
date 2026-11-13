@@ -47,7 +47,7 @@ export const useAdminAuth = create<AdminAuthState>((set) => ({
         user: DEMO_USER,
       }
     : null,
-  loading: false,
+  loading: isSupabaseConfigured && !checkInitialDemoAuth(),
   error: null,
   isDemoMode: checkInitialDemoAuth(),
   isAuthenticated: checkInitialDemoAuth(),
@@ -210,16 +210,20 @@ export const useAdminAuth = create<AdminAuthState>((set) => ({
       if (isSupabaseConfigured) {
         await supabase.auth.signOut();
       }
+    } catch (err) {
+      console.error('[useAdminAuth] signOut error:', err);
+    } finally {
       set({
         session: null,
         user: null,
         isAuthenticated: false,
         isDemoMode: false,
         loading: false,
+        error: null,
       });
-    } catch (err) {
-      console.error('[useAdminAuth] signOut error:', err);
-      set({ loading: false });
+      if (typeof window !== 'undefined') {
+        window.history.pushState(null, '', '/admin/login');
+      }
     }
   },
 
@@ -248,6 +252,10 @@ export const useAdminAuth = create<AdminAuthState>((set) => ({
 // Setup Supabase auth listener once globally
 if (typeof window !== 'undefined' && isSupabaseConfigured) {
   supabase.auth.onAuthStateChange((_event, newSession) => {
+    // If user is currently in active Demo Mode, do not let Supabase override
+    if (checkInitialDemoAuth()) {
+      return;
+    }
     useAdminAuth.setState({
       session: newSession,
       user: newSession?.user ?? null,

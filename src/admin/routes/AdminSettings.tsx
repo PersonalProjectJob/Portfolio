@@ -1187,7 +1187,7 @@ export const AdminSettings: React.FC = () => {
 
                 <div className="p-4 rounded-xl bg-white text-slate-900 space-y-1 shadow-md">
                   <div className="text-[11px] text-slate-600 flex items-center gap-1 truncate">
-                    <span>https://phuchoang.dev</span>
+                    <span>{typeof window !== 'undefined' ? window.location.origin : 'https://tnsthao94.online'}</span>
                   </div>
                   <h4 className="text-sm font-medium text-blue-800 line-clamp-1 hover:underline cursor-pointer">
                     {formData.seo_defaults?.title || 'Portfolio Title'}
@@ -1215,7 +1215,7 @@ export const AdminSettings: React.FC = () => {
                     />
                     <div className="p-3 border-t border-slate-800 space-y-1">
                       <span className="text-[10px] text-slate-400 uppercase font-mono block">
-                        phuchoang.dev
+                        {typeof window !== 'undefined' ? window.location.host : 'tnsthao94.online'}
                       </span>
                       <h5 className="text-xs font-bold text-white line-clamp-1">
                         {formData.seo_defaults?.title}

@@ -48,11 +48,11 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigate }) =>
   const { isLightMode } = useStore();
   const [stats, setStats] = useState<DashboardStats>({
     totalProjects: CV_PROJECTS.length,
-    publishedProjects: CV_PROJECTS.length - 1,
-    draftProjects: 1,
+    publishedProjects: CV_PROJECTS.length,
+    draftProjects: 0,
     totalTrackingLinks: Object.keys(UTM_PRESETS).length,
-    totalClicks: 142,
-    totalMediaAssets: 24,
+    totalClicks: 0,
+    totalMediaAssets: 4,
   });
 
   const [activities] = useState<ActivityItem[]>([
@@ -126,11 +126,11 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigate }) =>
           const totalClicks = links.reduce((acc, curr) => acc + (curr.clicks_count || 0), 0);
           setStats((prev) => ({
             ...prev,
-            totalProjects: projectCount || prev.totalProjects,
+            totalProjects: projectCount ?? prev.totalProjects,
             publishedProjects: pubCount ?? prev.publishedProjects,
             draftProjects: (projectCount ?? prev.totalProjects) - (pubCount ?? prev.publishedProjects),
-            totalTrackingLinks: links.length || prev.totalTrackingLinks,
-            totalClicks: totalClicks > 0 ? totalClicks : prev.totalClicks,
+            totalTrackingLinks: trackingData ? trackingData.length : prev.totalTrackingLinks,
+            totalClicks: typeof totalClicks === 'number' ? totalClicks : prev.totalClicks,
             totalMediaAssets: mediaCount ?? prev.totalMediaAssets,
           }));
         }
@@ -353,11 +353,11 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigate }) =>
             <div className="flex items-center gap-2">
               <AlertTriangle className="w-4 h-4 text-amber-400" />
               <h2 className="text-base font-bold text-white font-display">
-                Needs Attention & Activity
+                System Health & Suggested Actions
               </h2>
             </div>
             <span className="text-xs text-slate-400">
-              {activities.length} items flagged
+              System Checklist
             </span>
           </div>
 

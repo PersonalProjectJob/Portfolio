@@ -19,7 +19,7 @@ INSERT INTO site_settings (
     "location": "TP. Hồ Chí Minh, Việt Nam",
     "email": "tnsthao94@gmail.com",
     "telegram": "https://t.me/tnsthao94",
-    "linkedin": "https://www.linkedin.com/in/tnsthao94",
+    "linkedin": "https://www.linkedin.com/in/thaotns",
     "github": "https://github.com/tnsthao94",
     "bio": {
       "en": "Product Designer and UX/UI Designer specializing in fintech, AI products, SaaS platforms, mobile apps, and complex product workflows.",

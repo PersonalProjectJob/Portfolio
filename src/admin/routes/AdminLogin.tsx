@@ -14,6 +14,7 @@ import {
   ShieldCheck
 } from 'lucide-react';
 import { useAdminAuth } from '../hooks/useAdminAuth';
+import { isSupabaseConfigured } from '../../lib/supabase';
 
 interface AdminLoginProps {
   onSuccess?: () => void;
@@ -48,7 +49,11 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({ onSuccess, onNavigatePub
       const res = await signInWithOtp(email);
       setSubmitting(false);
       if (!res.error) {
-        setOtpSuccessMessage('Magic link sent! Check your inbox to sign in directly.');
+        if (!isSupabaseConfigured) {
+          onSuccess?.();
+        } else {
+          setOtpSuccessMessage('Magic link sent! Check your inbox to sign in directly.');
+        }
       }
     }
   };

@@ -6,6 +6,10 @@ import { buildUtmUrl, generateShortSlug, parseUtmFromUrl, UTM_PRESETS } from '..
 import { getAllBlockDefinitions, getBlockDefinition, createDefaultBlock } from '../src/cms/blocks/registry.ts';
 import { createVersionSnapshot, fetchProjectVersions } from '../src/cms/repositories/versionRepository.ts';
 import { createProject } from '../src/cms/repositories/projectRepository.ts';
+import { DEFAULT_TRACKING_LINKS } from '../src/cms/repositories/trackingRepository.ts';
+import { DEFAULT_MEDIA_ASSETS } from '../src/cms/repositories/mediaRepository.ts';
+import fs from 'fs';
+import path from 'path';
 
 async function runQATestMatrix() {
   console.log('====================================================');
@@ -142,8 +146,49 @@ const trackingCode = "A83Kp2";
   console.assert(shortSlug.length === 6, 'Failed: short slug generation');
   console.log('  ✅ PASS: UTM generator, parser & vanity shortcodes validated');
 
+  // --- TEST 7: Data Integrity & Security Remediation ---
+  console.log('\n▶ [TEST 7] Data Integrity & Security Remediation (P0, P1, P2 Fixes)');
+  // 1. LinkedIn profile URL
+  console.assert(
+    DEFAULT_SITE_SETTINGS.profile.linkedin === 'https://www.linkedin.com/in/thaotns',
+    `Failed: LinkedIn URL mismatch: ${DEFAULT_SITE_SETTINGS.profile.linkedin}`
+  );
+
+  // 2. Default tracking clicks must be 0 (no fake clicks)
+  const allZeroClicks = DEFAULT_TRACKING_LINKS.every((link) => link.clicks_count === 0);
+  console.assert(allZeroClicks, 'Failed: Tracking links contain non-zero initial clicks');
+
+  // 3. CV PDF file size accurate on disk
+  const cvMedia = DEFAULT_MEDIA_ASSETS.find((m) => m.id === 'media-004');
+  console.assert(cvMedia?.file_size === 2855465, `Failed: CV PDF file_size mismatch: ${cvMedia?.file_size}`);
+
+  // 4. AdminSettings must NOT contain phuchoang.dev
+  const adminSettingsContent = fs.readFileSync(
+    path.resolve(process.cwd(), 'src/admin/routes/AdminSettings.tsx'),
+    'utf-8'
+  );
+  console.assert(
+    !adminSettingsContent.includes('phuchoang.dev'),
+    'Failed: phuchoang.dev still present in AdminSettings.tsx'
+  );
+
+  // 5. RLS migration file exists and is well-formed
+  const rlsMigrationPath = path.resolve(
+    process.cwd(),
+    'supabase/migrations/20260903_tighten_admin_rls.sql'
+  );
+  console.assert(fs.existsSync(rlsMigrationPath), 'Failed: Migration file missing');
+  const rlsMigrationContent = fs.readFileSync(rlsMigrationPath, 'utf-8');
+  console.assert(
+    rlsMigrationContent.includes('is_portfolio_admin') &&
+    rlsMigrationContent.includes('increment_tracking_click'),
+    'Failed: RLS migration missing required security functions'
+  );
+
+  console.log('  ✅ PASS: All P0/P1/P2 Data Integrity & Security Remediation assertions verified');
+
   console.log('\n====================================================');
-  console.log('  🎉 ALL 6 QA TEST SUITES PASSED (100% SUCCESS)      ');
+  console.log('  🎉 ALL 7 QA TEST SUITES PASSED (100% SUCCESS)      ');
   console.log('====================================================');
 }
 

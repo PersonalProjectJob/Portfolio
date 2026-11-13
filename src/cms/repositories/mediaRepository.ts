@@ -5,7 +5,7 @@ import type { MediaAsset, LocalizedString } from '../types/cms.types';
 export const STORAGE_BUCKET = 'portfolio-assets';
 const LOCAL_MEDIA_STORAGE_KEY = 'portfolio_media_assets_cache';
 
-const DEFAULT_MEDIA_ASSETS: MediaAsset[] = [
+export const DEFAULT_MEDIA_ASSETS: MediaAsset[] = [
   {
     id: 'media-001',
     file_name: 'avatar.jpg',
@@ -57,7 +57,7 @@ const DEFAULT_MEDIA_ASSETS: MediaAsset[] = [
     storage_path: 'documents/Truong-Nguyen-Son-Thao-Product-Designer-CV.pdf',
     public_url: '/cv/Truong-Nguyen-Son-Thao-Product-Designer-CV.pdf',
     mime_type: 'application/pdf',
-    file_size: 1240000,
+    file_size: 2855465,
     width: null,
     height: null,
     alt_text: {
@@ -197,14 +197,22 @@ export async function uploadMediaAsset(
     vi: file.name.replace(/\.[^/.]+$/, '').replace(/[_-]/g, ' '),
   };
 
+  const isDemo = typeof window !== 'undefined' && localStorage.getItem('portfolio_admin_demo_auth') === 'true';
+
   // Mock / Offline upload path
-  if (!isSupabaseConfigured) {
-    const objectUrl = URL.createObjectURL(file);
+  if (!isSupabaseConfigured || isDemo) {
+    const dataUrl = await new Promise<string>((resolve) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result as string);
+      reader.onerror = () => resolve(URL.createObjectURL(file));
+      reader.readAsDataURL(file);
+    });
+
     const mockAsset: MediaAsset = {
       id: `local-media-${timestamp}`,
       file_name: file.name,
       storage_path: storagePath,
-      public_url: objectUrl,
+      public_url: dataUrl,
       mime_type: file.type || 'application/octet-stream',
       file_size: file.size,
       width: dimensions.width || null,
@@ -301,7 +309,8 @@ export async function deleteMediaAsset(id: string, storagePath: string): Promise
   const updated = current.filter((a) => a.id !== id);
   saveLocalMediaAssets(updated);
 
-  if (!isSupabaseConfigured) {
+  const isDemo = typeof window !== 'undefined' && localStorage.getItem('portfolio_admin_demo_auth') === 'true';
+  if (!isSupabaseConfigured || isDemo) {
     return true;
   }
 
@@ -348,7 +357,8 @@ export async function updateMediaAssetAltText(
     saveLocalMediaAssets([...current]);
   }
 
-  if (!isSupabaseConfigured) {
+  const isDemo = typeof window !== 'undefined' && localStorage.getItem('portfolio_admin_demo_auth') === 'true';
+  if (!isSupabaseConfigured || isDemo) {
     return target || null;
   }
 

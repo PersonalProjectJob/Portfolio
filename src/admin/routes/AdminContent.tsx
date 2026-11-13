@@ -79,14 +79,6 @@ const REGISTERED_TSX_COMPONENTS = [
     summaryVi: 'Hệ thống đồng bộ Token thiết kế và pipeline tự động hóa mã nguồn.',
   },
   {
-    key: 'sync-task-badge',
-    name: 'ProjectSyncTaskBadge (Real-time Sync)',
-    category: 'Telemetry & Devops',
-    role: 'DevOps & Integration Engineer',
-    summaryEn: 'Bi-directional status broadcasting and automated issue triage via Telegram.',
-    summaryVi: 'Phát sóng trạng thái hai chiều và xử lý sự cố tự động qua Telegram.',
-  },
-  {
     key: 'dispatch',
     name: 'ProjectDispatch (Multi-Agent Dispatch)',
     category: 'Automation Engineering',
@@ -101,6 +93,14 @@ const REGISTERED_TSX_COMPONENTS = [
     role: 'AI Governance Lead',
     summaryEn: 'Standardized agent operational procedures, invariants, and compliance.',
     summaryVi: 'Quy trình vận hành chuẩn cho Agent và kiểm tra tuân thủ tự động.',
+  },
+  {
+    key: 'sync-task-badge',
+    name: 'ProjectSyncTaskBadge (Real-time Sync)',
+    category: 'Telemetry & Devops',
+    role: 'DevOps & Integration Engineer',
+    summaryEn: 'Bi-directional status broadcasting and automated issue triage via Telegram.',
+    summaryVi: 'Phát sóng trạng thái hai chiều và xử lý sự cố tự động qua Telegram.',
   },
 ];
 

@@ -5,6 +5,11 @@ import { DEFAULT_PROJECT_ENTRIES } from '../../content/legacy/legacyProjectManif
 const STORAGE_KEY = 'portfolio_projects_cache';
 let inMemoryFallbackProjects: ContentEntry[] = [...DEFAULT_PROJECT_ENTRIES];
 
+export function isDemoModeActive(): boolean {
+  if (typeof window === 'undefined') return false;
+  return localStorage.getItem('portfolio_admin_demo_auth') === 'true';
+}
+
 /**
  * Reads locally cached project entries or initializes with DEFAULT_PROJECT_ENTRIES.
  */
@@ -199,7 +204,7 @@ export async function createProject(project: Partial<ContentEntry>): Promise<Con
   const updatedList = [newEntry, ...localList.filter((p) => p.id !== newEntry.id)];
   saveLocalCachedProjects(updatedList);
 
-  if (!isSupabaseConfigured) {
+  if (!isSupabaseConfigured || isDemoModeActive()) {
     return newEntry;
   }
 
@@ -281,7 +286,7 @@ export async function updateProject(
   const updatedList = localList.map((p) => (p.id === id ? updatedEntry : p));
   saveLocalCachedProjects(updatedList);
 
-  if (!isSupabaseConfigured) {
+  if (!isSupabaseConfigured || isDemoModeActive()) {
     return updatedEntry;
   }
 
@@ -342,7 +347,7 @@ export async function deleteProject(id: string): Promise<boolean> {
   const updatedList = localList.filter((p) => p.id !== id);
   saveLocalCachedProjects(updatedList);
 
-  if (!isSupabaseConfigured) {
+  if (!isSupabaseConfigured || isDemoModeActive()) {
     return true;
   }
 

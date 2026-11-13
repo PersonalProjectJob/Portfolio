@@ -146,7 +146,8 @@ export async function createVersionSnapshot(
     seo: snapshot.seo,
   });
 
-  if (!isSupabaseConfigured) {
+  const isDemo = typeof window !== 'undefined' && localStorage.getItem('portfolio_admin_demo_auth') === 'true';
+  if (!isSupabaseConfigured || isDemo) {
     return newVersion;
   }
 
